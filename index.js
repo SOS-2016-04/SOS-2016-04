@@ -5,10 +5,17 @@ var app = express();
 
 app.get("/about",(req,res) => {
 
+ res.write("GROUP 04 ---- THEMATIC\n\n");
+
+ res.write("Our data sources are aimed to analyze relationship between population age, population activity and unemployment\n\n\n\n");
 
  res.write("GROUP 04 ---- MEMBERS AND DATA SOURCES\n\n");
 
- res.write("José Manuel Moreno Triguero -> ");
+ res.write("Jose Manuel Moreno Triguero -> <a>enla</a>\n");
+
+ res.write(" -> \n");
+
+ res.write(" -> \n");
 
 res.end();
 
