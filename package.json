@@ -4,7 +4,7 @@
   "description": "",
   "main": "pr.js",
   "scripts": {
-    "start":"node pr.js & node presen.js" ,
+    "start":"node pr.js &  presen.js" ,
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
