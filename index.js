@@ -48,7 +48,7 @@ res.end();
 app.get("/about/population-unemployed-percentage-by-gender", (req,res) =>{
 
 
-  res.write("This data source analyze population percentage unemployed by gender \n\n");
+  res.write("This data source analyze population percentage unemployed by gender. \n\n");
   res.write("Examples: \n\n");
   res.write("country: spain --- year: 2014 --- female unemployed:26 --- male unemployed:23.7");
 
