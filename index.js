@@ -11,6 +11,8 @@ app.get("/about",(req,res) => {
 
  res.write("GROUP 04 ---- MEMBERS AND DATA SOURCES\n\n");
 
+ document.write("<a href='https://sos-2016-04.herokuapp.com/about/population-percentage-by-age'>Jose Manuel Moreno Triguero -> population-percentage-by-age</a>");
+
  res.write("Jose Manuel Moreno Triguero -> population-percentage-by-age".link("https://sos-2016-04.herokuapp.com/about/population-percentage-by-age")+"\n");
 
  res.write("Alejandro Rodriguez Caro -> \n");
