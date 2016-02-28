@@ -15,7 +15,7 @@ app.get("/about",(req,res) => {
 
  res.write("Alejandro Rodriguez Caro -> \n");
 
- res.write("Jesus Garcia Sanchez -> \n");
+ res.write("Jesus Garcia Sanchez -> population-unemployed-percentage-by-gender\n");
 
 res.end();
 
