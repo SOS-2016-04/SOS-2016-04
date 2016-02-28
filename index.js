@@ -45,14 +45,15 @@ res.end();
 });
 
 
-app.get("/about/Porcentaje_desempleo_por_sexo", (req,res) =>{
-res.write("<html><body>____ Porcentaje de desempleo ____<ul>");
-
-res.write("</li>Se  tendra en cuenta el sexo para comparar los datos de las siguientes regiones:spain,argentina,canada,france,germany,sweden</li>");
+app.get("/about/population-unemployed-percentage-by-gender", (req,res) =>{
 
 
+  res.write("This data source analyze population percentage unemployed by gender");
+  res.write("Examples: \n\n");
+  res.write("country: spain --- year: 2014 --- female unemployed:26 --- male unemployed:23.7");
 
-res.write("</ul>____ Fin de la presentacion ____<html><body>");
+
+
 res.end();
 });
 
