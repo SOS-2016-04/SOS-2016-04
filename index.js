@@ -6,7 +6,9 @@ var app = express();
 app.get("/about",(req,res) => {
 
 
- res.write("Grupo 4");
+ res.write("GROUP 04 ---- MEMBERS AND DATA SOURCES\n\n");
+
+ res.write("José Manuel Moreno Triguero -> ");
 
 res.end();
 
