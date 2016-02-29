@@ -2,12 +2,6 @@ var express = require("express");
 
 var app = express();
 
-function mostrar(enlance){
-  eti = document.getElementById('url-din');
-  eti.href=enlance;
-  eti.innerHTML=enlance;
-}
-
 
 app.get("/about",(req,res) => {
 
@@ -19,7 +13,11 @@ app.get("/about",(req,res) => {
 
  res.write("Jose Manuel Moreno Triguero -> population-percentage-by-age\n");
 
- res.write("Alejandro Rodriguez Caro -> "+ <input type=button onclick='mostrar("https://sos-2016-04.herokuapp.com/about/population-labor-force-percentage-by-education");'>+"\n");
+ res.write("<html>");
+ res.write("Alejandro Rodriguez Caro -> ");
+ <a href="../population-labor-force-percentage-by-education">population-labor-force-percentage-by-education</a>
+ res.write("</html>");
+
  res.write("Jesus Garcia Sanchez -> population-unemployed-percentage-by-gender\n");
 
 res.end();
@@ -43,7 +41,7 @@ res.end();
 app.get("/about/population-labor-force-percentage-by-education",(req,res) => {
 
 
-  res.write("This data source analyze population percentage labor force by education (Primary, secondary and tertiary). \n\n");
+  res.write("This data source analyze population percentage labor force by education (Primary, secondary and tertiary). \n\n ");
   res.write("Examples: \n\n");
   res.write("country: spain --- year: 2014 --- primary-education: 39% --- secondary-education: 23% --- tertiary-education: 37%");
 
