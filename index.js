@@ -13,10 +13,7 @@ app.get("/about",(req,res) => {
 
  res.write("Jose Manuel Moreno Triguero -> population-percentage-by-age\n");
 
- res.write("<html>");
- res.write("Alejandro Rodriguez Caro -> ");
- res.write("<a href="../population-labor-force-percentage-by-education">population-labor-force-percentage-by-education</a>");
- res.write("</html>");
+ res.write("Alejandro Rodriguez Caro -> population-labor-force-percentage-by-education\n");
 
  res.write("Jesus Garcia Sanchez -> population-unemployed-percentage-by-gender\n");
 
