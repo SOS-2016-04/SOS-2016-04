@@ -10,7 +10,7 @@ app.use("/",express.static(__dirname+"/static"));
 app.get("/time", (req,res)=>{
 
 var now = new Date();
-res.send("It is "+now);
+res.send("It is  "+now);
 
 });
 
