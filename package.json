@@ -12,9 +12,13 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "expres": "0.0.5",
     "express": "^4.13.4"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/SOS-2016-04/sos-2016-04/issues"
+  },
+  "homepage": "https://github.com/SOS-2016-04/sos-2016-04#readme",
+  "description": ""
 }
