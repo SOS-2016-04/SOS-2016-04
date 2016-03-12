@@ -57,7 +57,7 @@ app.post("/api/sandbox/football-teams", (req,res)=> {
 
 
 app.post("/api/sandbox/football-teams/:equipo", (req,res)=> {
-	res.send("Error. Metodo no permitido");
+	res.send("Error. Metodo no permitido.");
 });
 
 
