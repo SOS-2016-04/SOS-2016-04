@@ -63,7 +63,7 @@ app.post("/api/sandbox/football-teams/:equipo", (req,res)=> {
 
 app.delete("/api/sandbox/football-teams", (req,res)=> {
 	football_teams = [];
-	res.send("Datos borrados correctamente");
+	res.send("Datos borrados correctamente.");
 });
 
 
@@ -76,6 +76,7 @@ app.delete("/api/sandbox/football-teams/:name", (req,res)=> {
 		{
 			delete football_teams[i];
 			encontrado = true;
+			res.send("Datos borrados correctamente.")
 		}
     }
     if(encontrado == false)
