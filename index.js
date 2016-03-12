@@ -74,7 +74,7 @@ app.delete("/api/sandbox/football-teams/:name", (req,res)=> {
 	{
 		if(football_teams[i].name == team_name)
 		{
-			delete football_teams[i];
+			football_teams.splice(i,1);
 			encontrado = true;
 			res.send("Datos borrados correctamente.")
 		}
