@@ -208,7 +208,7 @@ app.put("/api/sandbox/movies/:name", (req,res)=> {
 
 
 app.get("/api-test/books/loadInitialData",(req,res) => {
-	movies=[{name:"La sombra del viento", year:"2001" , author:"Carlos Ruiz Zafón"},
+	books=[{name:"La sombra del viento", year:"2001", author:"Carlos Ruiz Zafón"},
 	        {name:"El nombre de la rosa", year:"1980", author:"Umberto Eco"}];
    res.send("Initialized data.");
 });
