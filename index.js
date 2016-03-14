@@ -160,7 +160,7 @@ app.delete("/api/sandbox/movies", (req,res)=> {
 });
 
 
-app.delete("/api/sandbox/football-teams/:name", (req,res)=> {
+app.delete("/api/sandbox/movies/:name", (req,res)=> {
 	var title = req.params.name;
 	var found = false;
 	for(var i=0;i<movies.length;i++)
