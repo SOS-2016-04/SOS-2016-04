@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 
 var football_teams = [];
 var movies = [];
+var books = [];
 
 
 
@@ -194,6 +195,99 @@ app.put("/api/sandbox/movies/:name", (req,res)=> {
 			movies[i] = req.body;
 			found = true;
 			res.send("Datos introducidos correctamente.");
+		}
+    }
+    if(found == false)
+    {
+	res.sendStatus(404);
+    }
+});
+
+
+/////////////---------BOOKS---------/////////////
+
+
+app.get("/api-test/books/loadInitialData",(req,res) => {
+	movies=[{name:"La sombra del viento", year:"2001" , author:"Carlos Ruiz Zafón"},
+	        {name:"El nombre de la rosa", year:"1980", author:"Umberto Eco"}];
+   res.send("Initialized data.");
+});
+
+
+app.get("/api/sandbox/books",(req,res) => {
+	res.send(books);
+});
+
+app.get("/api/sandbox/books/:name",(req,res) => {
+	var title = req.params.name;
+	var found = false;
+	for(var i=0;i<books.length;i++)
+	{
+		if(books[i].name == title)
+		{
+			res.send(books[i]);
+			found = true;
+		}
+    }
+    if(found == false)
+    {
+	res.sendStatus(404);
+    }
+});
+
+
+app.post("/api/sandbox/books", (req,res)=> {
+	var book = req.body;
+	books.push(book);
+	res.send("Data entered correctly.");
+});
+
+
+app.post("/api/sandbox/books/:editorial", (req,res)=> {
+	res.send("Error. Method Not Allowed.");
+});
+
+
+app.delete("/api/sandbox/books", (req,res)=> {
+	books = [];
+	res.send("Deleted data correctly.");
+});
+
+
+app.delete("/api/sandbox/books/:name", (req,res)=> {
+	var title = req.params.name;
+	var found = false;
+	for(var i=0;i<books.length;i++)
+	{
+		if(books[i].name == title)
+		{
+			books.splice(i,1);
+			found = true;
+			res.send("Deleted data correctly.")
+		}
+    }
+    if(found == false)
+    {
+	res.sendStatus(404);
+    }
+});
+
+
+app.put("/api/sandbox/books", (req,res)=> {
+	res.send("Error. Method Not Allowed.");
+});
+
+
+app.put("/api/sandbox/books/:name", (req,res)=> {
+	var title = req.params.name;
+	var found = false;
+	for(var i=0;i<books.length;i++)
+	{
+		if(books[i].name == title)
+		{
+			books[i] = req.body;
+			found = true;
+			res.send("Data entered correctly.");
 		}
     }
     if(found == false)
