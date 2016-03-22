@@ -22,16 +22,23 @@ res.send(population_percentages);
 
 
 module.exports.getPopulationPercentage = function(req,res){
-var country = req.params.country;
+var data = req.params.data;
 var resultado = [];
 	var encontrado = false;
 	for(var i=0;i<population_percentages.length;i++)
 	{
-		if(population_percentages[i].country == country)
+		if(isNaN(data)  &&  population_percentages[i].country == data)
 		{
 			resultado.push(population_percentages[i]);
 			encontrado = true;
 		}
+
+		if(isNaN(data) == false  &&  population_percentages[i].year == data)
+		{
+			resultado.push(population_percentages[i]);
+			encontrado = true;
+		}
+
     }
 
     if(encontrado == true)
@@ -54,32 +61,6 @@ var resultado = [];
 	for(var i=0;i<population_percentages.length;i++)
 	{
 		if(population_percentages[i].country == country && population_percentages[i].year == year)
-		{
-			resultado.push(population_percentages[i]);
-			encontrado = true;
-		}
-    }
-
-    if(encontrado == true)
-    {
-    	res.send(resultado);
-    }
-
-    if(encontrado == false)
-    {
-	res.sendStatus(404);
-    }
-
-}
-
-
-module.exports.getPopulationPercentageYear = function(req,res){
-var year = req.params.year;
-var resultado = [];
-	var encontrado = false;
-	for(var i=0;i<population_percentages.length;i++)
-	{
-		if(population_percentages[i].year == year)
 		{
 			resultado.push(population_percentages[i]);
 			encontrado = true;
