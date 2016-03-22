@@ -1,6 +1,8 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 
+var footballTeamCtlr = require('./footballTeamCtlr');
+
 var app = express();
 
 var port = (process.env.PORT || 10000);
@@ -24,11 +26,7 @@ res.send("It is "+now);
 });
 
 
-app.get("/api-test/football-teams/loadInitialData",(req,res) => {
-	football_teams=[{name:"Betis", stadium:"Benito Villamarin" , founded:1907},
-	                {name:"Valencia", stadium:"Mestalla", founded:1923}];
-   res.send("Datos inicializados correctamente.");
-});
+app.get("/api-test/football-teams/loadInitialData",footballTeamCtlr.loadInitialData);
 
 
 app.get("/api/sandbox/football-teams",(req,res) => {
