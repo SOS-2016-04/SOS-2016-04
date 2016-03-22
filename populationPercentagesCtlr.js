@@ -20,15 +20,15 @@ res.send(population_percentages);
 };
 
 
-/*
+
 module.exports.getPopulationPercentage = function(req,res){
 var country = req.params.country;
 	var encontrado = false;
-	for(var i=0;i<football_teams.length;i++)
+	for(var i=0;i<population_percentages.length;i++)
 	{
-		if(football_teams[i].name == team_name)
+		if(population_percentages[i].country == country)
 		{
-			res.send(football_teams[i]);
+			res.send(population_percentages[i]);
 			encontrado = true;
 		}
     }
@@ -39,6 +39,7 @@ var country = req.params.country;
 }
 
 
+/*
 module.exports.postFootballTeam = function(req,res){
 res.send("Error. Metodo no permitido.");
 }
