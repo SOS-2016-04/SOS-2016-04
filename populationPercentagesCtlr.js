@@ -23,19 +23,22 @@ res.send(population_percentages);
 
 module.exports.getPopulationPercentage = function(req,res){
 var country = req.params.country;
+var resultado = [];
 	var encontrado = false;
 	for(var i=0;i<population_percentages.length;i++)
 	{
 		if(population_percentages[i].country == country)
 		{
-			res.write(population_percentages[i]);
+			resultado.push(population_percentages[i]);
 			encontrado = true;
 		}
     }
 
-
     if(encontrado == true)
-    	{ res.end();}
+    {
+    	res.send(resultado);
+    }
+
     if(encontrado == false)
     {
 	res.sendStatus(404);
