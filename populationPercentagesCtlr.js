@@ -9,6 +9,9 @@ population_percentages=[{country: "spain", year: 2014, population_0_14: 15, popu
 {country: "france", year: 2012, population_0_14: 19, population_15_64: 63},
 {country: "france", year: 2013, population_0_14: 15, population_15_64: 64},
 {country: "sweden", year: 2014, population_0_14: 17, population_15_64: 63}];
+
+res.sendStatus(200);
+
 }
 
 
