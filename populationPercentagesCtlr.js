@@ -3,7 +3,7 @@
 var population_percentages = [];
 
 module.exports.loadInitialData = function(req,res){
-football_teams=[{country: "spain", year: 2014, population-0-14: 15, population-15-64: 67},
+population_percentages=[{country: "spain", year: 2014, population_0_14: 15, population_15_64: 67},
 {country: "spain", year: 2013, population_0_14: 14, population_15_64: 68},
 {country: "canada", year: 2014, population_0_14: 16, population_15_64: 68},
 {country: "france", year: 2012, population_0_14: 19, population_15_64: 63},
