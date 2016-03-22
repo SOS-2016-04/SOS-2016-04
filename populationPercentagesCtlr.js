@@ -46,6 +46,15 @@ var resultado = [];
 }
 
 
+module.exports.getPopulationPercentageYear = function(req,res){
+var country = req.params.country;
+var year = req.params.year;
+res.send(country);
+
+}
+
+
+
 /*
 module.exports.postFootballTeam = function(req,res){
 res.send("Error. Metodo no permitido.");
