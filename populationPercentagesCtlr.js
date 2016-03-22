@@ -46,7 +46,7 @@ var resultado = [];
 }
 
 
-module.exports.getPopulationPercentageYear = function(req,res){
+module.exports.getPopulationPercentageCountryYear = function(req,res){
 var country = req.params.country;
 var year = req.params.year;
 var resultado = [];
@@ -72,6 +72,31 @@ var resultado = [];
 
 }
 
+
+module.exports.getPopulationPercentageYear = function(req,res){
+var year = req.params.year;
+var resultado = [];
+	var encontrado = false;
+	for(var i=0;i<population_percentages.length;i++)
+	{
+		if(population_percentages[i].year == year)
+		{
+			resultado.push(population_percentages[i]);
+			encontrado = true;
+		}
+    }
+
+    if(encontrado == true)
+    {
+    	res.send(resultado);
+    }
+
+    if(encontrado == false)
+    {
+	res.sendStatus(404);
+    }
+
+}
 
 
 /*
