@@ -30,9 +30,9 @@ app.get("/api/v1/population-percentage-by-age/loadInitialData",populationPercent
 
 app.get("/api/v1/population-percentage-by-age",populationPercentagesCtlr.getPopulationPercentages);
 
-/*
-app.get("/api/v1/population-percentage-by-age",footballTeamCtlr.getFootballTeams);
+app.get("/api/v1/population-percentage-by-age/:country",populationPercentagesCtlr.getPopulationPercentage);
 
+/*
 app.get("/api/v1/population-percentage-by-age/:country",footballTeamCtlr.getFootballTeam);
 
 app.post("/api/v1/population-percentage-by-age",footballTeamCtlr.postFootballTeams);
