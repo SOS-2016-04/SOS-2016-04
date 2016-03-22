@@ -28,10 +28,11 @@ var country = req.params.country;
 	{
 		if(population_percentages[i].country == country)
 		{
-			res.send(population_percentages[i]);
+			res.write(population_percentages[i]);
 			encontrado = true;
 		}
     }
+    res.end();
     if(encontrado == false)
     {
 	res.sendStatus(404);
