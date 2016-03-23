@@ -21,9 +21,12 @@ from = req.query.from;
 to = req.query.to;
 limit = req.query.limit;
 offset = req.query.offset;
+apikey = req.query.apikey;
 var resultado = [];
 
 
+if (apikey && apikey="secret") 
+{
 
 for(var i=0;i<population_percentages.length;i++)
 {
@@ -50,9 +53,13 @@ resultado.splice(limit,resultado.length-limit);
 
 }
 
-
 res.send(resultado);
+}
 
+else
+{
+	res.sendStatus(401);
+}
 
 
 };
