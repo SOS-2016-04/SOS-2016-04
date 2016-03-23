@@ -93,10 +93,10 @@ var population_percentage = req.body;
 }
 
 
-/*
 
-module.exports.deleteFootballTeam = function(req,res){
-var team_name = req.params.name;
+
+module.exports.deletePopulationPercentage = function(req,res){
+/*var name = req.params.name;
 	var encontrado = false;
 	for(var i=0;i<football_teams.length;i++)
 	{
@@ -110,16 +110,46 @@ var team_name = req.params.name;
     if(encontrado == false)
     {
 	res.sendStatus(404);
+    }*/
+    var data = req.params.data;
+	var encontrado = false;
+	for(var i=0;i<population_percentages.length;i++)
+	{
+		if(isNaN(data)  &&  population_percentages[i].country == data)
+		{
+			population_percentages.splice(i,1);
+			encontrado = true;
+			i=i-1;
+		}
+
+		if(isNaN(data) == false  &&  population_percentages[i].year == data)
+		{
+			population_percentages.splice(i,1);
+			encontrado = true;
+			i=i-1;
+		}
+
     }
+
+    if(encontrado == true)
+    {
+    	res.sendStatus(200);
+    }
+
+    if(encontrado == false)
+    {
+	res.sendStatus(404);
+    }
+
 }
 
 
-module.exports.deleteFootballTeams = function(req,res){
- football_teams = [];
- res.send("Datos borrados correctamente.");
+module.exports.deletePopulationPercentages = function(req,res){
+ population_percentages = [];
+ res.sendStatus(200);
 }
 
-
+/*
 module.exports.putFootballTeam = function(req,res){
 var team_name = req.params.name;
 	var encontrado = false;
