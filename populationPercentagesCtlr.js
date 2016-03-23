@@ -140,6 +140,8 @@ var population_15_64 = req.params.population_15_64;
 var existe = false;
 var peticion_valida = true;
 
+console.log(country == false);
+console.log(!country);
 
 if(country == false || year == false || population_0_14 == false || population_15_64 == false || isNaN(year) || isNaN(population_0_14)  || isNaN(population_15_64))
 {
