@@ -154,10 +154,11 @@ if (peticion_valida == true)
 
 	for(var i=0;i<population_percentages.length;i++)
 	{
-		if(population_percentages[i].country == population_percentage.country && population_percentages[i].year == population_percentage.year)
+		/*if(population_percentages[i].country == population_percentage.country && population_percentages[i].year == population_percentage.year)
 		{
 			existe = true;
-		}
+		}*/
+		existe = false;
     }
 
 
@@ -176,7 +177,7 @@ else
 
 else
 {
-	res.send(country == undefined);
+	res.send(country);
 	res.sendStatus(400);
 }
 
