@@ -28,9 +28,11 @@ for(var i=0;i<population_percentages.length;i++)
 	resultado.push(population_percentages[i]);
 }
 
-/*
+
 if (from && to)
 {
+	to = 0;
+/*
 for(var i=0;i<resultado.length;++)
 {
 if(resultado[i].year < from  ||  resultado[i].year > to)
@@ -39,11 +41,12 @@ if(resultado[i].year < from  ||  resultado[i].year > to)
 	i = i - 1;
 }
 }
+*/
 }
 
-*/
 
-res.send(resultado);
+
+res.send(to);
 
 
 
