@@ -173,7 +173,7 @@ var encontrado = false;
 
 	for(var i=0;i<tamanho;i++)
 	{
-		if(copia_array[i].country == country && copia_array[i].year == year)
+		if(population_percentages[i].country == country && population_percentages[i].year == year)
 		{
 			population_percentages.push(req.body);
 			encontrado = true;
