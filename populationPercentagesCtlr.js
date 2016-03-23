@@ -32,7 +32,7 @@ for(var i=0;i<population_percentages.length;i++)
 if (from && to)
 {
 
-for(var i=0;i<resultado.length;++)
+for(var i=0;i<resultado.length;i++)
 {
 	to = "Hola";
 /*
