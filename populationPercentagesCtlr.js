@@ -142,7 +142,7 @@ var peticion_valida = true;
 
 
 
-if(country == false || year == false || population_0_14 == false || population_15_64 == false || isNaN(year) || isNaN(population_0_14)  || isNaN(population_15_64))
+if(population_percentage.country === undefined || population_percentage.year === undefined || population_percentage.population_0_14 === undefined || population_percentage.population_15_64 === undefined || isNaN(population_percentage.year) || isNaN(population_percentage.population_0_14)  || isNaN(population_percentage.population_15_64))
 {
 	peticion_valida = false;
 }
@@ -154,11 +154,10 @@ if (peticion_valida == true)
 
 	for(var i=0;i<population_percentages.length;i++)
 	{
-		/*if(population_percentages[i].country == population_percentage.country && population_percentages[i].year == population_percentage.year)
+		if(population_percentages[i].country == population_percentage.country && population_percentages[i].year == population_percentage.year)
 		{
 			existe = true;
-		}*/
-		existe = false;
+		}
     }
 
 
@@ -177,7 +176,6 @@ else
 
 else
 {
-	res.send(population_percentage.country === undefined);
 	res.sendStatus(400);
 }
 
