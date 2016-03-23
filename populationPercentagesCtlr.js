@@ -186,7 +186,7 @@ for(var i=0;i<population_percentages.length;i++)
 		}
 		else
 		{
-			popultaion_percentages.push(copia_array[i]);
+			population_percentages.push(copia_array[i]);
 		}
     }
 
