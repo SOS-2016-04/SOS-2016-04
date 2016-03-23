@@ -42,6 +42,8 @@ app.delete("/api/v1/population-percentage-by-age",populationPercentagesCtlr.dele
 
 app.delete("/api/v1/population-percentage-by-age/:data",populationPercentagesCtlr.deletePopulationPercentage);
 
+app.delete("/api/v1/population-percentage-by-age/:country/:year",populationPercentagesCtlr.deletePopulationPercentageCountryYear);
+
 /*
 app.put("/api/v1/population-percentage-by-age",footballTeamCtlr.putFootballTeams);
 

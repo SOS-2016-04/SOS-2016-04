@@ -96,21 +96,6 @@ var population_percentage = req.body;
 
 
 module.exports.deletePopulationPercentage = function(req,res){
-/*var name = req.params.name;
-	var encontrado = false;
-	for(var i=0;i<football_teams.length;i++)
-	{
-		if(football_teams[i].name == team_name)
-		{
-			football_teams.splice(i,1);
-			encontrado = true;
-			res.send("Datos borrados correctamente.")
-		}
-    }
-    if(encontrado == false)
-    {
-	res.sendStatus(404);
-    }*/
     var data = req.params.data;
 	var encontrado = false;
 	for(var i=0;i<population_percentages.length;i++)
@@ -147,6 +132,35 @@ module.exports.deletePopulationPercentage = function(req,res){
 module.exports.deletePopulationPercentages = function(req,res){
  population_percentages = [];
  res.sendStatus(200);
+}
+
+
+
+
+module.exports.deletePopulationPercentageCountryYear = function(req,res){
+var country = req.params.country;
+var year = req.params.year;
+	var encontrado = false;
+	for(var i=0;i<population_percentages.length;i++)
+	{
+		if(population_percentages[i].country == country && population_percentages[i].year == year)
+		{
+			population_percentages.splice(i,1);
+			encontrado = true;
+			i=i-1;
+		}
+    }
+
+    if(encontrado == true)
+    {
+    	res.sendStatus(200);
+    }
+
+    if(encontrado == false)
+    {
+	res.sendStatus(404);
+    }
+
 }
 
 /*
