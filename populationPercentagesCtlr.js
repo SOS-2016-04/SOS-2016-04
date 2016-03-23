@@ -177,7 +177,7 @@ else
 
 else
 {
-	res.send(country);
+	res.send(population_percentage);
 	res.sendStatus(400);
 }
 
