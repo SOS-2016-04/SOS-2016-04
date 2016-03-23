@@ -16,7 +16,15 @@ res.sendStatus(200);
 
 
 module.exports.getPopulationPercentages = function(req,res){
+
+
+
+
 res.send(population_percentages);
+
+
+
+
 };
 
 
@@ -53,7 +61,7 @@ var resultado = [];
 }
 
 
-module.exports.getPopulationPercentageCountryYear = function(req,res){
+module.exports.getPopulationPercentageCountryYeard = function(req,res){
 var country = req.params.country;
 var year = req.params.year;
 var resultado = [];
