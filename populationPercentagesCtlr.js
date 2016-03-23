@@ -25,7 +25,7 @@ apikey = req.query.apikey;
 var resultado = [];
 
 
-if (apikey && apikey="secret") 
+if (apikey && apikey=="secret") 
 {
 
 for(var i=0;i<population_percentages.length;i++)
