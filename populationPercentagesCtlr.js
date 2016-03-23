@@ -45,13 +45,11 @@ if(resultado[i].year < from  ||  resultado[i].year > to)
 if(limit && offset)
 {
 
-
-
+resultado.splice(0,offset);
+resultado.splice(limit,resultado.length-limit);
 
 }
 
-resultado.splice(0,10000);
-resultado.splice(10000,10000)
 
 res.send(resultado);
 
