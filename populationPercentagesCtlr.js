@@ -19,6 +19,8 @@ module.exports.getPopulationPercentages = function(req,res){
 
 from = req.query.from;
 to = req.query.to;
+limit = req.query.limit;
+offset = req.query.offset;
 var resultado = [];
 
 
@@ -28,24 +30,28 @@ for(var i=0;i<population_percentages.length;i++)
 	resultado.push(population_percentages[i]);
 }
 
-
 if (from && to)
 {
-
 for(var i=0;i<resultado.length;i++)
-{
-	
+{	
 if(resultado[i].year < from  ||  resultado[i].year > to)
 {
 	resultado.splice(i,1);
 	i = i - 1;
-}
+}}}
+
+
+
+if(limit && offset)
+{
+
+
+
 
 }
 
-}
-
-
+resultado.splice(0,10000);
+resultado.splice(10000,10000)
 
 res.send(resultado);
 
