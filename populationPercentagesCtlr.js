@@ -166,10 +166,16 @@ var year = req.params.year;
 
 module.exports.putPopulationPercentage = function(req,res){
     var country = req.params.country;
-    var copia_array = population_percentages;
-    population_percentages = [];
+    var copia_array = [];
 var year = req.params.year;
 var encontrado = false;
+
+for(var i=0;i<population_percentages.length;i++)
+	{
+		copia_array.push(population_percentages[i]);
+	}
+
+	population_percentages = [];
 
 	for(var i=0;i<copia_array.length;i++)
 	{
