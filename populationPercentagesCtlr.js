@@ -17,8 +17,8 @@ res.sendStatus(200);
 
 module.exports.getPopulationPercentages = function(req,res){
 
-//from = req.query.from;
-//to = req.query.to;
+from = req.query.from;
+to = req.query.to;
 var resultado = [];
 
 /*
@@ -42,7 +42,7 @@ if(resultado[i].year < from  ||  resultado[i].year > to)
 
 */
 
-res.send(resultado);
+res.send(to);
 
 
 
