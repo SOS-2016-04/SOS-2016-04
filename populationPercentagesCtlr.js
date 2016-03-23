@@ -166,15 +166,21 @@ var year = req.params.year;
 
 module.exports.putPopulationPercentage = function(req,res){
     var country = req.params.country;
+    var copia_array = population_percentages;
+    population_percentages = [];
 var year = req.params.year;
 var encontrado = false;
 
-	for(var i=0;i<population_percentages.length;i++)
+	for(var i=0;i<copia_array.length;i++)
 	{
-		if(population_percentages[i].country == country && population_percentages[i].year == year)
+		if(copia_array[i].country == country && copia_array[i].year == year)
 		{
-			//population_percentages.splice(i,0,req.body);
+			population_percentages.push(req.body);
 			encontrado = true;
+		}
+		else
+		{
+			popultaion_percentages.push(copia_array[i]);
 		}
     }
 
