@@ -133,8 +133,28 @@ res.sendStatus(405);
 
 module.exports.postPopulationPercentages = function(req,res){
 var population_percentage = req.body;
+
+var existe = false;
+	for(var i=0;i<population_percentages.length;i++)
+	{
+		if(population_percentages[i].country == population_percentage.country && population_percentages[i].year == population_percentage.year)
+		{
+			existe = true;
+		}
+    }
+
+
+if (existe == false)
+{
 	population_percentages.push(population_percentage);
 	res.sendStatus(201);
+}
+else
+{
+	res.sendStatus(409);
+}
+
+
 }
 
 
