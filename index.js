@@ -44,10 +44,10 @@ app.delete("/api/v1/population-percentage-by-age/:data",populationPercentagesCtl
 
 app.delete("/api/v1/population-percentage-by-age/:country/:year",populationPercentagesCtlr.deletePopulationPercentageCountryYear);
 
-app.put("/api/v1/population-percentage-by-age",populationPercentagesCtlr.putPopulationPercentages);
+/*app.put("/api/v1/population-percentage-by-age",populationPercentagesCtlr.putPopulationPercentages);
 
 app.put("/api/v1/population-percentage-by-age/:country/:year",populationPercentagesCtlr.putPopulationPercentage);
-
+*/
 
 
 

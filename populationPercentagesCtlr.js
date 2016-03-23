@@ -164,7 +164,7 @@ var year = req.params.year;
 }
 
 
-module.exports.putPopulationPercentage = function(req,res){
+/*module.exports.putPopulationPercentage = function(req,res){
     var country = req.params.country;
 var year = req.params.year;
 var encontrado = false;
@@ -191,6 +191,6 @@ var encontrado = false;
 
 module.exports.putPopulationPercentages = function(req,res){
  res.sendStatus(405);
-}
+}*/
 
 
