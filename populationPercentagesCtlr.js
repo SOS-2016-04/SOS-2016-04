@@ -47,7 +47,7 @@ if(resultado[i].year < from  ||  resultado[i].year > to)
 
 
 
-res.send(to);
+res.send(resultado);
 
 
 
