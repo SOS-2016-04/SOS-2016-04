@@ -184,6 +184,8 @@ var encontrado = false;
 		}
     }
 
+    population_percentages.splice(0,tamanho);
+
     if(encontrado == true)
     {
     res.sendStatus(200);
