@@ -80,20 +80,20 @@ var resultado = [];
 }
 
 
-/*
-module.exports.postFootballTeam = function(req,res){
+
+module.exports.postPopulationPercentage = function(req,res){
 res.sendStatus(405);
 }
 
 
-module.exports.postFootballTeams = function(req,res){
+module.exports.postPopulationPercentages = function(req,res){
 var population_percentage = req.body;
 	population_percentages.push(population_percentage);
 	res.sendStatus(201);
 }
 
 
-
+/*
 
 module.exports.deleteFootballTeam = function(req,res){
 var team_name = req.params.name;
