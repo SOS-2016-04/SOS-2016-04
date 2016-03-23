@@ -34,14 +34,13 @@ if (from && to)
 
 for(var i=0;i<resultado.length;i++)
 {
-	to = "Hola";
-/*
+	
 if(resultado[i].year < from  ||  resultado[i].year > to)
 {
 	resultado.splice(i,1);
 	i = i - 1;
 }
-*/
+
 }
 
 }
