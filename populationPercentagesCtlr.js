@@ -176,7 +176,7 @@ else
 
 else
 {
-	res.send(country === undefined);
+	res.send(country == undefined);
 	res.sendStatus(400);
 }
 
