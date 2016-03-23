@@ -87,8 +87,8 @@ res.sendStatus(405);
 
 
 module.exports.postFootballTeams = function(req,res){
-var team = req.body;
-	football_teams.push(team);
+var population_percentage = req.body;
+	population_percentages.push(population_percentage);
 	res.sendStatus(201);
 }
 
