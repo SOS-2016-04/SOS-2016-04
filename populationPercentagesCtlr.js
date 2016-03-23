@@ -25,11 +25,17 @@ for(var i=0;i<population_percentages.length;i++)
 	resultado.push(population_percentages[i]);
 }
 
-/*if (from && to)
+if (from && to)
 {
-
-
-}*/
+for(var i=0;i<resultado.length;++)
+{
+if(resultado[i].year < from  ||  resultado[i].year > to)
+{
+	resultado.splice(i,1);
+	i = i - 1;
+}
+}
+}
 
 
 res.send(resultado);
