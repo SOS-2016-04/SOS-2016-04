@@ -173,7 +173,7 @@ var encontrado = false;
 	{
 		if(population_percentages[i].country == country && population_percentages[i].year == year)
 		{
-			population_percentages.splice(i,0,"Hola");
+			population_percentages.splice(i,0,req.body);
 			encontrado = true;
 		}
     }
