@@ -80,7 +80,7 @@ var resultado = [];
 }
 
 
-
+/*
 module.exports.postFootballTeam = function(req,res){
 res.sendStatus(405);
 }
@@ -94,7 +94,7 @@ var population_percentage = req.body;
 
 
 
-/*
+
 module.exports.deleteFootballTeam = function(req,res){
 var team_name = req.params.name;
 	var encontrado = false;
