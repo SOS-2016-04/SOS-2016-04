@@ -163,19 +163,25 @@ var year = req.params.year;
 
 }
 
-/*
-module.exports.putFootballTeam = function(req,res){
-var team_name = req.params.name;
+
+module.exports.putPopulationPercentage = function(req,res){
+var country = req.params.country;
+var year = req.params.year;
 	var encontrado = false;
-	for(var i=0;i<football_teams.length;i++)
+	for(var i=0;i<population_percentages.length;i++)
 	{
-		if(football_teams[i].name == team_name)
+		if(population_percentages[i].country == country && population_percentages[i].year == year)
 		{
-			football_teams[i] = req.body;
+			population_percentaje[i]=req.body;
 			encontrado = true;
-			res.send("Datos introducidos correctamente.");
 		}
     }
+
+    if(encontrado == true)
+    {
+    	res.sendStatus(200);
+    }
+
     if(encontrado == false)
     {
 	res.sendStatus(404);
@@ -183,9 +189,8 @@ var team_name = req.params.name;
 }
 
 
-module.exports.putFootballTeams = function(req,res){
- res.send("Error. Metodo no permitido");
+module.exports.putPopulationPercentages = function(req,res){
+ res.sendStatus(405);
 }
 
 
-*/
