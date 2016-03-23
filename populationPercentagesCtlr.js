@@ -61,7 +61,7 @@ var resultado = [];
 }
 
 
-module.exports.getPopulationPercentageCountryYeard = function(req,res){
+module.exports.getPopulationPercentageCountryYear = function(req,res){
 var country = req.params.country;
 var year = req.params.year;
 var resultado = [];
