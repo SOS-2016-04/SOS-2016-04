@@ -164,7 +164,7 @@ var year = req.params.year;
 }
 
 
-/*module.exports.putPopulationPercentage = function(req,res){
+module.exports.putPopulationPercentage = function(req,res){
     var country = req.params.country;
 var year = req.params.year;
 var encontrado = false;
@@ -173,7 +173,7 @@ var encontrado = false;
 	{
 		if(population_percentages[i].country == country && population_percentages[i].year == year)
 		{
-			population_percentages.splice(i,0,req.body);
+			//population_percentages.splice(i,0,req.body);
 			encontrado = true;
 		}
     }
@@ -191,6 +191,6 @@ var encontrado = false;
 
 module.exports.putPopulationPercentages = function(req,res){
  res.sendStatus(405);
-}*/
+}
 
 
