@@ -80,19 +80,21 @@ var resultado = [];
 }
 
 
-/*
+
 module.exports.postFootballTeam = function(req,res){
-res.send("Error. Metodo no permitido.");
+res.sendStatus(405);
 }
 
 
 module.exports.postFootballTeams = function(req,res){
 var team = req.body;
 	football_teams.push(team);
-	res.send("Datos introducidos correctamente.");
+	res.sendStatus(201);
 }
 
 
+
+/*
 module.exports.deleteFootballTeam = function(req,res){
 var team_name = req.params.name;
 	var encontrado = false;

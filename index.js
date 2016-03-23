@@ -34,13 +34,11 @@ app.get("/api/v1/population-percentage-by-age/:data",populationPercentagesCtlr.g
 
 app.get("/api/v1/population-percentage-by-age/:country/:year",populationPercentagesCtlr.getPopulationPercentageCountryYear);
 
+app.post("/api/v1/population-percentage-by-age",populationPercentagesCtlr.postPopulationPercentages);
+
+app.post("/api/v1/population-percentage-by-age/:country",populationPercentagesCtlr.postPopulationPercentage);
+
 /*
-app.get("/api/v1/population-percentage-by-age/:country",footballTeamCtlr.getFootballTeam);
-
-app.post("/api/v1/population-percentage-by-age",footballTeamCtlr.postFootballTeams);
-
-app.post("/api/v1/population-percentage-by-age/:country",footballTeamCtlr.postFootballTeam);
-
 app.delete("/api/v1/population-percentage-by-age",footballTeamCtlr.deleteFootballTeams);
 
 app.delete("/api/v1/population-percentage-by-age/:country",footballTeamCtlr.deleteFootballTeam);
