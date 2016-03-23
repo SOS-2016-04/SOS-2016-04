@@ -133,8 +133,24 @@ res.sendStatus(405);
 
 module.exports.postPopulationPercentages = function(req,res){
 var population_percentage = req.body;
-
+var country = req.params.country;
+var year = req.params.year;
+var population_0_14 = req.params.population_0_14;
+var population_15_64 = req.params.population_15_64;
 var existe = false;
+var peticion_valida = true;
+
+
+if(country == false || year == false || population_0_14 == false || population_15_64 == false || isNaN(year) || isNaN(population_0_14)  || isNaN(population_15_64))
+{
+	peticion_valida = false;
+}
+
+
+
+if (peticion_valida == true)
+{
+
 	for(var i=0;i<population_percentages.length;i++)
 	{
 		if(population_percentages[i].country == population_percentage.country && population_percentages[i].year == population_percentage.year)
@@ -142,6 +158,7 @@ var existe = false;
 			existe = true;
 		}
     }
+
 
 
 if (existe == false)
@@ -154,6 +171,13 @@ else
 	res.sendStatus(409);
 }
 
+}
+
+else
+{
+	res.sendStatus(400);
+}
+
 
 }
 
@@ -163,6 +187,7 @@ else
 module.exports.deletePopulationPercentage = function(req,res){
     var data = req.params.data;
 	var encontrado = false;
+
 	for(var i=0;i<population_percentages.length;i++)
 	{
 		if(isNaN(data)  &&  population_percentages[i].country == data)
@@ -181,6 +206,8 @@ module.exports.deletePopulationPercentage = function(req,res){
 
     }
 
+
+
     if(encontrado == true)
     {
     	res.sendStatus(200);
@@ -190,6 +217,8 @@ module.exports.deletePopulationPercentage = function(req,res){
     {
 	res.sendStatus(404);
     }
+
+
 
 }
 
