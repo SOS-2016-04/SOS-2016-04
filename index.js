@@ -36,7 +36,7 @@ app.get("/api/v1/population-percentage-by-age/:country/:year",populationPercenta
 
 app.post("/api/v1/population-percentage-by-age",populationPercentagesCtlr.postPopulationPercentages);
 
-app.post("/api/v1/population-percentage-by-age/:country",populationPercentagesCtlr.postPopulationPercentage);
+app.post("/api/v1/population-percentage-by-age/:country/:year",populationPercentagesCtlr.postPopulationPercentage);
 
 app.delete("/api/v1/population-percentage-by-age",populationPercentagesCtlr.deletePopulationPercentages);
 
