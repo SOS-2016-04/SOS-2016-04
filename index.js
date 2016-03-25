@@ -1,9 +1,9 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 
-var populationPercentagesCtlr = require('./populationPercentagesCtlr');
+//var populationPercentagesCtlr = require('./populationPercentagesCtlr');
 
-//var unemployedCtlr = require('./unemployedCtlr');
+var unemployedCtlr = require('./unemployedCtlr');
 
 var app = express();
 
@@ -28,7 +28,7 @@ res.send("It  is "+now);
 });
 
 
-app.get("/api/v1/population-percentage-by-age/loadInitialData",populationPercentagesCtlr.loadInitialData);
+/*app.get("/api/v1/population-percentage-by-age/loadInitialData",populationPercentagesCtlr.loadInitialData);
 
 app.get("/api/v1/population-percentage-by-age",populationPercentagesCtlr.getPopulationPercentages);
 
@@ -48,13 +48,13 @@ app.delete("/api/v1/population-percentage-by-age/:country/:year",populationPerce
 
 app.put("/api/v1/population-percentage-by-age",populationPercentagesCtlr.putPopulationPercentages);
 
-app.put("/api/v1/population-percentage-by-age/:country/:year",populationPercentagesCtlr.putPopulationPercentage);
+app.put("/api/v1/population-percentage-by-age/:country/:year",populationPercentagesCtlr.putPopulationPercentage);*/
 
 //////////////      Unemployed       /////////////
 
-app.get("/api/v1/population-unemployed-percentage-by-gender/loadInitialData",populationPercentagesCtlr.loadInitialData2);
+app.get("/api/v1/population-unemployed-percentage-by-gender/loadInitialData",unemployedCtlr.loadInitialData);
 
-app.get("/api/v1/population-unemployed-percentage-by-gender",populationPercentagesCtlr.getUnemployes);
+/*app.get("/api/v1/population-unemployed-percentage-by-gender",populationPercentagesCtlr.getUnemployes);
 
 app.get("/api/v1/population-unemployed-percentage-by-gender/:data",populationPercentagesCtlr.getUnemploye);
 
@@ -72,7 +72,7 @@ app.delete("/api/v1/population-unemployed-percentage-by-gender/:country/:year",p
 
 app.put("/api/v1/population-unemployed-percentage-by-gender",populationPercentagesCtlr.putUnemployes);
 
-app.put("/api/v1/population-unemployed-percentage-by-gender/:country/:year",populationPercentagesCtlr.putUnemploye);
+app.put("/api/v1/population-unemployed-percentage-by-gender/:country/:year",populationPercentagesCtlr.putUnemploye);*/
 
 
 
