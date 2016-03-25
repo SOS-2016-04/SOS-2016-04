@@ -258,6 +258,7 @@ var year = req.params.year;
 
 
 module.exports.putUnemploye = function(req,res){
+	var population_unemploye = req.body;
     var country = req.params.country;
 var year = req.params.year;
 var tamanho = population_unemployed.length;
@@ -268,7 +269,10 @@ var encontrado = false;
 	{
 		if(population_unemployed[i].country == country && population_unemployed[i].year == year)
 		{
-			population_unemployed[i]=req.body;
+			population_unemployed[i].country=population_unemploye.country;
+			population_unemployed[i].year=population_unemploye.year;
+			population_unemployed[i].male=population_unemploye.male;
+			population_unemployed[i].female=population_unemploye.female;
 			encontrado = true;
 		}
     }
