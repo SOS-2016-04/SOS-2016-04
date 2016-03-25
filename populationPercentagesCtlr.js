@@ -133,8 +133,8 @@ module.exports.postUnemployes = function(req,res){
 var population_unemploye = req.body;
 var country = req.params.country;
 var year = req.params.year;
-var female = req.params.population_0_14;
-var male = req.params.population_15_64;
+var female = req.params.female;
+var male = req.params.male;
 var existe = false;
 var peticion_valida = true;
 
