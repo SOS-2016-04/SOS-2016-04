@@ -162,7 +162,7 @@ if ( peticion_valida == true)
 
 if (existe == false)
 {
-	population_unemployed.push(req.body);
+	population_unemployed.push(population_unemploye);
 	res.sendStatus(201);
 }
 else
