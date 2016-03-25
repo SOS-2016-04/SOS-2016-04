@@ -140,14 +140,14 @@ var peticion_valida = true;
 
 
 
-if(population_unemploye.country === undefined || population_unemploye.year === undefined || population_unemploye.female === undefined || population_unemploye.male === undefined)
+/*if(population_unemploye.country === undefined || population_unemploye.year === undefined || population_unemploye.female === undefined || population_unemploye.male === undefined)
 {
 	peticion_valida = false;
-}
+}*/
 
 
 
-if (peticion_valida == true)
+if ( peticion_valida == true)
 {
 
 	for(var i=0;i<population_unemployed.length;i++)
