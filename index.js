@@ -52,7 +52,7 @@ app.put("/api/v1/population-percentage-by-age/:country/:year",populationPercenta
 
 //////////////      Unemployed       /////////////
 
-app.get("/api/v1/population-unemployed-percentage-by-gender/loadInitialData",unemployedCtlr.loadInitialData);
+/*app.get("/api/v1/population-unemployed-percentage-by-gender/loadInitialData",unemployedCtlr.loadInitialData);
 
 app.get("/api/v1/population-unemployed-percentage-by-gender",unemployedCtlr.getUnemployes);
 
@@ -72,7 +72,7 @@ app.delete("/api/v1/population-unemployed-percentage-by-gender/:country/:year",u
 
 app.put("/api/v1/population-unemployed-percentage-by-gender",unemployedCtlr.putUnemployes);
 
-app.put("/api/v1/population-unemployed-percentage-by-gender/:country/:year",unemployedCtlr.putUnemploye);
+app.put("/api/v1/population-unemployed-percentage-by-gender/:country/:year",unemployedCtlr.putUnemploye);*/
 
 
 
