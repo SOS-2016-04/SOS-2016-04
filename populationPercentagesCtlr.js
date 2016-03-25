@@ -268,16 +268,11 @@ var encontrado = false;
 	{
 		if(population_unemployed[i].country == country && population_unemployed[i].year == year)
 		{
-			population_unemployed.push(req.body);
+			population_unemployed[i]=req.body;
 			encontrado = true;
-		}
-		else
-		{
-			population_unemployed.push(population_unemployed[i]);
 		}
     }
 
-    population_unemployed.splice(0,tamanho);
 
     if(encontrado == true)
     {
@@ -567,10 +562,16 @@ var encontrado = false;
 	{
 		if(population_percentages[i].country == country && population_percentages[i].year == year)
 		{
-			population_percentages[i]=req.body;
+			population_percentages.push(req.body);
 			encontrado = true;
 		}
+		else
+		{
+			population_percentages.push(population_percentages[i]);
+		}
     }
+
+    population_percentages.splice(0,tamanho);
 
     if(encontrado == true)
     {
