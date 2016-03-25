@@ -2,7 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 
 var populationPercentagesCtlr = require('./populationPercentagesCtlr');
-
+var unemployedCtlr = require('./unemployedCtlr');
 var app = express();
 
 var port = (process.env.PORT || 10000);
@@ -10,7 +10,7 @@ var port = (process.env.PORT || 10000);
 app.use(bodyParser.json());
 
 
-var movies = [];
+
 var books = [];
 
 
@@ -48,98 +48,32 @@ app.put("/api/v1/population-percentage-by-age",populationPercentagesCtlr.putPopu
 
 app.put("/api/v1/population-percentage-by-age/:country/:year",populationPercentagesCtlr.putPopulationPercentage);
 
+//////////////      Unemployed       /////////////
+
+app.get("/api/v1/population-unemployed-percentage-by-gender/loadInitialData",unemployedCtlr.loadInitialData);
+
+app.get("/api/v1/population-unemployed-percentage-by-gender",unemployedCtlr.getUnemployes);
+
+app.get("/api/v1/population-unemployed-percentage-by-gender/:data",unemployedCtlr.getUnemploye);
+
+app.get("/api/v1/population-unemployed-percentage-by-gender/:country/:year",unemployedCtlr.getUnemployeCountryYear);
+
+app.post("/api/v1/population-unemployed-percentage-by-gender",unemployedCtlr.postUnemployes);
+
+app.post("/api/v1/population-unemployed-percentage-by-gender/:country/:year",unemployedCtlr.postUnemploye);
+
+app.delete("/api/v1/population-unemployed-percentage-by-gender",unemployedCtlr.deleteUnemployes);
+
+app.delete("/api/v1/population-unemployed-percentage-by-gender/:data",unemployedCtlr.deleteUnemploye);
+
+app.delete("/api/v1/population-unemployed-percentage-by-gender/:country/:year",unemployedCtlr.deleteUnemployeCountryYear);
+
+app.put("/api/v1/population-unemployed-percentage-by-gender",unemployedCtlr.putUnemployes);
+
+app.put("/api/v1/population-unemployed-percentage-by-gender/:country/:year",unemployedCtlr.putUnemploye);
 
 
 
-
-app.get("/api-test/movies/loadInitialData",(req,res) => {
-	movies=[{name:"ironman", year:"2008" , id:247},
-	                {name:"gladiator", year:"2000", id:275}];
-   res.send("Datos inicializados.");
-});
-
-
-app.get("/api/sandbox/movies",(req,res) => {
-	res.send(movies);
-});
-
-app.get("/api/sandbox/movies/:name",(req,res) => {
-	var title = req.params.name;
-	var found = false;
-	for(var i=0;i<movies.length;i++)
-	{
-		if(movies[i].name == title)
-		{
-			res.send(movies[i]);
-			found = true;
-		}
-    }
-    if(found == false)
-    {
-	res.sendStatus(404);
-    }
-});
-
-
-app.post("/api/sandbox/movies", (req,res)=> {
-	var movie = req.body;
-	movies.push(movie);
-	res.send("Datos introducidos correctamente.");
-});
-
-
-app.post("/api/sandbox/movies/:equipo", (req,res)=> {
-	res.send("Error. Metodo no permitido.");
-});
-
-
-app.delete("/api/sandbox/movies", (req,res)=> {
-	movies = [];
-	res.send("Datos borrados correctamente.");
-});
-
-
-app.delete("/api/sandbox/movies/:name", (req,res)=> {
-	var title = req.params.name;
-	var found = false;
-	for(var i=0;i<movies.length;i++)
-	{
-		if(movies[i].name == title)
-		{
-			movies.splice(i,1);
-			found = true;
-			res.send("Datos borrados correctamente.")
-		}
-    }
-    if(found == false)
-    {
-	res.sendStatus(404);
-    }
-});
-
-
-app.put("/api/sandbox/movies", (req,res)=> {
-	res.send("Error. Metodo no permitido");
-});
-
-
-app.put("/api/sandbox/movies/:name", (req,res)=> {
-	var title = req.params.name;
-	var found = false;
-	for(var i=0;i<movies.length;i++)
-	{
-		if(movies[i].name == title)
-		{
-			movies[i] = req.body;
-			found = true;
-			res.send("Datos introducidos correctamente.");
-		}
-    }
-    if(found == false)
-    {
-	res.sendStatus(404);
-    }
-});
 
 
 /////////////---------BOOKS---------/////////////
