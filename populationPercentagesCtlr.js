@@ -270,7 +270,7 @@ var encontrado = false;
 	{
 		if(population_unemployed[i].country == country && population_unemployed[i].year == year)
 		{
-			population_unemployed[i].country=country;
+			population_unemployed[i].country=req.body.country;
 			population_unemployed[i].year=year;
 			population_unemployed[i].male=male;
 			population_unemployed[i].female=female;
