@@ -567,16 +567,10 @@ var encontrado = false;
 	{
 		if(population_percentages[i].country == country && population_percentages[i].year == year)
 		{
-			population_percentages.push(req.body);
+			population_percentages[i]=req.body;
 			encontrado = true;
 		}
-		else
-		{
-			population_percentages.push(population_percentages[i]);
-		}
     }
-
-    population_percentages.splice(0,tamanho);
 
     if(encontrado == true)
     {
