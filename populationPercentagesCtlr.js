@@ -1,4 +1,4 @@
-var population_unemployed = [];
+var  population_unemployed = [];
 
 module.exports.loadInitialData2 = function(req,res){
 population_unemployed=[{country: "spain", year: 2014, female: 26, male: 23.7},
