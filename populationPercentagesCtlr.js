@@ -1,4 +1,16 @@
+var population_unemployed = [];
 
+module.exports.loadInitialData = function(req,res){
+population_unemployed=[{country: "spain", year: 2014, female: 26, male: 23.7},
+{country: "spain", year: 2013, female: 56.4, male: 57.8},
+{country: "canada", year: 2014, female: 6.5, male: 7.3},
+{country: "france", year: 2012, female: 23.7, male: 23.9},
+{country: "france", year: 2014, female: 9.7, male: 10.1},
+{country: "sweden", year: 2014, female: 7.7, male: 8.2}];
+
+res.sendStatus(200);
+
+}
 
 var population_percentages = [];
 
@@ -25,7 +37,7 @@ apikey = req.query.apikey;
 var resultado = [];
 
 
-if (apikey && apikey=="secret") 
+if (apikey && apikey=="secret")
 {
 
 for(var i=0;i<population_percentages.length;i++)
@@ -36,7 +48,7 @@ for(var i=0;i<population_percentages.length;i++)
 if (from && to)
 {
 for(var i=0;i<resultado.length;i++)
-{	
+{
 if(resultado[i].year < from  ||  resultado[i].year > to)
 {
 	resultado.splice(i,1);
@@ -295,5 +307,3 @@ var encontrado = false;
 module.exports.putPopulationPercentages = function(req,res){
  res.sendStatus(405);
 }
-
-
