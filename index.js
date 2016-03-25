@@ -3,7 +3,7 @@ var bodyParser = require("body-parser");
 
 var populationPercentagesCtlr = require('./populationPercentagesCtlr');
 
-var unemployedCtlr = require('./unemployedCtlr');
+//var unemployedCtlr = require('./unemployedCtlr');
 
 var app = express();
 
@@ -52,27 +52,27 @@ app.put("/api/v1/population-percentage-by-age/:country/:year",populationPercenta
 
 //////////////      Unemployed       /////////////
 
-app.get("/api/v1/population-unemployed-percentage-by-gender/loadInitialData",unemployedCtlr.loadInitialData2);
+app.get("/api/v1/population-unemployed-percentage-by-gender/loadInitialData",populationPercentagesCtlr.loadInitialData2);
 
-/*app.get("/api/v1/population-unemployed-percentage-by-gender",unemployedCtlr.getUnemployes);
+app.get("/api/v1/population-unemployed-percentage-by-gender",populationPercentagesCtlr.getUnemployes);
 
-app.get("/api/v1/population-unemployed-percentage-by-gender/:data",unemployedCtlr.getUnemploye);
+app.get("/api/v1/population-unemployed-percentage-by-gender/:data",populationPercentagesCtlr.getUnemploye);
 
-app.get("/api/v1/population-unemployed-percentage-by-gender/:country/:year",unemployedCtlr.getUnemployeCountryYear);
+app.get("/api/v1/population-unemployed-percentage-by-gender/:country/:year",populationPercentagesCtlr.getUnemployeCountryYear);
 
-app.post("/api/v1/population-unemployed-percentage-by-gender",unemployedCtlr.postUnemployes);
+app.post("/api/v1/population-unemployed-percentage-by-gender",populationPercentagesCtlr.postUnemployes);
 
-app.post("/api/v1/population-unemployed-percentage-by-gender/:country/:year",unemployedCtlr.postUnemploye);
+app.post("/api/v1/population-unemployed-percentage-by-gender/:country/:year",populationPercentagesCtlr.postUnemploye);
 
-app.delete("/api/v1/population-unemployed-percentage-by-gender",unemployedCtlr.deleteUnemployes);
+app.delete("/api/v1/population-unemployed-percentage-by-gender",populationPercentagesCtlr.deleteUnemployes);
 
-app.delete("/api/v1/population-unemployed-percentage-by-gender/:data",unemployedCtlr.deleteUnemploye);
+app.delete("/api/v1/population-unemployed-percentage-by-gender/:data",populationPercentagesCtlr.deleteUnemploye);
 
-app.delete("/api/v1/population-unemployed-percentage-by-gender/:country/:year",unemployedCtlr.deleteUnemployeCountryYear);
+app.delete("/api/v1/population-unemployed-percentage-by-gender/:country/:year",populationPercentagesCtlr.deleteUnemployeCountryYear);
 
-app.put("/api/v1/population-unemployed-percentage-by-gender",unemployedCtlr.putUnemployes);
+app.put("/api/v1/population-unemployed-percentage-by-gender",populationPercentagesCtlr.putUnemployes);
 
-app.put("/api/v1/population-unemployed-percentage-by-gender/:country/:year",unemployedCtlr.putUnemploye);*/
+app.put("/api/v1/population-unemployed-percentage-by-gender/:country/:year",populationPercentagesCtlr.putUnemploye);
 
 
 
