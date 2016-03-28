@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 
 var populationPercentagesCtlr = require('./populationPercentagesCtlr');
+var populationLaborForcePercentage = require('./population-labor-force-percentage');
 
 //var PorcentageUnemployed = require('./PorcentageUnemployed');
 
@@ -74,101 +75,26 @@ app.put("/api/v1/population-unemployed-percentage-by-gender",populationPercentag
 app.put("/api/v1/population-unemployed-percentage-by-gender/:country/:year",populationPercentagesCtlr.putUnemploye);
 
 
+/////////////---------Population Labor Force Percentage---------/////////////
 
+app.get("/api/v1/population-labor-force-percentage-by-education/loadInitialData",populationLaborForcePercentage.loadInitialData3);
 
+app.get("/api/v1/population-labor-force-percentage-by-education",populationLaborForcePercentage.getPopulationLaborForcePercentages);
 
+app.get("/api/v1/population-labor-force-percentage-by-education/:data",populationLaborForcePercentage.getPopulationLaborForcePercentage);
 
-/////////////---------BOOKS---------/////////////
+app.get("/api/v1/population-labor-force-percentage-by-education/:country/:year",populationLaborForcePercentage.getPopulationLaborForcePercentageCountryYear);
 
+app.post("/api/v1/population-labor-force-percentage-by-education",populationLaborForcePercentage.postPopulationLaborForcePercentages);
 
-app.get("/api-test/books/loadInitialData",(req,res) => {
-	books=[{name:"La sombra del viento", year:"2001", author:"Carlos Ruiz Zafón"},
-	        {name:"El nombre de la rosa", year:"1980", author:"Umberto Eco"}];
-   res.send("Initialized data.");
-});
+app.post("/api/v1/population-labor-force-percentage-by-education/:country/:year",populationLaborForcePercentage.postPopulationLaborForcePercentage);
 
+app.delete("/api/v1/population-labor-force-percentage-by-education",populationLaborForcePercentage.deletePopulationLaborForcePercentages);
 
-app.get("/api/sandbox/books",(req,res) => {
-	res.send(books);
-});
+app.delete("/api/v1/population-labor-force-percentage-by-education/:data",populationLaborForcePercentage.deletePopulationLaborForcePercentage);
 
-app.get("/api/sandbox/books/:name",(req,res) => {
-	var title = req.params.name;
-	var found = false;
-	for(var i=0;i<books.length;i++)
-	{
-		if(books[i].name == title)
-		{
-			res.send(books[i]);
-			found = true;
-		}
-    }
-    if(found == false)
-    {
-	res.sendStatus(404);
-    }
-});
+app.delete("/api/v1/population-labor-force-percentage-by-education/:country/:year",populationLaborForcePercentage.deletePopulationLaborForcePercentageCountryYear);
 
+app.put("/api/v1/population-labor-force-percentage-by-education",populationLaborForcePercentage.putPopulationLaborForcePercentages);
 
-app.post("/api/sandbox/books", (req,res)=> {
-	var book = req.body;
-	books.push(book);
-	res.send("Data entered correctly.");
-});
-
-
-app.post("/api/sandbox/books/:editorial", (req,res)=> {
-	res.send("Error. Method Not Allowed.");
-});
-
-
-app.delete("/api/sandbox/books", (req,res)=> {
-	books = [];
-	res.send("Deleted data correctly.");
-});
-
-
-app.delete("/api/sandbox/books/:name", (req,res)=> {
-	var title = req.params.name;
-	var found = false;
-	for(var i=0;i<books.length;i++)
-	{
-		if(books[i].name == title)
-		{
-			books.splice(i,1);
-			found = true;
-			res.send("Deleted data correctly.")
-		}
-    }
-    if(found == false)
-    {
-	res.sendStatus(404);
-    }
-});
-
-
-app.put("/api/sandbox/books", (req,res)=> {
-	res.send("Error. Method Not Allowed.");
-});
-
-
-app.put("/api/sandbox/books/:name", (req,res)=> {
-	var title = req.params.name;
-	var found = false;
-	for(var i=0;i<books.length;i++)
-	{
-		if(books[i].name == title)
-		{
-			books[i] = req.body;
-			found = true;
-			res.send("Data entered correctly.");
-		}
-    }
-    if(found == false)
-    {
-	res.sendStatus(404);
-    }
-});
-
-
-app.listen(port);
+app.put("/api/v1/population-labor-force-percentage-by-education/:country/:year",populationLaborForcePercentage.putPopulationLaborForcePercentage);
