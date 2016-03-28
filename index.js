@@ -2,7 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 
 var populationPercentagesCtlr = require('./populationPercentagesCtlr');
-var populationLaborForcePercentage = require('./population-labor-force-percentage');
+var populationLaborForcePercentage = require('./populationLaborForcePercentage');
 
 //var PorcentageUnemployed = require('./PorcentageUnemployed');
 
