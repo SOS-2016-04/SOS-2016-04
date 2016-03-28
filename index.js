@@ -98,3 +98,6 @@ app.delete("/api/v1/population-labor-force-percentage-by-education/:country/:yea
 app.put("/api/v1/population-labor-force-percentage-by-education",populationLaborForcePercentage.putPopulationLaborForcePercentages);
 
 app.put("/api/v1/population-labor-force-percentage-by-education/:country/:year",populationLaborForcePercentage.putPopulationLaborForcePercentage);
+
+
+app.listen(port);
