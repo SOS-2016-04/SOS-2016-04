@@ -712,6 +712,16 @@ var mismoIdentificador = true;
 if (apikey && apikey=="secret")
 {
 
+	if (req.body.country === undefined || req.body.year === undefined || req.body.population_0_14 === undefined || 
+		req.body.population_15_64 === undefined || isNaN(req.body.year) || isNaN(req.body.population_0_14) || 
+		isNaN(req.body.population_15_64))
+	{
+		res.sendStatus(400);
+	}
+
+	else
+
+	{
 
 	for(var i=0;i<tamanho;i++)
 	{
@@ -751,6 +761,8 @@ if (apikey && apikey=="secret")
     {
     res.sendStatus(400);
     }
+
+}
 
 }
 
