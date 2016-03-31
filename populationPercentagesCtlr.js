@@ -65,6 +65,7 @@ else
 
 
 module.exports.getUnemploye = function(req,res){
+	apikey = req.query.apikey;
 var data = req.params.data;
 var resultado = [];
 	var encontrado = false;
@@ -96,12 +97,13 @@ var resultado = [];
 	res.sendStatus(404);
     }
 	}else{
-		res.sendStatus(400);
+		res.sendStatus(401);
 	}
 }
 
 
 module.exports.getUnemployeCountryYear = function(req,res){
+	apikey = req.query.apikey;
 var country = req.params.country;
 var year = req.params.year;
 var resultado = [];
@@ -128,23 +130,25 @@ var resultado = [];
 	res.sendStatus(404);
     }
 }else{
-	res.sendStatus(400);
+	res.sendStatus(401);
 }
 }
 
 
 
 module.exports.postUnemploye = function(req,res){
+	apikey = req.query.apikey;
 	if (apikey && apikey=="clave")
 	{
 res.sendStatus(405);
 }else{
-	res.sendStatus(400);
+	res.sendStatus(401);
 }
 }
 
 
 module.exports.postUnemployes = function(req,res){
+	apikey = req.query.apikey;
 var population_unemploye = req.body;
 var country = req.params.country;
 var year = req.params.year;
@@ -193,7 +197,7 @@ else
 	res.sendStatus(400);
 }
 }else{
-	res.sendStatus(400);
+	res.sendStatus(401);
 }
 
 }
@@ -202,6 +206,7 @@ else
 
 
 module.exports.deleteUnemploye = function(req,res){
+	apikey = req.query.apikey;
     var data = req.params.data;
 	var encontrado = false;
 
@@ -238,19 +243,20 @@ module.exports.deleteUnemploye = function(req,res){
     }
 
 }else{
-	res.sendStatus(400);
+	res.sendStatus(401);
 }
 
 }
 
 
 module.exports.deleteUnemployes = function(req,res){
+	apikey = req.query.apikey;
 	if (apikey && apikey=="clave")
 	{
  population_unemployed = [];
  res.sendStatus(200);
  }else{
-	 res.sendStatus(400);
+	 res.sendStatus(401);
  }
 }
 
@@ -258,6 +264,7 @@ module.exports.deleteUnemployes = function(req,res){
 
 
 module.exports.deleteUnemployeCountryYear = function(req,res){
+	apikey = req.query.apikey;
 var country = req.params.country;
 var year = req.params.year;
 	var encontrado = false;
@@ -283,12 +290,13 @@ var year = req.params.year;
 	res.sendStatus(404);
     }
 }else{
-	res.sendStatus(400);
+	res.sendStatus(401);
 }
 }
 
 
 module.exports.putUnemploye = function(req,res){
+	apikey = req.query.apikey;
 	var population_unemploye = req.body;
     var country = req.params.country;
 var year = req.params.year;
@@ -334,11 +342,12 @@ if(population_unemploye.country === undefined || population_unemploye.year === u
 
 
 module.exports.putUnemployes = function(req,res){
+	apikey = req.query.apikey;
 	if (apikey && apikey=="clave")
 	{
  res.sendStatus(405);
  }else{
-	 res.sendStatus(400);
+	 res.sendStatus(401);
  }
 }
 
