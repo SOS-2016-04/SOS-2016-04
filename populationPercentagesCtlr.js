@@ -304,10 +304,10 @@ var tamanho = population_unemployed.length;
 var encontrado = false;
 if (apikey && apikey=="clave")
 {
-if(country!=population_unemploye.country || year!=population_unemploye.year || population_unemploye.country === undefined || population_unemploye.year === undefined || population_unemploye.female === undefined || population_unemploye.male === undefined || isNaN(population_unemploye.year) || isNaN(population_unemploye.female)  || isNaN(population_unemploye.male))
-{
-	res.sendStatus(400);
-}else{
+ if(country!=population_unemploye.country || year!=population_unemploye.year || population_unemploye.country === undefined || population_unemploye.year === undefined || population_unemploye.female === undefined || population_unemploye.male === undefined || isNaN(population_unemploye.year) || isNaN(population_unemploye.female)  || isNaN(population_unemploye.male))
+ {
+	 res.sendStatus(400);
+ }else{
 
 	for(var i=0;i<tamanho;i++)
 	{
@@ -332,7 +332,7 @@ if(country!=population_unemploye.country || year!=population_unemploye.year || p
     }
 	}
 }else{
-	res.sendStatus(400);
+	res.sendStatus(401);
 }
 }
 
