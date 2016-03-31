@@ -348,11 +348,20 @@ module.exports.putUnemployes = function(req,res){
 }
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 
 var population_percentages = [];
 
 module.exports.loadInitialData = function(req,res){
+
+apikey = req.query.apikey;
+
+if (apikey && apikey=="secret")
+{
+
 population_percentages=[{country: "spain", year: 2014, population_0_14: 15, population_15_64: 67},
 {country: "spain", year: 2013, population_0_14: 14, population_15_64: 68},
 {country: "canada", year: 2014, population_0_14: 16, population_15_64: 68},
@@ -361,6 +370,13 @@ population_percentages=[{country: "spain", year: 2014, population_0_14: 15, popu
 {country: "sweden", year: 2014, population_0_14: 17, population_15_64: 63}];
 
 res.sendStatus(200);
+
+}
+
+else
+{
+	res.sendStatus(401);
+}
 
 }
 
@@ -419,7 +435,12 @@ else
 module.exports.getPopulationPercentage = function(req,res){
 var data = req.params.data;
 var resultado = [];
+apikey = req.query.apikey;
 	var encontrado = false;
+
+if (apikey && apikey=="secret")
+{
+
 	for(var i=0;i<population_percentages.length;i++)
 	{
 		if(isNaN(data)  &&  population_percentages[i].country == data)
@@ -445,6 +466,14 @@ var resultado = [];
     {
 	res.sendStatus(404);
     }
+
+}
+
+else
+{
+	res.sendStatus(401);
+}
+
 }
 
 
@@ -452,7 +481,13 @@ module.exports.getPopulationPercentageCountryYear = function(req,res){
 var country = req.params.country;
 var year = req.params.year;
 var resultado = [];
+apikey = req.query.apikey;
 	var encontrado = false;
+
+
+if (apikey && apikey=="secret")
+{
+
 	for(var i=0;i<population_percentages.length;i++)
 	{
 		if(population_percentages[i].country == country && population_percentages[i].year == year)
@@ -472,6 +507,13 @@ var resultado = [];
 	res.sendStatus(404);
     }
 
+    }
+
+else
+{
+	res.sendStatus(401);
+}
+
 }
 
 
@@ -485,12 +527,14 @@ module.exports.postPopulationPercentages = function(req,res){
 var population_percentage = req.body;
 var country = req.params.country;
 var year = req.params.year;
+apikey = req.query.apikey;
 var population_0_14 = req.params.population_0_14;
 var population_15_64 = req.params.population_15_64;
 var existe = false;
 var peticion_valida = true;
 
-
+if (apikey && apikey=="secret")
+{
 
 if(population_percentage.country === undefined || population_percentage.year === undefined || population_percentage.population_0_14 === undefined || population_percentage.population_15_64 === undefined || isNaN(population_percentage.year) || isNaN(population_percentage.population_0_14)  || isNaN(population_percentage.population_15_64))
 {
@@ -532,12 +576,24 @@ else
 
 }
 
+else
+{
+	res.sendStatus(401);
+}
+
+
+}
+
 
 
 
 module.exports.deletePopulationPercentage = function(req,res){
     var data = req.params.data;
 	var encontrado = false;
+	apikey = req.query.apikey;
+
+	if (apikey && apikey=="secret")
+{
 
 	for(var i=0;i<population_percentages.length;i++)
 	{
@@ -570,13 +626,35 @@ module.exports.deletePopulationPercentage = function(req,res){
     }
 
 
+    }
+
+else
+{
+	res.sendStatus(401);
+}
+
+
 
 }
 
 
 module.exports.deletePopulationPercentages = function(req,res){
+
+apikey = req.query.apikey;
+
+if (apikey && apikey=="secret")
+{
+
  population_percentages = [];
  res.sendStatus(200);
+
+}
+
+else
+{
+	res.sendStatus(401);
+}
+
 }
 
 
@@ -584,8 +662,14 @@ module.exports.deletePopulationPercentages = function(req,res){
 
 module.exports.deletePopulationPercentageCountryYear = function(req,res){
 var country = req.params.country;
+apikey = req.query.apikey;
 var year = req.params.year;
 	var encontrado = false;
+
+if (apikey && apikey=="secret")
+{
+
+
 	for(var i=0;i<population_percentages.length;i++)
 	{
 		if(population_percentages[i].country == country && population_percentages[i].year == year)
@@ -606,14 +690,26 @@ var year = req.params.year;
 	res.sendStatus(404);
     }
 
+    }
+
+else
+{
+	res.sendStatus(401);
+}
+
 }
 
 
 module.exports.putPopulationPercentage = function(req,res){
     var country = req.params.country;
 var year = req.params.year;
+apikey = req.query.apikey;
 var tamanho = population_percentages.length;
 var encontrado = false;
+
+
+if (apikey && apikey=="secret")
+{
 
 
 	for(var i=0;i<tamanho;i++)
@@ -639,6 +735,14 @@ var encontrado = false;
     {
 	res.sendStatus(404);
     }
+
+}
+
+else
+{
+	res.sendStatus(401);
+}
+    
 }
 
 
