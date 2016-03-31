@@ -68,6 +68,8 @@ module.exports.getUnemploye = function(req,res){
 var data = req.params.data;
 var resultado = [];
 	var encontrado = false;
+	if (apikey && apikey=="clave")
+	{
 	for(var i=0;i<population_unemployed.length;i++)
 	{
 		if(isNaN(data)  && population_unemployed[i].country == data)
@@ -93,6 +95,9 @@ var resultado = [];
     {
 	res.sendStatus(404);
     }
+	}else{
+		res.sendStatus(400);
+	}
 }
 
 
@@ -101,6 +106,9 @@ var country = req.params.country;
 var year = req.params.year;
 var resultado = [];
 	var encontrado = false;
+
+	if (apikey && apikey=="clave")
+	{
 	for(var i=0;i<population_unemployed.length;i++)
 	{
 		if(population_unemployed[i].country == country && population_unemployed[i].year == year)
@@ -119,13 +127,20 @@ var resultado = [];
     {
 	res.sendStatus(404);
     }
-
+}else{
+	res.sendStatus(400);
+}
 }
 
 
 
 module.exports.postUnemploye = function(req,res){
+	if (apikey && apikey=="clave")
+	{
 res.sendStatus(405);
+}else{
+	res.sendStatus(400);
+}
 }
 
 
@@ -138,9 +153,10 @@ var male = req.params.male;
 var existe = false;
 var peticion_valida = true;
 
+if (apikey && apikey=="clave")
+{
 
-
-if(population_unemploye.country === undefined || population_unemploye.year === undefined || population_unemploye.female === undefined || population_unemploye.male === undefined)
+if(population_unemploye.country === undefined || population_unemploye.year === undefined || population_unemploye.female === undefined || population_unemploye.male === undefined || isNaN(population_unemploye.year) || isNaN(population_unemploye.female)  || isNaN(population_unemploye.male)|| req.body.length!=4)
 {
 	peticion_valida = false;
 }
@@ -176,7 +192,9 @@ else
 {
 	res.sendStatus(400);
 }
-
+}else{
+	res.sendStatus(400);
+}
 
 }
 
@@ -187,6 +205,8 @@ module.exports.deleteUnemploye = function(req,res){
     var data = req.params.data;
 	var encontrado = false;
 
+	if (apikey && apikey=="clave")
+	{
 	for(var i=0;i<population_unemployed.length;i++)
 	{
 		if(isNaN(data)  &&  population_unemployed[i].country == data)
@@ -217,14 +237,21 @@ module.exports.deleteUnemploye = function(req,res){
 	res.sendStatus(404);
     }
 
-
+}else{
+	res.sendStatus(400);
+}
 
 }
 
 
 module.exports.deleteUnemployes = function(req,res){
+	if (apikey && apikey=="clave")
+	{
  population_unemployed = [];
  res.sendStatus(200);
+ }else{
+	 res.sendStatus(400);
+ }
 }
 
 
@@ -234,6 +261,8 @@ module.exports.deleteUnemployeCountryYear = function(req,res){
 var country = req.params.country;
 var year = req.params.year;
 	var encontrado = false;
+	if (apikey && apikey=="clave")
+	{
 	for(var i=0;i<population_unemployed.length;i++)
 	{
 		if(population_unemployed[i].country == country && population_unemployed[i].year == year)
@@ -253,7 +282,9 @@ var year = req.params.year;
     {
 	res.sendStatus(404);
     }
-
+}else{
+	res.sendStatus(400);
+}
 }
 
 
@@ -263,17 +294,26 @@ module.exports.putUnemploye = function(req,res){
 var year = req.params.year;
 var tamanho = population_unemployed.length;
 var encontrado = false;
-
+if (apikey && apikey=="clave")
+{
+if(population_unemploye.country === undefined || population_unemploye.year === undefined || population_unemploye.female === undefined || population_unemploye.male === undefined || isNaN(population_unemploye.year) || isNaN(population_unemploye.female)  || isNaN(population_unemploye.male))
+{
+	res.sendStatus(400);
+}else{
 
 	for(var i=0;i<tamanho;i++)
 	{
 		if(population_unemployed[i].country == country && population_unemployed[i].year == year)
 		{
+		 if(country==population_unemploye.country && year==population_unemploye.year){
 			population_unemployed[i].country=population_unemploye.country;
 			population_unemployed[i].year=population_unemploye.year;
 			population_unemployed[i].male=population_unemploye.male;
 			population_unemployed[i].female=population_unemploye.female;
 			encontrado = true;
+		 }else{
+			res.sendStatus(400);
+		}
 		}
     }
 
@@ -286,11 +326,20 @@ var encontrado = false;
     {
 	res.sendStatus(404);
     }
+	}
+}else{
+	res.sendStatus(400);
+}
 }
 
 
 module.exports.putUnemployes = function(req,res){
+	if (apikey && apikey=="clave")
+	{
  res.sendStatus(405);
+ }else{
+	 res.sendStatus(400);
+ }
 }
 
 
