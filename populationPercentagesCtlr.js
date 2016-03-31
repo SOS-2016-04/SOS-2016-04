@@ -308,19 +308,24 @@ if(population_unemploye.country === undefined || population_unemploye.year === u
 {
 	res.sendStatus(400);
 }else{
-if(country==population_unemploye.country && year==population_unemploye.year){
+
 	for(var i=0;i<tamanho;i++)
 	{
 		if(population_unemployed[i].country == country && population_unemployed[i].year == year)
 		{
-
+		 if(country==population_unemploye.country && year==population_unemploye.year){
 			population_unemployed[i].country=population_unemploye.country;
 			population_unemployed[i].year=population_unemploye.year;
 			population_unemployed[i].male=population_unemploye.male;
 			population_unemployed[i].female=population_unemploye.female;
 			encontrado = true;
+		 }else{
+			res.sendStatus(400);
+		}
 		}
     }
+
+
     if(encontrado == true)
     {
     res.sendStatus(200);
@@ -330,9 +335,6 @@ if(country==population_unemploye.country && year==population_unemploye.year){
 	res.sendStatus(404);
     }
 	}
-}else{
- res.sendStatus(400);
-}
 }else{
 	res.sendStatus(400);
 }
