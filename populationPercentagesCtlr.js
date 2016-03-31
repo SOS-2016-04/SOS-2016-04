@@ -706,6 +706,7 @@ var year = req.params.year;
 apikey = req.query.apikey;
 var tamanho = population_percentages.length;
 var encontrado = false;
+var mismoIdentificador = true;
 
 
 if (apikey && apikey=="secret")
@@ -716,8 +717,18 @@ if (apikey && apikey=="secret")
 	{
 		if(population_percentages[i].country == country && population_percentages[i].year == year)
 		{
+			if (country == req.body.country  && year == req.body.year)
+			{
 			population_percentages.push(req.body);
 			encontrado = true;
+		}
+
+		else
+		{
+			mismoIdentificador = false;
+		}
+
+
 		}
 		else
 		{
@@ -727,13 +738,17 @@ if (apikey && apikey=="secret")
 
     population_percentages.splice(0,tamanho);
 
-    if(encontrado == true)
+    if(encontrado == true && mismoIdentificador == true)
     {
     res.sendStatus(200);
     }
-    if(encontrado == false)
+    if(encontrado == false && mismoIdentificador == true)
     {
 	res.sendStatus(404);
+    }
+    if(mismoIdentificador == false)
+    {
+    res.sendStatus(400);
     }
 
 }
@@ -742,7 +757,7 @@ else
 {
 	res.sendStatus(401);
 }
-    
+
 }
 
 
