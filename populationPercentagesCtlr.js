@@ -725,6 +725,7 @@ if (apikey && apikey=="secret")
 
 		else
 		{
+			population_percentages.push(population_percentages[i]);
 			mismoIdentificador = false;
 		}
 
