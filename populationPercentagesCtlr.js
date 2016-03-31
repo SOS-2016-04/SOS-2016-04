@@ -1,6 +1,8 @@
 var  population_unemployed = [];
 
 module.exports.loadInitialData2 = function(req,res){
+	if (apikey && apikey=="clave")
+	{
 population_unemployed=[{country: "spain", year: 2014, female: 26, male: 23.7},
 {country: "spain", year: 2013, female: 56.4, male: 57.8},
 {country: "canada", year: 2014, female: 6.5, male: 7.3},
@@ -9,7 +11,9 @@ population_unemployed=[{country: "spain", year: 2014, female: 26, male: 23.7},
 {country: "sweden", year: 2014, female: 7.7, male: 8.2}];
 
 res.sendStatus(200);
-
+}else{
+	res.sendStatus(401);
+}
 }
 
 
@@ -537,7 +541,7 @@ if (apikey && apikey=="secret")
 {
 
 
-if(population_percentage.country === undefined || population_percentage.year === undefined || population_percentage.population_0_14 === undefined || population_percentage.population_15_64 === undefined || isNaN(population_percentage.year) || isNaN(population_percentage.population_0_14)  
+if(population_percentage.country === undefined || population_percentage.year === undefined || population_percentage.population_0_14 === undefined || population_percentage.population_15_64 === undefined || isNaN(population_percentage.year) || isNaN(population_percentage.population_0_14)
 	|| isNaN(population_percentage.population_15_64) || isNaN(population_percentage.country) == false)
 {
 	peticion_valida = false;
@@ -714,8 +718,8 @@ var mismoIdentificador = true;
 if (apikey && apikey=="secret")
 {
 
-	if (req.body.country === undefined || req.body.year === undefined || req.body.population_0_14 === undefined || 
-		req.body.population_15_64 === undefined || isNaN(req.body.year) || isNaN(req.body.population_0_14) || 
+	if (req.body.country === undefined || req.body.year === undefined || req.body.population_0_14 === undefined ||
+		req.body.population_15_64 === undefined || isNaN(req.body.year) || isNaN(req.body.population_0_14) ||
 		isNaN(req.body.population_15_64))
 	{
 		res.sendStatus(400);
