@@ -23,7 +23,7 @@ $(document).ready(() => {
 		request.done(function(data,status,jqXHR){
 
 			statusCode = jqXHR.status;
-			var cadenaJSON = $.parseJSON(data);
+			cadenaJSON = $.parseJSON(data);
 
 			$("#status").text(status);
 			$("#data").text(cadenaJSON);
