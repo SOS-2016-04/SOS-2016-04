@@ -184,13 +184,14 @@ var population_0_14 = req.params.population_0_14;
 var population_15_64 = req.params.population_15_64;
 var existe = false;
 var peticion_valida = true;
+var cantidad_atributos=JSON.stringify(req.body).split(",").length;
 
 if (apikey && apikey=="secret")
 {
 
 
 if(population_percentage.country === undefined || population_percentage.year === undefined || population_percentage.population_0_14 === undefined || population_percentage.population_15_64 === undefined || isNaN(population_percentage.year) || isNaN(population_percentage.population_0_14)
-	|| isNaN(population_percentage.population_15_64) || isNaN(population_percentage.country) == false)
+	|| isNaN(population_percentage.population_15_64) || isNaN(population_percentage.country) == false || cantidad_atributos != 4)
 {
 	peticion_valida = false;
 }
