@@ -171,7 +171,7 @@ var ic=i.toString();
 /*for (x in req.body){
 i=i+1;
 }*/
-res.send(ic);
+res.send(i);
 }
 
 
