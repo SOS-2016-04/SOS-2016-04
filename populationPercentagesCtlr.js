@@ -165,7 +165,8 @@ else
 
 
 module.exports.postPopulationPercentage = function(req,res){
-res.sendStatus(405);
+//res.sendStatus(405);
+res.send(req.body.length);
 }
 
 
