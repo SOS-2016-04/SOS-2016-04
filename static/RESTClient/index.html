@@ -10,7 +10,7 @@ $(document).ready(() => {
 
 		var url = $("#url").val();
 		var datos_entrada = $("#payload").val();
-		var metodo = $('input:radio[name=method]:checked');
+		var metodo = $('input:radio[name=method]:checked').id;
 
 		$("#data").text(url+ " " +datos_entrada+" "+metodo);
 
