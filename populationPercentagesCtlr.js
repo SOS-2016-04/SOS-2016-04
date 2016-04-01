@@ -166,12 +166,12 @@ else
 
 module.exports.postPopulationPercentage = function(req,res){
 //res.sendStatus(405);
-var i=JSON.stringify(req.body)[0];
+var i=JSON.stringify(req.body).split(",")[0];
 var ic=i.toString();
 /*for (x in req.body){
 i=i+1;
 }*/
-res.send(ic);
+res.send(i);
 }
 
 
