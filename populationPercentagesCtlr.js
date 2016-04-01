@@ -186,6 +186,9 @@ var existe = false;
 var peticion_valida = true;
 var cantidad_atributos=JSON.stringify(req.body).split(",").length;
 
+var i=JSON.stringify(req.body).split(",").length;
+var ic=i.toString();
+
 if (apikey && apikey=="secret")
 {
 
@@ -194,8 +197,7 @@ if(population_percentage.country === undefined || population_percentage.year ===
 	|| isNaN(population_percentage.population_15_64) || isNaN(population_percentage.country) == false || cantidad_atributos != 4)
 {
 	peticion_valida = false;
-	var ai = cantidad_atributos.toString()
-	send(ai);
+	res.send(i);
 }
 
 
