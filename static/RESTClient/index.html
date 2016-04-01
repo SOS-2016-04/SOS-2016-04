@@ -6,7 +6,7 @@
 $(document).ready(() => {
 
 	$("#button").click(function () {
-		
+
 		var var_url = $("#url").val();
 		var var_datos_entrada = $("#payload").val();
 		var var_metodo = $('input:radio[name=method]:checked').attr("id");
@@ -33,7 +33,9 @@ $(document).ready(() => {
 
 		request.always(function(jqXHR, status) {
 
+			statusCode = jqXHR.status;
 
+			$("#status").text(status);
 
 
 		});
