@@ -23,9 +23,10 @@ $(document).ready(() => {
 		request.done(function(data,status,jqXHR){
 
 			statusCode = jqXHR.status;
+			var cadenaJSON = $.parseJSON(data);
 
 			$("#status").text(status);
-
+			$("#data").text(cadenaJSON);
 
 
 		});
@@ -36,6 +37,7 @@ $(document).ready(() => {
 			statusCode = jqXHR.status;
 
 			$("#status").text(status);
+
 
 
 		});
