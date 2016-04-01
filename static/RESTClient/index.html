@@ -8,11 +8,20 @@ $(document).ready(() => {
 	$("#button").click(function () {
 		$("#data").text("funciona el boton");
 
-		var url = $("#url").val();
-		var datos_entrada = $("#payload").val();
-		var metodo = $('input:radio[name=method]:checked').attr("id");
+		var var_url = $("#url").val();
+		var var_datos_entrada = $("#payload").val();
+		var var_metodo = $('input:radio[name=method]:checked').attr("id");
 
-		$("#data").text(url+ " " +datos_entrada+" "+metodo);
+		var objeto_javascript = JSON.stringify(var_datos_entrada);
+
+		var request = $.ajax({
+			url: var_url,
+			type: var_metodo,
+			data: objeto_javascript
+		});
+
+
+		$("#data").text(request);
 
 
 	});
