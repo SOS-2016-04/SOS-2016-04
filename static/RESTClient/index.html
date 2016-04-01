@@ -14,9 +14,9 @@ $(document).ready(() => {
 		var objeto_javascript = JSON.stringify(var_datos_entrada);
 
 		var request = $.ajax({
-			url: "/api/v1/population-percentage-by-age",
-			type: "GET"
-			//data: objeto_javascript
+			url: var_url,
+			type: var_metodo,
+			data: var_datos_entrada
 		});
 
 		$("#status").text("Campo status");
@@ -24,30 +24,28 @@ $(document).ready(() => {
 		$("#Lista").html("<li>Campo lista</li>");
 		$("#Log").text("Campo log");
 
-		/*
+		
 
 
 		request.always(function(jqXHR, status) {
 
 			statusCode = jqXHR.status;
 
-			$("#status").text(var_url);
-			$("#data").text(type);
+			$("#status").text("No funciona");
 
 		});
 
 
 		request.done(function(data,status,jqXHR){
 
-			//statusCode = jqXHR.status;//Posible error
-			//cadenaJSON = $.parseJSON(data);//Posible error
-
-			//$("#status").text(statusCode);
-			$("#status").text(data);
-			//$("#status").text("Hola");
+			
+			$("#status").text("Funciona");
+			
 
 		});
-*/
+
+
+
 
 
 	});
