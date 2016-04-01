@@ -7,16 +7,18 @@ $(document).ready(() => {
 
 	$("#button").click(function () {
 		$("#data").text("funciona el boton");
+
+		var url = $("url").val();
+		var datos_entrada = $("payload").val();
+		var peticion_get = $("GET").val();
+		var peticion_post = $("POST").val();
+		var peticion_put = $("PUT").val();
+		var peticion_delete = $("DELETE").val();
+
+		$("#data").text(url+ " " +datos_entrada+" "+peticion_get+" "+peticion_post+" "+peticion_put+" "+peticion_delete);
+
+
 	});
-
-
-
-
-
-
-
-
-
 
 	});
 
