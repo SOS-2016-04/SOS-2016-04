@@ -21,7 +21,24 @@ $(document).ready(() => {
 		});
 
 
-		$("#data").text(request);
+		request.done(function(data,status,jqXHR){
+
+			statusCode = jqXHR.status;
+
+			$("#status").text(status);
+
+
+
+		});
+
+
+		request.always(function(jqXHR, status) {
+
+
+
+
+		});
+
 
 
 	});
