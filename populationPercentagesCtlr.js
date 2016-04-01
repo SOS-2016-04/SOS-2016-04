@@ -184,8 +184,8 @@ var population_0_14 = req.params.population_0_14;
 var population_15_64 = req.params.population_15_64;
 var existe = false;
 var peticion_valida = true;
-var cantidad_atributos=JSON.stringify(req.body).split(",").length;
-var cantidad = cantidad_atributos.toString()
+//var cantidad_atributos=JSON.stringify(req.body).split(",").length;
+//var cantidad = cantidad_atributos.toString()
 
 if (apikey && apikey=="secret")
 {
