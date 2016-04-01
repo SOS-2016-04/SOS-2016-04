@@ -165,13 +165,7 @@ else
 
 
 module.exports.postPopulationPercentage = function(req,res){
-//res.sendStatus(405);
-var i=JSON.stringify(req.body).split(",").length;
-var ic=i.toString();
-/*for (x in req.body){
-i=i+1;
-}*/
-res.send(i);
+res.sendStatus(405);
 }
 
 
@@ -185,7 +179,7 @@ var population_15_64 = req.params.population_15_64;
 var existe = false;
 var peticion_valida = true;
 var cantidad_atributos=JSON.stringify(req.body).split(",").length;
-var cantidad = cantidad_atributos.toString()
+var cantidad = cantidad_atributos.toString();
 
 if (apikey && apikey=="secret")
 {
@@ -363,6 +357,8 @@ apikey = req.query.apikey;
 var tamanho = population_percentages.length;
 var encontrado = false;
 var mismoIdentificador = true;
+var cantidad_atributos=JSON.stringify(req.body).split(",").length;
+var cantidad = cantidad_atributos.toString();
 
 
 if (apikey && apikey=="secret")
@@ -370,7 +366,7 @@ if (apikey && apikey=="secret")
 
 	if (req.body.country === undefined || req.body.year === undefined || req.body.population_0_14 === undefined ||
 		req.body.population_15_64 === undefined || isNaN(req.body.year) || isNaN(req.body.population_0_14) ||
-		isNaN(req.body.population_15_64))
+		isNaN(req.body.population_15_64) || cantidad !== "4")
 	{
 		res.sendStatus(400);
 	}
