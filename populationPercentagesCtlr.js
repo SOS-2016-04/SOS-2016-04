@@ -194,6 +194,7 @@ if(population_percentage.country === undefined || population_percentage.year ===
 	|| isNaN(population_percentage.population_15_64) || isNaN(population_percentage.country) == false || cantidad_atributos != 4)
 {
 	peticion_valida = false;
+	send(cantidad_atributos);
 }
 
 
