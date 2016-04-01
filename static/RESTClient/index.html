@@ -35,7 +35,7 @@ $(document).ready(() => {
 		request.done(function(data,status,jqXHR){
 
 			//statusCode = jqXHR.status;//Posible error
-			//cadenaJSON = $.parseJSON(data);//Posible error
+			cadenaJSON = $.parseJSON(data);//Posible error
 
 			//$("#status").text(statusCode);
 			$("#data").text(cadenaJSON);
