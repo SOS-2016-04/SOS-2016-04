@@ -3,7 +3,7 @@ var  population_unemployed = [];
 module.exports.loadInitialData2 = function(req,res){
 	apikey = req.query.apikey;
 
-	if (apikey && apikey=="secret")
+	if (apikey && apikey=="clave")
 	{
 population_unemployed=[{country: "spain", year: 2014, female: 26, male: 23.7},
 {country: "spain", year: 2013, female: 56.4, male: 57.8},
