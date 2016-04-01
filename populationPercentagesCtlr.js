@@ -192,7 +192,7 @@ if (apikey && apikey=="secret")
 
 
 if(population_percentage.country === undefined || population_percentage.year === undefined || population_percentage.population_0_14 === undefined || population_percentage.population_15_64 === undefined || isNaN(population_percentage.year) || isNaN(population_percentage.population_0_14)
-	|| isNaN(population_percentage.population_15_64) || isNaN(population_percentage.country) == false || cantidad != "4")
+	|| isNaN(population_percentage.population_15_64) || isNaN(population_percentage.country) == false || cantidad !== "4")
 {
 	res.sendStatus(400);
 }
