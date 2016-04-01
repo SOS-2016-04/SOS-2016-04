@@ -165,13 +165,7 @@ else
 
 
 module.exports.postPopulationPercentage = function(req,res){
-//res.sendStatus(405);
-var i=JSON.stringify(req.body).split(",").length;
-var ic=i.toString();
-/*for (x in req.body){
-i=i+1;
-}*/
-res.send(ic);
+res.sendStatus(405);
 }
 
 
@@ -190,7 +184,8 @@ if (apikey && apikey=="secret")
 
 
 if(population_percentage.country === undefined || population_percentage.year === undefined || population_percentage.population_0_14 === undefined || population_percentage.population_15_64 === undefined || isNaN(population_percentage.year) || isNaN(population_percentage.population_0_14)
-	|| isNaN(population_percentage.population_15_64) || isNaN(population_percentage.country) == false)
+	|| isNaN(population_percentage.population_15_64) || isNaN(population_percentage.country) == false 
+	|| JSON.stringify(req.body).split(",").length != 4)
 {
 	peticion_valida = false;
 }
@@ -368,7 +363,7 @@ if (apikey && apikey=="secret")
 
 	if (req.body.country === undefined || req.body.year === undefined || req.body.population_0_14 === undefined ||
 		req.body.population_15_64 === undefined || isNaN(req.body.year) || isNaN(req.body.population_0_14) ||
-		isNaN(req.body.population_15_64))
+		isNaN(req.body.population_15_64) || || JSON.stringify(req.body).split(",").length != 4)
 	{
 		res.sendStatus(400);
 	}
