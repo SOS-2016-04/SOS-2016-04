@@ -14,8 +14,8 @@ $(document).ready(() => {
 		var objeto_javascript = JSON.stringify(var_datos_entrada);
 
 		var request = $.ajax({
-			url: var_url,
-			type: var_metodo
+			url: "/api/v1/population-percentage-by-age",
+			type: "GET"
 			//data: objeto_javascript
 		});
 
@@ -39,7 +39,7 @@ $(document).ready(() => {
 			//cadenaJSON = $.parseJSON(data);//Posible error
 
 			//$("#status").text(statusCode);
-			$("#data").text(data);
+			$("#status").text(data);
 			//$("#status").text("Hola");
 
 		});
