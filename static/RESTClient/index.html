@@ -22,6 +22,23 @@ $(document).ready(() => {
 		
 
 
+		request.done(function(data,status,jqXHR){
+			
+			/* statusCode = jqXHR.status;
+
+			console.log(statusCode);
+
+			$("#status").text(statusCode);*/
+
+			dataJS = JSON.stringify(data);
+
+			$("#data").text(dataJS);
+			
+		});
+
+
+
+
 		request.always(function(jqXHR, status) {
 
 			/*var statusCode = jqXHR.status;
@@ -38,25 +55,6 @@ $(document).ready(() => {
 
 
 			console.log("Entra");
-
-		});
-
-
-		request.done(function(data,status,jqXHR){
-			
-			/* statusCode = jqXHR.status;
-
-			console.log(statusCode);
-
-			$("#status").text(statusCode);*/
-
-			dataJS = JSON.stringify(data);
-
-			$("#data").text(dataJS);
-			
-
-
-			
 
 		});
 
