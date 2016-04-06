@@ -58,13 +58,13 @@ $(document).ready(() => {
 <body>
 
 <h1>JQuery REST Client</h1>
-URL: <input id="url" size="30" value="/api/v1/tows"/>
+URL: <input id="url" size="30" value="/api/v1/population-percentage-by-age"/>
       GET <input name="method" type="radio" id="GET" checked="checked" /> &nbsp;&nbsp;
       POST <input name="method" type="radio" id="POST" /> &nbsp;&nbsp;
       PUT <input name="method" type="radio" id="PUT" /> &nbsp;&nbsp;
       DELETE <input name="method" type="radio" id="DELETE" /> &nbsp;&nbsp;
       <br/>
-      Payload: <input id="payload" size="60" value='{"name":"sevilla","population":99000}'/>
+      Payload: <input id="payload" size="60" value='{"country":"sevilla","age":99000,"population_0_14":6,"population_15_64":80}'/>
       <br/><br/>
       <span id="button">Send</span>
       <br/><hr/>
