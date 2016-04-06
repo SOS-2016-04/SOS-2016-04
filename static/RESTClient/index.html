@@ -24,11 +24,11 @@ $(document).ready(() => {
 
 		request.always(function(jqXHR, status) {
 
-			var statusCode = jqXHR.status;
+			/*var statusCode = jqXHR.status;
 
 			console.log(statusCode);
 
-			$("#status").text(statusCode);
+			$("#status").text(statusCode);*/
 
 			
 
@@ -37,6 +37,11 @@ $(document).ready(() => {
 
 		request.done(function(data,status,jqXHR){
 			
+			var statusCode = jqXHR.status;
+
+			console.log(statusCode);
+
+			$("#status").text(statusCode);
 
 			dataJS = JSON.stringify(data);
 
