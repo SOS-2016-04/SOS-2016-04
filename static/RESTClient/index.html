@@ -20,7 +20,19 @@ $(document).ready(() => {
             data: var_datos_entrada
             });
 
-		
+
+
+			request.always(function(jqXHR, status) {
+
+			statusCode = jqXHR.status;
+
+			$("#status").text(statusCode);
+
+			$("#data").text(" ");
+
+		});
+
+
 
 
 		request.done(function(data,status,jqXHR){
@@ -34,20 +46,6 @@ $(document).ready(() => {
 			$("#data").text(dataJS);
 			
 		});
-
-
-
-
-		request.always(function(jqXHR, status) {
-
-			statusCode = jqXHR.status;
-
-			$("#status").text(statusCode);
-
-			$("#data").text(" ");
-
-		});
-
 
 
 
