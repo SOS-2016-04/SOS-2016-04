@@ -34,8 +34,14 @@ $(document).ready(() => {
 
 		request.done(function(data,status,jqXHR){
 
+			datas = $.parseJSON(data);
+
+			console.log("Valor de la variable data  -->  "+data);
+
+			console.log("Valor de la variable datas  -->  "+datas);
 			
-			$("#data").text(data);
+			$("#data").text(datas);
+
 			
 
 		});
