@@ -12,6 +12,7 @@ $(document).ready(() => {
 		var var_metodo = $('input:radio[name=method]:checked').attr("id");
 		var parsedData;
 		var statusCode;
+		var mensajeLog;
 
 		var objeto_javascript = JSON.stringify(var_datos_entrada);
 
@@ -31,10 +32,9 @@ $(document).ready(() => {
 			$("#data").text(" ");
 
 
+			mensajeLog = "Error";
 
-
-
-			$("Log").text("Error");
+			$("Log").text(mensajeLog);
 
 		});
 
@@ -51,11 +51,10 @@ $(document).ready(() => {
 
 			$("#data").text(dataJS);
 
+			mensajeLog = "Done";
 
 
-
-
-			$("Log").text("Done");
+			$("Log").text(mensajeLog);
 			
 		});
 
