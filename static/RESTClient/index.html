@@ -19,11 +19,6 @@ $(document).ready(() => {
             data: var_datos_entrada
             });
 
-
-$("#data").text(objeto_javascript);
-
-		console.log("Valor de la variable var_url  -->  "+var_url);
-
 		
 
 
@@ -36,9 +31,11 @@ $("#data").text(objeto_javascript);
 
 		request.done(function(data,status,jqXHR){
 			
-			/*dataJS = $.parseJSON(data);
 
-			$("#data").text(data.country+" "+data.year);*/
+			dataJS = JSON.stringify(data);
+
+			$("#data").text(dataJS);
+			
 
 
 			
