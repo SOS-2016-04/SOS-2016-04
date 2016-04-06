@@ -24,22 +24,23 @@ $(document).ready(() => {
 		$("#Lista").text("<li>Campo lista</li>");
 		$("#Log").text("Campo  log");
 
+
+		console.log("Valor de la variable var_url  -->  "+var_url);
+
 		
 
 
-		/*request.always(function(jqXHR, status) {
+		request.always(function(jqXHR, status) {
 
-			statusCode = jqXHR.status;
+			
 
-			$("#status").text("No funciona");
-
-		});*/
+		});
 
 
 		request.done(function(data,status,jqXHR){
 
 			
-			$("#status").text("Funciona");
+			
 			
 
 		});
