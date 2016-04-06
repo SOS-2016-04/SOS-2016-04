@@ -11,6 +11,7 @@ $(document).ready(() => {
 		var var_datos_entrada = $("#payload").val();
 		var var_metodo = $('input:radio[name=method]:checked').attr("id");
 		var parsedData;
+		var statusCode;
 
 		var objeto_javascript = JSON.stringify(var_datos_entrada);
 
@@ -47,7 +48,7 @@ $(document).ready(() => {
 
 			$("#status").text(statusCode);*/
 
-			var statusCode = jqXHR.status;
+			statusCode = jqXHR.status;
 
 			console.log(statusCode);
 
