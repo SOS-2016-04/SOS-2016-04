@@ -18,10 +18,6 @@ $(document).ready(() => {
             data: var_datos_entrada
             });
 
-		$("#status").text("Campo status");
-		$("#data").text("Campo data");
-		$("#Lista").text("<li>Campo lista</li>");
-		$("#Log").text("Campo  log");
 
 
 		console.log("Valor de la variable var_url  -->  "+var_url);
@@ -39,7 +35,7 @@ $(document).ready(() => {
 		request.done(function(data,status,jqXHR){
 
 			
-			
+			$("#data").text("Campo data");
 			
 
 		});
@@ -58,7 +54,7 @@ $(document).ready(() => {
 <body>
 
 <h1>JQuery REST Client</h1>
-URL: <input id="url" size="30" value="/api/v1/population-percentage-by-age"/>
+URL: <input id="url" size="30" value="/api/v1/population-percentage-by-age?apikey=secret"/>
       GET <input name="method" type="radio" id="GET" checked="checked" /> &nbsp;&nbsp;
       POST <input name="method" type="radio" id="POST" /> &nbsp;&nbsp;
       PUT <input name="method" type="radio" id="PUT" /> &nbsp;&nbsp;
