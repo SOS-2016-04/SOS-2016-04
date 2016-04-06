@@ -35,10 +35,11 @@ $(document).ready(() => {
 
 		request.done(function(data,status,jqXHR){
 
+			console.log(data);
 			
-			parsedData = $.parseJSON(data[0]);
+			//parsedData = $.parseJSON(data);
 
-			$("#data").text(parsedData);
+			$("#data").text(data);
 
 
 			
