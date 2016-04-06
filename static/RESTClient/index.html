@@ -24,7 +24,11 @@ $(document).ready(() => {
 
 		request.always(function(jqXHR, status) {
 
-			$("#status").text(jqXHR.status);
+			var statusCode = jqXHR.status;
+
+			console.log(statusCode);
+
+			$("#status").text(statusCode);
 
 			
 
