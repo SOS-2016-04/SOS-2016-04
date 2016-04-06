@@ -34,12 +34,10 @@ $(document).ready(() => {
 
 
 		request.done(function(data,status,jqXHR){
-
-			console.log(data[0]);
 			
 			//parsedData = $.parseJSON(data);
 
-			$("#data").text((data[0]).data('country'));
+			$("#data").text(data.country+" "+data.year);
 
 
 			
