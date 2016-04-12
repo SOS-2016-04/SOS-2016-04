@@ -5,7 +5,7 @@
 <script>
 $(document).ready(() => {
 
-	var tabla = "<table><tr><td><strong>country</strong></td><td><strong>year</strong></td><td><strong>population_0_14</strong></td><td><strong>population_15_64</strong></td></tr>";
+	var tabla = "<center><table><tr><td><strong>country</strong></td><td><strong>year</strong></td><td><strong>population_0_14</strong></td><td><strong>population_15_64</strong></td></tr>";
 
 
 var request = $.ajax({
@@ -27,7 +27,7 @@ request.done(function(data,status,jqXHR){
 
 			}
 
-			tabla = tabla + "</table>";
+			tabla = tabla + "</table></center>";
 
 			$("#tabla").html(tabla);
 			
