@@ -13,6 +13,7 @@ $(document).ready(() => {
 		var parsedData;
 		var statusCode;
 		var mensajeLog;
+		var cadenaLista = "";
 
 		var objeto_javascript = JSON.stringify(var_datos_entrada);
 
@@ -58,8 +59,9 @@ $(document).ready(() => {
 
 
 
+            cadenaLista = dataJS.length;   
 
-			$("#List").html("<li>moreno</li>");
+			$("#List").html("<li>"+cadenaLista+"</li>");
 
 
 
