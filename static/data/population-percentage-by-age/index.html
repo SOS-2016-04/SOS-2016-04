@@ -27,19 +27,13 @@ request.done(function(data,status,jqXHR){
 
 			}
 
-			console.log(tabla);
-			
+			tabla = tabla + "</table>";
 
+			$("#tabla").html(tabla);
+			
 
 		});
 
-
-
-
-       tabla = tabla + "</table>";
-
-
-		$("#tabla").html(tabla);
 
 
 	});
