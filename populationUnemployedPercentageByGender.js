@@ -162,11 +162,13 @@ var female = req.params.female;
 var male = req.params.male;
 var existe = false;
 var peticion_valida = true;
+var cantidad_atributos=JSON.stringify(req.body).split(",").length;
+var cantidad = cantidad_atributos.toString();
 
 if (apikey && apikey=="clave")
 {
 
-if(population_unemploye.country === undefined || population_unemploye.year === undefined || population_unemploye.female === undefined || population_unemploye.male === undefined || isNaN(population_unemploye.year) || isNaN(population_unemploye.female)  || isNaN(population_unemploye.male))
+if(population_unemploye.country === undefined || population_unemploye.year === undefined || population_unemploye.female === undefined || population_unemploye.male === undefined || isNaN(population_unemploye.year) || isNaN(population_unemploye.female)  || isNaN(population_unemploye.male) || cantidad !== "4")
 {
 	peticion_valida = false;
 }
@@ -308,9 +310,11 @@ module.exports.putUnemploye = function(req,res){
 var year = req.params.year;
 var tamanho = population_unemployed.length;
 var encontrado = false;
+var cantidad_atributos=JSON.stringify(req.body).split(",").length;
+var cantidad = cantidad_atributos.toString();
 if (apikey && apikey=="clave")
 {
- if(country!=population_unemploye.country || year!=population_unemploye.year || population_unemploye.country === undefined || population_unemploye.year === undefined || population_unemploye.female === undefined || population_unemploye.male === undefined || isNaN(population_unemploye.year) || isNaN(population_unemploye.female)  || isNaN(population_unemploye.male))
+ if(country!=population_unemploye.country || year!=population_unemploye.year || population_unemploye.country === undefined || population_unemploye.year === undefined || population_unemploye.female === undefined || population_unemploye.male === undefined || isNaN(population_unemploye.year) || isNaN(population_unemploye.female)  || isNaN(population_unemploye.male) || cantidad !== "4")
  {
 	 res.sendStatus(400);
  }else{
