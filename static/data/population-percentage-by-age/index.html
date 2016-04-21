@@ -1,6 +1,16 @@
 <html>
 <head>
+
+<link   rel="stylesheet"
+type="text/css"
+href="js/themes/default/easyui.css">
+<link   rel="stylesheet"
+type="text/css"
+href="js/themes/icon.css">
+
 <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+
+<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 
 <script>
 $(document).ready(() => {
@@ -43,7 +53,21 @@ request.done(function(data,status,jqXHR){
 </head>
 <body>
 
-<div id="tabla"></div>
+<!--<div id="tabla"></div>-->
+
+    <table id="dg" title="My Users" class="easyui-datagrid" style="width:550px;height:250px"
+            url="get_users.php"
+            toolbar="#toolbar"
+            rownumbers="true" fitColumns="true" singleSelect="true">
+        <thead>
+            <tr>
+                <th field="firstname" width="50">First Name</th>
+                <th field="lastname" width="50">Last Name</th>
+                <th field="phone" width="50">Phone</th>
+                <th field="email" width="50">Email</th>
+            </tr>
+        </thead>
+    </table>
 
 
 </body>
