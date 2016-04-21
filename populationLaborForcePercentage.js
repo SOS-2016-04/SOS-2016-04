@@ -163,11 +163,17 @@ var secondaryEducation = req.params.secondaryEducation;
 var tertiaryEducation = req.params.tertiaryEducation;
 var existe = false;
 var peticion_valida = true;
+var cantidad_atributos=JSON.stringify(req.body).split(",").length;
+var cantidad = cantidad_atributos.toString();
 
 if (apikey && apikey=="clave")
 {
 
+<<<<<<< HEAD
 if(populationLaborForcePercentages.country === undefined || populationLaborForcePercentages.year === undefined || populationLaborForcePercentages.primaryEducation === undefined || populationLaborForcePercentages.secondaryEducation === undefined || populationLaborForcePercentages.tertiaryEducation === undefined || isNaN(populationLaborForcePercentages.year) || isNaN(populationLaborForcePercentages.primaryEducation)  || isNaN(populationLaborForcePercentages.secondaryEducation) || isNaN(populationLaborForcePercentages.tertiaryEducation))
+=======
+if(populationLaborForcePercentages.country === undefined || populationLaborForcePercentages.year === undefined || populationLaborForcePercentages.primaryEducation === undefined || populationLaborForcePercentages.secondaryEducation === undefined || populationLaborForcePercentages.tertiaryEducation === undefined || isNaN(populationLaborForcePercentages.year) || isNaN(populationLaborForcePercentages.primaryEducation)  || isNaN(populationLaborForcePercentages.secondaryEducation) || isNaN(populationLaborForcePercentages.tertiaryEducation)|| cantidad !== "5")
+>>>>>>> 362a0633eb8ca8715d8017a053998fa77f703a00
 {
 	peticion_valida = false;
 }
@@ -309,9 +315,17 @@ module.exports.putPopulationLaborForcePercentage = function(req,res){
 var year = req.params.year;
 var tamanho = populationLaborForcePercentage.length;
 var encontrado = false;
+<<<<<<< HEAD
 if (apikey && apikey=="clave")
 {
  if(country!=populationLaborForcePercentages.country || year!=populationLaborForcePercentages.year || populationLaborForcePercentages.country === undefined || populationLaborForcePercentages.year === undefined || populationLaborForcePercentages.primaryEducation === undefined || populationLaborForcePercentages.secondaryEducation === undefined || populationLaborForcePercentages.tertiaryEducation === undefined || isNaN(populationLaborForcePercentages.year) || isNaN(populationLaborForcePercentages.primaryEducation)  || isNaN(populationLaborForcePercentages.secondaryEducation) || isNaN(populationLaborForcePercentages.tertiaryEducation))
+=======
+var cantidad_atributos=JSON.stringify(req.body).split(",").length;
+var cantidad = cantidad_atributos.toString();
+if (apikey && apikey=="clave")
+{
+ if(country!=populationLaborForcePercentages.country || year!=populationLaborForcePercentages.year || populationLaborForcePercentages.country === undefined || populationLaborForcePercentages.year === undefined || populationLaborForcePercentages.primaryEducation === undefined || populationLaborForcePercentages.secondaryEducation === undefined || populationLaborForcePercentages.tertiaryEducation === undefined || isNaN(populationLaborForcePercentages.year) || isNaN(populationLaborForcePercentages.primaryEducation)  || isNaN(populationLaborForcePercentages.secondaryEducation) || isNaN(populationLaborForcePercentages.tertiaryEducation) || cantidad !== "5")
+>>>>>>> 362a0633eb8ca8715d8017a053998fa77f703a00
  {
 	 res.sendStatus(400);
  }else{
