@@ -17,7 +17,7 @@ src="js/jquery.easyui.min.js"></script>
 <script>
 $(document).ready(() => {
 
-	var tabla = "<center><table class='easyui-datagrid'><thead><tr><td><strong>country</strong></td><td><strong> year</strong></td><td><strong>population_0_14</strong></td><td><strong>population_15_64</strong></td></tr></thead>";
+	var tabla = "<center><table class='easyui-datagrid' style='width:400px;height:auto;'><thead><tr><td><strong>country</strong></td><td><strong> year</strong></td><td><strong>population_0_14</strong></td><td><strong>population_15_64</strong></td></tr></thead>";
 
 
 var request = $.ajax({
@@ -31,7 +31,7 @@ var request = $.ajax({
 
 request.done(function(data,status,jqXHR){
 
-
+tabla = tabla + "<tbody>";
 
 			for (var i=0 ; i<data.length ; i++)
 			{
@@ -39,7 +39,7 @@ request.done(function(data,status,jqXHR){
 
 			}
 
-			tabla = tabla + "</table></center>";
+			tabla = tabla + "</tbody></table></center>";
 
 			$("#tabla").html(tabla);
 
