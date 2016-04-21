@@ -2,22 +2,10 @@
 <head>
 <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
 
-<link  rel="stylesheet"
-type="text/css"
-href="js/themes/default/easyui.css">
-
-<link rel="stylesheet"
-type="text/css"
-href="js/themes/icon.css">
-
-<script type="text/javascript"
-src="js/jquery.easyui.min.js"></script>
-
-
 <script>
 $(document).ready(() => {
 
-	var tabla = "<center><table class='easyui-datagrid' style='width:400px;height:auto;'><thead><tr><td><strong>country</strong></td><td><strong> year</strong></td><td><strong>population_0_14</strong></td><td><strong>population_15_64</strong></td></tr></thead>";
+	var tabla = "<center><table><tr><td><strong>country</strong></td><td><strong> year</strong></td><td><strong>population_0_14</strong></td><td><strong>population_15_64</strong></td></tr>";
 
 
 var request = $.ajax({
@@ -31,7 +19,7 @@ var request = $.ajax({
 
 request.done(function(data,status,jqXHR){
 
-tabla = tabla + "<tbody>";
+
 
 			for (var i=0 ; i<data.length ; i++)
 			{
@@ -39,7 +27,7 @@ tabla = tabla + "<tbody>";
 
 			}
 
-			tabla = tabla + "</tbody></table></center>";
+			tabla = tabla + "</table></center>";
 
 			$("#tabla").html(tabla);
 
