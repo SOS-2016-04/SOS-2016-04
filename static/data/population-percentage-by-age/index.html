@@ -1,4 +1,4 @@
-<html>
+<!--<html>
 <head>
 
 <link   rel="stylesheet"
@@ -53,21 +53,49 @@ request.done(function(data,status,jqXHR){
 </head>
 <body>
 
-<!--<div id="tabla"></div>-->
+<!--<div id="tabla"></div>
 
-    <table id="dg" title="My Users" class="easyui-datagrid" style="width:550px;height:250px"
-            url="get_users.php"
-            toolbar="#toolbar"
-            rownumbers="true" fitColumns="true" singleSelect="true">
-        <thead>
-            <tr>
-                <th field="firstname" width="50">First Name</th>
-                <th field="lastname" width="50">Last Name</th>
-                <th field="phone" width="50">Phone</th>
-                <th field="email" width="50">Email</th>
-            </tr>
-        </thead>
-    </table>
+
+</body>
+
+</html>
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="//netdna.bootstrapcn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="easyui.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<table id="datagrid"></table>
+
+</div>
+
+<script src="jquery.js"></script>
+<script src="jquery.easyui.min.js"></script>
+<script>
+
+$('#datagrid').datagrid({
+
+url: 'datagrid.json',
+columns: [[
+     {field:'code', title:'Code', width: 100},
+     {field:'name', title:'Name', width: 100},
+     {field:'price', title:'Price', width: 100, align:'right'}
+]]
+
+});
+
+</script>
 
 
 </body>
