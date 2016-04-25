@@ -29,6 +29,9 @@
 	</thead>
 	</table>
 
+
+	<div id="tabla"></div>
+
 	<br/>
 	<a href="/about/" class="btn btn-danger center-block">Previous</a>
 	</div>
@@ -40,7 +43,7 @@
 <script>
 $(document).ready(() => {
 
-	var tabla = "<center><table><tr><td><strong>country</strong></td><td><strong> year</strong></td><td><strong>primaryEducation</strong></td><td><strong>secondaryEducation</strong></td><td><strong>tertiaryEducation</strong></td></tr>";
+	var tabla = "";
 
 
 var request = $.ajax({
@@ -75,8 +78,5 @@ request.done(function(data,status,jqXHR){
 
 
 </script>
-
-<div id="tabla"></div>
-
 </body>
 </html>
