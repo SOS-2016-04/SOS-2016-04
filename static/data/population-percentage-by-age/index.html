@@ -31,7 +31,7 @@ $(document).ready(() => {
         var objeto_javascript = JSON.stringify(var_datos_entrada);
 
         var request = $.ajax({
-            url: var_url,
+            url: "https://sos-2016-04.herokuapp.com/api/v1/population-percentage-by-age?apikey=secret",
             type: var_metodo,
             data: var_datos_entrada,
             dataType: "JSON",
