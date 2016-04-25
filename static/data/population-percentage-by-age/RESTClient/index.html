@@ -1,6 +1,21 @@
-<!--
-<html>
+<!doctype html>
+<html lang="en">
 <head>
+
+
+<meta charset="utf-8">
+  <title>jQuery UI Accordion - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#accordion" ).accordion();
+  });
+  </script>
+
+
 <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
 
 <script>
@@ -93,45 +108,58 @@ $(document).ready(() => {
 </script>
 </head>
 <body>
-
+<div id="accordion">
 <h1>JQuery REST Client</h1>
+	<h3>Section 1</h3>
+	<div>
+	<p>
 URL: <input id="url" size="30" value="/api/v1/population-percentage-by-age?apikey=secret"/>
+
+	<h3>Section 1</h3>
+	<div>
+	<p>
       GET <input name="method" type="radio" id="GET" checked="checked" /> &nbsp;&nbsp;
       POST <input name="method" type="radio" id="POST" /> &nbsp;&nbsp;
       PUT <input name="method" type="radio" id="PUT" /> &nbsp;&nbsp;
       DELETE <input name="method" type="radio" id="DELETE" /> &nbsp;&nbsp;
-      <br/>
+      </p>
+  </div>
+      <h3>Section 1</h3>
+	<div>
+	<p>
       Payload: <input id="payload" size="60" value='{"country":"sevilla","year":99000,"population_0_14":6,"population_15_64":80}'/>
       <br/><br/>
       <span id="button">Send</span>
-      <br/><hr/>
+      </p>
+  </div>
+      <h3>Section 1</h3>
+	<div>
+	<p>
       HTTP Status: <span id="status"></span>
-      <br/><hr/>
+    </p>
+  </div>
+      <h3>Section 1</h3>
+	<div>
+	<p>
       <span id="data"></span>
-      <br/><hr/>
+     </p>
+  </div>
+      <h3>Section 1</h3>
+	<div>
+	<p>
       <ul id="List"></ul>
-      <hr/>
+    </p>
+  </div>
+      <h3>Section 1</h3>
+	<div>
+	<p>
       Log: <span id="Log"></span>
-
+      </p>
+  </div>
+</div>
 </body>
 </html>
--->
-
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>jQuery UI Accordion - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script>
-  $(function() {
-    $( "#accordion" ).accordion();
-  });
-  </script>
-</head>
+<!--
 <body>
  
 <div id="accordion">
@@ -186,3 +214,5 @@ URL: <input id="url" size="30" value="/api/v1/population-percentage-by-age?apike
  
 </body>
 </html>
+
+-->
