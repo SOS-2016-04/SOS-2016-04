@@ -26,8 +26,7 @@
 			<th>Secondary Education</th>
 			<th>Tertiary Education</th>
     </tr>
-		</thead>
-		<tbody>
+
 	<script>
 	$(document).ready(() => {
 
@@ -49,12 +48,11 @@
 
 				for (var i=0 ; i<data.length ; i++)
 				{
-
-					tabla = tabla + <tr><th scope="row">1</th><td>+data[i].country+</td><td>+data[i].year+</td><td>+data[i].primaryEducation+</td><td>+data[i].secondaryEducation+</td><td>+data[i].tertiaryEducation+</td></tr>;
+					tabla = tabla + "<tr><td>"+data[i].country+"_______________________"+"</td><td>"+data[i].year+"_______________________"+"</td><td>"+data[i].primaryEducation+"_______________________"+"</td><td>"+data[i].secondaryEducation+"_______________________"+"</td><td>"+data[i].tertiaryEducation+"_______________________"+"</td></tr>";
 
 				}
 
-				//tabla = tabla + "</table></center>";
+				tabla = tabla + "</table></center>";
 
 				$("#tabla").html(tabla);
 
@@ -70,7 +68,8 @@
 
 	<div id="tabla"></div>
 
-	</tbody>
+	</thead>
+
 	</table>
 
 
