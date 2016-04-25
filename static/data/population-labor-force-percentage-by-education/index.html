@@ -1,6 +1,41 @@
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>population-labor-force-percentage-by-education</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+	<div class="jumbotron">
+	<ol class="breadcrumb">
+    <li><a href="/about/">About</a></li>
+    <li><a href="/data/population-labor-force-percentage-by-education/RESTClient">REST Client</a></li>
+ </ol>
+
+  <h3>Population labor force percentage by education</h3>
+
+  <table class="table">
+		<thead class="thead-inverse">
+    <tr>
+			<th>Country</th>
+			<th>Year</th>
+			<th>Primary Education</th>
+			<th>Secondary Education</th>
+			<th>Tertiary Education</th>
+    </tr>
+	</thead>
+	</table>
+
+	<br/>
+	<a href="/about/" class="btn btn-danger center-block">Previous</a>
+	</div>
+	</div>
+
+
+
 
 <script>
 $(document).ready(() => {
@@ -40,11 +75,5 @@ request.done(function(data,status,jqXHR){
 
 
 </script>
-</head>
-<body>
-
-<div id="tabla"></div>
-
-
 </body>
 </html>
