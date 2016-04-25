@@ -28,56 +28,38 @@
     </tr>
 	</thead>
 	</table>
-
-	<script>
-	$(document).ready(() => {
-
-		var tabla = "";
-
-
-	var request = $.ajax({
-	            url: "http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education?apikey=clave",
-	            type: "GET",
-	            data: "",
-	            dataType: "JSON",
-	            contentType: "application/json"
-	            });
-
-
-	request.done(function(data,status,jqXHR){
-
-
-
-				for (var i=0 ; i<data.length ; i++)
-				{
-					tabla = tabla + "<tr><td>"+data[i].country+"</td><td>"+data[i].year+"</td><td>"+data[i].primaryEducation+"</td><td>"+data[i].secondaryEducation+"</td><td>"+data[i].tertiaryEducation+"</td></tr>";
-
-				}
-
-				tabla = tabla + "</table></center>";
-
-				$("#tabla").html(tabla);
-
-
-			});
-
-
-
-		});
-
-
-	</script>
-
-
-	<div id="tabla"></div>
-
 	<br/>
 	<a href="/about/" class="btn btn-danger center-block">Previous</a>
 	</div>
 	</div>
 
+	<script>
+$(document).ready(function(){
+    jQuery.support.cors = true;
+    $.ajax(
+    {
+        type: "GET",
+        url: "http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education?apikey=clave",
+        data: "{}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+          var trHTML = '';
 
 
+      $.each(data, function (i, item) {
+          trHTML += "<tr class='info'><td>" + data[i].country + '</td><td>' + data[i].year + '</td><td>' + data[i].primaryEducation + '</td><td>' + data[i].secondaryEducation + '</td><td>' + data[i].tertiaryEducatio + '</td><td>';
+      });
+      $('#location').append(trHTML);
+        },
+
+        error: function (msg) {
+            alert(msg.responseText);
+        }
+    });
+})
+</script>
 
 </body>
 </html>
