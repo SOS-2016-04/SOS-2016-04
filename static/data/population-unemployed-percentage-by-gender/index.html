@@ -1,50 +1,81 @@
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+	<title>The Materialize Example</title>
+	      <meta name="viewport" content="width=device-width, initial-scale=1">
+	      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+	      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+	      <style>
+	         div {
+	            width : 1000px;
+	            height : 400px;
+	         }
+	      </style>
+</head>
+<body>
+	<div class="container">
+		<div class="card-panel">
+	          <div class="card-panel red lighten-3">
+	             <h2>Population labor force percentage by education</h3>
 
-<script>
-$(document).ready(() => {
+  <table class="striped bordered">
+		<thead class="thead-inverse">
+    <tr>
+			<th>Country</th>
+			<th>Year</th>
+			<th>Female</th>
+			<th>Male</th>
+    </tr>
+	</thead>
+	</table>
 
-	var tabla = "<center><table><tr><td><strong>country</strong></td><td><strong> year</strong></td><td><strong>female</strong></td><td><strong>male</strong></td></tr>";
+	<script>
+	$(document).ready(() => {
 
-
-var request = $.ajax({
-            url: "http://sos-2016-04.herokuapp.com/api/v1/population-unemployed-percentage-by-gender?apikey=clave",
-            type: "GET",
-            data: "",
-            dataType: "JSON",
-            contentType: "application/json"
-            });
-
-
-request.done(function(data,status,jqXHR){
-
+		var tabla = "";
 
 
-			for (var i=0 ; i<data.length ; i++)
-			{
-				tabla = tabla + "<tr><td>"+data[i].country+"</td><td>"+data[i].year+"</td><td>"+data[i].female+"</td><td>"+data[i].male+"</td></tr>";
+	var request = $.ajax({
+	            url: "http://sos-2016-04.herokuapp.com/api/v1/population-unemployed-percentage-by-gender?apikey=clave",
+	            type: "GET",
+	            data: "",
+	            dataType: "JSON",
+	            contentType: "application/json"
+	            });
 
-			}
 
-			tabla = tabla + "</table></center>";
+	request.done(function(data,status,jqXHR){
 
-			$("#tabla").html(tabla);
+
+
+				for (var i=0 ; i<data.length ; i++)
+				{
+					tabla = tabla + "<tr><td>"+data[i].country+"____________"+"</td><td>"+data[i].year+"_______________"+"</td><td>"+data[i].female+"_____________________________"+"</td><td>"+data[i].male+"</td></tr>";
+
+				}
+
+				tabla = tabla + "</table></center>";
+
+				$("#tabla").html(tabla);
+
+
+			});
+
 
 
 		});
 
 
+	</script>
 
-	});
+	<div id="tabla"></div>
 
 
-</script>
-</head>
-<body>
-
-<div id="tabla"></div>
-
+	<br/>
+	</div>
+	</div>
+	</div>
 
 </body>
 </html>
