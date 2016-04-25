@@ -1,23 +1,20 @@
-<!--
-
 <html>
 <head>
 
 
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"/>
+	<script type="text/javascript" language="javascript" src="jquery.js"></script> 
+<script type="text/javascript" language="javascript" src="jquery.dataTables.js"></script> 
 
-	<script type="text/javascript" src="https://cdn.datatables.net/t/dt/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 
    <script type="text/javascript" 
    src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 
 
-<script>
-
-
+<script type="text/javascript" charset="utf-8">
 
 $(document).ready(() => {
+
+	$('#tabla').dataTable();
 
 	var tabla = "<table id='tabla' class='display' width='100%'' cellspacing='0'><thead><tr><th>country</th><th>year</th><th>population_0_14</th><th>population_15_64</th></tr></thead><tbody>";
 
@@ -59,75 +56,9 @@ request.done(function(data,status,jqXHR){
 </head>
 <body>
 
-<div id="tabla"></div>
+<div></div>
 
 
 </body>
 
-</html>
-
--->
-
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>jQuery EasyUI</title>
-	<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
-	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
-	<script type="text/javascript" src="../jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="../jquery.easyui.min.js"></script>
-</head>
-<body>
-	<h1>Convert a HTML table to DataGrid</h1>
-	<table id="tt" class="easyui-datagrid" style="width:350px;height:auto;">
-		<thead>
-			<tr>
-				<th field="name1" width="50">Col 1</th>
-				<th field="name2" width="50">Col 2</th>
-				<th field="name3" width="50">Col 3</th>
-				<th field="name4" width="50">Col 4</th>
-				<th field="name5" width="50">Col 5</th>
-				<th field="name6" width="50">Col 6</th>
-			</tr>                          
-		</thead>                           
-		<tbody>                            
-			<tr>                           
-				<td>Data 1</td>            
-				<td>Data 2</td>            
-				<td>Data 3</td>            
-				<td>Data 4</td>            
-				<td>Data 5</td>            
-				<td>Data 6</td>            
-			</tr>                          
-			<tr>                           
-				<td>Data 1</td>            
-				<td>Data 2</td>            
-				<td>Data 3</td>            
-				<td>Data 4</td>            
-				<td>Data 5</td>            
-				<td>Data 6</td>            
-			</tr>                          
-			<tr>                           
-				<td>Data 1</td>            
-				<td>Data 2</td>            
-				<td>Data 3</td>            
-				<td>Data 4</td>            
-				<td>Data 5</td>            
-				<td>Data 6</td>            
-			</tr>                          
-			<tr>                           
-				<td>Data 1</td>            
-				<td>Data 2</td>            
-				<td>Data 3</td>            
-				<td>Data 4</td>            
-				<td>Data 5</td>            
-				<td>Data 6</td>            
-			</tr>                          
-		</tbody>                           
-	</table>
-		
-</body>
 </html>
