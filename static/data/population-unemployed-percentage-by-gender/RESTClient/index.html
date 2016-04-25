@@ -1,133 +1,116 @@
 <html>
 <head>
-	<title>The Materialize Example</title>
-				<meta name="viewport" content="width=device-width, initial-scale=1">
-				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-				<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
-		<script>
-    $(document).ready(() => {
+<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
 
-    	$("#button").click(function () {
+<script>
+$(document).ready(() => {
 
-    		var var_url = $("#url").val();
-    		var var_datos_entrada = $("#payload").val();
-    		var var_metodo = $('input:radio[name=method]:checked').attr("id");
-    		var parsedData;
-    		var statusCode;
-    		var mensajeLog;
-    		var cadenaLista = "";
+	$("#button").click(function () {
 
-    		var objeto_javascript = JSON.stringify(var_datos_entrada);
+		var var_url = $("#url").val();
+		var var_datos_entrada = $("#payload").val();
+		var var_metodo = $('input:radio[name=method]:checked').attr("id");
+		var parsedData;
+		var statusCode;
+		var mensajeLog;
+		var cadenaLista = "";
 
-    		var request = $.ajax({
-                url: var_url,
-                type: var_metodo,
-                data: var_datos_entrada,
-                dataType: "JSON",
-                contentType: "application/json"
-                });
+		var objeto_javascript = JSON.stringify(var_datos_entrada);
+
+		var request = $.ajax({
+            url: var_url,
+            type: var_metodo,
+            data: var_datos_entrada,
+            dataType: "JSON",
+            contentType: "application/json"
+            });
 
 
-    		    $("#data").text(" ");
+		    $("#data").text(" ");
 
-    			$("#List").text(" ");
+			$("#List").text(" ");
 
 
 
-    			request.always(function(jqXHR, status) {
+			request.always(function(jqXHR, status) {
 
-    			statusCode = jqXHR.status;
+			statusCode = jqXHR.status;
 
-    			$("#status").text(statusCode);
+			$("#status").text(statusCode);
 
-    			mensajeLog = "Done";
+			mensajeLog = "Done";
 
-    			$("#Log").text(mensajeLog);
+			$("#Log").text(mensajeLog);
 
-    		});
+		});
 
 
 
 
-    		request.done(function(data,status,jqXHR){
+		request.done(function(data,status,jqXHR){
 
-    			statusCode = jqXHR.status;
+			statusCode = jqXHR.status;
 
-    			$("#status").text(statusCode);
+			$("#status").text(statusCode);
 
-    			dataJS = JSON.stringify(data);
+			dataJS = JSON.stringify(data);
 
-    			$("#data").text(dataJS);
-
-
-
-    			for (var i=0 ; i<data.length ; i++)
-    			{
-    				elementoLista = "<li>"+"(country="+data[i].country+")(year="+data[i].year+")(primaryEducation="+data[i].primaryEducation+")(secondaryEducation="+data[i].secondaryEducation+")(tertiaryEducation="+data[i].tertiaryEducation+")"+"</li>";
-    				cadenaLista = cadenaLista + elementoLista;
-    				console.log(data[i]);
-
-    			}
+			$("#data").text(dataJS);
 
 
 
-    			$("#List").html(cadenaLista);
+			for (var i=0 ; i<data.length ; i++)
+			{
+				elementoLista = "<li>"+"(country="+data[i].country+")(year="+data[i].year+")(population_0_14="+data[i].population_0_14+")(population_15_64="+data[i].population_15_64+")"+"</li>";
+				cadenaLista = cadenaLista + elementoLista;
+				console.log(data[i]);
+
+			}
+
+
+
+			$("#List").html(cadenaLista);
 
 
 
 
 
-    			mensajeLog = "Done";
+			mensajeLog = "Done";
 
-    			$("#Log").text(mensajeLog);
+			$("#Log").text(mensajeLog);
 
-    		});
-
-
+		});
 
 
-    	});
 
-    	});
+
+	});
+
+	});
+
+
 </script>
 </head>
 <body>
 
-	<div class="container">
-	<div class="jumbotron">
- <div class="text-center">
-<h2>JQuery REST Client</h2>
-<br/>
-<p>
-URL: <input id="url" size="50" value="/api/v1/population-unemployed-percentage-by-gender?apikey=clave"/>
-</p>
-<p>
+<h1>JQuery REST Client</h1>
+URL: <input id="url" size="30" value="/api/v1/population-percentage-by-age?apikey=secret"/>
       GET <input name="method" type="radio" id="GET" checked="checked" /> &nbsp;&nbsp;
       POST <input name="method" type="radio" id="POST" /> &nbsp;&nbsp;
       PUT <input name="method" type="radio" id="PUT" /> &nbsp;&nbsp;
       DELETE <input name="method" type="radio" id="DELETE" /> &nbsp;&nbsp;
-			</p>
-			<p>
-      Payload: <input id="payload" size="76" value=''/>
-			</p>
-			<br/>
+      <br/>
+      Payload: <input id="payload" size="60" value='{"country":"sevilla","year":99000,"population_0_14":6,"population_15_64":80}'/>
+      <br/><br/>
+      <span id="button">Send</span>
+      <br/><hr/>
+      HTTP Status: <span id="status"></span>
+      <br/><hr/>
+      <span id="data"></span>
+      <br/><hr/>
+      <ul id="List"></ul>
+      <hr/>
+      Log: <span id="Log"></span>
 
-
-</div>
-<button type="button" id="button" value="Send" class="btn btn-primary btn-lg btn-block">
-		<span class="glyphicon"></span> Send
-</button>
-<br/><hr/>
-<div class="alert alert-danger">HTTP Status: <span id="status"></span></div>
-<hr/>
-<span id="data"></span>
-<br/>
-<ul id="List"></ul>
-<br/><hr/>
-<div class="alert alert-info">Log: <span id="Log"></span></div>
-</div>
-</div>
 </body>
 </html>
