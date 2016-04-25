@@ -49,12 +49,12 @@
 
 				for (var i=0 ; i<data.length ; i++)
 				{
-					var aux = i+1;
-					tabla = tabla + "<tr><th scope="row">1</th><td>"+data[i].country+"</td><td>"+data[i].year+""+"</td><td>"+data[i].primaryEducation+"</td><td>"+data[i].secondaryEducation+"</td><td>"+data[i].tertiaryEducation+"</td></tr>";
+
+					tabla = tabla + <tr><th scope="row">1</th><td>+data[i].country+</td><td>+data[i].year+</td><td>+data[i].primaryEducation+</td><td>+data[i].secondaryEducation+</td><td>+data[i].tertiaryEducation+</td></tr>;
 
 				}
 
-				tabla = tabla + "</table></center>";
+				//tabla = tabla + "</table></center>";
 
 				$("#tabla").html(tabla);
 
