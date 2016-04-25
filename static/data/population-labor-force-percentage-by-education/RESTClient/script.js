@@ -56,7 +56,7 @@ $(document).ready(() => {
 
 			for (var i=0 ; i<data.length ; i++)
 			{
-				elementoLista = "<li>"+"(country="+data[i].country+")(year="+data[i].year+")(population_0_14="+data[i].population_0_14+")(population_15_64="+data[i].population_15_64+")"+"</li>";
+				elementoLista = "<li>"+"(country="+data[i].country+")(year="+data[i].year+")(primaryEducation="+data[i].primaryEducation+")(secondaryEducation="+data[i].secondaryEducation+")(tertiaryEducation="+data[i].tertiaryEducation+")"+"</li>";
 				cadenaLista = cadenaLista + elementoLista;
 				console.log(data[i]);
 
