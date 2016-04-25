@@ -2,19 +2,12 @@
 <head>
 
 
-	<script type="text/javascript" language="javascript" src="jquery.js"></script> 
-<script type="text/javascript" language="javascript" src="jquery.dataTables.js"></script> 
+   <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 
-
-   <script type="text/javascript" 
-   src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-
-
-<script type="text/javascript" charset="utf-8">
 
 $(document).ready(() => {
 
-	var tabla = "<table id='tabla' class='display' width='100%'' cellspacing='0'><thead><tr><th>country</th><th>year</th><th>population_0_14</th><th>population_15_64</th></tr></thead><tbody>";
+	var tabla = "<table id='tabla' class='display' width='100%' cellspacing='0'><thead><tr><th>country</th><th>year</th><th>population_0_14</th><th>population_15_64</th></tr></thead><tbody>";
 
 
 var request = $.ajax({
@@ -44,21 +37,6 @@ request.done(function(data,status,jqXHR){
 
 
 		});
-
-
-
-
-	$('#tabla').DataTable( {
-			"bPaginate": false,
-			"bLengthChange": false,
-			"bFilter": true,
-			"bSort": false,
-			"bInfo": false,
-			"bAutoWidth": false } );
-
-
-
-	});
 
 
 </script>
