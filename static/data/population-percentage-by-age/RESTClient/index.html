@@ -75,7 +75,7 @@ $(document).ready(() => {
 
 			for (var i=0 ; i<data.length ; i++)
 			{
-				elementoLista = "<li>"+"(country="+data[i].country+")(year="+data[i].year+")(population_0_14="+data[i].population_0_14+")(population_15_64="+data[i].population_15_64+")"+"</li>";
+				elementoLista = "<li>"+data[i].country+" ----- "+data[i].year+" ----- "+data[i].population_0_14+" ----- "+data[i].population_15_64+"</li>";
 				cadenaLista = cadenaLista + elementoLista;
 				console.log(data[i]);
 
@@ -107,10 +107,10 @@ $(document).ready(() => {
 </head>
 <body>
 <div id="accordion">
-	<h3>URL</h3>
+	<h3>CAMPOS</h3>
 	<div>
 	<p>
-URL: <input id="url" size="30" value="/api/v1/population-percentage-by-age?apikey=secret"/>
+COUNTRY   ------    YEAR  ----- POPULATION_0_14 ----- POPULATION_15_64
     </p>
 </div>
 	<h3>METHOD</h3>
