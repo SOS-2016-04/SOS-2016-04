@@ -27,6 +27,7 @@
 			<th>Tertiary Education</th>
     </tr>
     </thead>
+	</table>
 
 	<script>
 	$(document).ready(() => {
@@ -49,7 +50,7 @@
 
 				for (var i=0 ; i<data.length ; i++)
 				{
-					tabla = tabla + "<tr><td>"+data[i].country+"_____________"+"</td><td>"+data[i].year+"_____________________"+"</td><td>"+data[i].primaryEducation+"_____________________"+"</td><td>"+data[i].secondaryEducation+"_____________________"+"</td><td>"+data[i].tertiaryEducation+"_____"+"</td></tr>";
+					tabla = tabla + "<tr><td>"+data[i].country+"___________"+"</td><td>"+data[i].year+"_________________"+"</td><td>"+data[i].primaryEducation+"_______________________"+"</td><td>"+data[i].secondaryEducation+"___________________________"+"</td><td>"+data[i].tertiaryEducation+".   ."+"</td></tr>";
 
 				}
 
@@ -68,8 +69,6 @@
 	</script>
 
 	<div id="tabla"></div>
-
-	</table>
 
 
 	<br/>
