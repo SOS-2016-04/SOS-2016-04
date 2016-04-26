@@ -28,7 +28,7 @@
 	<script>
 	$(document).ready(() => {
 
-		var tabla = "";
+		var tabla = "<tbody>";
 
 
 	var request = $.ajax({
@@ -46,12 +46,11 @@
 
 				for (var i=0 ; i<data.length ; i++)
 				{
-					tabla = tabla + "<tr><td>"+data[i].country+"____________________________________"+"</td> " 
-					"<td>"+data[i].year+"____________________"+"</td><td>"+data[i].female+"_________________________________"+"</td><td>"+data[i].male+"</td></tr>";
+					tabla = tabla + "<tr><td>"+data[i].country+"____________________________________"+"</td><td>"+data[i].year+"____________________"+"</td><td>"+data[i].female+"_________________________________"+"</td><td>"+data[i].male+"</td></tr>";
 
 				}
 
-				tabla = tabla + "</table></center>";
+				tabla = tabla + "</tbody></table></center>";
 
 				$("#tabla").html(tabla);
 
