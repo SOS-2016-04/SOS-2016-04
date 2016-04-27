@@ -24,8 +24,7 @@
     </tr>
 	</thead>
 	<tbody>
-		<tr>
-		</tr>
+
 	</tbody>
 	</table>
 
@@ -50,7 +49,7 @@
 
 				for (var i=0 ; i<data.length ; i++)
 				{
-					tabla = tabla + "<tr><td>"+data[i].country+"&nbsp____________________________________"+"</td><td>"+data[i].year+"____________________"+"</td><td>"+data[i].female+"_________________________________"+"</td><td>"+data[i].male+"</td></tr>";
+					tabla = tabla +"<table class="striped bordered"><thead class="thead-inverse"><tr><th>Country</th><th>Year</th><th>Female</th><th>Male</th></tr></thead><tbody>"+ "<tr><td>"+data[i].country+""+"</td><td>"+data[i].year+"</td><td>"+data[i].female+"</td><td>"+data[i].male+"</td></tr></tbody>";
 
 				}
 
@@ -71,7 +70,6 @@
 	<div id="tabla"></div
 
 
-	<br/>
 	</div>
 	</div>
 	</div>
