@@ -25,7 +25,7 @@
 
                 var row = $('#tabladatos').datagrid('getSelected');
                 var url = "/api/v1/population-percentage-by-age";
-                url = url + "/" + row.country + "/" + "row.year" + "?apikey=" + "secret";
+                url = url + "/" + row.country + "/" + "row.year" + row.year + "?apikey=" + "secret";
 
                 console.log(row.country);
 
