@@ -24,8 +24,22 @@
             function destroyUser(){
 
                 var row = $('#tabladatos').datagrid('getSelected');
+                var url = "/api/v1/population-percentage-by-age";
+                url = url + "/" + row.country + "/" + "row.year" + "?apikey=" + "secret";
 
-                console.log(row);
+                console.log(row.country);
+
+               var request = $.ajax({
+                url : url,
+                method : "DELETE"
+            });
+
+
+               request.done((data,status) =>{
+                console.log("Hecho");
+            });
+
+
 
 
             }
