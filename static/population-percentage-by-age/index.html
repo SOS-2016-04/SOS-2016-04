@@ -15,7 +15,8 @@
     <body>
 
 
-    <table class="easyui-datagrid">
+    <table class="easyui-datagrid" style="width:400px;height:250px"
+        data-options="url:'resources.json',fitColumns:true,singleSelect:true">
         <thead>
             <tr>
                 <th data-options="field:'country'">Country</th>
@@ -24,14 +25,6 @@
                 <th data-options="field:'population_15_64'">Population 15 - 64</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>spain</td><td>2015</td><td>13</td><td>76</td>
-            </tr>
-            <tr>
-                <td>france</td><td>2013</td><td>17</td><td>72</td>
-            </tr>
-        </tbody>
     </table>
 
 
