@@ -11,21 +11,27 @@
         <script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
 
 
+
+<script>
+        $(document).ready(() => {
+        $('#tabladatos').datagrid({
+        url:'resources.json',
+        columns:[[
+            {field:'country',title:'Country',width:100},
+            {field:'year',title:'Year',width:100},
+            {field:'population_0_14',title:'Population_0_14',width:100},
+            {field:'population_15_64',title:'Population_15_64',width:100,align:'right'}
+        ]]
+    });
+</script>
+
+
+
     </head>
     <body>
 
 
-    <table class="easyui-datagrid" style="width:400px;height:250px"
-        data-options="url:'resources.json',fitColumns:true,singleSelect:true">
-        <thead>
-            <tr>
-                <th data-options="field:'country'">Country</th>
-                <th data-options="field:'year'">Year</th>
-                <th data-options="field:'population_0_14'">Population 0 - 14</th>
-                <th data-options="field:'population_15_64'">Population 15 - 64</th>
-            </tr>
-        </thead>
-    </table>
+    <table id="tabladatos"></table>
 
 
 
