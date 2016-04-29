@@ -14,8 +14,25 @@
 
 <script>
         $(document).ready(() => {
+
+
+
+            var request = $.ajax({
+                url : "./resources.json"
+            });
+
+            request.done((data,status) =>{
+
+                console.log(data);
+
+            });
+
+
+
+
+
         $('#tabladatos').datagrid({
-            url:'/resources.json',
+           // url:'./resources.json',
         columns:[[
             {field:'country',title:'Country',width:125},
             {field:'year',title:'Year',width:125},
