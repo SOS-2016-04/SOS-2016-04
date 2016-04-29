@@ -18,22 +18,11 @@
           ['RU', 700]
         ]);
 
-
-        var data_15_64 = google.visualization.arrayToDataTable([
-          ['Country', 'Popularity'],
-          ['spain', 900],
-          ['Canada', 500],
-          ['RU', 700]
-        ]);
-
         var options = {};
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-        var chart2 = new google.visualization.GeoChart(document.getElementById('regions_div2'));
 
         chart.draw(data_0_14, options);
-
-        chart.draw(data_15_64, options);
       }
     </script>
   </head>
