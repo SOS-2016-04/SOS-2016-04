@@ -36,7 +36,23 @@
 
 
                request.done((data,status) =>{
-                console.log("Hecho");
+
+
+                $('#dg').datagrid('reload',
+
+                    data: data,
+                   singleSelect : true,
+                   toolbar: '#toolbar',
+        columns:[[
+            {field:'country',title:'Country',width:125},
+            {field:'year',title:'Year',width:125},
+            {field:'population_0_14',title:'Population_0_14',width:200},
+            {field:'population_15_64',title:'Population_15_64',width:200}
+        ]]
+
+                    );
+
+
             });
 
 
