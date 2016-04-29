@@ -15,24 +15,16 @@
 <script>
         $(document).ready(() => {
         $('#tabladatos').datagrid({
+            url:'datagrid_data.json',
         columns:[[
             {field:'country',title:'Country',width:125},
             {field:'year',title:'Year',width:125},
-            {field:'population_0_14',title:'Population_0_14',width:225},
-            {field:'population_15_64',title:'Population_15_64',width:225}
+            {field:'population_0_14',title:'Population_0_14',width:200},
+            {field:'population_15_64',title:'Population_15_64',width:200}
         ]]
     });
 
 
-            $('#tabladatos').datagrid('load', {
-        "country": "canada",
-        "year": "12",
-        "population_0_14": "13",
-        "population_15_64": "14"
-    });
-
-
-            $('#tabladatos').datagrid('reload');
 
 
 
