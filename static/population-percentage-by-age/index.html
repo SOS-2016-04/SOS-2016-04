@@ -38,6 +38,14 @@
                request.done((data,status) =>{
 
 
+
+                var request = $.ajax({
+                url : "/api/v1/population-percentage-by-age?apikey=secret"
+            });
+
+
+                request.done((data,status) =>{
+
                 $('#tabladatos').datagrid('reload',{
                     data: data,
                    singleSelect : true,
@@ -50,6 +58,8 @@
         ]]
 
                     });
+
+            });
 
 
             });
