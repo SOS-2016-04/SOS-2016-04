@@ -38,8 +38,7 @@
                request.done((data,status) =>{
 
 
-                $('#tabladatos').datagrid('reload',
-
+                $('#tabladatos').datagrid('reload',{
                     data: data,
                    singleSelect : true,
                    toolbar: '#toolbar',
@@ -50,7 +49,7 @@
             {field:'population_15_64',title:'Population_15_64',width:200}
         ]]
 
-                    );
+                    });
 
 
             });
