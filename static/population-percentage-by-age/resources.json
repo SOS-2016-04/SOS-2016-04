@@ -1,5 +1,7 @@
 [
-["country","year","population_0_14","population_15_64"],
-["spain",2014,21,43],
-["france",2012,22,44]
+{"country":"spain",
+"year": "2014",
+"population_0_14":"21",
+"population_15_64":"43"
+}
 ]
