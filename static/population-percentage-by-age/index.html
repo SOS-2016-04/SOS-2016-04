@@ -23,16 +23,9 @@
 
             request.done((data,status) =>{
 
-                console.log(data);
 
-            });
-
-
-
-
-
-        $('#tabladatos').datagrid({
-           // url:'./resources.json',
+                $('#tabladatos').datagrid({
+            loadData: data,
         columns:[[
             {field:'country',title:'Country',width:125},
             {field:'year',title:'Year',width:125},
@@ -40,6 +33,11 @@
             {field:'population_15_64',title:'Population_15_64',width:200}
         ]]
     });
+
+
+
+            });
+
 
 
 
