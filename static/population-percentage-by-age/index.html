@@ -16,6 +16,13 @@
         $(document).ready(() => {
 
 
+            function newUser(){
+            $('#dlg').dialog('open').dialog('center').dialog('setTitle','New User');
+            $('#fm').form('clear');
+            url = 'save_user.php';
+        }
+
+
 
             var request = $.ajax({
                 url : "/api/v1/population-percentage-by-age?apikey=secret"
