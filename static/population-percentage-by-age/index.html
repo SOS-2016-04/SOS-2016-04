@@ -23,7 +23,9 @@
 
             function destroyUser(){
 
-                $('#tabladatos').datagrid('getSelected');
+                var row = $('#tabladatos').datagrid('getSelected');
+
+                console.log(row);
 
 
             }
