@@ -46,6 +46,8 @@
 
                 request.done((data,status) =>{
 
+                    console.log(data);
+
                 $('#tabladatos').datagrid('reload',{
                     data: data,
                    singleSelect : true,
