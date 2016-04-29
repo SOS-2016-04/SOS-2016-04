@@ -34,8 +34,9 @@
     });
 
 console.log(data);
+console.log(JSON.stringify(data));
 
-                $('#tablaDatos').datagrid('loadData',data);
+                $('#tablaDatos').datagrid('loadData',JSON.stringify(data));
 
                 $('#tablaDatos').datagrid('getData');
 
