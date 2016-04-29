@@ -15,17 +15,13 @@
 
             function newUser(){
 
-               // $('#tabladatos').dialog('open').dialog('center').dialog('setTitle','New User');
+                   $('#win').window({
+                     width:600,
+                     height:400,
+                     modal:true
+    }); 
 
-          //window.open("TU PAGINA");
-
-          $.messager.prompt('Prompt', 'Please enter your name:', function(r){
-        if (r){
-        alert('Your name is:' + r);
-        }
-
-        
-});  
+                   
 
         }
 
@@ -141,6 +137,10 @@
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
     
     </div>
+
+
+
+    <div id="win"></div>
 
 
 
