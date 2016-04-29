@@ -8,7 +8,7 @@
 
       function drawRegionsMap() {
 
-        var data = google.visualization.arrayToDataTable([
+        var data_0_14 = google.visualization.arrayToDataTable([
           ['Country', 'Popularity'],
           ['Germany', 200],
           ['United States', 300],
@@ -18,15 +18,27 @@
           ['RU', 700]
         ]);
 
+
+        var data_15_64 = google.visualization.arrayToDataTable([
+          ['Country', 'Popularity'],
+          ['spain', 900],
+          ['Canada', 500],
+          ['RU', 700]
+        ]);
+
         var options = {};
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+        var chart2 = new google.visualization.GeoChart(document.getElementById('regions_div2'));
 
-        chart.draw(data, options);
+        chart.draw(data_0_14, options);
+
+        chart.draw(data_15_64, options);
       }
     </script>
   </head>
   <body>
-    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+    <div id="regions_div" style="width: 450px; height: 250px;"></div>
+    <div id="regions_div2" style="width: 450px; height: 250px;"></div>
   </body>
 </html>
