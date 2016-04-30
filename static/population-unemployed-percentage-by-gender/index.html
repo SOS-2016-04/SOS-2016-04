@@ -34,16 +34,25 @@
                 dataType: "JSON",
                 contentType: "application/json"
                 });
-    request.done(function(data){
-      dataJS = JSON.stringify(data);
-      console.log("datos");
-      console.log(dataJS);
-  });
-  request.always(function(jqXHR) {
+                request.done(function(data,status,jqXHR){
 
-  console.log( "Status:"+jqXHR.status);
+                  for (var i=0 ; i<data.length ; i++){
+                        var per = JSON.parse(data[i]);
+                    $("#tblList tbody").append("<tr>" +
+                            "<td>" + per.country + "</td>" +
+                            "<td>" + per.year + "</td>" +
+                            "<td>" + per.female + "</td>" +
+                            "<td>" + per.male + "</td>" +
+                            "<td><img src='edit.png' alt='Edit" + i + "' class='btnEdit'/>&nbsp &nbsp<img src='delete.png' alt='Delete" + i + "' class='btnDelete'/></td>" +
+                            "</tr>"
+                            );
+                }
 
-});
+                request.always(function(jqXHR) {
+
+                console.log( "Status:"+jqXHR.status);
+
+                });
 
     alert("Los datos han sido almacenados"); //Mensaje de alerta
     return true;
