@@ -20,22 +20,27 @@
   $(document).ready(() => {
   var operation = "C"; //"C"=Crear
   var selected_index = -1; // Indice de el elemento seleccionado en la lista
-  var tblPersons  = localStorage.getItem("tblPersons "); //Retornar los datos almacenados
+  var tblPersons  = localStorage.getItem("tblPersons"); //Retornar los datos almacenados
   tblPersons  = JSON.parse(tblPersons ); //Convertir String a Object
+ var dobles_comillas = String.fromCharCode(34);
   if (tblPersons  === null) // Si no hay datos, inicializar un array vacio
       tblPersons  = [];
 
   function Create() {
-    console.log("datos");
+    var c=$("#txtCountry").val();
+    var y=$("#txtYear").val();
+    var f=$("#txtFemale").val();
+    var m=$("#txtMale").val();
     var request = $.ajax({
-                url: "/api/v1/population-unemployed-percentage-by-gender?apikey="+ $("#txtID").val(),
-                type: "GET",
-                data: '{"country":"spain","year":2014,"female":6,"male":80}',
+                url: "/api/v1/population-unemployed-percentage-by-gender?apikey="+$("#txtID").val(),
+                type: "POST",
+                data: "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+c+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+y+","+dobles_comillas+"female"+dobles_comillas+":"+f+","+dobles_comillas+"male"+dobles_comillas+":"+m+"}",
                 dataType: "JSON",
                 contentType: "application/json"
                 });
     request.done(function(data){
-      console.log(data);
+      tblPersons=JSON.stringify(data);
+      localStorage.setItem("tblPersons", tblPersons);
   });
    request.always(function(jqXHR) {
 
@@ -74,9 +79,10 @@
     $("#tblList").html(
             "<thead>" +
             "<tr>" +
-            "<th>Nombre</th>" +
-            "<th>Teléfono</th>" +
-            "<th>Email</th>" +
+            "<th>Country</th>" +
+            "<th>Year</th>" +
+            "<th>Female</th>" +
+            "<th>Male</th>" +
             "<th>Acciones</th>" +
             "</tr>" +
             "</thead>" +
@@ -84,7 +90,7 @@
             "</tbody>"
             ); //Agregar la tabla a la estructura HTML
         for (var i in tblPersons ) {
-            var per = JSON.parse(tblPersons[i]);
+            var per = tblPersons[i];
         $("#tblList tbody").append("<tr>" +
                 "<td>" + per.country + "</td>" +
                 "<td>" + per.year + "</td>" +
@@ -147,21 +153,27 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="txtName" class="col-lg-2 control-label">Nombre</label>
+                    <label for="txtName" class="col-lg-2 control-label">Country</label>
                     <div class="col-sm-4">
-                        <input type="text" id="txtName" class="form-control" placeholder="Nombre">
+                        <input type="text" id="txtCountry" class="form-control" placeholder="Country">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="txtPhone" class="col-lg-2 control-label">Teléfono</label>
+                    <label for="txtPhone" class="col-lg-2 control-label">Year</label>
                     <div class="col-sm-4">
-                        <input type="text" id="txtPhone" class="form-control" placeholder="Teléfono">
+                        <input type="text" id="txtYear" class="form-control" placeholder="Year">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="txtEmail" class="col-lg-2 control-label">Email</label>
+                    <label for="txtEmail" class="col-lg-2 control-label">Female</label>
                     <div class="col-sm-4">
-                        <input type="email" id="txtEmail" class="form-control" placeholder="Email">
+                        <input type="number" id="txtFemale" class="form-control" placeholder="Female">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtEmail" class="col-lg-2 control-label">Male</label>
+                    <div class="col-sm-4">
+                        <input type="number" id="txtMale" class="form-control" placeholder="Male">
                     </div>
                 </div>
                 <div class="form-group">
