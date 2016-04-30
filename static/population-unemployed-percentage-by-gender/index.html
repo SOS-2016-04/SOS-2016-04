@@ -20,10 +20,10 @@
   $(document).ready(() => {
   var operation = "C"; //"C"=Crear
   var selected_index = -1; // Indice de el elemento seleccionado en la lista
-  var tblPersons = localStorage.getItem("tblPersons"); //Retornar los datos almacenados
-  tblPersons = JSON.parse(tblPersons); //Convertir String a Object
-  if (tblPersons === null) // Si no hay datos, inicializar un array vacio
-      tblPersons = [];
+  var data = localStorage.getItem("tblPersons"); //Retornar los datos almacenados
+  data = JSON.parse(data); //Convertir String a Object
+  if (data === null) // Si no hay datos, inicializar un array vacio
+      data = [];
 
   function Create() {
     var request = $.ajax({
@@ -76,8 +76,8 @@
             "<tbody>" +
             "</tbody>"
             ); //Agregar la tabla a la estructura HTML
-        for (var i in tblPersons) {
-            var per = JSON.parse(tblPersons[i]);
+        for (var i in data) {
+            var per = JSON.parse(data[i]);
         $("#tblList tbody").append("<tr>" +
                 "<td>" + per.country + "</td>" +
                 "<td>" + per.year + "</td>" +
