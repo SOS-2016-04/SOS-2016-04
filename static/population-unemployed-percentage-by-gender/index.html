@@ -43,7 +43,6 @@
         request.done(function(data){
           tblPersons=JSON.stringify(data);
           localStorage.setItem("tblPersons", tblPersons);
-          List();
       });
        request.always(function(jqXHR) {
 
@@ -206,6 +205,7 @@
 
   }); //Función para decidir si se encuentra añadiendo o editando un item
 
+  List();
 
   $(".btnEdit").bind("click", function () {
     operation = "E"; //"E" = Editar
