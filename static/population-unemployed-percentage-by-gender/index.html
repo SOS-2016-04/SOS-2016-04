@@ -29,7 +29,7 @@
     var request = $.ajax({
                 url: "/api/v1/population-percentage-by-age?apikey="+$("#txtID").val(),
                 type: "POST",
-                data: '{"country":+ $("#txtName").val()+,"year":99000,"population_0_14":6,"population_15_64":80}',
+                data: '{"country":+ $("#txtName").val()+,"year":99000,"female":6,"male":80}',
                 dataType: "JSON",
                 contentType: "application/json"
                 });
