@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Javascript CRUD</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+        <!-- Librería Google Fonts: Tipografía del sitio web -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+        <!-- Librerías Bootstrap: Estilos externos del sitio web -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+        <!-- Estilos del sitio web -->
+        <link rel="stylesheet" href="style.css" />
+
+        <!-- Funciones Javascript -->
+        <script>
+  $(document).ready(() => {
+  var operation = "C"; //"C"=Crear
+  var selected_index = -1; // Indice de el elemento seleccionado en la lista
+  var tblPersons = localStorage.getItem("tblPersons"); //Retornar los datos almacenados
+  tblPersons = JSON.parse(tblPersons); //Convertir String a Object
+  if (tblPersons === null) // Si no hay datos, inicializar un array vacio
+      tblPersons = [];
+
+  function Create() {
+    var request = $.ajax({
+                url: "/api/v1/population-percentage-by-age?apikey="+$("#txtID").val(),
+                type: "POST",
+                data: '{"country":+ $("#txtName").val()+,"year":99000,"population_0_14":6,"population_15_64":80}',
+                dataType: "JSON",
+                contentType: "application/json"
+                });
+    request.done(function(data,status,jqXHR){
+      localStorage.setItem("tblPersons", JSON.stringify(data));
+  });
+    alert("Los datos han sido almacenados"); //Mensaje de alerta
+    return true;
+  }
+
+  function Edit() {
+    // Editar el item seleccionado en la tabla
+    tblPersons[selected_index] = JSON.stringify({
+        ID: $("#txtID").val(),
+        Name: $("#txtName").val(),
+        Phone: $("#txtPhone").val(),
+        Email: $("#txtEmail").val()
+    });
+    //Almacenar los datos en el Local Storage
+    localStorage.setItem("tblPersons", JSON.stringify(tblPersons));
+    alert("Los datos han sido editados"); //Mensaje de alerta
+    return true;
+  }
+
+  function Delete() {
+    //Eliminar el elemento seleccionado en la tabla
+    tblPersons.splice(selected_index, 1);
+    //Actualizar los datos del Local Storage
+    localStorage.setItem("tblPersons", JSON.stringify(tblPersons));
+    alert("Persona Eliminada"); //Mensaje de alerta
+  }
+
+  function List() {
+    $("#tblList").html("");
+    $("#tblList").html(
+            "<thead>" +
+            "<tr>" +
+            "<th>ID</th>" +
+            "<th>Nombre</th>" +
+            "<th>Teléfono</th>" +
+            "<th>Email</th>" +
+            "<th>Acciones</th>" +
+            "</tr>" +
+            "</thead>" +
+            "<tbody>" +
+            "</tbody>"
+            ); //Agregar la tabla a la estructura HTML
+    for (var i in tblPersons) {
+        var per = JSON.parse(tblPersons[i]);
+        $("#tblList tbody").append("<tr>" +
+                "<td>" + per.ID + "</td>" +
+                "<td>" + per.Name + "</td>" +
+                "<td>" + per.Phone + "</td>" +
+                "<td>" + per.Email + "</td>" +
+                "<td><img src='edit.png' alt='Edit" + i + "' class='btnEdit'/>&nbsp &nbsp<img src='delete.png' alt='Delete" + i + "' class='btnDelete'/></td>" +
+                "</tr>"
+                );
+    } //Recorrer y agregar los items a la tabla HTML
+  }
+
+  $("#frmPerson").bind("submit", function () {
+    if (operation === "C")
+        return Create();
+    else
+        return Edit();
+  }); //Función para decidir si se encuentra añadiendo o editando un item
+
+  List();
+
+  $(".btnEdit").bind("click", function () {
+    operation = "E"; //"E" = Editar
+    //Obtener el identificador del item a ser editado
+    selected_index = parseInt($(this).attr("alt").replace("Edit", ""));
+    // Convertir de JSON al formato adecuando para editarlos datos
+    var per = JSON.parse(tblPersons[selected_index]);
+    $("#txtID").val(per.ID);
+    $("#txtName").val(per.Name);
+    $("#txtPhone").val(per.Phone);
+    $("#txtEmail").val(per.Email);
+    $("#txtID").attr("readonly", "readonly");
+    $("#txtName").focus();
+  });
+
+  $(".btnDelete").bind("click", function () {
+    //Obtener el identificador del item a ser eliminado
+    selected_index = parseInt($(this).attr("alt").replace("Delete", ""));
+    Delete(); //Eliminar el item
+    List(); //Volver a listar los items en la tabla
+  });
+});
+        </script>
+
+    </head>
+    <body>
+
+        <!-- Cabecera -->
+        <div class="page-header">
+            <h1>CRUD Básico Javascript</h1>
+        </div>
+
+        <!--Formulario de entrada de datos-->
+        <div class="container">
+            <form id="frmPerson" class="form-horizontal">
+                <div class="form-group">
+                    <label for="txtID" class="col-sm-2 control-label">ID</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="txtID" class="form-control" placeholder="ID">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtName" class="col-lg-2 control-label">Nombre</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="txtName" class="form-control" placeholder="Nombre">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtPhone" class="col-lg-2 control-label">Teléfono</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="txtPhone" class="form-control" placeholder="Teléfono">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtEmail" class="col-lg-2 control-label">Email</label>
+                    <div class="col-sm-4">
+                        <input type="email" id="txtEmail" class="form-control" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-sm-4">
+                        <input type="submit" value="Insertar" id="btnSave" class="btn btn-success"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--Tabla con la lista de datos-->
+        <div class="container">
+            <table id="tblList" class="table table-bordered"></table>
+        </div>
+
+
+    </body>
+</html>
