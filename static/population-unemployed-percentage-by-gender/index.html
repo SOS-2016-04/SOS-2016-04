@@ -27,7 +27,7 @@
 
   function Create() {
     var request = $.ajax({
-                url: "/api/v1/population-percentage-by-age?apikey=clave",
+                url: "/api/v1/population-unemployed-percentage-by-gender?apikey="+ $("#txtID").val(),
                 type: "POST",
                 data: '{"country":"spain","year":99000,"female":6,"male":80}',
                 dataType: "JSON",
