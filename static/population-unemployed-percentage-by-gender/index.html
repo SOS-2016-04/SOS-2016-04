@@ -34,7 +34,7 @@
                 contentType: "application/json"
                 });
     request.done(function(data,status,jqXHR){
-      tblPersons = JSON.parse(data);
+      List(data);
   });
     alert("Los datos han sido almacenados"); //Mensaje de alerta
     return true;
@@ -77,13 +77,12 @@
             "<tbody>" +
             "</tbody>"
             ); //Agregar la tabla a la estructura HTML
-    for (var i in data) {
-        var per = JSON.parse(data[i]);
+    for (var i=0 ; i<data.length ; i++){
         $("#tblList tbody").append("<tr>" +
-                "<td>" + per.country + "</td>" +
-                "<td>" + per.year + "</td>" +
-                "<td>" + per.female + "</td>" +
-                "<td>" + per.male + "</td>" +
+                "<td>" + data[i].country + "</td>" +
+                "<td>" + data[i].year + "</td>" +
+                "<td>" + data[i].female + "</td>" +
+                "<td>" + data[i].male + "</td>" +
                 "<td><img src='edit.png' alt='Edit" + i + "' class='btnEdit'/>&nbsp &nbsp<img src='delete.png' alt='Delete" + i + "' class='btnDelete'/></td>" +
                 "</tr>"
                 );
