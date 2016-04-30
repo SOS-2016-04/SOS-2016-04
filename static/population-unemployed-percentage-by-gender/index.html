@@ -169,6 +169,34 @@
 
   }
 
+  $("#frmPerson").bind("reset", function () {
+       return Carga();
+  });
+
+  function Carga() {
+
+    var request = $.ajax({
+                url: "/api/v1/population-unemployed-percentage-by-gender/loadInitialData?apikey=clave",
+                type: "GET",
+                data: "",
+                dataType: "JSON",
+                contentType: "application/json"
+                });
+    request.done(function(data){
+      tblPersons=JSON.stringify(data);
+      localStorage.setItem("tblPersons", tblPersons);
+  });
+   request.always(function(jqXHR) {
+
+    console.log( "Status:"+jqXHR.status);
+
+   });
+
+    return true;
+  }
+
+
+
   $("#frmPerson").bind("submit", function () {
     if (operation === "C")
         return Create();
@@ -258,6 +286,7 @@
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-sm-4">
                         <input type="submit" value="Send" id="btnSave" class="btn btn-success"/>
+                        <input type="reset" value="Load" id="btnLoad" class="btn btn-success"/>
                     </div>
                 </div>
             </form>
