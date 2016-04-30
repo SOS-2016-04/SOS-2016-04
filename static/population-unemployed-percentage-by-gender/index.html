@@ -27,7 +27,7 @@
 
   function Create() {
     var request = $.ajax({
-                url: "/api/v1/population-percentage-by-age?apikey="+$("#txtID").val(),
+                url: "/api/v1/population-percentage-by-age?apikey=clave",
                 type: "POST",
                 data: '{"country":"spain","year":99000,"female":6,"male":80}',
                 dataType: "JSON",
