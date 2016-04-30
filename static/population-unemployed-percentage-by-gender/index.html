@@ -29,14 +29,11 @@
 
 
       function Mostrar() {
-        var c=$("#txtCountry").val();
-        var y=$("#txtYear").val();
-        var f=$("#txtFemale").val();
-        var m=$("#txtMale").val();
+
         var request = $.ajax({
                     url: "/api/v1/population-unemployed-percentage-by-gender?apikey="+$("#txtID").val(),
                     type: "GET",
-                    data: "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+c+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+y+","+dobles_comillas+"female"+dobles_comillas+":"+f+","+dobles_comillas+"male"+dobles_comillas+":"+m+"}",
+                    data: "",
                     dataType: "JSON",
                     contentType: "application/json"
                     });
@@ -191,7 +188,8 @@
     console.log( "Status:"+jqXHR.status);
 
    });
-
+   alert("Datos reseteados"); //Mensaje de alerta
+   Mostrar();
     return true;
   }
 
