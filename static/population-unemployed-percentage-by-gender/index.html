@@ -26,6 +26,34 @@
   if (tblPersons  === null) // Si no hay datos, inicializar un array vacio
       tblPersons  = [];
 
+
+
+      function Mostrar() {
+        var c=$("#txtCountry").val();
+        var y=$("#txtYear").val();
+        var f=$("#txtFemale").val();
+        var m=$("#txtMale").val();
+        var request = $.ajax({
+                    url: "/api/v1/population-unemployed-percentage-by-gender?apikey="+$("#txtID").val(),
+                    type: "GET",
+                    data: "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+c+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+y+","+dobles_comillas+"female"+dobles_comillas+":"+f+","+dobles_comillas+"male"+dobles_comillas+":"+m+"}",
+                    dataType: "JSON",
+                    contentType: "application/json"
+                    });
+        request.done(function(data){
+          tblPersons=JSON.stringify(data);
+          localStorage.setItem("tblPersons", tblPersons);
+      });
+       request.always(function(jqXHR) {
+
+        console.log( "Status:"+jqXHR.status);
+
+       });
+
+        return true;
+      }
+
+
   function Create() {
     var c=$("#txtCountry").val();
     var y=$("#txtYear").val();
@@ -33,7 +61,7 @@
     var m=$("#txtMale").val();
     var request = $.ajax({
                 url: "/api/v1/population-unemployed-percentage-by-gender?apikey="+$("#txtID").val(),
-                type: "GET",
+                type: "POST",
                 data: "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+c+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+y+","+dobles_comillas+"female"+dobles_comillas+":"+f+","+dobles_comillas+"male"+dobles_comillas+":"+m+"}",
                 dataType: "JSON",
                 contentType: "application/json"
@@ -49,30 +77,68 @@
    });
 
     alert("Los datos han sido almacenados"); //Mensaje de alerta
+    Mostrar();
     return true;
   }
 
   function Edit() {
-    // Editar el item seleccionado en la tabla
-    tblPersons[selected_index] = JSON.stringify({
-        ID: $("#txtID").val(),
-        Name: $("#txtName").val(),
-        Phone: $("#txtPhone").val(),
-        Email: $("#txtEmail").val()
-    });
-    //Almacenar los datos en el Local Storage
-    localStorage.setItem("tblPersons", JSON.stringify(tblPersons));
+    var c=$("#txtCountry").val();
+    var y=$("#txtYear").val();
+    var f=$("#txtFemale").val();
+    var m=$("#txtMale").val();
+    var request = $.ajax({
+                url: "/api/v1/population-unemployed-percentage-by-gender/"+c+"/"+y+"?apikey="+$("#txtID").val(),
+                type: "PUT",
+                data: "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+c+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+y+","+dobles_comillas+"female"+dobles_comillas+":"+f+","+dobles_comillas+"male"+dobles_comillas+":"+m+"}",
+                dataType: "JSON",
+                contentType: "application/json"
+                });
+    request.done(function(data){
+      tblPersons=JSON.stringify(data);
+      localStorage.setItem("tblPersons", tblPersons);
+  });
+   request.always(function(jqXHR) {
+
+    console.log( "Status:"+jqXHR.status);
+
+   });
+
     alert("Los datos han sido editados"); //Mensaje de alerta
+    Mostrar();
     return true;
   }
 
+
+
   function Delete() {
-    //Eliminar el elemento seleccionado en la tabla
-    tblPersons.splice(selected_index, 1);
-    //Actualizar los datos del Local Storage
-    localStorage.setItem("tblPersons", JSON.stringify(tblPersons));
-    alert("Persona Eliminada"); //Mensaje de alerta
+       var c=$("#txtCountry").val();
+    var y=$("#txtYear").val();
+    var f=$("#txtFemale").val();
+    var m=$("#txtMale").val();
+    var request = $.ajax({
+                url: "/api/v1/population-unemployed-percentage-by-gender/"+c+"/"+y+"?apikey="+$("#txtID").val(),
+                type: "DELETE",
+                data: "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+c+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+y+","+dobles_comillas+"female"+dobles_comillas+":"+f+","+dobles_comillas+"male"+dobles_comillas+":"+m+"}",
+                dataType: "JSON",
+                contentType: "application/json"
+                });
+    request.done(function(data){
+      tblPersons=JSON.stringify(data);
+      localStorage.setItem("tblPersons", tblPersons);
+  });
+   request.always(function(jqXHR) {
+
+    console.log( "Status:"+jqXHR.status);
+
+   });
+
+    alert("Los datos han sido eliminados"); //Mensaje de alerta
+    Mostrar();
+    return true;
+
   }
+
+
 
   function List() {
     $("#tblList").html("");
@@ -83,7 +149,7 @@
             "<th>Year</th>" +
             "<th>Female</th>" +
             "<th>Male</th>" +
-            "<th>Acciones</th>" +
+            "<th>Actions</th>" +
             "</tr>" +
             "</thead>" +
             "<tbody>" +
@@ -106,8 +172,10 @@
   $("#frmPerson").bind("submit", function () {
     if (operation === "C")
         return Create();
-    else
+    if (operation === "E")
         return Edit();
+      else
+        return Delete();
   }); //Función para decidir si se encuentra añadiendo o editando un item
 
   List();
@@ -117,21 +185,30 @@
     //Obtener el identificador del item a ser editado
     selected_index = parseInt($(this).attr("alt").replace("Edit", ""));
     // Convertir de JSON al formato adecuando para editarlos datos
-    var per = JSON.parse(tblPersons[selected_index]);
-    $("#txtID").val(per.ID);
-    $("#txtName").val(per.Name);
-    $("#txtPhone").val(per.Phone);
-    $("#txtEmail").val(per.Email);
-    $("#txtID").attr("readonly", "readonly");
-    $("#txtName").focus();
+    var per = tblPersons[selected_index];
+    $("#txtCountry").val(per.country);
+    $("#txtYear").val(per.year);
+    $("#txtFemale").val(per.female);
+    $("#txtMale").val(per.male);
+    $("#txtCountry").focus();
   });
 
   $(".btnDelete").bind("click", function () {
+    operation = "D";
     //Obtener el identificador del item a ser eliminado
     selected_index = parseInt($(this).attr("alt").replace("Delete", ""));
-    Delete(); //Eliminar el item
-    List(); //Volver a listar los items en la tabla
-  });
+    var per = tblPersons[selected_index];
+    $("#txtCountry").val(per.country);
+    $("#txtYear").val(per.year);
+    $("#txtFemale").val(per.female);
+    $("#txtMale").val(per.male);
+    $("#txtCountry").attr("readonly", "readonly");
+    $("#txtYear").attr("readonly", "readonly");
+    $("#txtFemale").attr("readonly", "readonly");
+    $("#txtMale").attr("readonly", "readonly");
+    $("#txtID").focus();
+
+});
 });
         </script>
 
@@ -140,7 +217,9 @@
 
         <!-- Cabecera -->
         <div class="page-header">
-            <h1>CRUD Básico Javascript</h1>
+          <div ALIGN=center>
+            <h1>Graphical user interface</h1>
+          </div>
         </div>
 
         <!--Formulario de entrada de datos-->
@@ -178,7 +257,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-sm-4">
-                        <input type="submit" value="Insertar" id="btnSave" class="btn btn-success"/>
+                        <input type="submit" value="Send" id="btnSave" class="btn btn-success"/>
                     </div>
                 </div>
             </form>
