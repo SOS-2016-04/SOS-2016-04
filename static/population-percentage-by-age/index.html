@@ -48,11 +48,20 @@ var country = document.getElementById("country").value;
 
                 request.done(function(data,status){
 
+
+                    console.log("Entra");
+
+
+
+
                     console.log(data);
 
 
                     $('#tabladatos').datagrid('loadData',data);
                 $('#tabladatos').datagrid('getData');
+
+
+
 
 
 
