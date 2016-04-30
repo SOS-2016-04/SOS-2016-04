@@ -35,6 +35,7 @@
                 });
     request.done(function(data,status,jqXHR){
       localStorage.setItem("tblPersons", JSON.stringify(data));
+      List(data);
   });
     alert("Los datos han sido almacenados"); //Mensaje de alerta
     return true;
@@ -62,7 +63,7 @@
     alert("Persona Eliminada"); //Mensaje de alerta
   }
 
-  function List() {
+  function List(data) {
     $("#tblList").html("");
     $("#tblList").html(
             "<thead>" +
@@ -77,13 +78,13 @@
             "<tbody>" +
             "</tbody>"
             ); //Agregar la tabla a la estructura HTML
-    for (var i in tblPersons) {
-        var per = JSON.parse(tblPersons[i]);
+    for (var i in data) {
+        var per = JSON.parse(data[i]);
         $("#tblList tbody").append("<tr>" +
-                "<td>" + per.ID + "</td>" +
-                "<td>" + per.Name + "</td>" +
-                "<td>" + per.Phone + "</td>" +
-                "<td>" + per.Email + "</td>" +
+                "<td>" + per.country + "</td>" +
+                "<td>" + per.year + "</td>" +
+                "<td>" + per.female + "</td>" +
+                "<td>" + per.male + "</td>" +
                 "<td><img src='edit.png' alt='Edit" + i + "' class='btnEdit'/>&nbsp &nbsp<img src='delete.png' alt='Delete" + i + "' class='btnDelete'/></td>" +
                 "</tr>"
                 );
