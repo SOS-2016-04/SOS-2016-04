@@ -23,7 +23,7 @@
   var tblPersons  = localStorage.getItem("tblPersons "); //Retornar los datos almacenados
   tblPersons  = JSON.parse(tblPersons ); //Convertir String a Object
   if (tblPersons  === null) // Si no hay datos, inicializar un array vacio
-    var  tblPersons  = [];
+      tblPersons  = [];
 
   function Create() {
     console.log("datos");
@@ -35,9 +35,15 @@
                 contentType: "application/json"
                 });
     request.done(function(data){
+      dataJS = JSON.stringify(data);
+      console.log("datos");
+      console.log(dataJS);
+  });
+   request.always(function(jqXHR) {
 
+    console.log( "Status:"+jqXHR.status);
 
-    }
+   });
 
     alert("Los datos han sido almacenados"); //Mensaje de alerta
     return true;
