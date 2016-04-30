@@ -31,8 +31,6 @@ var country = document.getElementById("country").value;
 
                 var dataJS = JSON.parse(data);
 
-                console.log(dataJS);
-
                 
 
 
@@ -49,6 +47,8 @@ var country = document.getElementById("country").value;
 
 
                 request.done(function(data,status){
+
+                    console.log(data);
 
 
                     $('#tabladatos').datagrid('loadData',data);
