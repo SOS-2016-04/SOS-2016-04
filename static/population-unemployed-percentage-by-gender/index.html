@@ -20,9 +20,9 @@
   $(document).ready(() => {
   var operation = "C"; //"C"=Crear
   var selected_index = -1; // Indice de el elemento seleccionado en la lista
-  //var tblPersons  = localStorage.getItem("tblPersons "); //Retornar los datos almacenados
-//  tblPersons  = JSON.parse(tblPersons ); //Convertir String a Object
-//  if (tblPersons  === null) // Si no hay datos, inicializar un array vacio
+  var tblPersons  = localStorage.getItem("tblPersons "); //Retornar los datos almacenados
+  tblPersons  = JSON.parse(tblPersons ); //Convertir String a Object
+  if (tblPersons  === null) // Si no hay datos, inicializar un array vacio
     var  tblPersons  = [];
 
   function Create() {
@@ -79,13 +79,13 @@
             "<tbody>" +
             "</tbody>"
             ); //Agregar la tabla a la estructura HTML
-        for (var i=0 ; i<tblPersons.length ; i++) {
-          //  var per = JSON.parse(tblPersons[i]);
+        for (var i in tblPersons ) {
+            var per = JSON.parse(tblPersons[i]);
         $("#tblList tbody").append("<tr>" +
-                "<td>" + tblPersons[i].country + "</td>" +
-                "<td>" + tblPersons[i].year + "</td>" +
-                "<td>" + tblPersons[i].female + "</td>" +
-                "<td>" + tblPersons[i].male + "</td>" +
+                "<td>" + per.country + "</td>" +
+                "<td>" + per.year + "</td>" +
+                "<td>" + per.female + "</td>" +
+                "<td>" + per.male + "</td>" +
                 "<td><img src='edit.png' alt='Edit" + i + "' class='btnEdit'/>&nbsp &nbsp<img src='delete.png' alt='Delete" + i + "' class='btnDelete'/></td>" +
                 "</tr>"
                 );
