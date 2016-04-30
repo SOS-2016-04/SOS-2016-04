@@ -34,8 +34,8 @@
                 contentType: "application/json"
                 });
     request.done(function(data,status,jqXHR){
-      tblPersons = data;
-      localStorage.setItem("tblPersons", JSON.stringify(tblPersons));
+      tblPersons = JSON.parse(data); 
+
   });
     alert("Los datos han sido almacenados"); //Mensaje de alerta
     return true;
