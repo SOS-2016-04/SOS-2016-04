@@ -20,7 +20,7 @@
   $(document).ready(() => {
   var operation = "C"; //"C"=Crear
   var selected_index = -1; // Indice de el elemento seleccionado en la lista
-  var data = localStorage.getItem("tblPersons"); //Retornar los datos almacenados
+  var data = localStorage.getItem("data"); //Retornar los datos almacenados
   data = JSON.parse(data); //Convertir String a Object
   if (data === null) // Si no hay datos, inicializar un array vacio
       data = [];
