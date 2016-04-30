@@ -20,7 +20,7 @@
   $(document).ready(() => {
   var operation = "C"; //"C"=Crear
   var selected_index = -1; // Indice de el elemento seleccionado en la lista
-  var tblPersons  = localStorage.getItem("tblPersons"); //Retornar los datos almacenados
+  var tblPersons  = sessionStorage.getItem("tblPersons"); //Retornar los datos almacenados
   tblPersons  = JSON.parse(tblPersons ); //Convertir String a Object
  var dobles_comillas = String.fromCharCode(34);
   if (tblPersons  === null) // Si no hay datos, inicializar un array vacio
@@ -39,7 +39,7 @@
                     });
         request.done(function(data){
           tblPersons=JSON.stringify(data);
-          localStorage.setItem("tblPersons", tblPersons);
+          sessionStorage.setItem("tblPersons", tblPersons);
       });
        request.always(function(jqXHR) {
 
@@ -65,7 +65,7 @@
                 });
     request.done(function(data){
       tblPersons=JSON.stringify(data);
-      localStorage.setItem("tblPersons", tblPersons);
+      sessionStorage.setItem("tblPersons", tblPersons);
   });
    request.always(function(jqXHR) {
 
@@ -92,7 +92,7 @@
                 });
     request.done(function(data){
       tblPersons=JSON.stringify(data);
-      localStorage.setItem("tblPersons", tblPersons);
+      sessionStorage.setItem("tblPersons", tblPersons);
   });
    request.always(function(jqXHR) {
 
@@ -121,7 +121,7 @@
                 });
     request.done(function(data){
       tblPersons=JSON.stringify(data);
-      localStorage.setItem("tblPersons", tblPersons);
+      sessionStorage.setItem("tblPersons", tblPersons);
   });
    request.always(function(jqXHR) {
 
@@ -179,7 +179,7 @@
                 });
     request.done(function(data){
       tblPersons=JSON.stringify(data);
-      localStorage.setItem("tblPersons", tblPersons);
+      sessionStorage.setItem("tblPersons", tblPersons);
   });
    request.always(function(jqXHR) {
 
