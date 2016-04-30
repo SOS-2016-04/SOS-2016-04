@@ -22,11 +22,13 @@ var country = document.getElementById("country").value;
                 var year = document.getElementById("year").value;
                 var population_0_14 = document.getElementById("population_0_14").value;
                 var population_15_64 = document.getElementById("population_15_64").value;
-                
+
                 console.log(year);
 
                 var url = "/api/v1/population-percentage-by-age";
                 var data = "{'country':'"+country+"','year':"+year+",'population_0_14':"+population_0_14+",'population_15_64:"+population_15_64+"}";
+
+                cosole.log(data);
 
                 url = url + "?apikey=" + "secret";
 
