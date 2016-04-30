@@ -24,12 +24,14 @@ var country = document.getElementById("country").value;
                 var population_15_64 = document.getElementById("population_15_64").value;
 
                 var url = "/api/v1/population-percentage-by-age";
-                var data = "{'country':'"+country+"','year':"+year+",'population_0_14':"+population_0_14+",'population_15_64':"+population_15_64+"}";
+                var data = "{"+String.fromCharCode(34)+"country"+String.fromCharCode(34)+":'"+country+"','year':"+year+",'population_0_14':"+population_0_14+",'population_15_64':"+population_15_64+"}";
 
-                var dataJS = JSON.parse(data);
+                //var dataJS = JSON.parse(data);
 
-                console.log(dataJS.country);
-                
+               // String.fromCharCode(92)
+
+                console.log(data);
+
 
                 url = url + "?apikey=" + "secret";
 
