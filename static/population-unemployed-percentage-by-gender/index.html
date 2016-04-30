@@ -26,6 +26,7 @@
       tblPersons  = [];
 
   function Create() {
+    console.log("datos");
     var request = $.ajax({
                 url: "/api/v1/population-unemployed-percentage-by-gender?apikey="+ $("#txtID").val(),
                 type: "POST",
