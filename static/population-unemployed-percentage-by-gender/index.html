@@ -34,8 +34,7 @@
                 contentType: "application/json"
                 });
     request.done(function(data,status,jqXHR){
-      tblPersons = JSON.parse(data); 
-
+      localStorage.setItem("tblPersons", JSON.stringify(data));
   });
     alert("Los datos han sido almacenados"); //Mensaje de alerta
     return true;
@@ -63,7 +62,7 @@
     alert("Persona Eliminada"); //Mensaje de alerta
   }
 
-  function List(data) {
+  function List() {
     $("#tblList").html("");
     $("#tblList").html(
             "<thead>" +
@@ -88,6 +87,7 @@
                 "</tr>"
                 );
     } //Recorrer y agregar los items a la tabla HTML
+
   }
 
   $("#frmPerson").bind("submit", function () {
