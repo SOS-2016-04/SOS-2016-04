@@ -200,9 +200,10 @@
   $("#frmPerson").bind("submit", function () {
     if (operation === "C")
         return Create();
-    else
+    if (operation === "E")
         return Edit();
-
+      else
+        return Delete();
   }); //Función para decidir si se encuentra añadiendo o editando un item
 
   List();
