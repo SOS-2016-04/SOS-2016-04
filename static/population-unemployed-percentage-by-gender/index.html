@@ -34,20 +34,22 @@
                 dataType: "JSON",
                 contentType: "application/json"
                 });
-                request.done(function(data,status,jqXHR){
+                request.done(function(data){
 
-                  for (var i=0 ; i<data.length ; i++){
-                        var per = JSON.parse(data[i]);
-                    $("#tblList tbody").append("<tr>" +
-                            "<td>" + per.country + "</td>" +
-                            "<td>" + per.year + "</td>" +
-                            "<td>" + per.female + "</td>" +
-                            "<td>" + per.male + "</td>" +
-                            "<td><img src='edit.png' alt='Edit" + i + "' class='btnEdit'/>&nbsp &nbsp<img src='delete.png' alt='Delete" + i + "' class='btnDelete'/></td>" +
-                            "</tr>"
-                            );
-                }
 
+
+                      for (var i=0 ; i<data.length ; i++)
+                      {
+                        tabla = tabla + "<tr><td>"+data[i].country+"____________________________________"+"</td><td>"+data[i].year+"____________________"+"</td><td>"+data[i].female+"_________________________________"+"</td><td>"+data[i].male+"</td></tr>";
+
+                      }
+
+                      tabla = tabla + "</table></center>";
+
+                      $("#tblList").html(tabla);
+
+
+                    });
                 request.always(function(jqXHR) {
 
                 console.log( "Status:"+jqXHR.status);
