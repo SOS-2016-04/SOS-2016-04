@@ -20,10 +20,10 @@
   $(document).ready(() => {
   var operation = "C"; //"C"=Crear
   var selected_index = -1; // Indice de el elemento seleccionado en la lista
-  var tblPersons  = localStorage.getItem("tblPersons "); //Retornar los datos almacenados
-  tblPersons  = JSON.parse(tblPersons ); //Convertir String a Object
-  if (tblPersons  === null) // Si no hay datos, inicializar un array vacio
-      tblPersons  = [];
+  //var tblPersons  = localStorage.getItem("tblPersons "); //Retornar los datos almacenados
+//  tblPersons  = JSON.parse(tblPersons ); //Convertir String a Object
+//  if (tblPersons  === null) // Si no hay datos, inicializar un array vacio
+    var  tblPersons  = [];
 
   function Create() {
     console.log("datos");
@@ -34,27 +34,10 @@
                 dataType: "JSON",
                 contentType: "application/json"
                 });
-                request.done(function(data){
+    request.done(function(data){
+        tblPersons= JSON.stringify(data);
 
-
-
-                      for (var i=0 ; i<data.length ; i++)
-                      {
-                        tabla = tabla + "<tr><td>"+data[i].country+"____________________________________"+"</td><td>"+data[i].year+"____________________"+"</td><td>"+data[i].female+"_________________________________"+"</td><td>"+data[i].male+"</td></tr>";
-
-                      }
-
-                      tabla = tabla + "</table></center>";
-
-                      $("#tblList").html(tabla);
-
-
-                    });
-                request.always(function(jqXHR) {
-
-                console.log( "Status:"+jqXHR.status);
-
-                });
+    }
 
     alert("Los datos han sido almacenados"); //Mensaje de alerta
     return true;
@@ -96,7 +79,7 @@
             "<tbody>" +
             "</tbody>"
             ); //Agregar la tabla a la estructura HTML
-        for (var i in tblPersons ) {
+        for (var i=0 ; i<tblPersons.length ; i++) {
             var per = JSON.parse(tblPersons[i]);
         $("#tblList tbody").append("<tr>" +
                 "<td>" + per.country + "</td>" +
