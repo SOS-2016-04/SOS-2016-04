@@ -79,12 +79,11 @@
             "</tbody>"
             ); //Agregar la tabla a la estructura HTML
     for (var i in data) {
-        var per = JSON.parse(data[i]);
         $("#tblList tbody").append("<tr>" +
-                "<td>" + per.country + "</td>" +
-                "<td>" + per.year + "</td>" +
-                "<td>" + per.female + "</td>" +
-                "<td>" + per.male + "</td>" +
+                "<td>" + data[i].country + "</td>" +
+                "<td>" + data[i].year + "</td>" +
+                "<td>" + data[i].female + "</td>" +
+                "<td>" + data[i].male + "</td>" +
                 "<td><img src='edit.png' alt='Edit" + i + "' class='btnEdit'/>&nbsp &nbsp<img src='delete.png' alt='Delete" + i + "' class='btnDelete'/></td>" +
                 "</tr>"
                 );
