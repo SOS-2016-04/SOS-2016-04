@@ -34,8 +34,9 @@
                 contentType: "application/json"
                 });
     request.done(function(data){
+      dataJS = JSON.stringify(data);
       console.log("datos");
-      console.log(data);
+      console.log(dataJS);
   });
   request.always(function(jqXHR) {
 
