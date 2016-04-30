@@ -35,9 +35,10 @@
                 });
     request.done(function(data,status,jqXHR){
       localStorage.setItem("tblPersons", JSON.stringify(data));
+      console.log(data);
   });
 
-    alert("Los datos han sido almacenados"+data); //Mensaje de alerta
+    alert("Los datos han sido almacenados"); //Mensaje de alerta
     return true;
   }
 
