@@ -35,6 +35,7 @@
                 });
     request.done(function(data,status,jqXHR){
       localStorage.setItem("tblPersons", JSON.stringify(data));
+      console.log("datos");
       console.log(data);
   });
   request.always(function(jqXHR) {
