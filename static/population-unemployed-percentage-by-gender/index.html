@@ -34,8 +34,7 @@
                 contentType: "application/json"
                 });
     request.done(function(data,status,jqXHR){
-      localStorage.setItem("tblPersons", JSON.stringify(data));
-      List(data);
+      tblPersons = JSON.parse(data);
   });
     alert("Los datos han sido almacenados"); //Mensaje de alerta
     return true;
@@ -79,11 +78,12 @@
             "</tbody>"
             ); //Agregar la tabla a la estructura HTML
     for (var i in data) {
+        var per = JSON.parse(data[i]);
         $("#tblList tbody").append("<tr>" +
-                "<td>" + data[i].country + "</td>" +
-                "<td>" + data[i].year + "</td>" +
-                "<td>" + data[i].female + "</td>" +
-                "<td>" + data[i].male + "</td>" +
+                "<td>" + per.country + "</td>" +
+                "<td>" + per.year + "</td>" +
+                "<td>" + per.female + "</td>" +
+                "<td>" + per.male + "</td>" +
                 "<td><img src='edit.png' alt='Edit" + i + "' class='btnEdit'/>&nbsp &nbsp<img src='delete.png' alt='Delete" + i + "' class='btnDelete'/></td>" +
                 "</tr>"
                 );
@@ -97,6 +97,7 @@
         return Edit();
   }); //Función para decidir si se encuentra añadiendo o editando un item
 
+  List();
 
   $(".btnEdit").bind("click", function () {
     operation = "E"; //"E" = Editar
