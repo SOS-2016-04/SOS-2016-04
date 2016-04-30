@@ -29,15 +29,13 @@
     console.log("datos");
     var request = $.ajax({
                 url: "/api/v1/population-unemployed-percentage-by-gender?apikey="+ $("#txtID").val(),
-                type: "POST",
+                type: "GET",
                 data: '{"country":"spain","year":2014,"female":6,"male":80}',
                 dataType: "JSON",
                 contentType: "application/json"
                 });
     request.done(function(data){
-      dataJS = JSON.stringify(data);
-      console.log("datos");
-      console.log(dataJS);
+      console.log(data);
   });
    request.always(function(jqXHR) {
 
