@@ -34,8 +34,47 @@
                 contentType: "application/json"
                 });
     request.done(function(data,status,jqXHR){
-      tblPersons = data;
-      localStorage.setItem("tblPersons", JSON.stringify(tblPersons));
+
+      $("#tblList").html("");
+      $("#tblList").html(
+              "<thead>" +
+              "<tr>" +
+              "<th>Nombre</th>" +
+              "<th>Teléfono</th>" +
+              "<th>Email</th>" +
+              "<th>Acciones</th>" +
+              "</tr>" +
+              "</thead>" +
+              "<tbody>" +
+              "</tbody>"
+              ); //Agregar la tabla a la estructura HTML
+        for (var i=0 ; i<data.length ; i++) {
+          $("#tblList tbody").append("<tr>" +
+                  "<td>" + data[i].country + "</td>" +
+                  "<td>" + data[i].year + "</td>" +
+                  "<td>" + data[i].female + "</td>" +
+                  "<td>" + data[i].male + "</td>" +
+                  "<td><img src='edit.png' alt='Edit" + i + "' class='btnEdit'/>&nbsp &nbsp<img src='delete.png' alt='Delete" + i + "' class='btnDelete'/></td>" +
+                  "</tr>"
+                  );
+      } //Recorrer y agregar los items a la tabla HTML
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   });
     alert("Los datos han sido almacenados"); //Mensaje de alerta
     return true;
@@ -97,7 +136,6 @@
         return Edit();
   }); //Función para decidir si se encuentra añadiendo o editando un item
 
-  List();
 
   $(".btnEdit").bind("click", function () {
     operation = "E"; //"E" = Editar
