@@ -16,11 +16,18 @@
 
 function seleccion_checkbox_apikey(){
 
-    console.log("Entra en la funcion");
 
-console.log(document.getElementById("checkbox_apikey").checked);
+if(document.getElementById("checkbox_apikey").checked)
+{
+    document.getElementById("apikey").type = "text";
+}
 
-    console.log("Sale de la funcion");
+else
+{
+    document.getElementById("apikey").type = "text";
+}
+
+    
 
 
 
