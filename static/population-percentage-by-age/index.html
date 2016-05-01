@@ -14,6 +14,14 @@
 
 
 
+$('#tabladatos').pagination({
+    onSelectPage:function(pageNumber, pageSize){
+        console.log("Cambio");
+    }
+});
+
+
+
 function modifica_recurso(){
 
 
@@ -326,16 +334,15 @@ var country = document.getElementById("country").value;
                 request.done((data,status) =>{
 
 
-                    var opts = $('#tabladatos').datagrid('options');
-                    var limit = $('#tabladatos').datagrid('options').pageSize;
+                    /*var limit = $('#tabladatos').datagrid('options').pageSize;
                     var offset = $('#tabladatos').datagrid('options').pageNumber;
                     console.log(limit);
-                    console.log(offset);
+                    console.log(offset);*/
 
 
 
                 var request = $.ajax({
-                url : "/api/v1/population-percentage-by-age?apikey=secret&limit="+limit+"&offset="+limit,
+                url : "/api/v1/population-percentage-by-age?apikey=secret&limit="+"3"+"&offset="+"5",
                 type : "GET"
             });
 
