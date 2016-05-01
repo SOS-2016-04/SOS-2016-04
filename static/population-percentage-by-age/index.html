@@ -78,42 +78,30 @@ var country = document.getElementById("country").value;
             });
 
 
-                request.done((data,status) =>{
 
-                    console.log("Entra en el primero");
+                request.always((jqXHR, status) =>{
 
+                    var statusCode = jqXHR.status;
 
-                    var request = $.ajax({
+                    if(statusCode == 201)
+                    {
+
+                        var request = $.ajax({
                 url : "/api/v1/population-percentage-by-age?apikey=secret",
                 type : "GET",
             });
 
-
-                    request.done((data,status) =>{
+                        request.done((data,status) =>{
 
                         console.log("Entra");
 
-                    });
-
-                    request.always((jqXHR, status) =>{
-
-                        console.log("Entra en fallo");
+                        console.log(data);
 
                     });
 
 
 
-
-
-
-                });
-
-
-                request.always((jqXHR, status) =>{
-
-                    console.log("Entra en el always");
-
-                    var statusCode = jqXHR.status;
+                    }
 
                     if(statusCode == 400)
                     {
