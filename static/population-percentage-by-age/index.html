@@ -326,11 +326,8 @@ var country = document.getElementById("country").value;
                 request.done((data,status) =>{
 
 
-                    $('#tabladatos').pagination({
-                        onSelectPage:function(pageNumber, pageSize){
-                        $(this).pagination('loading');
-                        alert('pageNumber:'+pageNumber+',pageSize:'+pageSize);
-                        $(this).pagination('loaded');}});
+                    var opts = $('#dg').datagrid('options');
+                    alert(opts.pageSize);
 
 
 
