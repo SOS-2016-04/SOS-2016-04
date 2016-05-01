@@ -59,11 +59,11 @@ var country = document.getElementById("country").value;
             });
 
 
-                request.done((data,status) =>{
+                request.done((data2,status) =>{
 
-                    console.log(data);
+                    console.log(data2);
 
-                $('#tabladatos').datagrid('loadData',data);
+                $('#tabladatos').datagrid('loadData',data2);
                 $('#tabladatos').datagrid('getData');
 
             });
