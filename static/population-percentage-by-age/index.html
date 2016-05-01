@@ -35,7 +35,11 @@ else
 
 
 
-function volver(){
+function cancelar(){
+
+
+    $('#win').window('close');
+    $('#win_apikey').window('close');
 
 
 }
@@ -46,7 +50,6 @@ function guardar_apikey(){
 
     document.getElementById("apikey_valida").value = document.getElementById("apikey").value;
 
-    $('#win_apikey').window('close');
     $('#win_apikey').window('close');
 
 }
@@ -308,7 +311,7 @@ var country = document.getElementById("country").value;
     Population_0_14: <input id="population_0_14"/><br><br>
     Population_15_64: <input id="population_15_64"/><br><br>
     <input type="button" value="Aceptar" onclick = "registra_recurso()";/><br><br>
-    <input type="button" value="Cancelar"/>
+    <input type="button" value="Cancelar" onclick = "cancelar()"/>
     </form>    
 
     </div>
@@ -327,7 +330,7 @@ var country = document.getElementById("country").value;
 
     <input id="apikey_valida" hidden="hidden"/>
     <input type="button" value="Guardar" onclick="guardar_apikey()"/><br><br>
-    <input type="button" value="Cancelar"/>
+    <input type="button" value="Cancelar" onclick = "cancelar()"/>
     </form>    
 
     </div>
