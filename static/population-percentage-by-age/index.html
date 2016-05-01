@@ -111,6 +111,8 @@ var country = document.getElementById("country").value;
 
                 request.always((jqXHR, status) =>{
 
+                    console.log("Entra en el always");
+
                     var statusCode = jqXHR.status;
 
                     if(statusCode == 400)
