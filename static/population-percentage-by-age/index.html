@@ -218,6 +218,9 @@ var country = document.getElementById("country").value;
             function enterApikey(){
 
                 document.getElementById("apikey").value = document.getElementById("apikey_valida").value;
+                document.getElementById("apikey").type = "password";
+                document.getElementById("checkbox_apikey").checked = false;
+
 
                 document.getElementById("win_apikey").style.hidden = "default";
 
