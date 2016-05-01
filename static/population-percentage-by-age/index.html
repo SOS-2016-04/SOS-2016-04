@@ -13,6 +13,13 @@
 <script type="text/javascript">
 
 
+function guarda_apikey(){
+
+
+
+
+}
+
 
 function registra_recurso(){
 
@@ -179,7 +186,14 @@ var country = document.getElementById("country").value;
 
             function enterApikey(){
 
-                console.log("Introducir apikey");
+                document.getElementById("win_apikey").style.hidden = "default";
+
+
+                   $('#win_apikey').window({
+                     width:600,
+                     height:400,
+                     modal:true
+    }); 
 
             }
 
@@ -261,6 +275,21 @@ var country = document.getElementById("country").value;
     </form>    
 
     </div>
+
+
+
+
+    <div id="win_apikey" hidden="hidden">
+
+    <form id="formulario_apikey"><br>
+    Apikey: <input type = "password" id="apikey"/><br><br>
+    <input type="button" value="Guardar" onclick = "guarda_apikey()";/><br><br>
+    <input type="button" value="Cancelar"/>
+    </form>    
+
+    </div>
+
+
 
 
 
