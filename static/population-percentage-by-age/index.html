@@ -25,11 +25,11 @@ var country = document.getElementById("country").value;
                 var dobles_comillas = String.fromCharCode(34);
 
                 var url = "/api/v1/population-percentage-by-age";
-                var data = "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+country+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+year+","+dobles_comillas+"population_0_14"+dobles_comillas+":"+population_0_14+","+dobles_comillas+"population_15_64"+dobles_comillas+":"+population_15_64+"}";
+                var data_string = "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+country+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+year+","+dobles_comillas+"population_0_14"+dobles_comillas+":"+population_0_14+","+dobles_comillas+"population_15_64"+dobles_comillas+":"+population_15_64+"}";
 
 
 
-                var dataJS = JSON.parse(data);
+                var dataJS = JSON.parse(data_string);
 
                 
 
@@ -59,11 +59,11 @@ var country = document.getElementById("country").value;
             });
 
 
-                request.done((data2,status) =>{
+                request.done((data,status) =>{
 
-                    console.log(data2);
+                    console.log(data);
 
-                $('#tabladatos').datagrid('loadData',data2);
+                $('#tabladatos').datagrid('loadData',data);
                 $('#tabladatos').datagrid('getData');
 
             });
@@ -157,7 +157,19 @@ var country = document.getElementById("country").value;
             function loadData(){
 
 
-                console.log("Cargar datos");
+                var request = $.ajax({
+                url : "/api/v1/population-percentage-by-age/loadInitialData?apikey=secret"
+            });
+
+
+                request.done((data,status) =>{
+
+                    console.log(data);
+
+                $('#tabladatos').datagrid('loadData',data);
+                $('#tabladatos').datagrid('getData');
+
+            });
 
 
 
