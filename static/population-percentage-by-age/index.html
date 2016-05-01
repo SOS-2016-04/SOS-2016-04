@@ -422,6 +422,7 @@ var country = document.getElementById("country").value;
 
                 $('#tabladatos').datagrid({
                    pagination: true,
+                   onSelectPage:function(pageNumber,pageSize){console.log("Hola")},
                    pageSize: 10,
                    pageList: [5,10],
                    data: data,
@@ -434,19 +435,6 @@ var country = document.getElementById("country").value;
             {field:'population_15_64',title:'Population_15_64',width:200}
         ]]
     });
-
-
-                
-
-$('#tabladatos').pagination({
-    onSelectPage:function(pageNumber, pageSize){
-        console.log("Cambio");
-    }
-});
-
-
-
-
 
 
             });
