@@ -97,7 +97,7 @@ var country = document.getElementById("country").value;
 
 
 
-            function newUser(){
+            function newResource(){
 
                 document.getElementById("win").style.hidden = "default";
 
@@ -105,7 +105,8 @@ var country = document.getElementById("country").value;
                    $('#win').window({
                      width:600,
                      height:400,
-                     modal:true
+                     modal:true,
+                     title:"Enter new resource"
     }); 
 
 
@@ -120,7 +121,7 @@ var country = document.getElementById("country").value;
 
 
 
-                function editUser(){
+                function editResource(){
             }
 
 
@@ -128,7 +129,7 @@ var country = document.getElementById("country").value;
 
 
 
-            function destroyUser(){
+            function destroyResource(){
 
                 var row = $('#tabladatos').datagrid('getSelected');
                 var url = "/api/v1/population-percentage-by-age";
@@ -304,9 +305,9 @@ var country = document.getElementById("country").value;
 
 
     <div id="toolbar">
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">New</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newResource()">New</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editResource()">Edit</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyResource()">Remove</a>
      <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="searchResource()">Search</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-secret" plain="true" onclick="loadData()">Load</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-key" plain="true" onclick="enterApikey()">Apikey</a>
@@ -316,13 +317,15 @@ var country = document.getElementById("country").value;
 
     <div id="win" hidden="hidden">
 
-    <form id="formulario_registro"><br>
-    Country: <input id="country"/><br><br>
-    Year: <input id="year"/><br><br>
-    Population_0_14: <input id="population_0_14"/><br><br>
-    Population_15_64: <input id="population_15_64"/><br><br>
-    <input type="button" value="Aceptar" onclick = "registra_recurso()";/><br><br>
-    <input type="button" value="Cancelar" onclick = "cancelar()"/>
+    <form id="formulario_registro">
+        <center><table><tr><td>&nbsp;</td></tr>
+            <tr>
+   <td>Country:</td><td><input id="country"/></td></tr><tr><td>&nbsp;</td></tr>
+   <tr><td>Year:</td><td><input id="year"/></td></tr><tr><td>&nbsp;</td></tr>
+   <tr><td>Population_0_14:</td><td><input id="population_0_14"/></td></tr><tr><td>&nbsp;</td></tr>
+   <tr><td>Population_15_64:</td><td><input id="population_15_64"/></td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
+   <tr><td><input type="button" value="Aceptar" onclick = "registra_recurso()";/></td>
+   <td><input type="button" value="Cancelar" onclick = "cancelar()"/></td></tr>
     </form>    
 
     </div>
