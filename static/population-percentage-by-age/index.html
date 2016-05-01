@@ -78,7 +78,7 @@ var country = document.getElementById("country_edit").value;
 
                     if(statusCode == 401)
                     {
-                        alert("Necesita introducir una apikey valida para insertar un nuevo recurso.");
+                        alert("Necesita introducir una apikey valida para modificar un recurso.");
                     }
 
 
@@ -417,7 +417,7 @@ var country = document.getElementById("country").value;
                 $('#tabladatos').datagrid({
                    pagination: true,
                    pageSize: 10,
-                   pageList: [10],
+                   pageList: [5,10],
                    data: data,
                    singleSelect : true,
                    toolbar: '#toolbar',
