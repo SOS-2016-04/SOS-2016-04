@@ -8,12 +8,22 @@ apikey = req.query.apikey;
 if (apikey && apikey=="secret")
 {
 
-population_percentages=[{country: "spain", year: 2014, population_0_14: 15, population_15_64: 67},
+population_percentages=[{country: "spain", year: 2012, population_0_14: 15, population_15_64: 67},
 {country: "spain", year: 2013, population_0_14: 14, population_15_64: 68},
-{country: "canada", year: 2014, population_0_14: 16, population_15_64: 68},
+{country: "spain", year: 2014, population_0_14: 15, population_15_64: 67},
+{country: "spain", year: 2015, population_0_14: 14, population_15_64: 68},
 {country: "france", year: 2012, population_0_14: 19, population_15_64: 63},
 {country: "france", year: 2013, population_0_14: 15, population_15_64: 64},
-{country: "sweden", year: 2014, population_0_14: 17, population_15_64: 63}];
+{country: "france", year: 2014, population_0_14: 19, population_15_64: 63},
+{country: "france", year: 2015, population_0_14: 15, population_15_64: 64},
+{country: "russia", year: 2012, population_0_14: 15, population_15_64: 67},
+{country: "russia", year: 2013, population_0_14: 14, population_15_64: 68},
+{country: "russia", year: 2014, population_0_14: 15, population_15_64: 67},
+{country: "russia", year: 2015, population_0_14: 14, population_15_64: 68},
+{country: "sweden", year: 2012, population_0_14: 15, population_15_64: 67},
+{country: "sweden", year: 2013, population_0_14: 14, population_15_64: 68},
+{country: "sweden", year: 2014, population_0_14: 15, population_15_64: 67},
+{country: "sweden", year: 2015, population_0_14: 14, population_15_64: 68}];
 
 res.sendStatus(200);
 
