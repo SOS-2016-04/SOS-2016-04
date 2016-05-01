@@ -173,9 +173,10 @@ var country = document.getElementById("country").value;
 
             function loadData(){
 
+                var url = "/api/v1/population-percentage-by-age/loadInitialData?apikey="+document.getElementById("apikey_valida").value;
 
                 var request = $.ajax({
-                url : "/api/v1/population-percentage-by-age/loadInitialData?apikey=secret",
+                url : url,
                 type : "GET"
             });
 
