@@ -13,9 +13,16 @@
 <script type="text/javascript">
 
 
-function guarda_apikey(){
+
+function seleccion_checkbox_apikey(){
 
 
+
+
+}
+
+
+function volver(){
 
 
 }
@@ -283,7 +290,13 @@ var country = document.getElementById("country").value;
 
     <form id="formulario_apikey"><br>
     Apikey: <input type = "password" id="apikey"/><br><br>
-    <input type="button" value="Guardar" onclick = "guarda_apikey()";/><br><br>
+
+    <input id="checkbox_apikey" type="checkbox" onClick="seleccion_checkbox_apikey()"/>Show apikey
+
+    <br><br>
+
+    <input id="apikey_anterior" hidden="hidden"/>
+    <input type="button" value="Guardar"/><br><br>
     <input type="button" value="Cancelar"/>
     </form>    
 
