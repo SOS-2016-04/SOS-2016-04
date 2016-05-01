@@ -89,7 +89,20 @@ var country = document.getElementById("country").value;
 
                     var statusCode = jqXHR.status;
 
-                    console.log(statusCode);
+                    if(statusCode == 400)
+                    {
+                        alert("Los datos introducidos no son validos.");
+                    }
+
+                    if(statusCode == 401)
+                    {
+                        alert("Necesita introducir una apikey valida para insertar un nuevo recurso.");
+                    }
+
+                    if(statusCode == 409)
+                    {
+                        alert("Ya existe otro recurso con el mismo pais y año.");
+                    }
 
             });
 
