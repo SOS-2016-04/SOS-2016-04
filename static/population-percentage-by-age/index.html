@@ -174,8 +174,17 @@ var country = document.getElementById("country").value;
 
                 function editResource(){
 
-
                     document.getElementById("win_edit").style.hidden = "default";
+
+                    var row = $('#tabladatos').datagrid('getSelected');
+
+                    document.getElementById("country_edit").value = row.country;
+                    document.getElementById("year_edit").value = row.year;
+                    document.getElementById("population_0_14").value = row.population_0_14;
+                    document.getElementById("population_15_64").value = row.population_15_64;
+
+
+
 
                 $('#win_edit').window({
                      width:600,
@@ -198,7 +207,6 @@ var country = document.getElementById("country").value;
                 var url = "/api/v1/population-percentage-by-age";
                 url = url + "/" + row.country + "/" + row.year + "?apikey=" + "secret";
 
-                console.log(row.country);
 
                var request = $.ajax({
                 url : url,
