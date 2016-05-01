@@ -327,12 +327,15 @@ var country = document.getElementById("country").value;
 
 
                     var opts = $('#tabladatos').datagrid('options');
-                    alert(opts.pageSize);
+                    var limit = $('#tabladatos').datagrid('options').pageSize;
+                    var offset = $('#tabladatos').datagrid('options').page;
+                    console.log(limit);
+                    console.log(offset);
 
 
 
                 var request = $.ajax({
-                url : "/api/v1/population-percentage-by-age?apikey=secret&limit="+"3"+"&offset="+"2",
+                url : "/api/v1/population-percentage-by-age?apikey=secret&limit="+limit+"&offset="+limit,
                 type : "GET"
             });
 
