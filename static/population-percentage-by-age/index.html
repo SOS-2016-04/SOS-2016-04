@@ -14,14 +14,6 @@
 
 
 
-$('#tabladatos').pagination({
-    onSelectPage:function(pageNumber, pageSize){
-        console.log("Cambio");
-    }
-});
-
-
-
 function modifica_recurso(){
 
 
@@ -442,6 +434,15 @@ var country = document.getElementById("country").value;
             {field:'population_15_64',title:'Population_15_64',width:200}
         ]]
     });
+
+
+                
+
+$('#tabladatos').pagination({
+    onSelectPage:function(pageNumber, pageSize){
+        console.log("Cambio");
+    }
+});
 
 
 
