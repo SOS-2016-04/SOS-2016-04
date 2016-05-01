@@ -435,14 +435,12 @@ var country = document.getElementById("country").value;
         ]]
     });
 
-                $('#pp').pagination({
-    onSelectPage:function(pageNumber, pageSize){
-        $(this).pagination('loading');
-        alert('pageNumber:'+pageNumber+',pageSize:'+pageSize);
-        $(this).pagination('loaded');
-    }
-});
+                    $('#tabladatos').pagination({
+                      total:16,
+                      pageSize:$('#tabladatos').datagrid('options').pageSize;
+                    });
 
+                    //var offset = $('#tabladatos').datagrid('options').pageNumber;
 
             });
 
