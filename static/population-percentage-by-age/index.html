@@ -93,9 +93,8 @@ var country = document.getElementById("country").value;
 
                         request.done((data,status) =>{
 
-                        console.log("Entra");
-
-                        console.log(data);
+                            $('#tabladatos').datagrid('loadData',data);
+                            $('#tabladatos').datagrid('getData');
 
                     });
 
@@ -184,8 +183,6 @@ var country = document.getElementById("country").value;
 
 
                 request.done((data,status) =>{
-
-                    console.log(data);
 
                 $('#tabladatos').datagrid('loadData',data);
                 $('#tabladatos').datagrid('getData');
