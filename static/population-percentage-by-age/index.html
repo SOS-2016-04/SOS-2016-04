@@ -46,38 +46,9 @@ var country = document.getElementById("country").value;
             });
 
 
-                var request = $.ajax({
-                url : "/api/v1/population-percentage-by-age?apikey=secret"
-            });
-
-            request.done((data,status) =>{
-
-
-
-                var request = $.ajax({
-                url : "/api/v1/population-percentage-by-age?apikey=secret"
-            });
-
-
-                request.done((data,status) =>{
-
-                    console.log(data);
-
-                $('#tabladatos').datagrid('loadData',data);
-                $('#tabladatos').datagrid('getData');
-
-            });
-
-
-
-
-
-            });
-
-
-
-
 }
+
+
 
 
             function newUser(){
