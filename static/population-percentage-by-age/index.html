@@ -156,7 +156,6 @@ var country = document.getElementById("country").value;
 
             function loadData(){
 
-console.log("Hola");
 
                 var request = $.ajax({
                 url : "/api/v1/population-percentage-by-age/loadInitialData?apikey=secret",
@@ -166,6 +165,7 @@ console.log("Hola");
 
                 request.done((data,status) =>{
 
+                    console.log(status);
                     console.log(data);
 
                // $('#tabladatos').datagrid('loadData',data);
