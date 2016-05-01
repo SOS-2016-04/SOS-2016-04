@@ -206,7 +206,10 @@ var country = document.getElementById("country").value;
 
                     var statusCode = jqXHR.status;
 
-                    console.log(statusCode);
+                    if (statusCode == 401)
+                    {
+                        alert("Necesita introducir una apikey valida para cargar los datos.");
+                    }
 
             });
 
