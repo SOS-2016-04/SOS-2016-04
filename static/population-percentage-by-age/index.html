@@ -198,6 +198,17 @@ var country = document.getElementById("country").value;
 
             });
 
+
+                request.always((jqXHR, status) =>{
+
+                    var statusCode = jqXHR.status;
+
+                    console.log(statusCode);
+
+            });
+
+
+
             });
 
 
