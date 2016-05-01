@@ -73,7 +73,7 @@ var country = document.getElementById("country").value;
                 
 
 
-                url = url + "?apikey=" + "secret";
+                url = url + "?apikey=" + document.getElementById("apikey_valida").value;
 
 
                 var request = $.ajax({
@@ -90,6 +90,15 @@ var country = document.getElementById("country").value;
                     console.log("Insertado");
 
                 });
+
+
+                request.always((jqXHR, status) =>{
+
+                    var statusCode = jqXHR.status;
+
+                    console.log(statusCode);
+
+            });
 
 
 
