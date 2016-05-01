@@ -52,7 +52,34 @@ var country = document.getElementById("country_edit").value;
     var statusCode = jqXHR.status;
 
 
-    console.log(statusCode);
+    if(statusCode == 201)
+                    {
+
+                        var request = $.ajax({
+                url : "/api/v1/population-percentage-by-age?apikey=secret",
+                type : "GET",
+            });
+
+                        request.done((data,status) =>{
+
+                            $('#tabladatos').datagrid('loadData',data);
+                            $('#tabladatos').datagrid('getData');
+
+                    });
+
+
+
+                    }
+
+                    if(statusCode == 400)
+                    {
+                        alert("Los datos introducidos no son validos.");
+                    }
+
+                    if(statusCode == 401)
+                    {
+                        alert("Necesita introducir una apikey valida para insertar un nuevo recurso.");
+                    }
 
 
 
