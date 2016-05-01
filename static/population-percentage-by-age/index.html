@@ -46,8 +46,6 @@ var country = document.getElementById("country").value;
             });
 
 
-            request.done((data,status) =>{
-
                 var request = $.ajax({
                 url : "/api/v1/population-percentage-by-age?apikey=secret"
             });
@@ -75,9 +73,6 @@ var country = document.getElementById("country").value;
 
 
             });
-
-
-        });
 
 
 
