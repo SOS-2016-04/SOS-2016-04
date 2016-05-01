@@ -325,7 +325,7 @@ var country = document.getElementById("country").value;
 
                 request.done((data,status) =>{
 
-                    console.log(('#tabladatos').datagrid("pageSize"));
+                    console.log(('#tabladatos').pageSize);
 
                 var request = $.ajax({
                 url : "/api/v1/population-percentage-by-age?apikey=secret&limit="+"3"+"&offset="+"2",
