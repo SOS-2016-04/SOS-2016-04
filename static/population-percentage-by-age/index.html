@@ -371,6 +371,13 @@ var country = document.getElementById("country").value;
 
             function searchResource(){
 
+
+                $('#win_search').window({
+                     width:600,
+                     height:400,
+                     modal:true,
+                     title:"Search resource"
+    }); 
                 
 
                 
@@ -507,6 +514,23 @@ var country = document.getElementById("country").value;
    <td><input type="button" value="Cancelar" onclick = "cancelar_modificacion_recurso()"/></td></tr></table></center>
     </form>    
 
+
+    </div>
+
+
+
+
+
+    <div id="win_search" hidden="hidden">
+
+    <form id="formulario_search">
+        <center><table><tr><td>&nbsp;</td></tr>
+            <tr>
+    <td>Filter by country:</td><td>Filter by year:</td></tr><tr><td>&nbsp;</td></tr>
+    <tr><td><input id="country_search" disabled="disabled"/></td><td><input id="year_search" disabled="disabled"/></td></tr><tr><td>&nbsp;</td></tr>
+    <tr><td><input id="checkbox_country_search" type="checkbox"/></td><td><input id="checkbox_year_search" type="checkbox"/></td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
+    <tr><td><input type="button" value="Search" onclick="search_resources()"/></td><td><input type="button" value="Cancel" onclick = "cancel_search_resources()"/></td></tr></table></center>
+    </form>    
 
     </div>
 
