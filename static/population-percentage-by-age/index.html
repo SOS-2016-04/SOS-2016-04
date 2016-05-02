@@ -449,7 +449,10 @@ var country = document.getElementById("country").value;
                 $('#tabladatos').datagrid('loadData',data);
                 $('#tabladatos').datagrid('getData');
 
-                $('#tabladatos').pagination('refresh');
+                $('#tabladatos').pagination("refresh",{
+    total: 500,
+    pageNumber: 1
+});
 
             });               
 
@@ -543,7 +546,6 @@ var country = document.getElementById("country").value;
 
                 $('#tabladatos').datagrid({
                    data: data,
-                   pagination: true,
                    singleSelect : true,
                    toolbar: '#toolbar',
         columns:[[
