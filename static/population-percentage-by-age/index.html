@@ -21,13 +21,12 @@ function click_checkbox_country_search()
 
     if(document.getElementById("checkbox_country_search").checked)
 {
-    console.log(document.getElementById("country_search").disabled);
-    document.getElementById("country_search").disabled = "none";
+    document.getElementById("country_search").disabled = false;
 }
 
 else
 {
-    document.getElementById("country_search").disabled = "disabled";
+    document.getElementById("country_search").disabled = true;
     document.getElementById("country_search").value = "";
 }
 }
@@ -38,12 +37,12 @@ function click_checkbox_year_search()
     
     if(document.getElementById("checkbox_year_search").checked)
 {
-    document.getElementById("year_search").disabled = "default";
+    document.getElementById("year_search").disabled = false;
 }
 
 else
 {
-    document.getElementById("year_search").disabled = "disabled";
+    document.getElementById("year_search").disabled = true;
     document.getElementById("year_search").value = "";
 }
 
