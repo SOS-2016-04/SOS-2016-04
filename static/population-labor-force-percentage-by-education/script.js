@@ -350,7 +350,7 @@ function solicitudAjax(metodo, url, datos){
       alertify.alert("Dato no encontrado");
     }
     if(jqXHR.status == 400){
-      alertify.alert("ERROR: "+jqXHR.status+" Falta algún parámetro para rellenar o el tipo esta mal."+metodo+ url + datos);
+      alertify.alert("ERROR: "+jqXHR.status+" Falta algún parámetro para rellenar o el tipo esta mal.");
     }
     if(jqXHR.status == 409){
       alertify.alert("ERROR: "+jqXHR.status+" La entrada ya existe.");
