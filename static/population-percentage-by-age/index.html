@@ -17,10 +17,11 @@
 function click_checkbox_country_search()
 {
 
-    console.log(document.getElementById("checkbox_country_search").checked);
+
 
     if(document.getElementById("checkbox_country_search").checked)
 {
+    console.log(document.getElementById("country_search").disabled);
     document.getElementById("country_search").disabled = "none";
 }
 
