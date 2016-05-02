@@ -377,7 +377,7 @@ var country = document.getElementById("country").value;
 
                 var row = $('#tabladatos').datagrid('getSelected');
                 var url = "/api/v1/population-percentage-by-age";
-                url = url + "/" + row.country + "/" + row.year + "?apikey=" + "secret";
+                url = url + "/" + row.country + "/" + row.year + "?apikey=" + document.getElementById("apikey_valida").value;
 
 
                var request = $.ajax({
@@ -404,6 +404,18 @@ var country = document.getElementById("country").value;
 
 
             });
+
+
+               request.always((jqXHR, status) =>{
+
+    var statusCode = jqXHR.status;
+
+    if (statusCode == 401)
+    {
+        alert("Necesita introducir una apikey valida para eliminar el recurso.");
+    }
+
+});
 
 
 
