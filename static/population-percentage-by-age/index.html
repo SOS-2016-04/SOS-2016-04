@@ -425,8 +425,10 @@ var country = document.getElementById("country").value;
 
 
             function loadData(){
-            
-                $('#tabladatos').datagrid("options").pageNumber = 1;
+
+                //$('#tabladatos').datagrid("options").pageNumber = 1;
+                console.log($('#tabladatos').datagrid("options").pageNumber);
+                console.log($('#tabladatos').datagrid("options").pageNumber.value);
 
                 var url = "/api/v1/population-percentage-by-age/loadInitialData?apikey="+document.getElementById("apikey_valida").value;
 
