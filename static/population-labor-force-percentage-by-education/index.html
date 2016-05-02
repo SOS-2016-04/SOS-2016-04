@@ -1,12 +1,23 @@
 <html>
 <head>
-	<meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <title>population-labor-force-percentage-by-education</title>
-		<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
-		<script src="../js/bootstrap.min.js"></script>
-		<script src="script.js">
+	<title>population-labor-force-percentage-by-education</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.css"></link>
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.4.1/css/alertify.min.css"></link>
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.4.1/css/themes/bootstrap.min.css"></link>
+	<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+	<script src="//cdn.jsdelivr.net/alertifyjs/1.4.1/alertify.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript">
+
+
 
 				alertify.defaults.theme.ok = "btn btn-primary";
 				alertify.defaults.theme.cancel = "btn btn-danger";
@@ -36,6 +47,7 @@
 </br>
 <div class="text-center">
 	<div>ApiKey:<input type="text" name="apieky" id="apikey" placeholder="Apikey"/></div>
+</br>
 </div>
 
 <div class="container-fluid">
@@ -63,6 +75,10 @@
       <label for="secondary-education">Educación segundaria:</label>
       <input type="text" class="form-control" id="secondary-education" placeholder="Educación segundaria" >
     </div>
+		<div class="form-group">
+      <label for="tertiary-education">Educación universitaria:</label>
+      <input type="text" class="form-control" id="tertiary-education" placeholder="Educación universitaria" >
+    </div>
     <input type="button" class="btn btn-primary btn-lg btn-block" onclick="enviarDato()" name="Enviar" value="Enviar"></input>
 		</div>
   </form>
@@ -77,6 +93,7 @@
 <input type="text" class="form-control" id="pai" placeholder="País" required="true">
 </br>
 <input type="text" class="form-control" id="ann" placeholder="Año" required="true">
+</br>
 <form role="form">
   <input type="button" class="btn btn-primary btn-lg btn-block" onclick="eliminardato()" name="Borrdato" value="Borrar"></input>
 </form>
@@ -91,6 +108,7 @@
 <input type="text" class="form-control" id="pai2" placeholder="País" required="true">
 </br>
 <input type="text" class="form-control" id="ann2" placeholder="Año" required="true">
+</br>
 <form role="form">
   <input type="button" class="btn btn-primary btn-lg btn-block" onclick="editardato()" name="Actudato" value="Actualizar"></input>
 </form>
@@ -103,6 +121,7 @@
 <div class="container" id="formularioBusqueda">
 <label>Búsqueda: </label>
 <input type="text" class="form-control" id="busqueda" placeholder="País" >
+</br>
 <form role="form">
   <input type="button" class="btn btn-primary btn-lg btn-block" onclick="busqueda()" name="Buscar" value="Buscar"></input>
 </form>
@@ -143,6 +162,7 @@
 	<option value="9">9</option>
 	<option value="10">10</option>
 </select>
+</br>
 </div>
 </div>
 
