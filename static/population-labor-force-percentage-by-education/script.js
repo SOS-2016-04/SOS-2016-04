@@ -295,3 +295,105 @@ function botonEliminarTodo(){
   });
 
 }
+function actualizarTabla(){
+  var table =  $('#tablaid').DataTable();
+  table.row.add( [
+              $("#pais").val(),
+              $("#anno").val(),
+              $("#primaryEducation").val(),
+              $("#secondaryEducation").val(),
+              $("#tertiaryEducation").val()
+          ] ).draw();
+  table.row('.selected').remove().draw( false );
+}
+
+function solicitudAjax(metodo, url, datos){
+  var jqery
+  var request = $.ajax({
+    url: url,
+    type: metodo,
+    data: datos,
+    contentType: "application/json"
+  });
+  request.done(function(data,status,jqXHR) {
+    if(status == "success"){
+    console.log(jqXHR);
+    console.log(status);
+    console.log("jqXHR : "+jqXHR);
+    console.log("jqXHR status : "+jqXHR.status);
+    console.log("texto codigo :"+jqXHR.statusText);
+    console.log("status : "+status);
+    alertify.alert("Datos cargados con éxito. Pulsa aceptar para recargar la página.", function () {
+      location.reload();
+  });
+    actualizarTabla();
+    vaciarCajas();
+    if(metodo == "PUT"){
+      botonMenu();
+      seleccionado = false;
+    }
+    }
+  });
+  request.always(function(jqXHR,status) {
+    if(status == "error"){
+    console.log("jqXHR always: "+jqXHR);
+    console.log("jqXHR status always: "+jqXHR.status);
+    if(jqXHR.status == 0){
+      alertify.alert("Datos cargados con éxito. Pulsa aceptar para recargar la página.", function () {
+      location.reload();
+  });
+    }
+    if(jqXHR.status == 401){
+      alertify.alert("La clave introducida no es correcta");
+    }
+    if(jqXHR.status == 404){
+      alertify.alert("Dato no encontrado");
+    }
+    if(jqXHR.status == 400){
+      alertify.alert("ERROR: "+jqXHR.status+" Falta algún parámetro para rellenar o el tipo esta mal.");
+    }
+    if(jqXHR.status == 409){
+      alertify.alert("ERROR: "+jqXHR.status+" La entrada ya existe.");
+    }
+    if(jqXHR.status == 403){
+      alertify.alert("ERROR: "+jqXHR.status+" NO coincide el parametro para editar.");
+    }
+    if(jqXHR.status == 500){
+      alertify.alert("ERROR: "+jqXHR.status+" Error interno del Servidor");
+    }
+    console.log("texto codigo always:"+jqXHR.statusText);
+    console.log("status: "+status);
+    }
+  });
+}
+
+function cargaInicial(){
+  var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/loadInitialData?apikey=' + $("#apikey").val();
+  var method = "GET";
+  var request = $.ajax({
+    url: urlstring,
+    type: method,
+    async: false
+  });
+  request.always(function(jqXHR,status) {
+    if(status == "error"){
+    console.log("jqXHR always: "+jqXHR);
+    console.log("jqXHR status always: "+jqXHR.status);
+    if(jqXHR.status == 401){
+      alertify.alert("La clave introducida no es correcta");
+    }
+    if(jqXHR.status == 500){
+      alertify.alert("ERROR: "+jqXHR.status+" Error interno del Servidor");
+    }
+    console.log("texto codigo always:"+jqXHR.statusText);
+    console.log("status: "+status);
+    }
+  });
+  request.success(function(status,jqXHR) {
+    console.log("Datos cargados");
+    alertify.alert("Datos cargados con éxito.", function () {
+      location.reload();
+  });
+  });
+
+}
