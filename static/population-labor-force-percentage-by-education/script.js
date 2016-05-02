@@ -3,14 +3,14 @@ var nuevoDato = true;
 
 
 function IniciarTabla(data){
-  
-  
-  
 
-  var datos = data;          
-               
+
+
+
+  var datos = data;
+
   var table =  $('#tablaid').DataTable( {
-    "data": datos,                  
+    "data": datos,
     "columns": [
             { "title": "Region" },
             { "title": "Year" },
@@ -20,13 +20,13 @@ function IniciarTabla(data){
             { "title": "Total population"}
     ],
         "bPaginate": false,
-        "bFilter": false, 
+        "bFilter": false,
         "bSort" : false
-  
+
     } );
   return table;
 
-                                                 
+
 }
 
 function procesarDatos(){
@@ -35,9 +35,9 @@ function procesarDatos(){
   var dato = [];
   var res = [];
 
-  
+
   var request = $.ajax({
-    url: '../api/v1/population-growth?apikey=read',
+    url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education?apikey=clave',
     type: "GET",
     async: false
   });
@@ -71,7 +71,7 @@ function seleccionarCelda(data){
       seleccionado = true;
     }
     console.log(table.$('tr.selected'));
-  } );  
+  } );
 }
 
 function vaciarCajas(){
@@ -112,7 +112,7 @@ function enviarDato(){
       var metodo = "POST";
       var url = '../api/v1/population-growth?apikey=' + $("#apikey2").val();
       solicitudAjax(metodo, url, datos);
-      
+
     }else{
       console.log("Metodo PUT");
       var metodo = "PUT";
@@ -127,10 +127,10 @@ function enviarDato(){
 function botonMenu(){
   $("#formulario2").slideUp();
   $("#tabla").slideDown();
-  
+
   //$("#nav li").removeClass("active");
   $("#botonDatos").addClass("active");
-  vaciarCajas();  
+  vaciarCajas();
 }
 
 //Se ejecuta primero
@@ -138,7 +138,7 @@ function botonAnadirDato(){
   $("#taba").slideDown();
   $("#formulario3").slideToggle();
   $("#formulario2").slideDown();
-  
+
   seleccionado = false;
   $('tr.selected').removeClass('selected');
   $("#tituloFormulario").text("Añadir un nuevo dato:");
@@ -213,7 +213,7 @@ function botonEliminarDato(){
         }});
   }else{
     alertify.alert("No has seleccionado ningún dato");
-  } 
+  }
   console.log(x);
   //console.log("Dato borrado");
   });
@@ -252,9 +252,9 @@ function botonEliminarDato(){
 }
 
 function botonEliminarTodo(){
- 
+
   var x;
-  
+
     var urlstring = '/api/v1/population-growth?apikey=' + $("#apikey").val();
     console.log($("#apikey").val());
     var method = "DELETE";
@@ -267,7 +267,7 @@ function botonEliminarTodo(){
     table.rows().remove().draw(false);
     });
     x = "Se ha aceptado";
-    
+
     console.log("Datos borrado");
     request.always(function(jqXHR,status) {
     if(status == "error"){
@@ -298,7 +298,7 @@ function botonEliminarTodo(){
     console.log("status: "+status);
     }
   });
-  
+
 }
 
 function actualizarTabla(){
@@ -402,7 +402,7 @@ function cargaInicial(){
       location.reload();
   });
   });
-  
+
 }
 
 function paginacion() {
@@ -420,24 +420,24 @@ function paginacion() {
 
         success: function (data) {
           $("#tabla tbody tr").remove();
-          
+
           var trHTML = '';
 
-      
-        
+
+
 
       $.each(data, function (i, item) {
         console.log(data[i]);
-        
+
           trHTML += "<tr class='info'><td>" + data[i].region + '</td><td>' + data[i].year + '</td><td>' + data[i].age + '</td><td>' + data[i].men + '</td><td>' + data[i].women + '</td><td>' + data[i].total_population + '</td></tr>';
       });
 
-      $('#tablaid').append(trHTML);  
+      $('#tablaid').append(trHTML);
 
 
 
         },
-        
+
         error: function(jqXHR,status){
           console
           if(jqXHR.status == 401){
@@ -451,7 +451,7 @@ function paginacion() {
            }
             console.log("texto codigo always:"+jqXHR.statusText);
             console.log("status: "+status);
-           
+
         }
     });
 }
@@ -475,25 +475,25 @@ var busqueda= document.getElementById("busqueda").value;
 
         success: function (data) {
           $("#tabla tbody tr").remove();
-          
+
           var trHTML = '';
 
-      
-        
+
+
 
       $.each(data, function (i, item) {
         console.log(data[i]);
-        
+
           trHTML += "<tr class='info'><td>" + data[i].region + '</td><td>' + data[i].year + '</td><td>' + data[i].age + '</td><td>' + data[i].men + '</td><td>' + data[i].women + '</td><td>' + data[i].total_population + '</td></tr>';
       });
 
-      $('#tablaid').append(trHTML);  
+      $('#tablaid').append(trHTML);
 
 
 
         },
-        
-        
+
+
         error: function(jqXHR,status){
           console
           if(jqXHR.status == 401){
@@ -507,10 +507,10 @@ var busqueda= document.getElementById("busqueda").value;
            }
             console.log("texto codigo always:"+jqXHR.statusText);
             console.log("status: "+status);
-           
+
         }
     });
-    
+
 
 
 }
@@ -535,13 +535,13 @@ function busqueda(){
           trHTML += "<tr class='info'><td>" + data[i].region + '</td><td>' + data[i].year + '</td><td>' + data[i].age + '</td><td>' + data[i].men + '</td><td>' + data[i].women + '</td><td>' + data[i].total_population + '</td></tr>';
       });
 
-      $('#tablaid').append(trHTML);  
+      $('#tablaid').append(trHTML);
 
 
 
         },
-        
-        
+
+
         error: function(jqXHR,status){
           console
           if(jqXHR.status == 401){
@@ -555,7 +555,7 @@ function busqueda(){
            }
             console.log("texto codigo always:"+jqXHR.statusText);
             console.log("status: "+status);
-           
+
         }
     });
 }
@@ -566,7 +566,7 @@ function eliminardato(){
 
   if(region!='' && year!=''){
       var table =  $('#tablaid').DataTable();
-      
+
       var urlstring = '../api/v1/population-growth'+'/'+region+'/'+year+'?apikey=' + $("#apikey").val();
       var method = "DELETE";
       var request = $.ajax({
@@ -575,12 +575,12 @@ function eliminardato(){
       });
   request.success(function(status,jqXHR){
   var x;
- 
+
     alertify.confirm("¿Esta seguro de Eliminar el dato?", function (e) {
         if (e) {
       var table =  $('#tablaid').DataTable();
       console.log(x);
-      
+
       var urlstring = '../api/v1/population-growth'+'/'+region+'/'+year+'?apikey=' + $("#apikey").val();
       console.log(urlstring);
       var method = "DELETE";
@@ -596,7 +596,7 @@ function eliminardato(){
         }else{
       x = "Se ha cancelado";
         }});
- 
+
   console.log(x);
   //console.log("Dato borrado");
   });
@@ -640,11 +640,11 @@ function editardato(){
     var year = document.getElementById("yea2").value;
     nuevoDato = false;
     console.log("¿Es un nuevo Dato?: "+nuevoDato);
-    
-   
-    
-  
- 
+
+
+
+
+
   var metodo = "GET";
   var url = '../api/v1/population-growth/'+region+'/'+year+'?apikey='+$("#apikey").val();
     var request = $.ajax({
@@ -668,7 +668,7 @@ function editardato(){
     if(jqXHR.status == 404){
       alertify.alert("Dato no encontrado");
     }
-    
+
     if(jqXHR.status == 400){
       alertify.alert("ERROR: "+jqXHR.status+" Falta algún parámetro para rellenar o el tipo esta mal.");
     }
@@ -686,7 +686,7 @@ function editardato(){
     }
   });
   request.success(function(status,jqXHR,data){
-    
+
     $("#tabla").slideUp();
     $("#formulario2").slideDown();
     $("#tituloFormulario").text("Editar dato:");
@@ -696,7 +696,7 @@ function editardato(){
     $("#region2").prop('disabled', true);
     $("#year2").val(year);
     $("#year2").prop('disabled', true);
-    
+
   });
   var r= $("#region2").val()
   var y= $("#year2").val()
