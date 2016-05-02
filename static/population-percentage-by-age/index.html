@@ -14,6 +14,96 @@
 
 
 
+function click_checkbox_country_search()
+{
+    if(document.getElementById("checkbox_country_search").checked)
+{
+    document.getElementById("country_search").disabled = "default";
+}
+
+else
+{
+    document.getElementById("country_search").disabled = "disabled";
+    document.getElementById("country_search").value = "";
+}
+}
+
+
+function click_checkbox_year_search()
+{
+    
+    if(document.getElementById("checkbox_year_search").checked)
+{
+    document.getElementById("year_search").disabled = "default";
+}
+
+else
+{
+    document.getElementById("year_search").disabled = "disabled";
+    document.getElementById("year_search").value = "";
+}
+
+
+}
+
+
+
+
+function search_resources(){
+
+    $('#win_search').window('close');
+
+    var url = "/api/v1/population-percentage-by-age";
+
+    if(document.getElementById("checkbox_country_search").checked == true)
+    {
+        url = url + "/"+document.getElementById("country_search").value;
+    }
+
+    if(document.getElementById("checkbox_year_search").checked == true)
+    {
+        url = url + "/"+document.getElementById("year_search").value;
+    }
+
+    url = url + "?apikey=secret";
+
+
+
+    var request = $.ajax({
+                url : url,
+                type : "GET"
+            });
+
+
+                request.done((data,status) =>{
+
+                    $('#tabladatos').datagrid('loadData',data);
+                    $('#tabladatos').datagrid('getData');
+
+
+                });
+
+
+                request.always((jqXHR, status) =>{
+
+                    var statusCode = jqXHR.status;
+
+                    if (statusCode == 404)
+                    {
+                        alert("No se ha encontrado ningun recurso con los valores proporcionados.");
+                    }
+
+
+                });
+
+
+
+
+
+}
+
+
+
 function modifica_recurso(){
 
 
@@ -378,6 +468,11 @@ var country = document.getElementById("country").value;
 
             function searchResource(){
 
+                document.getElementById("country_search").value = "";
+                document.getElementById("year_search").value = "";
+                document.getElementById("checkbox_country_search").checked = false;
+                document.getElementById("checkbox_year_search").checked = false;
+
 
                 $('#win_search').window({
                      width:600,
@@ -535,7 +630,7 @@ var country = document.getElementById("country").value;
             <tr>
     <td>Filter by country:</td><td>Filter by year:</td></tr><tr><td>&nbsp;</td></tr>
     <tr><td><input id="country_search" disabled="disabled"/></td><td><input id="year_search" disabled="disabled"/></td></tr><tr><td>&nbsp;</td></tr>
-    <tr><td><input id="checkbox_country_search" type="checkbox"/></td><td><input id="checkbox_year_search" type="checkbox"/></td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
+    <tr><td><input id="checkbox_country_search" type="checkbox" onclick="click_checkbox_country_search()"/></td><td><input id="checkbox_year_search" type="checkbox" onclick="click_checkbox_year_search()"/></td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
     <tr><td><input type="button" value="Search" onclick="search_resources()"/></td><td><input type="button" value="Cancel" onclick = "cancel_search_resources()"/></td></tr></table></center>
     </form>    
 
