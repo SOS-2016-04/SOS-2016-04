@@ -426,7 +426,7 @@ var country = document.getElementById("country").value;
 
             function loadData(){
 
-                console.log(document.getElementsByClassName("pagination-num"));
+                console.log(document.getElementsByClassName("pagination-num").value);
 
 
                 var url = "/api/v1/population-percentage-by-age/loadInitialData?apikey="+document.getElementById("apikey_valida").value;
