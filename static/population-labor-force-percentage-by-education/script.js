@@ -549,14 +549,18 @@ function editardato(){
 
 }
 
-function paginacion() {
-     var x = document.getElementById("limit").value;
-     var busqueda= document.getElementById("busqueda").value;
-
+function paginacion2() {
+var x = document.getElementById("limit").value;
+var x2 = document.getElementById("pag").value;
+//si x2=0 -> x3=0 (x2*x)
+//si x2=1 -> x3=x1 (pag*limit -1)
+//si x2=2 -> x3=
+var x3= (x*x2);
+var busqueda= document.getElementById("busqueda").value;
     $.ajax(
     {
         type: "GET",
-        url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() + '&limit='+x+'&offset='+'0',
+        url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() + '&limit='+x+'&offset='+x3,
         data: "{}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -573,13 +577,15 @@ function paginacion() {
       $.each(data, function (i, item) {
         console.log(data[i]);
 
-          trHTML +="<tr class='info'><td>" + data[i].country + '</td><td>' + data[i].year + '</td><td>' + data[i].primaryEducation + '</td><td>' + data[i].secondaryEducation + '</td><td>' + data[i].tertiaryEducation + '</td></tr>';
+            trHTML +="<tr class='info'><td>" + data[i].country + '</td><td>' + data[i].year + '</td><td>' + data[i].primaryEducation + '</td><td>' + data[i].secondaryEducation + '</td><td>' + data[i].tertiaryEducation + '</td></tr>';
+      });
 
       $('#tablaid').append(trHTML);
 
 
 
         },
+
 
         error: function(jqXHR,status){
           console
@@ -591,6 +597,52 @@ function paginacion() {
           }
           if(jqXHR.status == 500){
             alertify.alert("ERROR: "+jqXHR.status+" Error interno.");
+           }
+            console.log("texto codigo always:"+jqXHR.statusText);
+            console.log("status: "+status);
+
+        }
+    });
+
+}
+
+function busqueda(){
+    var busqueda = document.getElementById("busqueda").value;
+
+
+    $.ajax(
+    {
+        type: "GET",
+        url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() ,
+        data: "{}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+
+        success: function (data) {
+          $("#tablaid tbody tr").remove();
+          var trHTML = '';
+          $.each(data, function (i, item) {
+          console.log(data[i]);
+          trHTML += "<tr class='info'><td>" + data[i].country + '</td><td>' + data[i].year + '</td><td>' + data[i].primaryEducation + '</td><td>' + data[i].secondaryEducation + '</td><td>' + data[i].tertiaryEducation + '</td></tr>';
+      });
+
+      $('#tablaid').append(trHTML);
+
+
+
+        },
+
+
+        error: function(jqXHR,status){
+          console
+          if(jqXHR.status == 401){
+              alertify.alert("La clave introducida no es correcta");
+          }
+          if(jqXHR.status == 404){
+              alertify.alert("No se encontraron resultados");
+          }
+          if(jqXHR.status == 500){
+            alertify.alert("ERROR: "+jqXHR.status+" Error internoo.");
            }
             console.log("texto codigo always:"+jqXHR.statusText);
             console.log("status: "+status);
