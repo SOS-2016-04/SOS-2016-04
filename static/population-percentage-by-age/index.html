@@ -448,7 +448,7 @@ var country = document.getElementById("country").value;
                 $('#tabladatos').datagrid('loadData',data);
                 $('#tabladatos').datagrid('getData');
 
-                console.log($('#tabladatos').datagrid("options").pageNumber);
+                $('#tabladatos').datagrid("options").pageNumber = 1;
 
             });               
 
