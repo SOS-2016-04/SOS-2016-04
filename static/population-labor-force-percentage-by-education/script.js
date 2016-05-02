@@ -12,12 +12,11 @@ function IniciarTabla(data){
   var table =  $('#tablaid').DataTable( {
     "data": datos,
     "columns": [
-            { "title": "Region" },
-            { "title": "Year" },
-            { "title": "Age" },
-            { "title": "Men"},
-            { "title": "Women"},
-            { "title": "Total population"}
+      { "title": "Country" },
+      { "title": "Year" },
+      { "title": "primaryEducation" },
+      { "title": "secondaryEducation"},
+      { "title": "tertiaryEducation"}
     ],
         "bPaginate": false,
         "bFilter": false,
@@ -30,7 +29,6 @@ function IniciarTabla(data){
 }
 
 function procesarDatos(){
-  //{"region":"Andalucia","year":"2010","age"="20-24","men"="10","women"="10", "totalpopulation"="20"}
 
   var dato = [];
   var res = [];
@@ -75,13 +73,12 @@ function seleccionarCelda(data){
 }
 
 function vaciarCajas(){
-  document.getElementById("region2").value = "";
-  document.getElementById("year2").value = "";
-  document.getElementById("age2").value = "";
-  document.getElementById("men2").value = "";
-  document.getElementById("women2").value = "";
-  document.getElementById("totalpopulation2").value = "";
-  document.getElementById("apikey2").value = "";
+  document.getElementById("pais").value = "";
+  document.getElementById("anno").value = "";
+  document.getElementById("primaryEducation2").value = "";
+  document.getElementById("secondaryEducation").value = "";
+  document.getElementById("tertiaryEducation").value = "";
+  document.getElementById("apikey").value = "";
 }
 
 //La utilizo para saber que recurso tengo que borrar o editar de la api
@@ -96,27 +93,26 @@ function conseguirDato(){
 
 //Se ejecuta segundo
 function enviarDato(){
-  var r= $("#region2").val()
-  var y= $("#year2").val()
-  var a= $("#age2").val()
-  var m= $("#men2").val()
-  var w= $("#women2").val()
-  var t= $("#totalpopulation2").val()
-  var datos='{"region":"'+r+'","year":"'+y+'","age":"'+a+'","men":"'+m+'","women":"'+w+'","total_population":"'+t+'"}';
-  //var datos = "{'region':"+r+",'year':"+$("#year2").val()+",'age':"+$("#age2").val()+",'men':"+$("#men2").val()+",'women':"+$("#women2").val()+",'total_population:"+$("totalpopulation2").val()+"}";
-    if(nuevoDato){
+  var r= $("#pais").val()
+var y= $("#anno").val()
+var a= $("#primaryEducation").val()
+var m= $("#secondaryEducation").val()
+var w= $("#tertiaryEducation").val()
+var datos='{"country":"'+r+'","year":"'+y+'","primaryEducation":"'+a+'","secondaryEducation":"'+m+'","tertiaryEducation":"'+w+'"}';
+
+if(nuevoDato){
       console.log(datos);
       console.log(nuevoDato);
       console.log("Metodo POST");
       //Es un nuevo dato (añadir dato) POST
       var metodo = "POST";
-      var url = '../api/v1/population-growth?apikey=' + $("#apikey2").val();
+      var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education?apikey=' + $("#apikey").val();
       solicitudAjax(metodo, url, datos);
 
     }else{
       console.log("Metodo PUT");
       var metodo = "PUT";
-      var url = '../api/v1/population-growth/'+$("#region2").val()+'/'+$("#year2").val()+'?apikey='+$("#apikey2").val();
+      var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education'+$("#pais").val()+'/'+$("#anno").val()+'?apikey='+$("#apikey").val();
       solicitudAjax(metodo, url, datos);
     }
     //vaciarCajas();
@@ -161,17 +157,16 @@ function botonEditarDato(){
     $("#nav li").removeClass("active");
     $("#botonEditarDato").addClass("active");
     var campos = conseguirDato();
-    $("#region2").val(campos[0]);
-    $("#region2").prop('disabled', true);
+    $("#pais").val(campos[0]);
+    $("#pais").prop('disabled', true);
     console.log(campos[0]);
-    $("#year2").val(campos[1]);
-    $("#year2").prop('disabled', true);
+    $("#anno").val(campos[1]);
+    $("#anno").prop('disabled', true);
     console.log(campos[1]);
-    $("#age2").val(campos[2]);
-    $("#men2").val(campos[3]);
-    $("#women2").val(campos[4]);
-    $("#totalpopulation2").val(campos[5]);
-    $("#apikey2").val(campos[6]);
+    $("#primaryEducation").val(campos[2]);
+    $("#secondaryEducation").val(campos[3]);
+    $("#tertiaryEducation").val(campos[4]);
+    $("#apikey").val(campos[6]);
   }else{
     alertify.alert("No has seleccionado ningún dato");
   }
@@ -183,7 +178,7 @@ function botonEliminarDato(){
       var table =  $('#tablaid').DataTable();
       console.log(table);
       var campos = conseguirDato();
-      var urlstring = '../api/v1/population-growth'+'/'+campos[0]+'/'+campos[1]+'?apikey=' + $("#apikey").val();
+      var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education'+'/'+campos[0]+'/'+campos[1]+'?apikey=' + $("#apikey").val();
       var method = "DELETE";
       var request = $.ajax({
         url: urlstring,
@@ -192,12 +187,12 @@ function botonEliminarDato(){
   request.success(function(status,jqXHR){
   var x;
   if(seleccionado){
-    alertify.confirm("¿Esta seguro de Eliminar el dato?", function (e) {
+    alertify.confirm("¿Quieres eliminar el dato?", function (e) {
         if (e) {
       var table =  $('#tablaid').DataTable();
       console.log(x);
       var campos = conseguirDato();
-      var urlstring = '../api/v1/population-growth'+'/'+campos[0]+'/'+campos[1]+'?apikey=' + $("#apikey").val();
+      var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education'+'/'+campos[0]+'/'+campos[1]+'?apikey=' + $("#apikey").val();
       console.log(urlstring);
       table.row('.selected').remove().draw( false );
       var method = "DELETE";
@@ -206,13 +201,13 @@ function botonEliminarDato(){
         type: method
       });
       seleccionado = false;
-      x = "Se ha aceptado";
-      alertify.alert("Dato borrado con exito.");
+      x = "Aceptado";
+      alertify.alert("Dato borrado.");
         }else{
-      x = "Se ha cancelado";
+      x = "Cancelado";
         }});
   }else{
-    alertify.alert("No has seleccionado ningún dato");
+    alertify.alert("Seleccione algún dato.");
   }
   console.log(x);
   //console.log("Dato borrado");
@@ -222,7 +217,7 @@ function botonEliminarDato(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
     if(jqXHR.status == 0){
-      alertify.alert("¡Dato añadido con exito!");
+      alertify.alert("Dato añadido.");
     }
     if(jqXHR.status == 401){
       alertify.alert("La clave introducida no es correcta");
@@ -231,23 +226,23 @@ function botonEliminarDato(){
       alertify.alert("Dato no encontrado");
     }
     if(jqXHR.status == 400){
-      alertify.alert("ERROR: "+jqXHR.status+" Falta algún parámetro para rellenar o el tipo esta mal.");
+      alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
     }
     if(jqXHR.status == 409){
-      alertify.alert("ERROR: "+jqXHR.status+" La entrada ya existe.");
+      alertify.alert("ERROR: "+jqXHR.status+" Ya existe.");
     }
     if(jqXHR.status == 403){
-      alertify.alert("ERROR: "+jqXHR.status+" NO coincide el parametro para editar.");
+      alertify.alert("ERROR: "+jqXHR.status+" No exite el parametro para editar.");
     }
     if(jqXHR.status == 500){
-      alertify.alert("ERROR: "+jqXHR.status+" Error interno del Servidor");
+      alertify.alert("ERROR: "+jqXHR.status+" Error interno.");
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
     }
   });
 }else{
-  alertify.alert("No has seleccionado ningún dato");
+  alertify.alert("Seleccione algún dato.");
 }
 }
 
@@ -255,7 +250,7 @@ function botonEliminarTodo(){
 
   var x;
 
-    var urlstring = '/api/v1/population-growth?apikey=' + $("#apikey").val();
+    var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education?apikey=' + $("#apikey").val();
     console.log($("#apikey").val());
     var method = "DELETE";
     var request = $.ajax({
@@ -266,7 +261,7 @@ function botonEliminarTodo(){
     var table =  $('#tablaid').DataTable();
     table.rows().remove().draw(false);
     });
-    x = "Se ha aceptado";
+    x = "Aceptado";
 
     console.log("Datos borrado");
     request.always(function(jqXHR,status) {
@@ -274,7 +269,7 @@ function botonEliminarTodo(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
     if(jqXHR.status == 0){
-      alertify.alert("¡Dato añadido con exito!");
+      alertify.alert("Dato añadidos");
     }
     if(jqXHR.status == 401){
       alertify.alert("La clave introducida no es correcta");
@@ -283,16 +278,16 @@ function botonEliminarTodo(){
       alertify.alert("Dato no encontrado");
     }
     if(jqXHR.status == 400){
-      alertify.alert("ERROR: "+jqXHR.status+" Falta algún parámetro para rellenar o el tipo esta mal.");
+      alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
     }
     if(jqXHR.status == 409){
-      alertify.alert("ERROR: "+jqXHR.status+" La entrada ya existe.");
+      alertify.alert("ERROR: "+jqXHR.status+" Ya existe.");
     }
     if(jqXHR.status == 403){
-      alertify.alert("ERROR: "+jqXHR.status+" NO coincide el parametro para editar.");
+      alertify.alert("ERROR: "+jqXHR.status+" No exite el parametro para editar.");
     }
     if(jqXHR.status == 500){
-      alertify.alert("ERROR: "+jqXHR.status+" Error interno del Servidor");
+      alertify.alert("ERROR: "+jqXHR.status+" Error interno");
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
@@ -304,12 +299,11 @@ function botonEliminarTodo(){
 function actualizarTabla(){
   var table =  $('#tablaid').DataTable();
   table.row.add( [
-              $("#region2").val(),
-              $("#year2").val(),
-              $("#age2").val(),
-              $("#men2").val(),
-              $("#women2").val(),
-              $("#totalpopulation2").val()
+              $("#pais").val(),
+              $("#anno").val(),
+              $("#primaryEducation").val(),
+              $("#secondaryEducation").val(),
+              $("#tertiaryEducation").val()
           ] ).draw();
   table.row('.selected').remove().draw( false );
 }
@@ -375,7 +369,7 @@ function solicitudAjax(metodo, url, datos){
 }
 
 function cargaInicial(){
-  var urlstring = '/api/v1/population-growth/loadInitialData?apikey=' + $("#apikey").val();
+  var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/loadInitialData?apikey=' + $("#apikey").val();
   var method = "GET";
   var request = $.ajax({
     url: urlstring,
@@ -398,7 +392,7 @@ function cargaInicial(){
   });
   request.success(function(status,jqXHR) {
     console.log("Datos cargados");
-    alertify.alert("Datos cargados con éxito. Pulsa aceptar para recargar la página.", function () {
+    alertify.alert("Datos cargados con éxito.", function () {
       location.reload();
   });
   });
@@ -412,7 +406,7 @@ function paginacion() {
     $.ajax(
     {
         type: "GET",
-        url: '/api/v1/population-growth'+busqueda+'?apikey=' + $("#apikey").val() + '&limit='+x+'&offset='+'0',
+        url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() + '&limit='+x+'&offset='+'0',
         data: "{}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -429,8 +423,7 @@ function paginacion() {
       $.each(data, function (i, item) {
         console.log(data[i]);
 
-          trHTML += "<tr class='info'><td>" + data[i].region + '</td><td>' + data[i].year + '</td><td>' + data[i].age + '</td><td>' + data[i].men + '</td><td>' + data[i].women + '</td><td>' + data[i].total_population + '</td></tr>';
-      });
+          trHTML +="<tr class='info'><td>" + data[i].country + '</td><td>' + data[i].year + '</td><td>' + data[i].primaryEducation + '</td><td>' + data[i].secondaryEducation + '</td><td>' + data[i].tertiaryEducation + '</td></tr>';
 
       $('#tablaid').append(trHTML);
 
@@ -447,7 +440,7 @@ function paginacion() {
               alertify.alert("No se encontraron resultados");
           }
           if(jqXHR.status == 500){
-            alertify.alert("ERROR: "+jqXHR.status+" Error interno del Servidor");
+            alertify.alert("ERROR: "+jqXHR.status+" Error interno.");
            }
             console.log("texto codigo always:"+jqXHR.statusText);
             console.log("status: "+status);
@@ -467,7 +460,7 @@ var busqueda= document.getElementById("busqueda").value;
     $.ajax(
     {
         type: "GET",
-        url: '/api/v1/population-growth/'+busqueda+'?apikey=' + $("#apikey").val() + '&limit='+x+'&offset='+x3,
+        url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() + '&limit='+x+'&offset='+x3,
         data: "{}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -484,7 +477,7 @@ var busqueda= document.getElementById("busqueda").value;
       $.each(data, function (i, item) {
         console.log(data[i]);
 
-          trHTML += "<tr class='info'><td>" + data[i].region + '</td><td>' + data[i].year + '</td><td>' + data[i].age + '</td><td>' + data[i].men + '</td><td>' + data[i].women + '</td><td>' + data[i].total_population + '</td></tr>';
+            trHTML +="<tr class='info'><td>" + data[i].country + '</td><td>' + data[i].year + '</td><td>' + data[i].primaryEducation + '</td><td>' + data[i].secondaryEducation + '</td><td>' + data[i].tertiaryEducation + '</td></tr>';
       });
 
       $('#tablaid').append(trHTML);
@@ -503,15 +496,13 @@ var busqueda= document.getElementById("busqueda").value;
               alertify.alert("No se encontraron resultados");
           }
           if(jqXHR.status == 500){
-            alertify.alert("ERROR: "+jqXHR.status+" Error interno del Servidor");
+            alertify.alert("ERROR: "+jqXHR.status+" Error interno.");
            }
             console.log("texto codigo always:"+jqXHR.statusText);
             console.log("status: "+status);
 
         }
     });
-
-
 
 }
 
@@ -522,7 +513,7 @@ function busqueda(){
     $.ajax(
     {
         type: "GET",
-        url: '/api/v1/population-growth/'+busqueda+'?apikey=' + $("#apikey").val() ,
+        url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() ,
         data: "{}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -532,7 +523,7 @@ function busqueda(){
           var trHTML = '';
           $.each(data, function (i, item) {
           console.log(data[i]);
-          trHTML += "<tr class='info'><td>" + data[i].region + '</td><td>' + data[i].year + '</td><td>' + data[i].age + '</td><td>' + data[i].men + '</td><td>' + data[i].women + '</td><td>' + data[i].total_population + '</td></tr>';
+          trHTML += "<tr class='info'><td>" + data[i].country + '</td><td>' + data[i].year + '</td><td>' + data[i].primaryEducation + '</td><td>' + data[i].secondaryEducation + '</td><td>' + data[i].tertiaryEducation + '</td></tr>';
       });
 
       $('#tablaid').append(trHTML);
@@ -551,7 +542,7 @@ function busqueda(){
               alertify.alert("No se encontraron resultados");
           }
           if(jqXHR.status == 500){
-            alertify.alert("ERROR: "+jqXHR.status+" Error interno del Servidor");
+            alertify.alert("ERROR: "+jqXHR.status+" Error internoo.");
            }
             console.log("texto codigo always:"+jqXHR.statusText);
             console.log("status: "+status);
@@ -561,13 +552,13 @@ function busqueda(){
 }
 
 function eliminardato(){
-  var region = document.getElementById("reg").value;
-  var year = document.getElementById("yea").value;
+  var country = document.getElementById("pai").value;
+  var year = document.getElementById("ann").value;
 
-  if(region!='' && year!=''){
+  if(country!='' && year!=''){
       var table =  $('#tablaid').DataTable();
 
-      var urlstring = '../api/v1/population-growth'+'/'+region+'/'+year+'?apikey=' + $("#apikey").val();
+      var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education'+'/'+country+'/'+year+'?apikey=' + $("#apikey").val();
       var method = "DELETE";
       var request = $.ajax({
         url: urlstring,
@@ -576,12 +567,12 @@ function eliminardato(){
   request.success(function(status,jqXHR){
   var x;
 
-    alertify.confirm("¿Esta seguro de Eliminar el dato?", function (e) {
+    alertify.confirm("¿Quiere eliminar el dato?", function (e) {
         if (e) {
       var table =  $('#tablaid').DataTable();
       console.log(x);
 
-      var urlstring = '../api/v1/population-growth'+'/'+region+'/'+year+'?apikey=' + $("#apikey").val();
+      var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education'+'/'+country+'/'+year+'?apikey=' + $("#apikey").val();
       console.log(urlstring);
       var method = "DELETE";
       var request = $.ajax({
@@ -589,23 +580,23 @@ function eliminardato(){
         type: method
       });
       seleccionado = false;
-      x = "Se ha aceptado";
-      alertify.alert("Dato borrado con exito.", function(){
+      x = "Aceptado";
+      alertify.alert("Dato borrado.", function(){
         location.reload();
       });
         }else{
-      x = "Se ha cancelado";
+      x = "Cancelado";
         }});
 
   console.log(x);
-  //console.log("Dato borrado");
+
   });
   request.always(function(jqXHR,status) {
     if(status == "error"){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
-    if(jqXHR.status == 0){
-      alertify.alert("¡Dato añadido con exito!");
+		if(jqXHR.status == 0){
+      alertify.alert("Dato añadido.");
     }
     if(jqXHR.status == 401){
       alertify.alert("La clave introducida no es correcta");
@@ -614,39 +605,37 @@ function eliminardato(){
       alertify.alert("Dato no encontrado");
     }
     if(jqXHR.status == 400){
-      alertify.alert("ERROR: "+jqXHR.status+" Falta algún parámetro para rellenar o el tipo esta mal.");
+      alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
     }
     if(jqXHR.status == 409){
-      alertify.alert("ERROR: "+jqXHR.status+" La entrada ya existe.");
+      alertify.alert("ERROR: "+jqXHR.status+" Ya existe.");
     }
     if(jqXHR.status == 403){
-      alertify.alert("ERROR: "+jqXHR.status+" NO coincide el parametro para editar.");
+      alertify.alert("ERROR: "+jqXHR.status+" No exite el parametro para editar.");
     }
     if(jqXHR.status == 500){
-      alertify.alert("ERROR: "+jqXHR.status+" Error interno del Servidor");
+      alertify.alert("ERROR: "+jqXHR.status+" Error interno.");
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
     }
   });
 }else{
-  alertify.alert("No has seleccionado ningún dato");
+  alertify.alert("Seleccione algún dato.");
 }
 
 }
 
 function editardato(){
-    var region = document.getElementById("reg2").value;
-    var year = document.getElementById("yea2").value;
+    var country = document.getElementById("pai2").value;
+    var year = document.getElementById("ann2").value;
     nuevoDato = false;
-    console.log("¿Es un nuevo Dato?: "+nuevoDato);
-
-
+    console.log("¿El dato es nuevo?: "+nuevoDato);
 
 
 
   var metodo = "GET";
-  var url = '../api/v1/population-growth/'+region+'/'+year+'?apikey='+$("#apikey").val();
+  var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+country+'/'+year+'?apikey='+$("#apikey").val();
     var request = $.ajax({
     url: url,
     type: metodo,
@@ -658,28 +647,26 @@ function editardato(){
     if(status == "error"){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
-    if(jqXHR.status == 0){
-      alertify.alert("¡Dato añadido con éxito!");
-
+		if(jqXHR.status == 0){
+      alertify.alert("Dato añadido.");
     }
     if(jqXHR.status == 401){
-      alertify.alert("Clave incorrecta");
+      alertify.alert("La clave introducida no es correcta");
     }
     if(jqXHR.status == 404){
       alertify.alert("Dato no encontrado");
     }
-
     if(jqXHR.status == 400){
-      alertify.alert("ERROR: "+jqXHR.status+" Falta algún parámetro para rellenar o el tipo esta mal.");
+      alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
     }
     if(jqXHR.status == 409){
-      alertify.alert("ERROR: "+jqXHR.status+" La entrada ya existe.");
+      alertify.alert("ERROR: "+jqXHR.status+" Ya existe.");
     }
     if(jqXHR.status == 403){
-      alertify.alert("ERROR: "+jqXHR.status+" NO coincide el parametro para editar.");
+      alertify.alert("ERROR: "+jqXHR.status+" No exite el parametro para editar.");
     }
     if(jqXHR.status == 500){
-      alertify.alert("ERROR: "+jqXHR.status+" Error interno del Servidor");
+      alertify.alert("ERROR: "+jqXHR.status+" Error interno.");
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
@@ -692,21 +679,20 @@ function editardato(){
     $("#tituloFormulario").text("Editar dato:");
     //$("#nav li").removeClass("active");
     //$("#botonEditarDato").addClass("active");
-    $("#region2").val(region);
-    $("#region2").prop('disabled', true);
-    $("#year2").val(year);
-    $("#year2").prop('disabled', true);
+    $("#pais").val(region);
+    $("#pais").prop('disabled', true);
+    $("#anno").val(year);
+    $("#anno").prop('disabled', true);
 
   });
-  var r= $("#region2").val()
-  var y= $("#year2").val()
-  var a= $("#age2").val()
-  var m= $("#men2").val()
-  var w= $("#women2").val()
-  var t= $("#totalpopulation2").val()
-  var datos='{"region":"'+r+'","year":"'+y+'","age":"'+a+'","men":"'+m+'","women":"'+w+'","total_population":"'+t+'"}';
+  var r= $("#pais").val()
+  var y= $("#anno").val()
+  var a= $("#primaryEducation").val()
+  var m= $("#secondaryEducation").val()
+  var w= $("#tertiaryEducation").val()
+  var datos='{"country":"'+r+'","year":"'+y+'","primaryEducation":"'+a+'","secondaryEducation":"'+m+'","tertiaryEducation":"'+w+'"}';
   var metodo = "PUT";
-  var url = '../api/v1/population-growth/'+region+'/'+year+'?apikey='+$("#apikey").val();
+  var url = '../api/v1/population-labor-force-percentage-by-education/'+country+'/'+year+'?apikey='+$("#apikey").val();
     var request2 = $.ajax({
     url: url,
     type: metodo,
