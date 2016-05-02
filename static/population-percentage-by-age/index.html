@@ -660,7 +660,20 @@ var country = document.getElementById("country").value;
             total: 2000,
             pageSize: 10,
             onSelectPage: function(pageNumber, pageSize){
-                console.log('Hola');
+
+            var request = $.ajax({
+                url : '/api/v1/population-percentage-by-age?limit=2&offset=3&apikey=secret',
+                type : 'GET',
+            });
+
+                        request.done((data,status) =>{
+
+                            $('#tabladatos').datagrid('loadData',data);
+                            $('#tabladatos').datagrid('getData');
+
+                    });
+
+
             }">
 </div>
 
