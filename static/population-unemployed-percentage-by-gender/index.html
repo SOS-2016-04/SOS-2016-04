@@ -199,7 +199,7 @@
   } else{
     alert("Busqueda realizada");
   }
-    Mostrar();
+
     return true;
   }
 
@@ -226,7 +226,7 @@
                 "<td>" + per.year + "</td>" +
                 "<td>" + per.female + "</td>" +
                 "<td>" + per.male + "</td>" +
-                "<td><img src='edit.png' alt='Edit" + i + "' class='btnEdit'/>&nbsp &nbsp<img src='delete.png' alt='Delete" + i + "' class='btnDelete'/></td>" +
+                "<td><img src='edit.png' alt='Edit" + i + "' class='btnEdit'/>&nbsp &nbsp<img src='delete.png' alt='Delete" + i + "' class='btnDelete'/>&nbsp &nbsp<img src='lupa.png' alt='Search" + i + "' class='btnSearch'/>&nbsp &nbsp<img src='Carga.png' alt='Carga" + i + "' class='btnCarga'/></td>" +
                 "</tr>"
                 );
     } //Recorrer y agregar los items a la tabla HTML
@@ -240,8 +240,12 @@
         return Create();
     if (operation === "E")
         return Edit();
-    else
+    if(operation=== "D")
         return Delete();
+    if(operation=== "S")
+        return Search();
+    else
+      return Carga();
 
   }); //Función para decidir si se encuentra añadiendo o editando un item
 
@@ -250,13 +254,19 @@
 
   List();
 
-  $('#btnLoad').click(function(){
-       Carga();
+  $(".btnCarga").bind("click", function () {
+    operation="L";
+    $("#txtCountry").attr("readonly", "readonly");
+    $("#txtYear").attr("readonly", "readonly");
+    $("#txtFemale").attr("readonly", "readonly");
+    $("#txtMale").attr("readonly", "readonly");
     });
 
-  $('#btnSearch').click(function(){
-         Search();
-    });
+  $(".btnSearch").bind("click", function () {
+    operation = "S";
+    $("#txtFemale").attr("readonly", "readonly");
+    $("#txtMale").attr("readonly", "readonly");
+  });
 
 
   $(".btnEdit").bind("click", function () {
@@ -339,7 +349,6 @@
                     <div class="col-lg-offset-2 col-sm-4">
                         <input type="submit" value="Send" id="btnSave" class="btn btn-success"/>
                         <input type="button" value="Load" id="btnLoad" class="btn btn-success"/>
-                        <input type="button" value="Search" id="btnSearch" class="btn btn-success"/>
                     </div>
                 </div>
             </form>
