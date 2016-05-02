@@ -68,7 +68,7 @@ function search_resources(){
         url = url + "/"+document.getElementById("year_search").value;
     }
 
-    url = url + "?apikey=secret";
+    url = url + "?apikey=secret&limit=10&offset=0";
 
 
 
@@ -126,7 +126,6 @@ var country = document.getElementById("country_edit").value;
                 var url = "/api/v1/population-percentage-by-age/"+country+"/"+year;
                 var data = "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+country+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+year+","+dobles_comillas+"population_0_14"+dobles_comillas+":"+population_0_14+","+dobles_comillas+"population_15_64"+dobles_comillas+":"+population_15_64+"}";         
 
-                console.log(data);
 
                 url = url + "?apikey=" + document.getElementById("apikey_valida").value;
 
@@ -149,7 +148,7 @@ var country = document.getElementById("country_edit").value;
                     {
 
                         var request = $.ajax({
-                url : "/api/v1/population-percentage-by-age?apikey=secret",
+                url : "/api/v1/population-percentage-by-age?apikey=secret&limit=10&offset=0",
                 type : "GET",
             });
 
@@ -275,7 +274,7 @@ var country = document.getElementById("country").value;
                     {
 
                         var request = $.ajax({
-                url : "/api/v1/population-percentage-by-age?apikey=secret",
+                url : "/api/v1/population-percentage-by-age?apikey=secret&limit=10&offset=0",
                 type : "GET",
             });
 
@@ -391,7 +390,8 @@ var country = document.getElementById("country").value;
 
 
                 var request = $.ajax({
-                url : "/api/v1/population-percentage-by-age?apikey=secret"
+                url : "/api/v1/population-percentage-by-age?apikey=secret&limit=10&offset=0",
+                type : "GET"
             });
 
 
