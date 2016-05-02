@@ -426,11 +426,6 @@ var country = document.getElementById("country").value;
 
             function loadData(){
 
-                $('#tabladatos').datagrid('refresh',{
-                 total: 114,
-                 pageNumber: 6
-                 });
-
 
                 var url = "/api/v1/population-percentage-by-age/loadInitialData?apikey="+document.getElementById("apikey_valida").value;
 
