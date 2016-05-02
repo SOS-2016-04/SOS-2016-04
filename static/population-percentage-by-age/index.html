@@ -437,15 +437,8 @@ var country = document.getElementById("country").value;
                 request.done((data,status) =>{
 
 
-                    /*var limit = $('#tabladatos').datagrid('options').pageSize;
-                    var offset = $('#tabladatos').datagrid('options').pageNumber;
-                    console.log(limit);
-                    console.log(offset);*/
-
-
-
                 var request = $.ajax({
-                url : "/api/v1/population-percentage-by-age?apikey=secret&limit="+"20"+"&offset="+"0",
+                url : "/api/v1/population-percentage-by-age?apikey=secret",
                 type : "GET"
             });
 
@@ -455,7 +448,7 @@ var country = document.getElementById("country").value;
                 $('#tabladatos').datagrid('loadData',data);
                 $('#tabladatos').datagrid('getData');
 
-                $('#tabladatos').datagrid('options').pageNumber = 1;
+                console.log(('tabladatos').datagrid('options').pageNumber);
 
             });               
 
