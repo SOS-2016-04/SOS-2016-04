@@ -661,8 +661,10 @@ var country = document.getElementById("country").value;
             pageSize: 10,
             onSelectPage: function(pageNumber, pageSize){
 
+            var off = (pageNumber - 1) * pageSize;
+
             var request = $.ajax({
-                url : '/api/v1/population-percentage-by-age?limit=2&offset=3&apikey=secret',
+                url : '/api/v1/population-percentage-by-age?limit='+pageSize+'&offset='+off+'&apikey=secret',
                 type : 'GET',
             });
 
