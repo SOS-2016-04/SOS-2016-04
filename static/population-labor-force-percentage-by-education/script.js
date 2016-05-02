@@ -166,7 +166,7 @@ function botonEditarDato(){
     $("#primaryEducation").val(campos[2]);
     $("#secondaryEducation").val(campos[3]);
     $("#tertiaryEducation").val(campos[4]);
-    $("#apikey").val(campos[6]);
+    $("#apikey").val(campos[5]);
   }else{
     alertify.alert("No has seleccionado ningún dato");
   }
