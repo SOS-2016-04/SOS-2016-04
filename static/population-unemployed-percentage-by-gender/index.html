@@ -9,8 +9,8 @@
 
         <!-- Librerías Bootstrap: Estilos externos del sitio web -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/bootstrap.min.js"></script>
 
         <!-- Estilos del sitio web -->
         <link rel="stylesheet" href="style.css" />
@@ -52,6 +52,7 @@
 
 
   function Create() {
+    var status;
     var c=$("#txtCountry").val();
     var y=$("#txtYear").val();
     var f=$("#txtFemale").val();
@@ -67,13 +68,17 @@
       tblPersons=JSON.stringify(data);
       sessionStorage.setItem("tblPersons", tblPersons);
   });
-   request.always(function(jqXHR) {
-
+   request.always(function(jqXHR,status) {
+     status=jqXHR.status;
+     if($("#txtID").val()!="clave")
+     alert("Error contraseña");
+     if(status == 409)
+     alert("Elemento repetido");
+     else
+     alert("Los datos han sido almacenados");
     console.log( "Status:"+jqXHR.status);
 
    });
-
-    alert("Los datos han sido almacenados"); //Mensaje de alerta
     Mostrar();
     return true;
   }
@@ -99,8 +104,11 @@
     console.log( "Status:"+jqXHR.status);
 
    });
-
-    alert("Los datos han sido editados"); //Mensaje de alerta
+   if($("#txtID").val()!="clave"){
+     alert("Error contraseña");
+   }else{
+    alert("Los datos han sido editados");
+  }//Mensaje de alerta
     Mostrar();
     return true;
   }
@@ -128,8 +136,11 @@
     console.log( "Status:"+jqXHR.status);
 
    });
-
-    alert("El dato ha sido eliminado"); //Mensaje de alerta
+   if($("#txtID").val()!="clave"){
+     alert("Error contraseña");
+   }else{
+    alert("El dato ha sido eliminado");
+  } //Mensaje de alerta
     Mostrar();
     return true;
 
@@ -154,7 +165,40 @@
     console.log( "Status:"+jqXHR.status);
 
    });
+   if($("#txtID").val()!="clave"){
+     alert("Error contraseña");
+  } else{
     alert("Datos reseteados");
+  }
+    Mostrar();
+    return true;
+  }
+
+
+  function Search() {
+    var c=$("#txtCountry").val();
+ var y=$("#txtYear").val();
+    var request = $.ajax({
+                url: "/api/v1/population-unemployed-percentage-by-gender/"+c+"/"+y+"?apikey="+$("#txtID").val(),
+                type: "GET",
+                data: "",
+                dataType: "JSON",
+                contentType: "application/json"
+                });
+    request.done(function(data){
+      tblPersons=JSON.stringify(data);
+      sessionStorage.setItem("tblPersons", tblPersons);
+  });
+   request.always(function(jqXHR) {
+
+    console.log( "Status:"+jqXHR.status);
+
+   });
+   if($("#txtID").val()!="clave"){
+     alert("Error contraseña");
+  } else{
+    alert("Busqueda realizada");
+  }
     Mostrar();
     return true;
   }
@@ -196,15 +240,22 @@
         return Create();
     if (operation === "E")
         return Edit();
-      else
+    else
         return Delete();
+
   }); //Función para decidir si se encuentra añadiendo o editando un item
+
+
+
 
   List();
 
-
   $('#btnLoad').click(function(){
        Carga();
+    });
+
+  $('#btnSearch').click(function(){
+         Search();
     });
 
 
@@ -237,6 +288,7 @@
     $("#txtID").focus();
 
 });
+
 });
         </script>
 
@@ -287,6 +339,7 @@
                     <div class="col-lg-offset-2 col-sm-4">
                         <input type="submit" value="Send" id="btnSave" class="btn btn-success"/>
                         <input type="button" value="Load" id="btnLoad" class="btn btn-success"/>
+                        <input type="button" value="Search" id="btnSearch" class="btn btn-success"/>
                     </div>
                 </div>
             </form>
