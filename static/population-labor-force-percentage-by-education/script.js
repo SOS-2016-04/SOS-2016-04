@@ -62,9 +62,9 @@ function procesarDatos(){
   return res;
 }
 
-function IniciarTabla(data){
+function IniciarTabla(){
 
-  var datos = data;
+  var datos = "";
 
   var table =  $('#tablaid').DataTable( {
     "data": datos,
