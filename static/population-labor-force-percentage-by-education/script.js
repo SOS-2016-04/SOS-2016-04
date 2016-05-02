@@ -368,7 +368,7 @@ var nuevoDato = true;
 
 
 function cargaInicial(){
-  var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/loadInitialData?apikey=' + $("#apikey").val();
+  var urlstring = 'sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/loadInitialData?apikey=' + $("#apikey").val();
   var method = "GET";
   var request = $.ajax({
     url: urlstring,
@@ -405,7 +405,7 @@ function procesarDatos(){
 
 
   var request = $.ajax({
-    url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education?apikey=clave',
+    url: '/api/v1/population-labor-force-percentage-by-education?apikey=clave',
     type: "GET",
     async: false
   });
@@ -471,7 +471,7 @@ function botonEliminarTodo(){
 
   var x;
 
-    var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education?apikey=' + $("#apikey").val();
+    var urlstring = 'sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education?apikey=' + $("#apikey").val();
     console.log($("#apikey").val());
     var method = "DELETE";
     var request = $.ajax({
@@ -531,13 +531,13 @@ function enviarDato(){
       console.log("Metodo POST");
       //Es un nuevo dato (añadir dato) POST
       var metodo = "POST";
-      var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education?apikey=' + $("#apikey").val();
+      var url = 'sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education?apikey=' + $("#apikey").val();
       solicitudAjax(metodo, url, datos);
 
     }else{
       console.log("Metodo PUT");
       var metodo = "PUT";
-      var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+$("#pais").val()+'/'+$("#anno").val()+'?apikey='+$("#apikey").val();
+      var url = 'sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+$("#pais").val()+'/'+$("#anno").val()+'?apikey='+$("#apikey").val();
       solicitudAjax(metodo, url, datos);
     }
 }
@@ -547,7 +547,7 @@ function botonEliminarDato(){
       var table =  $('#tablaid').DataTable();
       console.log(table);
       var campos = conseguirDato();
-      var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education'+'/'+campos[0]+'/'+campos[1]+'?apikey=' + $("#apikey").val();
+      var urlstring = 'sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education'+'/'+campos[0]+'/'+campos[1]+'?apikey=' + $("#apikey").val();
       var method = "DELETE";
       var request = $.ajax({
         url: urlstring,
@@ -561,7 +561,7 @@ function botonEliminarDato(){
       var table =  $('#tablaid').DataTable();
       console.log(x);
       var campos = conseguirDato();
-      var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education'+'/'+campos[0]+'/'+campos[1]+'?apikey=' + $("#apikey").val();
+      var urlstring = 'sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education'+'/'+campos[0]+'/'+campos[1]+'?apikey=' + $("#apikey").val();
       console.log(urlstring);
       table.row('.selected').remove().draw( false );
       var method = "DELETE";
@@ -623,7 +623,7 @@ function eliminardato(){
   if(country!='' && year!=''){
       var table =  $('#tablaid').DataTable();
 
-      var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education'+'/'+country+'/'+year+'?apikey=' + $("#apikey").val();
+      var urlstring = 'sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education'+'/'+country+'/'+year+'?apikey=' + $("#apikey").val();
       var method = "DELETE";
       var request = $.ajax({
         url: urlstring,
@@ -637,7 +637,7 @@ function eliminardato(){
       var table =  $('#tablaid').DataTable();
       console.log(x);
 
-      var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education'+'/'+country+'/'+year+'?apikey=' + $("#apikey").val();
+      var urlstring = 'sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education'+'/'+country+'/'+year+'?apikey=' + $("#apikey").val();
       console.log(urlstring);
       var method = "DELETE";
       var request = $.ajax({
@@ -700,7 +700,7 @@ function editardato(){
 
 
   var metodo = "GET";
-  var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+country+'/'+year+'?apikey='+$("#apikey").val();
+  var url = 'sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+country+'/'+year+'?apikey='+$("#apikey").val();
     var request = $.ajax({
     url: url,
     type: metodo,
@@ -757,7 +757,7 @@ function editardato(){
   var w= $("#tertiaryEducation").val()
   var datos='{"country":"'+r+'","year":"'+y+'","primaryEducation":"'+a+'","secondaryEducation":"'+m+'","tertiaryEducation":"'+w+'"}';
   var metodo = "PUT";
-  var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+country+'/'+year+'?apikey='+$("#apikey").val();
+  var url = 'sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+country+'/'+year+'?apikey='+$("#apikey").val();
     var request2 = $.ajax({
     url: url,
     type: metodo,
@@ -776,7 +776,7 @@ function busqueda(){
     $.ajax(
     {
         type: "GET",
-        url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() ,
+        url: '/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() ,
         data: "{}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -825,7 +825,7 @@ function paginacion() {
     $.ajax(
     {
         type: "GET",
-        url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() + '&limit='+x+'&offset='+'0',
+        url: '/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() + '&limit='+x+'&offset='+'0',
         data: "{}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -879,7 +879,7 @@ var busqueda= document.getElementById("busqueda").value;
     $.ajax(
     {
         type: "GET",
-        url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() + '&limit='+x+'&offset='+x3,
+        url: '/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() + '&limit='+x+'&offset='+x3,
         data: "{}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
