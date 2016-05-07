@@ -113,7 +113,12 @@ Pagination: </br></br> <select id= "pag" name="pag" class="form-control">
         var hasta = $("#to").val();
         //var pag = $("#pag").val();
       //  var pag2 = $("#pag2").val();
-
+      if(y != ""){
+				y = "/"+y;
+			}
+			if(c != ""){
+				c= "/" + c;
+			}
 			if(desde != ""){
 				desde = "&from=" + desde;
 			}
@@ -129,7 +134,7 @@ Pagination: </br></br> <select id= "pag" name="pag" class="form-control">
       var request = $.ajax(
 			{
 				type: "GET",
-				url:"/api/v1/population-unemployed-percentage-by-gender/"+c+"/"+y+"?apikey="+apikey + desde + hasta, //+ pag2 + pag,
+				url:"/api/v1/population-unemployed-percentage-by-gender"+c+y+"?apikey="+apikey + desde + hasta, //+ pag2 + pag,
 				data: "{}",
 				contentType: "application/json; charset=utf-8",
 				dataType: "json",
