@@ -80,10 +80,8 @@ Pagination: </br></br> <select id= "pag" name="pag" class="form-control">
 					trHTML += '<thead><tr><td>' + item.country + '</td><td>' + item.year + '</td><td>' + item.female + '</td><td>' + item.male + '</td></tr></thead>';
 				});
 				$('#tabla').append(trHTML);
-				},
-				error: function (msg) {
-					alert(msg.responseText);
 				}
+
 	   		 });
 	}
 
@@ -142,9 +140,6 @@ Pagination: </br></br> <select id= "pag" name="pag" class="form-control">
 					trHTML += '<thead><tr><td>' + item.country + '</td><td>' + item.year + '</td><td>' + item.female + '</td><td>' + item.male + '</td></tr></thead>';
 				});
 				$('#tabla').append(trHTML);
-				},
-				error: function (msg) {
-					alert(msg.responseText);
 				}
 	   		 });
 			request.always(function(jqXHR,status){
@@ -356,10 +351,8 @@ $("#anterior").click(function(){
 				trHTML += '<thead><tr><td>' + item.country + '</td><td>' + item.year + '</td><td>' + item.female + '</td><td>' + item.male + '</td></tr></thead>';
 			});
 			$('#tabla').append(trHTML);
-			},
-			error: function (msg) {
-				alert(msg.responseText);
 			}
+
    		 });
 				request.always(function(jqXHR,status){
 				errores(jqXHR,status);
@@ -368,14 +361,11 @@ $("#anterior").click(function(){
 function errores(jqXHR,status){
 	if(status=="error"){
 					if(jqXHR.status == "401"){
-						$("#status").text("Apikey incorrect, please insert new apikey.");
+						alert("Apikey incorrect, please insert new apikey.");
 					}else if (jqXHR.status == "409"){
-						$("#status").text("You can´t add that data, this data already exists.");
+						alert("You can´t add that data, this data already exists.");
 					}
-
-				}else{
-					$("#status").text("")
-				}
+        }
 			};
 	</script>
 
