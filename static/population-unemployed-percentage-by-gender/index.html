@@ -1,364 +1,385 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Javascript CRUD</title>
-        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="container">
+<h1>Graphical user interface</h1><br/><br/>
+<div class="well">
+    <span id="status"></span>
+</div>
 
-        <!-- Librería Google Fonts: Tipografía del sitio web -->
-        <!--  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>-->
+<div class="col-xs-3">
+  <center>
+  <button id="removeall" class="btn btn-danger btn-lg">Remove All</button></br></br>
+  <button id="loadData" class="btn btn-secondary btn-lg ">Load  Data</button></br></br>
+  <button id="all" class="btn btn-success btn-lg">All</button></br></br>
+  <button id="add" class="btn btn-success btn-lg">Add</button></br></br>
+  <button id="edit" class="btn btn-success btn-lg">Edit</button></br></br>
+  <button id="remove" class="btn btn-danger btn-lg">Remove</button></br></br>
+  </center>
+</div>
 
-        <!-- Librerías Bootstrap: Estilos externos del sitio web -->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <script src="js/bootstrap.min.js"></script>
+<div class="col-xs-3">
+</br></br><input id="apikey" class="form-control" placeholder="Apikey" value="clave" ></input></br>
+<input id="country" class="form-control" placeholder="Country"></input></br>
+<input id="year" class="form-control" placeholder="Year"></input></br>
+<input id="female" class="form-control" placeholder="Female"></input></br>
+<input id="male" class="form-control" placeholder="Male"></input></br>
+</div>
 
-        <!-- Estilos del sitio web -->
-        <link rel="stylesheet" href="style.css" />
+<div class="col-xs-3">
+  <button id="search" class="btn btn-primary btn-block">Search</button></br>
+</br></br> <input id="from" class="form-control" placeholder="From"></input> </br>   <input id="to" class="form-control" placeholder="To"></input></br>
+</div>
+<!--<div class="col-xs-3">
+Pagination: </br></br> <select id= "pag" name="pag" class="form-control">
+   <option value="0">0  Element</option>
+   <option value="1">1</option>
+   <option value="2">2</option>
+   <option value="3">3</option>
+</select></br> <input id="pag2" class="form-control" type="hidden" value="0"></input>
+</div>-->
 
-        <!-- Funciones Javascript -->
-        <script>
-  $(document).ready(() => {
-  var operation = "C"; //"C"=Crear
-  var selected_index = -1; // Indice de el elemento seleccionado en la lista
-  var tblPersons  = sessionStorage.getItem("tblPersons"); //Retornar los datos almacenados
-  tblPersons  = JSON.parse(tblPersons ); //Convertir String a Object
- var dobles_comillas = String.fromCharCode(34);
-  if (tblPersons  === null) // Si no hay datos, inicializar un array vacio
-      tblPersons  = [];
+<table id="tabla" class="table">
+  <thead>
+    <tr>
+    <th>Countries</th>
+    <th>Year</th>
+    <th>Female</th>
+    <th>Male</th>
+    </tr>
+  </thead>
+</table>
 
+<!--<div class="col-xs-2">
+<button id="anterior" class="btn btn-primary btn-block">Previous</button>
+</div>
+<div class="col-xs-2">
+<button id="siguiente" class="btn btn-primary btn-block">Next</button>
+</div>-->
+</div>
+	<script>
+	function refrescar(apikey){
+		$.ajax(
+			{
+				type: "GET",
+				url:"/api/v1/population-unemployed-percentage-by-gender?apikey="+apikey,
+				data: "{}",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				cache: false,
+				success: function (data) {
+					var trHTML = '';
+				$.each(data, function (i, item) {
+					trHTML += '<thead><tr><td>' + item.country + '</td><td>' + item.year + '</td><td>' + item.female + '</td><td>' + item.male + '</td></tr></thead>';
+				});
+				$('#tabla').append(trHTML);
+				},
+				error: function (msg) {
+					alert(msg.responseText);
+				}
+	   		 });
+	}
 
-
-      function Mostrar() {
-
+		$("#loadData").click(function(){
+			$("#tabla td").remove();
+        var apikey = $("#apikey").val();
         var request = $.ajax({
-                    url: "/api/v1/population-unemployed-percentage-by-gender?apikey="+$("#txtID").val(),
-                    type: "GET",
-                    data: "",
-                    dataType: "JSON",
-                    contentType: "application/json"
-                    });
-        request.done(function(data){
-          tblPersons=JSON.stringify(data);
-          sessionStorage.setItem("tblPersons", tblPersons);
-      });
-       request.always(function(jqXHR) {
+            url:"/api/v1/population-unemployed-percentage-by-gender/loadInitialData?apikey="+apikey,
+            type:"GET",
+            contentType : "application/json"
+   		     });
+        		request.always(function(jqXHR,status){
+				        errores(jqXHR,status);
+				});
+        refrescar(apikey);
+  		});
 
-        console.log( "Status:"+jqXHR.status);
+/*function myFunction2() {
+    document.getElementById("pag2").value = 0;
+}*/
+  		$("#search").click(function(){
+ 		 $("#tabla td").remove();
+ 		 //myFunction2();
+     var dobles_comillas = String.fromCharCode(34);
+  		var apikey = $("#apikey").val();
+        var y = $("#year").val();
+        var c = $("#country").val();
+        var desde = $("#from").val();
+        var hasta = $("#to").val();
+        //var pag = $("#pag").val();
+      //  var pag2 = $("#pag2").val();
 
-       });
+			if(desde != ""){
+				desde = "&from=" + desde;
+			}
+			if(hasta != ""){
+				hasta = "&to=" + hasta;
+			}
+		/*	if(pag != ""){
+				pag = "&limit=" + pag;
+			}
+			if(pag2 != ""){
+				pag2 = "&offset=" + pag2;
+			}*/
+      var request = $.ajax(
+			{
+				type: "GET",
+				url:"/api/v1/population-unemployed-percentage-by-gender/"+c+"/"+y+"?apikey="+apikey + desde + hasta, //+ pag2 + pag,
+				data: "{}",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				cache: false,
+				success: function (data) {
+					var trHTML = '';
+				$.each(data, function (i, item) {
+					trHTML += '<thead><tr><td>' + item.country + '</td><td>' + item.year + '</td><td>' + item.female + '</td><td>' + item.male + '</td></tr></thead>';
+				});
+				$('#tabla').append(trHTML);
+				},
+				error: function (msg) {
+					alert(msg.responseText);
+				}
+	   		 });
+			request.always(function(jqXHR,status){
+				errores(jqXHR,status);
+				});
+	});
+/*function myFunction(pag3) {
+    document.getElementById("pag2").value = pag3;
+}
+$("#siguiente").click(function(){
+ 		 $("#location td").remove();
+  		var apikey = $("#apikey").val();
+        var year = $("#year").val();
+        var country = $("#country").val();
+        var desde = $("#desde").val();
+        var hasta = $("#hasta").val();
+        var pag = $("#pag").val();
+        var pag2 = $("#pag2").val();
+        pag3 = parseInt(pag) + parseInt(pag2);
+			if(year != ""){
+				year = "/"+year;
+			}
+			if(country != ""){
+				country = "/" + country;
+			}
+			if(desde != ""){
+				desde = "&from=" + desde;
+			}
+			if(hasta != ""){
+				hasta = "&to=" + hasta;
+			}
+			if(pag != ""){
+				pag = "&limit=" + pag;
+			}
+			if(pag2 != ""){
+				pag2 = "&offset=" + pag3;
+			}
+          var request = $.ajax(
+			{
+				type: "GET",
+				url:"https://sos-2016-13.herokuapp.com/api/v1/consumed" + country + year + "?apikey="+apikey + desde + hasta + pag2 + pag,
+				data: "{}",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				cache: false,
+				success: function (data) {
+					var trHTML = '';
+				$.each(data, function (i, item) {
+					if(item != null){
+					trHTML += '<thead><tr><td>' + item.country + '</td><td>' + item.year + '</td><td>' + item.petroleum_cost + '</td><td>' + item.electric_cost + '</td></tr></thead>';
+					anterior.disabled = false;
+				}else{
+					siguiente.disabled = true;
+					}
+				});
+				$('#location').append(trHTML);
+				},
+				error: function (msg) {
+					alert(msg.responseText);
+				}
+	   		 });
+        	  myFunction(pag3);
+			request.always(function(jqXHR,status){
+				errores(jqXHR,status);
+				});
+	});
+$("#anterior").click(function(){
+ 		 $("#location td").remove();
+  		var apikey = $("#apikey").val();
+        var year = $("#year").val();
+        var country = $("#country").val();
+        var desde = $("#desde").val();
+        var hasta = $("#hasta").val();
+        var pag = $("#pag").val();
+        var pag2 = $("#pag2").val();
+        pag3 = parseInt(pag2) - parseInt(pag);
+			if(year != ""){
+				year = "/"+year;
+			}
+			if(country != ""){
+				country = "/" + country;
+			}
+			if(desde != ""){
+				desde = "&from=" + desde;
+			}
+			if(hasta != ""){
+				hasta = "&to=" + hasta;
+			}
+			if(pag != ""){
+				pag = "&limit=" + pag;
+			}
+			if(pag2 != ""){
+				pag2 = "&offset=" + pag3;
+			}
+          var request = $.ajax(
+			{
+				type: "GET",
+				url:"https://sos-2016-13.herokuapp.com/api/v1/consumed" + country + year + "?apikey="+apikey + desde + hasta + pag2 + pag,
+				data: "{}",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				cache: false,
+				success: function (data) {
+					var trHTML = '';
+				$.each(data, function (i, item) {
+					if(item != null){
+					trHTML += '<thead><tr><td>' + item.country + '</td><td>' + item.year + '</td><td>' + item.petroleum_cost + '</td><td>' + item.electric_cost + '</td></tr></thead>';
+					siguiente.disabled = false;
+					}else{
+						anterior.disabled = true;
+					}
+				});
+				$('#location').append(trHTML);
+				},
+				error: function (msg) {
+					alert(msg.responseText);
+				}
+	   		 });
 
-        return true;
-      }
+          myFunction(pag3);
 
+			request.always(function(jqXHR,status){
+				errores(jqXHR,status);
+				});
+	});*/
 
-  function Create() {
-    var status;
-    var c=$("#txtCountry").val();
-    var y=$("#txtYear").val();
-    var f=$("#txtFemale").val();
-    var m=$("#txtMale").val();
-    var request = $.ajax({
-                url: "/api/v1/population-unemployed-percentage-by-gender?apikey="+$("#txtID").val(),
-                type: "POST",
-                data: "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+c+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+y+","+dobles_comillas+"female"+dobles_comillas+":"+f+","+dobles_comillas+"male"+dobles_comillas+":"+m+"}",
-                dataType: "JSON",
-                contentType: "application/json"
-                });
-    request.done(function(data){
-      tblPersons=JSON.stringify(data);
-      sessionStorage.setItem("tblPersons", tblPersons);
-  });
-   request.always(function(jqXHR,status) {
-     status=jqXHR.status;
-     if($("#txtID").val()!="clave")
-     alert("Error contraseña");
-     if(status == 409)
-     alert("Elemento repetido");
-     else
-     alert("Los datos han sido almacenados");
-    console.log( "Status:"+jqXHR.status);
+  		$("#add").click(function(){
+		$("#tabla td").remove();
+        var apikey = $("#apikey").val();
+        var country = $("#country").val();
+        var year = $("#year").val();
+        var female = $("#female").val();
+        var male = $("#male").val();
+		       	var request = $.ajax({
+		            url:"/api/v1/population-unemployed-percentage-by-gender?apikey="+apikey,
+		            type:"POST",
+		            data: '{"country":"'+country+'","year":'+year+',"female":'+female+',"male":'+male+'}',
+		            contentType : "application/json"
+		   		     });
+        		request.always(function(jqXHR,status){
+              errores(jqXHR,status);
+				});
+				refrescar(apikey);
+  		});
 
-   });
-    Mostrar();
-    return true;
-  }
+  		$("#edit").click(function(){
+		$("#tabla td").remove();
+        var apikey = $("#apikey").val();
+        var country = $("#country").val();
+        var year = $("#year").val();
+        var female = $("#female").val();
+        var male = $("#male").val();
+        var request = $.ajax({
+            url:"/api/v1/population-unemployed-percentage-by-gender/" + country + "/" + year + "?apikey="+apikey,
+            type:"PUT",
+            data: '{"country":"'+country+'","year":'+year+',"female":'+female+',"male":'+male+'}',
+            contentType : "application/json"
+   		     });
+        		request.always(function(jqXHR,status){
+              errores(jqXHR,status);
+				});
+				refrescar(apikey);
+  		});
 
-  function Edit() {
-    var c=$("#txtCountry").val();
-    var y=$("#txtYear").val();
-    var f=$("#txtFemale").val();
-    var m=$("#txtMale").val();
-    var request = $.ajax({
-                url: "/api/v1/population-unemployed-percentage-by-gender/"+c+"/"+y+"?apikey="+$("#txtID").val(),
-                type: "PUT",
-                data: "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+c+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+y+","+dobles_comillas+"female"+dobles_comillas+":"+f+","+dobles_comillas+"male"+dobles_comillas+":"+m+"}",
-                dataType: "JSON",
-                contentType: "application/json"
-                });
-    request.done(function(data){
-      tblPersons=JSON.stringify(data);
-      sessionStorage.setItem("tblPersons", tblPersons);
-  });
-   request.always(function(jqXHR) {
+  		$("#remove").click(function(){
+		$("#tabla td").remove();
+        var apikey = $("#apikey").val();
+        var country = $("#country").val();
+        var year = $("#year").val();
+        var request = $.ajax({
+            url:"/api/v1/population-unemployed-percentage-by-gender/" + country + "/" + year + "?apikey="+apikey,
+            type:"DELETE",
+            contentType : "application/json"
+   		     });
+        		request.always(function(jqXHR,status){
+              errores(jqXHR,status);
+				});
+				refrescar(apikey);
+  		});
 
-    console.log( "Status:"+jqXHR.status);
+ 		$("#removeall").click(function(){
+			$("#tabla td").remove();
+        var apikey = $("#apikey").val();
+        	var request = $.ajax({
+            url:"/api/v1/population-unemployed-percentage-by-gender?apikey="+apikey,
+            type:"DELETE",
+            contentType : "application/json"
+   		     });
+       		 request.always(function(jqXHR,status){
+             errores(jqXHR,status);
+				});
+       		 refrescar(apikey);
+  		});
 
-   });
-   if($("#txtID").val()!="clave"){
-     alert("Error contraseña");
-   }else{
-    alert("Los datos han sido editados");
-  }//Mensaje de alerta
-    Mostrar();
-    return true;
-  }
+		$("#all").click(function(){
+			$("#tabla td").remove();
+		var apikey = $("#apikey").val();
+		var request = $.ajax(
+		{
+			type: "GET",
+			url: '/api/v1/population-unemployed-percentage-by-gender?apikey='+apikey,
+			data: "{}",
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			cache: false,
+			success: function (data) {
+				var trHTML = '';
+			$.each(data, function (i, item) {
+				trHTML += '<thead><tr><td>' + item.country + '</td><td>' + item.year + '</td><td>' + item.female + '</td><td>' + item.male + '</td></tr></thead>';
+			});
+			$('#tabla').append(trHTML);
+			},
+			error: function (msg) {
+				alert(msg.responseText);
+			}
+   		 });
+				request.always(function(jqXHR,status){
+				errores(jqXHR,status);
+				});
+	});
+function errores(jqXHR,status){
+	if(status=="error"){
+					if(jqXHR.status == "401"){
+						$("#status").text("Apikey incorrect, please insert new apikey.");
+					}else if (jqXHR.status == "409"){
+						$("#status").text("You can´t add that data, this data already exists.");
+					}
 
-
-
-  function Delete() {
-       var c=$("#txtCountry").val();
-    var y=$("#txtYear").val();
-    var f=$("#txtFemale").val();
-    var m=$("#txtMale").val();
-    var request = $.ajax({
-                url: "/api/v1/population-unemployed-percentage-by-gender/"+c+"/"+y+"?apikey="+$("#txtID").val(),
-                type: "DELETE",
-                data: "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+c+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+y+","+dobles_comillas+"female"+dobles_comillas+":"+f+","+dobles_comillas+"male"+dobles_comillas+":"+m+"}",
-                dataType: "JSON",
-                contentType: "application/json"
-                });
-    request.done(function(data){
-      tblPersons=JSON.stringify(data);
-      sessionStorage.setItem("tblPersons", tblPersons);
-  });
-   request.always(function(jqXHR) {
-
-    console.log( "Status:"+jqXHR.status);
-
-   });
-   if($("#txtID").val()!="clave"){
-     alert("Error contraseña");
-   }else{
-    alert("El dato ha sido eliminado");
-  } //Mensaje de alerta
-    Mostrar();
-    return true;
-
-  }
-
-
-  function Carga() {
-
-    var request = $.ajax({
-                url: "/api/v1/population-unemployed-percentage-by-gender/loadInitialData?apikey="+$("#txtID").val(),
-                type: "GET",
-                data: "",
-                dataType: "JSON",
-                contentType: "application/json"
-                });
-    request.done(function(data){
-      tblPersons=JSON.stringify(data);
-      sessionStorage.setItem("tblPersons", tblPersons);
-  });
-   request.always(function(jqXHR) {
-
-    console.log( "Status:"+jqXHR.status);
-
-   });
-   if($("#txtID").val()!="clave"){
-     alert("Error contraseña");
-  } else{
-    alert("Datos reseteados");
-  }
-    Mostrar();
-    return true;
-  }
-
-
-  function Search() {
-    var c=$("#txtCountry").val();
- var y=$("#txtYear").val();
-    var request = $.ajax({
-                url: "/api/v1/population-unemployed-percentage-by-gender/"+c+"/"+y+"?apikey="+$("#txtID").val(),
-                type: "GET",
-                data: "",
-                dataType: "JSON",
-                contentType: "application/json"
-                });
-    request.done(function(data){
-      tblPersons=JSON.stringify(data);
-      sessionStorage.setItem("tblPersons", tblPersons);
-  });
-   request.always(function(jqXHR) {
-
-    console.log( "Status:"+jqXHR.status);
-
-   });
-   if($("#txtID").val()!="clave"){
-     alert("Error contraseña");
-  } else{
-    alert("Busqueda realizada");
-  }
-
-    return true;
-  }
-
-
-  function List() {
-    $("#tblList").html("");
-    $("#tblList").html(
-            "<thead>" +
-            "<tr>" +
-            "<th>Country</th>" +
-            "<th>Year</th>" +
-            "<th>Female</th>" +
-            "<th>Male</th>" +
-            "<th>Actions</th>" +
-            "</tr>" +
-            "</thead>" +
-            "<tbody>" +
-            "</tbody>"
-            ); //Agregar la tabla a la estructura HTML
-        for (var i in tblPersons ) {
-            var per = tblPersons[i];
-        $("#tblList tbody").append("<tr>" +
-                "<td>" + per.country + "</td>" +
-                "<td>" + per.year + "</td>" +
-                "<td>" + per.female + "</td>" +
-                "<td>" + per.male + "</td>" +
-                "<td><img src='edit.png' alt='Edit" + i + "' class='btnEdit'/>&nbsp &nbsp<img src='delete.png' alt='Delete" + i + "' class='btnDelete'/>&nbsp &nbsp<img src='lupa.png' alt='Search" + i + "' class='btnSearch'/>&nbsp &nbsp<img src='Carga.png' alt='Carga" + i + "' class='btnCarga'/></td>" +
-                "</tr>"
-                );
-    } //Recorrer y agregar los items a la tabla HTML
-
-  }
-
-
-
-  $("#frmPerson").bind("submit", function () {
-    if (operation === "C")
-        return Create();
-    if (operation === "E")
-        return Edit();
-    if(operation=== "D")
-        return Delete();
-    if(operation=== "S")
-        return Search();
-    else
-      return Carga();
-
-  }); //Función para decidir si se encuentra añadiendo o editando un item
-
-
-
-
-  List();
-
-  $(".btnCarga").bind("click", function () {
-    operation="L";
-    $("#txtCountry").attr("readonly", "readonly");
-    $("#txtYear").attr("readonly", "readonly");
-    $("#txtFemale").attr("readonly", "readonly");
-    $("#txtMale").attr("readonly", "readonly");
-    });
-
-  $(".btnSearch").bind("click", function () {
-    operation = "S";
-    $("#txtFemale").attr("readonly", "readonly");
-    $("#txtMale").attr("readonly", "readonly");
-  });
-
-
-  $(".btnEdit").bind("click", function () {
-    operation = "E"; //"E" = Editar
-    //Obtener el identificador del item a ser editado
-    selected_index = parseInt($(this).attr("alt").replace("Edit", ""));
-    // Convertir de JSON al formato adecuando para editarlos datos
-    var per = tblPersons[selected_index];
-    $("#txtCountry").val(per.country);
-    $("#txtYear").val(per.year);
-    $("#txtFemale").val(per.female);
-    $("#txtMale").val(per.male);
-    $("#txtCountry").focus();
-  });
-
-  $(".btnDelete").bind("click", function () {
-    operation = "D";
-    //Obtener el identificador del item a ser eliminado
-    selected_index = parseInt($(this).attr("alt").replace("Delete", ""));
-    var per = tblPersons[selected_index];
-    $("#txtCountry").val(per.country);
-    $("#txtYear").val(per.year);
-    $("#txtFemale").val(per.female);
-    $("#txtMale").val(per.male);
-    $("#txtCountry").attr("readonly", "readonly");
-    $("#txtYear").attr("readonly", "readonly");
-    $("#txtFemale").attr("readonly", "readonly");
-    $("#txtMale").attr("readonly", "readonly");
-    $("#txtID").focus();
-
-});
-
-});
-        </script>
-
-    </head>
-    <body>
-
-        <!-- Cabecera -->
-        <div class="page-header">
-          <div ALIGN=center>
-            <h1>Graphical user interface</h1>
-          </div>
-        </div>
-
-        <!--Formulario de entrada de datos-->
-        <div class="container">
-            <form id="frmPerson" class="form-horizontal">
-                <div class="form-group">
-                    <label for="txtID" class="col-sm-2 control-label">ID</label>
-                    <div class="col-sm-4">
-                        <input type="text" id="txtID" class="form-control" placeholder="ID">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="txtName" class="col-lg-2 control-label">Country</label>
-                    <div class="col-sm-4">
-                        <input type="text" id="txtCountry" class="form-control" placeholder="Country">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="txtPhone" class="col-lg-2 control-label">Year</label>
-                    <div class="col-sm-4">
-                        <input type="text" id="txtYear" class="form-control" placeholder="Year">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="txtEmail" class="col-lg-2 control-label">Female</label>
-                    <div class="col-sm-4">
-                        <input type="text" id="txtFemale" class="form-control" placeholder="Female">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="txtEmail" class="col-lg-2 control-label">Male</label>
-                    <div class="col-sm-4">
-                        <input type="text" id="txtMale" class="form-control" placeholder="Male">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-lg-offset-2 col-sm-4">
-                        <input type="submit" value="Send" id="btnSave" class="btn btn-success"/>
-                        <input type="button" value="Load" id="btnLoad" class="btn btn-success"/>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <!--Tabla con la lista de datos-->
-        <div class="container">
-            <table id="tblList" class="table table-bordered"></table>
-        </div>
+				}else{
+					$("#status").text("")
+				}
+			};
+	</script>
 
 
-    </body>
+
+</body>
 </html>
