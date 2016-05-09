@@ -537,9 +537,9 @@ function editardato(){
     //$("#nav li").removeClass("active");
     //$("#botonEditarDato").addClass("active");
     $("#pais").val(country);
-    $("#pais").prop('disabled', true);
+    $("#pais").prop('disabled', false);
     $("#anno").val(year);
-    $("#anno").prop('disabled', true);
+    $("#anno").prop('disabled', false);
 
   });
   var r= $("#pais").val()
@@ -557,12 +557,8 @@ function editardato(){
     contentType: "application/json"
   });
 
-  $("#pais").val(country);
-  $("#pais").prop('disabled', false);
-  $("#anno").val(year);
-  $("#anno").prop('disabled', false);
   busqueda();
-  
+
 }
 
 function paginacion() {
