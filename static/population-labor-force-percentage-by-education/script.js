@@ -537,9 +537,9 @@ function editardato(){
     //$("#nav li").removeClass("active");
     //$("#botonEditarDato").addClass("active");
     $("#pais").val(country);
-    $("#pais").prop('disabled', true);
+    //$("#pais").prop('disabled', true);
     $("#anno").val(year);
-    $("#anno").prop('disabled', true);
+    //$("#anno").prop('disabled', true);
 
   });
   var r= $("#pais").val()
@@ -558,19 +558,6 @@ function editardato(){
   });
 
   busqueda();
-  desbloquearCampos();
-
-}
-function desbloquearCampos(){
-  var country = document.getElementById("pai2").value;
-  var year = document.getElementById("ann2").value;
-
-  request.success(function(status,jqXHR,data){
-    $("#pais").val(country);
-    $("#pais").prop('enabled', true);
-    $("#anno").val(year);
-    $("#anno").prop('enabled', true);
-  });
 
 }
 
