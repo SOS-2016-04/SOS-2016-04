@@ -89,8 +89,11 @@ else
 
 
 module.exports.getPopulationPercentage = function(req,res){
+var from = req.query.from;
+var to = req.query.to;
 var data = req.params.data;
 var resultado = [];
+var resultado_definitivo = [];
 apikey = req.query.apikey;
 	var encontrado = false;
 
@@ -115,7 +118,18 @@ if (apikey && apikey=="secret")
 
     if(encontrado == true)
     {
-    	res.send(resultado);
+
+    	for(var i3=0;i3<resultado.length;i3++)
+    	{
+
+    		if (from === undefined || isNaN(from) || from <= resultado[i3] || to === undefined || isNaN(to) || to >= resultado[i3])
+    		{resultado_definitivo.push(resultado[i3]);}   
+    }
+
+    res.send(resultado_definitivo);
+
+
+
     }
 
     if(encontrado == false)
