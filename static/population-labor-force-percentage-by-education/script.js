@@ -567,9 +567,9 @@ function desbloquearCampos(){
 
   request.success(function(status,jqXHR,data){
     $("#pais").val(country);
-    $("#pais").prop('enabled', true);
+    $("#pais").prop('disabled', false);
     $("#anno").val(year);
-    $("#anno").prop('enabled', true);
+    $("#anno").prop('disabled', false);
   });
 
 }
