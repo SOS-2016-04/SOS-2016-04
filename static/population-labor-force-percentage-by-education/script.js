@@ -557,8 +557,8 @@ function editardato(){
     contentType: "application/json"
   });
 
-  $("#pais").prop('disabled', false);
-  $("#anno").prop('disabled', false);
+  $("#pais").prop('enabled', true);
+  $("#anno").prop('enabled', true);
   busqueda();
 
 }
