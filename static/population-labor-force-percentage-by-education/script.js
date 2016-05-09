@@ -20,7 +20,10 @@ function IniciarTabla(data){
         "bSort" : false
 
     } );
+<<<<<<< HEAD
     paginacion2();
+=======
+>>>>>>> d97a1da43cc52d45b31c32dab4e1fdada4c46138
   return table;
 
 
@@ -303,7 +306,10 @@ function actualizarTabla(){
               $("#tertiaryEducation").val()
           ] ).draw();
   table.row('.selected').remove().draw( false );
+<<<<<<< HEAD
   paginacion2();
+=======
+>>>>>>> d97a1da43cc52d45b31c32dab4e1fdada4c46138
 }
 
 function solicitudAjax(metodo, url, datos){
