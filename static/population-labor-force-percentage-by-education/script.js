@@ -246,7 +246,12 @@ function botonEliminarDato(){
 
 function botonEliminarTodo(){
 
+
   var x;
+
+    alertify.confirm("Sure you want to delete all data?", function (e) {
+      if (e) {
+    console.log(x);
 
     var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education?apikey=' + $("#apikey").val();
     console.log($("#apikey").val());
@@ -260,6 +265,12 @@ function botonEliminarTodo(){
     table.rows().remove().draw(false);
     });
     x = "Aceptado";
+    alertify.alert("Data deleted.", function(){
+      location.reload();
+    });
+  }else{
+x = "Cancelado";
+  }}
 
     console.log("Datos borrado");
     request.always(function(jqXHR,status) {
