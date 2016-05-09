@@ -525,7 +525,7 @@ function editardato(){
     $("#tituloFormulario").text("Editar dato:");
     //$("#nav li").removeClass("active");
     //$("#botonEditarDato").addClass("active");
-    $("#pais").val(region);
+    $("#pais").val(country);
     $("#pais").prop('disabled', true);
     $("#anno").val(year);
     $("#anno").prop('disabled', true);
