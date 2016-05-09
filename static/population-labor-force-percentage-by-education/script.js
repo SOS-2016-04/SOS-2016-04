@@ -270,7 +270,7 @@ function botonEliminarTodo(){
     });
   }else{
 x = "Cancelado";
-  }}
+  }});
 
     console.log("Datos borrado");
     request.always(function(jqXHR,status) {
