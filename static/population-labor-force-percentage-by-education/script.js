@@ -537,9 +537,9 @@ function editardato(){
     //$("#nav li").removeClass("active");
     //$("#botonEditarDato").addClass("active");
     $("#pais").val(country);
-    //$("#pais").prop('disabled', true);
+    $("#pais").prop('enabled', true);
     $("#anno").val(year);
-    //$("#anno").prop('disabled', true);
+    $("#anno").prop('enabled', true);
 
   });
   var r= $("#pais").val()
