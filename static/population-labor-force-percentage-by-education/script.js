@@ -4,9 +4,6 @@ var nuevoDato = true;
 
 function IniciarTabla(data){
 
-
-
-
   var datos = data;
 
   var table =  $('#tablaid').DataTable( {
@@ -23,6 +20,7 @@ function IniciarTabla(data){
         "bSort" : false
 
     } );
+    paginacion2();
   return table;
 
 
@@ -305,6 +303,7 @@ function actualizarTabla(){
               $("#tertiaryEducation").val()
           ] ).draw();
   table.row('.selected').remove().draw( false );
+  paginacion2();
 }
 
 function solicitudAjax(metodo, url, datos){
@@ -547,6 +546,53 @@ function editardato(){
     contentType: "application/json"
   });
 
+}
+
+function paginacion() {
+     var x = document.getElementById("limit").value;
+     var busqueda= document.getElementById("busqueda").value;
+
+    $.ajax(
+    {
+        type: "GET",
+        url: 'http://sos-2016-04.herokuapp.com//api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() + '&limit='+x+'&offset='+'0',
+        data: "{}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        cache: false,
+
+        success: function (data) {
+          $("#tabla tbody tr").remove();
+
+          var trHTML = '';
+
+      $.each(data, function (i, item) {
+        console.log(data[i]);
+          trHTML +="<tr class='info'><td>" + data[i].country + '</td><td>' + data[i].year + '</td><td>' + data[i].primaryEducation + '</td><td>' + data[i].secondaryEducation + '</td><td>' + data[i].tertiaryEducation + '</td></tr>';
+      });
+
+      $('#tablaid').append(trHTML);
+
+
+
+        },
+
+        error: function(jqXHR,status){
+          console
+          if(jqXHR.status == 401){
+              alertify.alert("La clave introducida no es correcta");
+          }
+          if(jqXHR.status == 404){
+              alertify.alert("No se encontraron resultados");
+          }
+          if(jqXHR.status == 500){
+            alertify.alert("ERROR: "+jqXHR.status+" Error interno del Servidor");
+           }
+            console.log("texto codigo always:"+jqXHR.statusText);
+            console.log("status: "+status);
+
+        }
+    });
 }
 
 function paginacion2() {
