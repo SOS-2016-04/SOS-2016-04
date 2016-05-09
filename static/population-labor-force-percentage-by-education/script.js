@@ -20,7 +20,7 @@ function IniciarTabla(data){
         "bSort" : false
 
     } );
-    
+
   return table;
 
 
@@ -536,7 +536,7 @@ function editardato(){
   var a= $("#primaryEducation").val()
   var m= $("#secondaryEducation").val()
   var w= $("#tertiaryEducation").val()
-  var datos='{"country":"'+r+'","year":"'+y+'","primaryEducation":"'+a+'","secondaryEducation":"'+m+'","tertiaryEducation":"'+w+'"}';
+  var datos='{"country":"'""+r+""'","year":"'+y+'","primaryEducation":"'+a+'","secondaryEducation":"'+m+'","tertiaryEducation":"'+w+'"}';
   var metodo = "PUT";
   var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+country+'/'+year+'?apikey='+$("#apikey").val();
     var request2 = $.ajax({
@@ -555,7 +555,7 @@ function paginacion() {
     $.ajax(
     {
         type: "GET",
-        url: 'http://sos-2016-04.herokuapp.com//api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() + '&limit='+x+'&offset='+'0',
+        url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() + '&limit='+x+'&offset='+'0',
         data: "{}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
