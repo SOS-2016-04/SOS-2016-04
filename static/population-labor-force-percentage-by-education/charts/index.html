@@ -1,14 +1,26 @@
 <html>
   <head>
+    <title>population-labor-force-percentage-by-education</title>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+  	<link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
+  	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.css"></link>
+  	<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.4.1/css/alertify.min.css"></link>
+  	<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.4.1/css/themes/bootstrap.min.css"></link>
+  	<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+  	<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+  	<script src="../js/bootstrap.min.js"></script>
+  	<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+  	<script src="//cdn.jsdelivr.net/alertifyjs/1.4.1/alertify.min.js"></script>
+  	<script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+  	<script src="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-           <div id="regions_div" style="width: 900px; height: 500px;"></div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
     <script type='text/javascript'>
       google.charts.load('current', {'packages': ['geochart']});
-
 
       $(document).ready(function (){
         $("#send").click(function(){
@@ -47,23 +59,59 @@
      });
      });
        });
-       </script>
-     </head>
-     <body>
-       <div class="container">
-             <div class="row">
-               <div class="col m1">
-                  <h1>CHART</h1>
-                  <p>The map shows the different unemployed countrys. </p>
-               </div>
-               <div class="col-xs-3">
-               <input id="year" class="form-control" placeholder="Year"></input></br>
-               <button id="send" class="btn btn-success btn-lg">Send</button></br></br>
-               </div>
-               <div class="col m12">
-                 <div id="chart_div" style="width: 1200px; height: 720px;"></div>
-               </div>
-             </div>
-           </div>
-     </body>
-   </html>
+    </script>
+  </head>
+  <body>
+    <div class="container">
+    <div class="jumbotron">
+    <ol class="breadcrumb">
+    		<li><a href="/">Home</a></li>
+    		<li class="active">Chart</li>
+
+        <div><h4 align="center">Map shows the different percentages education by countrys. </h4></div>
+
+
+        <div class="container1">
+        	<div class="text-center">
+        <h3 id="tituloFormulario">Primay Education:</h3>
+        </div>
+
+        <label>Year: </label>
+        <div class="text-center">
+        <input type="text" class="form-control" id="year" placeholder="Year" required="true">
+        </div>
+        </br>
+        <form role="form">
+          <input type="button" class="btn btn-primary" value="Show"></input>
+        </form>
+        </div>
+
+        <div id="chart_div" style="width: 900px; height: 500px;"></div>
+
+
+    </div>
+    </div>
+
+
+
+
+
+
+    ////
+    <div class="container">
+          <div class="row">
+            <div class="col m1">
+               <h1>CHART</h1>
+               <p>The map shows the different unemployed countrys. </p>
+            </div>
+            <div class="col-xs-3">
+            <input id="year" class="form-control" placeholder="Year"></input></br>
+            <button id="send" class="btn btn-success btn-lg">Send</button></br></br>
+            </div>
+            <div class="col m12">
+              <div id="chart_div" style="width: 900px; height: 500px;"></div>
+            </div>
+          </div>
+        </div>
+  </body>
+</html>
