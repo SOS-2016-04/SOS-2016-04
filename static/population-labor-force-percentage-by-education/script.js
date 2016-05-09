@@ -221,7 +221,7 @@ function botonEliminarDato(){
       alertify.alert("La clave introducida no es correcta");
     }
     if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado");
+      alertify.alert("Dato no encontrado 2");
     }
     if(jqXHR.status == 400){
       alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
@@ -273,7 +273,7 @@ function botonEliminarTodo(){
       alertify.alert("La clave introducida no es correcta");
     }
     if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado");
+      alertify.alert("Dato no encontrado 3");
     }
     if(jqXHR.status == 400){
       alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
@@ -346,7 +346,7 @@ function solicitudAjax(metodo, url, datos){
       alertify.alert("La clave introducida no es correcta");
     }
     if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado");
+      alertify.alert("Dato no encontrado 4");
     }
     if(jqXHR.status == 400){
       alertify.alert("ERROR: "+jqXHR.status+" Falta algún parámetro para rellenar o el tipo esta mal.");
@@ -448,7 +448,7 @@ function eliminardato(){
       alertify.alert("La clave introducida no es correcta");
     }
     if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado");
+      alertify.alert("Dato no encontrado 5");
     }
     if(jqXHR.status == 400){
       alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
@@ -500,7 +500,7 @@ function editardato(){
       alertify.alert("La clave introducida no es correcta");
     }
     if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado");
+      alertify.alert("Dato no encontrado 1");
     }
     if(jqXHR.status == 400){
       alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
@@ -536,7 +536,7 @@ function editardato(){
   var a= $("#primaryEducation").val()
   var m= $("#secondaryEducation").val()
   var w= $("#tertiaryEducation").val()
-  var datos='{"country":"'+country+'","year":"'+year+'","primaryEducation":"'+a+'","secondaryEducation":"'+m+'","tertiaryEducation":"'+w+'"}';
+  var datos='{"country":"'+r+'","year":"'+y+'","primaryEducation":"'+a+'","secondaryEducation":"'+m+'","tertiaryEducation":"'+w+'"}';
   var metodo = "PUT";
   var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+country+'/'+year+'?apikey='+$("#apikey").val();
     var request2 = $.ajax({
