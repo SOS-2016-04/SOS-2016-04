@@ -654,7 +654,7 @@ var busqueda= document.getElementById("busqueda").value;
 
 function busqueda(){
     var busqueda = document.getElementById("busqueda").value;
-    var busqueda = document.getElementById("busqueda2").value;
+    var busqueda2 = document.getElementById("busqueda2").value;
 
 
     $.ajax(
