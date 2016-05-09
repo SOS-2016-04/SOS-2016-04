@@ -20,7 +20,7 @@ function IniciarTabla(data){
         "bSort" : false
 
     } );
-  //paginacion2();
+  paginacion2();
   return table;
 
 
@@ -378,7 +378,9 @@ function solicitudAjax(metodo, url, datos){
 }
 
 function cargaInicial(){
-  var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/loadInitialData?apikey=' + $("#apikey").val();
+
+  var apikey= $("#apikey").val()
+  var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/loadInitialData?apikey=' + apikey;
   var method = "GET";
   var request = $.ajax({
     url: urlstring,
