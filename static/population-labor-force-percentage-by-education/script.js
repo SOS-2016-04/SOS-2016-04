@@ -557,6 +557,10 @@ function editardato(){
     contentType: "application/json"
   });
 
+  $("#pais").prop('disabled', false);
+  $("#anno").prop('disabled', false);
+  busqueda();
+
 }
 
 function paginacion() {
