@@ -266,9 +266,7 @@ function botonEliminarTodo(){
     });
     x = "Aceptado";
 
-  }else{
-x = "Cancelado";
-  }});
+
 
     console.log("Datos borrado");
     request.always(function(jqXHR,status) {
@@ -300,6 +298,10 @@ x = "Cancelado";
     console.log("status: "+status);
     }
   });
+
+}else{
+x = "Cancelado";
+}});
 
 }
 function actualizarTabla(){
