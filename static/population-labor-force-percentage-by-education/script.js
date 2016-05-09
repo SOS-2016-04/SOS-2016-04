@@ -557,9 +557,20 @@ function editardato(){
     contentType: "application/json"
   });
 
-  $("#pais").prop('enabled', true);
-  $("#anno").prop('enabled', true);
   busqueda();
+  desbloquearCampos();
+
+}
+function desbloquearCampos(){
+  var country = document.getElementById("pai2").value;
+  var year = document.getElementById("ann2").value;
+
+  request.success(function(status,jqXHR,data){
+    $("#pais").val(country);
+    $("#pais").prop('enabled', true);
+    $("#anno").val(year);
+    $("#anno").prop('enabled', true);
+  });
 
 }
 
