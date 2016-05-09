@@ -1,6 +1,12 @@
 var seleccionado = false;
 var nuevoDato = true;
 
+function clave(){
+
+  document.getElementById("apikey").value="clave";
+
+}
+
 
 function IniciarTabla(data){
 
