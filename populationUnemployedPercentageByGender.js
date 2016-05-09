@@ -71,6 +71,10 @@ else
 
 
 module.exports.getUnemploye = function(req,res){
+	from = req.query.from;
+	to = req.query.to;
+	limit = req.query.limit;
+	offset = req.query.offset;
 	apikey = req.query.apikey;
 var data = req.params.data;
 var resultado = [];
@@ -93,6 +97,22 @@ var resultado = [];
 
     }
 
+		if (from && to)
+		{
+		for(var i=0;i<resultado.length;i++)
+		{
+		if(resultado[i].year < from  ||  resultado[i].year > to)
+		{
+			resultado.splice(i,1);
+			i = i - 1;
+		}}}
+		if(limit && offset)
+		{
+
+		resultado.splice(0,offset);
+		resultado.splice(limit,resultado.length-limit);
+
+		}
     if(encontrado == true)
     {
     	res.send(resultado);
@@ -109,6 +129,10 @@ var resultado = [];
 
 
 module.exports.getUnemployeCountryYear = function(req,res){
+	from = req.query.from;
+	to = req.query.to;
+	limit = req.query.limit;
+	offset = req.query.offset;
 	apikey = req.query.apikey;
 var country = req.params.country;
 var year = req.params.year;
@@ -125,6 +149,23 @@ var resultado = [];
 			encontrado = true;
 		}
     }
+
+		if (from && to)
+		{
+		for(var i=0;i<resultado.length;i++)
+		{
+		if(resultado[i].year < from  ||  resultado[i].year > to)
+		{
+			resultado.splice(i,1);
+			i = i - 1;
+		}}}
+		if(limit && offset)
+		{
+
+		resultado.splice(0,offset);
+		resultado.splice(limit,resultado.length-limit);
+
+		}
 
     if(encontrado == true)
     {

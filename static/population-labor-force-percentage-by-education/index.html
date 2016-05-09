@@ -38,7 +38,7 @@
 <div class="container">
 <div class="jumbotron">
 <ol class="breadcrumb">
-		<li><a href="/about/">About</a></li>
+		<li><a href="/">Home</a></li>
 		<li class="active">REST Client GUI</li>
 <div><h2 align="center">REST Client GUI</h2></div>
 <div><h4 align="center">Population labor force percentage by education</h4></div>
@@ -46,125 +46,159 @@
 </br>
 </br>
 <div class="text-center">
-	<div>ApiKey:<input type="text" name="apieky" id="apikey" placeholder="Apikey"/></div>
+	<div>ApiKey: <input type="text" name="apieky" id="apikey" value="clave" placeholder="Apikey"/></div>
 </br>
 </div>
 
 <div class="container-fluid">
-			<input onclick="cargaInicial()" type="button" name="Carga datos iniciales" class="btn btn-primary btn-lg btn-block" value="Carga datos iniciales"></input>
-			<input onclick="botonEliminarTodo()" type="button" name="Eliminar datos" class="btn btn-danger btn-lg btn-block" value="Eliminar datos"></input>
+			<input onclick="cargaInicial()" type="button" name="Carga datos iniciales" class="btn btn-primary btn-lg btn-block" value="Initial Data Load"></input>
+			<input onclick="botonEliminarTodo()" type="button" name="Eliminar datos" class="btn btn-danger btn-lg btn-block" value="Delete Data"></input>
 </div>
+</br>
 
+</br>
 <div class="container" id="formulario2">
  <div class="text-center">
- <h2 id="tituloFormulario">Insertar dato:</h2>
+ <h3 id="tituloFormulario">Insert Data:</h3>
+ </div>
   <form role="form">
     <div class="form-group">
-      <label for="Pais">País:</label>
-      <input type="text" class="form-control" id="pais" placeholder="País" >
+      <label for="Pais">Country:</label>
+			<div class="text-center">
+      <input type="text" class="form-control" id="pais" placeholder="Country" >
     </div>
     <div class="form-group">
-      <label for="Anno">Año:</label>
-      <input type="text" class="form-control" id="anno" placeholder="Año" >
+		</div>
+      <label for="Anno">Year:</label>
+			<div class="text-center">
+      <input type="text" class="form-control" id="anno" placeholder="Year" >
+    </div>
+	</div>
+    <div class="form-group">
+      <label for="primary-education">Primary Education:</label>
+			<div class="text-center">
+      <input type="text" class="form-control" id="primaryEducation" placeholder="Primary Education" >
+		</div>
     </div>
     <div class="form-group">
-      <label for="primary-education">Educación primaria:</label>
-      <input type="text" class="form-control" id="primaryEducation" placeholder="Educación primaria" >
-    </div>
-    <div class="form-group">
-      <label for="secondary-education">Educación segundaria:</label>
-      <input type="text" class="form-control" id="secondaryEducation" placeholder="Educación segundaria" >
+      <label for="secondary-education">Secondary Education:</label>
+			<div class="text-center">
+      <input type="text" class="form-control" id="secondaryEducation" placeholder="Secondary Education" >
+		</div>
     </div>
 		<div class="form-group">
-      <label for="tertiary-education">Educación universitaria:</label>
-      <input type="text" class="form-control" id="tertiaryEducation" placeholder="Educación universitaria" >
+      <label for="tertiary-education">Tertiary Education:</label>
+			<div class="text-center">
+      <input type="text" class="form-control" id="tertiaryEducation" placeholder="Tertiary Education" >
     </div>
-    <input type="button" class="btn btn-primary btn-lg btn-block" onclick="enviarDato()" name="Enviar" value="Enviar"></input>
-		</div>
+	</br>
+    <input type="button" class="btn btn-primary" onclick="enviarDato()" name="Enviar" value="Submit"></input>
+	</div>
   </form>
 </div>
 
 </br>
-
-</br>
-<div class="text-center">
-<div class="container" id="formularioBorrar">
-<label>Borrar recurso: </label>
-<input type="text" class="form-control" id="pai" placeholder="País" required="true">
-</br>
-<input type="text" class="form-control" id="ann" placeholder="Año" required="true">
-</br>
-<form role="form">
-  <input type="button" class="btn btn-primary btn-lg btn-block" onclick="eliminardato()" name="Borrdato" value="Borrar"></input>
-</form>
-</div>
-</div>
-
 </br>
 
-<div class="text-center">
 <div class="container" id="formularioActualizar">
-<label>Actualizar recurso: </label>
-<input type="text" class="form-control" id="pai2" placeholder="País" required="true">
+	<div class="text-center">
+<h3 id="tituloFormulario">Update resource:</h3>
+</div>
+<label>Country: </label>
+<div class="text-center">
+<input type="text" class="form-control" id="pai2" placeholder="Country" required="true">
 </br>
-<input type="text" class="form-control" id="ann2" placeholder="Año" required="true">
+</div>
+<label>Year: </label>
+<div class="text-center">
+<input type="text" class="form-control" id="ann2" placeholder="Year" required="true">
+</div>
 </br>
 <form role="form">
-  <input type="button" class="btn btn-primary btn-lg btn-block" onclick="editardato()" name="Actudato" value="Actualizar"></input>
+  <input type="button" class="btn btn-primary" onclick="editardato()" name="Actudato" value="Update"></input>
 </form>
 </div>
-</div>
+
 
 </br>
+</br>
 
+
+<div class="container" id="formularioBorrar">
+	<div class="text-center">
+	<h3 id="tituloFormulario">Delete resource:</h3>
+</div>
+<label>Country: </label>
 <div class="text-center">
+<input type="text" class="form-control" id="pai" placeholder="Country" required="true">
+</br>
+</div>
+<label>Year: </label>
+<div class="text-center">
+<input type="text" class="form-control" id="ann" placeholder="Year" required="true">
+</div>
+</br>
+<form role="form">
+  <input type="button" class="btn btn-primary" onclick="eliminardato()" name="Borrdato" value="Delete"></input>
+</form>
+</div>
+</br>
+</br>
+
+
+
 <div class="container" id="formularioBusqueda">
-<label>Búsqueda: </label>
-<input type="text" class="form-control" id="busqueda" placeholder="País" >
+	<div class="text-center">
+	<h3 id="tituloFormulario">Search:</h3>
+</div>
+<label>Country: </label>
+<div class="text-center">
+<input type="text" class="form-control" id="busqueda" placeholder="Country" >
+</br>
+<label>Search by year range: </label>
+</div>
+<label>Year from: </label>
+<div class="text-center">
+<input type="text" class="form-control" id="busqueda2" placeholder="Year from" >
+</br>
+</div>
+<label>Year to: </label>
+<div class="text-center">
+<input type="text" class="form-control" id="busqueda3" placeholder="Year to" >
+</div>
 </br>
 <form role="form">
-  <input type="button" class="btn btn-primary btn-lg btn-block" onclick="busqueda()" name="Buscar" value="Buscar"></input>
+  <input type="button" class="btn btn-primary" onclick="busqueda()" name="Buscar" value="Search"></input>
 </form>
 </div>
-</div>
 
-<div class="text-center">
-<div>
-  <label>Ver</label><select id="limit" onchange="paginacion()">
-	</br>
-  <option value="5">5</option>
-  <option value="10">10</option>
-  <option value="20">15</option>
-	<option value="40">15</option>
-	<option value="100">15</option>
-</select>
-</div>
-</div
+</br>
+</br>
 
 <div id="tabla">
  <table id="tablaid" class="display" width="100%">
 </table></div>
 
 </br>
-
 <div class="text-center">
 <div>
-  <label>Página: </label><select id="pag" onchange="paginacion2()">
-  <option value="0">0</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-	<option value="5">5</option>
-	<option value="6">6</option>
-	<option value="7">7</option>
-	<option value="8">8</option>
-	<option value="9">9</option>
-	<option value="10">10</option>
+  <label>Show: </label><select id="limit" onchange="paginacion()">
+	</br>
+  <option value="5">5</option>
+  <option value="10">10</option>
+  <option value="15">15</option>
+	</select>
+
+	<label>Page: </label><select id="pag" onchange="paginacion2()">
+  <option value="0">1</option>
+  <option value="1">2</option>
+  <option value="2">3</option>
+  <option value="3">4</option>
+	<option value="4">5</option>
 </select>
-</br>
 </div>
 </div>
+
 
 </div>
 </div>

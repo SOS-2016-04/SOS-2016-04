@@ -1,0 +1,241 @@
+<html>
+  <head>
+    <title>population-labor-force-percentage-by-education</title>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+  	<link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
+  	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.css"></link>
+  	<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.4.1/css/alertify.min.css"></link>
+  	<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.4.1/css/themes/bootstrap.min.css"></link>
+  	<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+  	<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+  	<script src="../js/bootstrap.min.js"></script>
+  	<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+  	<script src="//cdn.jsdelivr.net/alertifyjs/1.4.1/alertify.min.js"></script>
+  	<script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+  	<script src="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <script type='text/javascript'>
+      google.charts.load('current', {'packages': ['geochart']});
+
+      $(document).ready(function (){
+        $("#send").click(function(){
+        var y = $("#year").val();
+        var request= $.ajax({
+              type: "GET",
+              url: "/api/v1/population-labor-force-percentage-by-education/"+y+"?apikey=clave",
+              data: "{}",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              cache: false,
+
+        success: function (data) {
+
+          google.charts.setOnLoadCallback(drawRegionsMap);
+
+          function drawRegionsMap() {
+
+            var dataWidget=[['Country','Education']];
+            $.each(data, function (i, item) {
+              var country = item.country;
+              var primaryEducation = item.primaryEducation;
+              var item=[ String(country), parseInt(primaryEducation)];
+              dataWidget.push(item);
+            });
+
+            var date = google.visualization.arrayToDataTable(dataWidget);
+
+            var options = {
+            };
+
+            var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+            chart.draw(date, options);
+          };
+       }
+     });
+     });
+       });
+
+
+
+
+       $(document).ready(function (){
+         $("#send2").click(function(){
+         var y = $("#year2").val();
+         var request= $.ajax({
+               type: "GET",
+               url: "/api/v1/population-labor-force-percentage-by-education/"+y+"?apikey=clave",
+               data: "{}",
+               contentType: "application/json; charset=utf-8",
+               dataType: "json",
+               cache: false,
+
+         success: function (data) {
+
+           google.charts.setOnLoadCallback(drawRegionsMap);
+
+           function drawRegionsMap() {
+
+             var dataWidget=[['Country','Education']];
+             $.each(data, function (i, item) {
+               var country = item.country;
+               var secondaryEducation = item.secondaryEducation;
+               var item=[ String(country), parseInt(secondaryEducation)];
+               dataWidget.push(item);
+             });
+
+             var date = google.visualization.arrayToDataTable(dataWidget);
+
+             var options = {
+             };
+
+             var chart = new google.visualization.GeoChart(document.getElementById('chart_div2'));
+             chart.draw(date, options);
+           };
+        }
+      });
+      });
+        });
+
+
+
+
+
+        $(document).ready(function (){
+          $("#send3").click(function(){
+          var y = $("#year3").val();
+          var request= $.ajax({
+                type: "GET",
+                url: "/api/v1/population-labor-force-percentage-by-education/"+y+"?apikey=clave",
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                cache: false,
+
+          success: function (data) {
+
+            google.charts.setOnLoadCallback(drawRegionsMap);
+
+            function drawRegionsMap() {
+
+              var dataWidget=[['Country','Education']];
+              $.each(data, function (i, item) {
+                var country = item.country;
+                var tertiaryEducation = item.tertiaryEducation;
+                var item=[ String(country), parseInt(tertiaryEducation)];
+                dataWidget.push(item);
+              });
+
+              var date = google.visualization.arrayToDataTable(dataWidget);
+
+              var options = {
+              };
+
+              var chart = new google.visualization.GeoChart(document.getElementById('chart_div3'));
+              chart.draw(date, options);
+            };
+         }
+       });
+       });
+         });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+    <div class="jumbotron">
+    <ol class="breadcrumb">
+    		<li><a href="/">Home</a></li>
+    		<li class="active">Chart</li>
+
+        <div><h4 align="center">Map shows the different percentages education by countrys. </h4></div>
+
+
+        <div class="container">
+        	<div class="text-center">
+        <h3 id="tituloFormulario">Primay Education:</h3>
+        </div>
+
+        <label>Year: </label>
+        <div class="container">
+          <div class="col-xs-3">
+          <input id="year" class="form-control" placeholder="Year"></input></br>
+          <button id="send" class="btn btn-primary">Send</button></br></br>
+          </div>
+        </div>
+        <div class="container">
+              <div class="row">
+                <div class="col m1">
+                </div>
+                <div class="col m12">
+                  <div id="chart_div" style="width: 950px; height: 500px;"></div>
+                </div>
+              </div>
+          </div>
+
+
+
+
+          <div class="container">
+          	<div class="text-center">
+          <h3 id="tituloFormulario">Secondary Education:</h3>
+          </div>
+
+          <label>Year: </label>
+          <div class="container">
+            <div class="col-xs-3">
+            <input id="year2" class="form-control" placeholder="Year"></input></br>
+            <button id="send2" class="btn btn-primary">Send</button></br></br>
+            </div>
+          </div>
+          <div class="container">
+                <div class="row">
+                  <div class="col m1">
+                  </div>
+                  <div class="col m12">
+                    <div id="chart_div2" style="width: 950px; height: 500px;"></div>
+                  </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="container">
+            	<div class="text-center">
+            <h3 id="tituloFormulario">Tertiary Education:</h3>
+            </div>
+
+            <label>Year: </label>
+            <div class="container">
+              <div class="col-xs-3">
+              <input id="year3" class="form-control" placeholder="Year"></input></br>
+              <button id="send3" class="btn btn-primary">Send</button></br></br>
+              </div>
+            </div>
+            <div class="container">
+                  <div class="row">
+                    <div class="col m1">
+                    </div>
+                    <div class="col m12">
+                      <div id="chart_div3" style="width: 950px; height: 500px;"></div>
+                    </div>
+                  </div>
+              </div>
+
+
+    </div>
+    </div>
+
+
+
+
+
+
+
+  </body>
+</html>

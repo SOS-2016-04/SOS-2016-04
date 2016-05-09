@@ -1,364 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Javascript CRUD</title>
-        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-
-        <!-- Librería Google Fonts: Tipografía del sitio web -->
-        <!--  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>-->
-
-        <!-- Librerías Bootstrap: Estilos externos del sitio web -->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <script src="js/bootstrap.min.js"></script>
-
-        <!-- Estilos del sitio web -->
-        <link rel="stylesheet" href="style.css" />
-
-        <!-- Funciones Javascript -->
-        <script>
-  $(document).ready(() => {
-  var operation = "C"; //"C"=Crear
-  var selected_index = -1; // Indice de el elemento seleccionado en la lista
-  var tblPersons  = sessionStorage.getItem("tblPersons"); //Retornar los datos almacenados
-  tblPersons  = JSON.parse(tblPersons ); //Convertir String a Object
- var dobles_comillas = String.fromCharCode(34);
-  if (tblPersons  === null) // Si no hay datos, inicializar un array vacio
-      tblPersons  = [];
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+<div class="container">
+<h1>Graphical user interface</h1><br/><br/>
 
 
+<div class="col-xs-3">
+  <center>
+  <button id="removeall" class="btn btn-danger btn-lg">Remove All</button></br></br>
+  <button id="loadData" class="btn btn-secondary btn-lg ">Load  Data</button></br></br>
+  <button id="all" class="btn btn-success btn-lg">All</button></br></br>
+  <button id="add" class="btn btn-success btn-lg">Add</button></br></br>
+  <button id="edit" class="btn btn-success btn-lg">Edit</button></br></br>
+  <button id="remove" class="btn btn-danger btn-lg">Remove</button></br></br>
+  </center>
+</div>
 
-      function Mostrar() {
+<div class="col-xs-3">
+</br></br><input id="apikey" class="form-control" placeholder="Apikey" value="clave" ></input></br>
+<input id="country" class="form-control" placeholder="Country"></input></br>
+<input id="year" class="form-control" placeholder="Year"></input></br>
+<input id="female" class="form-control" placeholder="Female"></input></br>
+<input id="male" class="form-control" placeholder="Male"></input></br>
+</div>
 
-        var request = $.ajax({
-                    url: "/api/v1/population-unemployed-percentage-by-gender?apikey="+$("#txtID").val(),
-                    type: "GET",
-                    data: "",
-                    dataType: "JSON",
-                    contentType: "application/json"
-                    });
-        request.done(function(data){
-          tblPersons=JSON.stringify(data);
-          sessionStorage.setItem("tblPersons", tblPersons);
-      });
-       request.always(function(jqXHR) {
-
-        console.log( "Status:"+jqXHR.status);
-
-       });
-
-        return true;
-      }
-
-
-  function Create() {
-    var status;
-    var c=$("#txtCountry").val();
-    var y=$("#txtYear").val();
-    var f=$("#txtFemale").val();
-    var m=$("#txtMale").val();
-    var request = $.ajax({
-                url: "/api/v1/population-unemployed-percentage-by-gender?apikey="+$("#txtID").val(),
-                type: "POST",
-                data: "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+c+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+y+","+dobles_comillas+"female"+dobles_comillas+":"+f+","+dobles_comillas+"male"+dobles_comillas+":"+m+"}",
-                dataType: "JSON",
-                contentType: "application/json"
-                });
-    request.done(function(data){
-      tblPersons=JSON.stringify(data);
-      sessionStorage.setItem("tblPersons", tblPersons);
-  });
-   request.always(function(jqXHR,status) {
-     status=jqXHR.status;
-     if($("#txtID").val()!="clave")
-     alert("Error contraseña");
-     if(status == 409)
-     alert("Elemento repetido");
-     else
-     alert("Los datos han sido almacenados");
-    console.log( "Status:"+jqXHR.status);
-
-   });
-    Mostrar();
-    return true;
-  }
-
-  function Edit() {
-    var c=$("#txtCountry").val();
-    var y=$("#txtYear").val();
-    var f=$("#txtFemale").val();
-    var m=$("#txtMale").val();
-    var request = $.ajax({
-                url: "/api/v1/population-unemployed-percentage-by-gender/"+c+"/"+y+"?apikey="+$("#txtID").val(),
-                type: "PUT",
-                data: "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+c+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+y+","+dobles_comillas+"female"+dobles_comillas+":"+f+","+dobles_comillas+"male"+dobles_comillas+":"+m+"}",
-                dataType: "JSON",
-                contentType: "application/json"
-                });
-    request.done(function(data){
-      tblPersons=JSON.stringify(data);
-      sessionStorage.setItem("tblPersons", tblPersons);
-  });
-   request.always(function(jqXHR) {
-
-    console.log( "Status:"+jqXHR.status);
-
-   });
-   if($("#txtID").val()!="clave"){
-     alert("Error contraseña");
-   }else{
-    alert("Los datos han sido editados");
-  }//Mensaje de alerta
-    Mostrar();
-    return true;
-  }
+<div class="col-xs-3">
+  <button id="search" class="btn btn-primary btn-block">Search</button></br>
+</br></br> <input id="from" class="form-control" placeholder="From"></input> </br>   <input id="to" class="form-control" placeholder="To"></input></br>
+</div>
 
 
+<table id="tabla" class="table">
+  <thead>
+    <tr>
+    <th>Countries</th>
+    <th>Year</th>
+    <th>Female</th>
+    <th>Male</th>
+    </tr>
+  </thead>
+</table>
 
-  function Delete() {
-       var c=$("#txtCountry").val();
-    var y=$("#txtYear").val();
-    var f=$("#txtFemale").val();
-    var m=$("#txtMale").val();
-    var request = $.ajax({
-                url: "/api/v1/population-unemployed-percentage-by-gender/"+c+"/"+y+"?apikey="+$("#txtID").val(),
-                type: "DELETE",
-                data: "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+c+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+y+","+dobles_comillas+"female"+dobles_comillas+":"+f+","+dobles_comillas+"male"+dobles_comillas+":"+m+"}",
-                dataType: "JSON",
-                contentType: "application/json"
-                });
-    request.done(function(data){
-      tblPersons=JSON.stringify(data);
-      sessionStorage.setItem("tblPersons", tblPersons);
-  });
-   request.always(function(jqXHR) {
+<div class="col-xs-3">
+    				<label class="sr-only">Items per Page</label>
+    					<input type="text" class="form-control" id="items" placeholder="Items per Page">
+ 				</div>
+ 				<div class="col-xs-3">
+  					<label class="sr-only">Page Number</label>
+    					<input type="text" class="form-control" id="page" placeholder="Page Number">
+  				</div>
 
-    console.log( "Status:"+jqXHR.status);
-
-   });
-   if($("#txtID").val()!="clave"){
-     alert("Error contraseña");
-   }else{
-    alert("El dato ha sido eliminado");
-  } //Mensaje de alerta
-    Mostrar();
-    return true;
-
-  }
-
-
-  function Carga() {
-
-    var request = $.ajax({
-                url: "/api/v1/population-unemployed-percentage-by-gender/loadInitialData?apikey="+$("#txtID").val(),
-                type: "GET",
-                data: "",
-                dataType: "JSON",
-                contentType: "application/json"
-                });
-    request.done(function(data){
-      tblPersons=JSON.stringify(data);
-      sessionStorage.setItem("tblPersons", tblPersons);
-  });
-   request.always(function(jqXHR) {
-
-    console.log( "Status:"+jqXHR.status);
-
-   });
-   if($("#txtID").val()!="clave"){
-     alert("Error contraseña");
-  } else{
-    alert("Datos reseteados");
-  }
-    Mostrar();
-    return true;
-  }
-
-
-  function Search() {
-    var c=$("#txtCountry").val();
- var y=$("#txtYear").val();
-    var request = $.ajax({
-                url: "/api/v1/population-unemployed-percentage-by-gender/"+c+"/"+y+"?apikey="+$("#txtID").val(),
-                type: "GET",
-                data: "",
-                dataType: "JSON",
-                contentType: "application/json"
-                });
-    request.done(function(data){
-      tblPersons=JSON.stringify(data);
-      sessionStorage.setItem("tblPersons", tblPersons);
-  });
-   request.always(function(jqXHR) {
-
-    console.log( "Status:"+jqXHR.status);
-
-   });
-   if($("#txtID").val()!="clave"){
-     alert("Error contraseña");
-  } else{
-    alert("Busqueda realizada");
-  }
-
-    return true;
-  }
-
-
-  function List() {
-    $("#tblList").html("");
-    $("#tblList").html(
-            "<thead>" +
-            "<tr>" +
-            "<th>Country</th>" +
-            "<th>Year</th>" +
-            "<th>Female</th>" +
-            "<th>Male</th>" +
-            "<th>Actions</th>" +
-            "</tr>" +
-            "</thead>" +
-            "<tbody>" +
-            "</tbody>"
-            ); //Agregar la tabla a la estructura HTML
-        for (var i in tblPersons ) {
-            var per = tblPersons[i];
-        $("#tblList tbody").append("<tr>" +
-                "<td>" + per.country + "</td>" +
-                "<td>" + per.year + "</td>" +
-                "<td>" + per.female + "</td>" +
-                "<td>" + per.male + "</td>" +
-                "<td><img src='edit.png' alt='Edit" + i + "' class='btnEdit'/>&nbsp &nbsp<img src='delete.png' alt='Delete" + i + "' class='btnDelete'/>&nbsp &nbsp<img src='lupa.png' alt='Search" + i + "' class='btnSearch'/>&nbsp &nbsp<img src='Carga.png' alt='Carga" + i + "' class='btnCarga'/></td>" +
-                "</tr>"
-                );
-    } //Recorrer y agregar los items a la tabla HTML
-
-  }
-
-
-
-  $("#frmPerson").bind("submit", function () {
-    if (operation === "C")
-        return Create();
-    if (operation === "E")
-        return Edit();
-    if(operation=== "D")
-        return Delete();
-    if(operation=== "S")
-        return Search();
-    else
-      return Carga();
-
-  }); //Función para decidir si se encuentra añadiendo o editando un item
+</div>
+<script type="text/javascript" src="script.js"></script>
 
 
 
 
-  List();
-
-  $(".btnCarga").bind("click", function () {
-    operation="L";
-    $("#txtCountry").attr("readonly", "readonly");
-    $("#txtYear").attr("readonly", "readonly");
-    $("#txtFemale").attr("readonly", "readonly");
-    $("#txtMale").attr("readonly", "readonly");
-    });
-
-  $(".btnSearch").bind("click", function () {
-    operation = "S";
-    $("#txtFemale").attr("readonly", "readonly");
-    $("#txtMale").attr("readonly", "readonly");
-  });
-
-
-  $(".btnEdit").bind("click", function () {
-    operation = "E"; //"E" = Editar
-    //Obtener el identificador del item a ser editado
-    selected_index = parseInt($(this).attr("alt").replace("Edit", ""));
-    // Convertir de JSON al formato adecuando para editarlos datos
-    var per = tblPersons[selected_index];
-    $("#txtCountry").val(per.country);
-    $("#txtYear").val(per.year);
-    $("#txtFemale").val(per.female);
-    $("#txtMale").val(per.male);
-    $("#txtCountry").focus();
-  });
-
-  $(".btnDelete").bind("click", function () {
-    operation = "D";
-    //Obtener el identificador del item a ser eliminado
-    selected_index = parseInt($(this).attr("alt").replace("Delete", ""));
-    var per = tblPersons[selected_index];
-    $("#txtCountry").val(per.country);
-    $("#txtYear").val(per.year);
-    $("#txtFemale").val(per.female);
-    $("#txtMale").val(per.male);
-    $("#txtCountry").attr("readonly", "readonly");
-    $("#txtYear").attr("readonly", "readonly");
-    $("#txtFemale").attr("readonly", "readonly");
-    $("#txtMale").attr("readonly", "readonly");
-    $("#txtID").focus();
-
-});
-
-});
-        </script>
-
-    </head>
-    <body>
-
-        <!-- Cabecera -->
-        <div class="page-header">
-          <div ALIGN=center>
-            <h1>Graphical user interface</h1>
-          </div>
-        </div>
-
-        <!--Formulario de entrada de datos-->
-        <div class="container">
-            <form id="frmPerson" class="form-horizontal">
-                <div class="form-group">
-                    <label for="txtID" class="col-sm-2 control-label">ID</label>
-                    <div class="col-sm-4">
-                        <input type="text" id="txtID" class="form-control" placeholder="ID">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="txtName" class="col-lg-2 control-label">Country</label>
-                    <div class="col-sm-4">
-                        <input type="text" id="txtCountry" class="form-control" placeholder="Country">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="txtPhone" class="col-lg-2 control-label">Year</label>
-                    <div class="col-sm-4">
-                        <input type="text" id="txtYear" class="form-control" placeholder="Year">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="txtEmail" class="col-lg-2 control-label">Female</label>
-                    <div class="col-sm-4">
-                        <input type="text" id="txtFemale" class="form-control" placeholder="Female">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="txtEmail" class="col-lg-2 control-label">Male</label>
-                    <div class="col-sm-4">
-                        <input type="text" id="txtMale" class="form-control" placeholder="Male">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-lg-offset-2 col-sm-4">
-                        <input type="submit" value="Send" id="btnSave" class="btn btn-success"/>
-                        <input type="button" value="Load" id="btnLoad" class="btn btn-success"/>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <!--Tabla con la lista de datos-->
-        <div class="container">
-            <table id="tblList" class="table table-bordered"></table>
-        </div>
-
-
-    </body>
+</body>
 </html>
