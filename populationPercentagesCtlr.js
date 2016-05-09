@@ -122,14 +122,11 @@ if (apikey && apikey=="secret")
 
     	for(var i3=0;i3<resultado.length;i3++)
     	{
-
-    		res.send(parseInt(resultado[i3].year));
-
-    		if (from === undefined || isNaN(from) || parseInt(from) <= parseInt(resultado[i3].year) || to === undefined || isNaN(to) || parseInt(to) >= parseInt(resultado[i3].year))
-    		{resultado_definitivo.push(resultado[i3]);}   
+    		if ( ((from === undefined) == false && parseInt(from) >= resultado[i3].year) == false)
+    			{resultado_definitivo.push(resultado[i3]);}   
     }
 
-   // res.send(resultado_definitivo);
+   res.send(resultado_definitivo);
 
 
 
