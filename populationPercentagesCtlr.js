@@ -94,6 +94,7 @@ var to = req.query.to;
 var data = req.params.data;
 var resultado = [];
 var resultado_definitivo = [];
+var cadena="";
 apikey = req.query.apikey;
 	var encontrado = false;
 
@@ -122,8 +123,8 @@ if (apikey && apikey=="secret")
     	for(var i3=0;i3<resultado.length;i3++)
     	{
     		//console.log(from === undefined + isNaN(from) + from <= resultado[i3] + to === undefined + isNaN(to) + to >= resultado[i3]);
-
-    		res.send("Hola");
+    		cadena = from === undefined + isNaN(from) + from <= resultado[i3] + to === undefined + isNaN(to) + to >= resultado[i3]
+    		res.send(cadena);
 
 
     		if (from === undefined || isNaN(from) || from <= resultado[i3] || to === undefined || isNaN(to) || to >= resultado[i3])
