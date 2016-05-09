@@ -123,7 +123,12 @@ if (apikey && apikey=="secret")
     	for(var i3=0;i3<resultado.length;i3++)
     	{
     		if ( ((from === undefined) == false && parseInt(from) > resultado[i3].year) == false)
-    			{resultado_definitivo.push(resultado[i3]);}   
+    			{
+    				if ( ((to === undefined) == false && parseInt(to) < resultado[i3].year) == false)
+    				{
+    				resultado_definitivo.push(resultado[i3]);
+    			    }
+    			}   
     }
 
    res.send(resultado_definitivo);
