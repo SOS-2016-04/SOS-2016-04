@@ -536,9 +536,9 @@ function editardato(){
   var a= $("#primaryEducation").val()
   var m= $("#secondaryEducation").val()
   var w= $("#tertiaryEducation").val()
-  var datos='{"'"country"'":"'+r+'","'"year"'":"'+y+'","'"primaryEducation"''":"'+a+'","'"secondaryEducation"''":"'+m+'","'"tertiaryEducation"'":"'+w+'"}';
+  var datos='{"country":"'+r+'","year":"'+y+'","primaryEducation":"'+a+'","secondaryEducation":"'+m+'","tertiaryEducation":"'+w+'"}';
   var metodo = "PUT";
-  var url = 'http://sos-2016-04.herokuapp.com//api/v1/population-labor-force-percentage-by-education/'+country+'/'+year+'?apikey='+$("#apikey").val();
+  var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+country+'/'+year+'?apikey='+$("#apikey").val();
     var request2 = $.ajax({
     url: url,
     type: metodo,
