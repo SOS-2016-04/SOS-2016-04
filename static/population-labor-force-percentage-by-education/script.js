@@ -265,12 +265,7 @@ function botonEliminarTodo(){
     table.rows().remove().draw(false);
     });
     x = "Aceptado";
-    if(jqXHR.status == 401){
-      alertify.alert("Incorrect password");
-    }else{
-    alertify.alert("Data deleted.", function(){
-      location.reload();
-    });}
+
   }else{
 x = "Cancelado";
   }});
@@ -283,9 +278,9 @@ x = "Cancelado";
     if(jqXHR.status == 0){
       alertify.alert("Incorrect passwords");
     }
-    //if(jqXHR.status == 401){
-    //  alertify.alert("Incorrect password");
-    //}
+    if(jqXHR.status == 401){
+      alertify.alert("Incorrect password");
+    }
     if(jqXHR.status == 404){
       alertify.alert("Data not found");
     }
