@@ -107,6 +107,14 @@ var resultado = [];
 			i = i - 1;
 		}}}
 
+		if(limit && offset)
+		{
+
+		resultado.splice(0,offset);
+		resultado.splice(limit,resultado.length-limit);
+
+		}
+
     if(encontrado == true)
     {
     	res.send(resultado);
@@ -153,6 +161,14 @@ var resultado = [];
 			resultado.splice(i,1);
 			i = i - 1;
 		}}}
+
+		if(limit && offset)
+		{
+
+		resultado.splice(0,offset);
+		resultado.splice(limit,resultado.length-limit);
+
+		}
 
     if(encontrado == true)
     {
