@@ -215,7 +215,7 @@ function botonEliminarDato(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
     if(jqXHR.status == 0){
-      alertify.alert("Data added.");
+      alertify.alert("Incorrect password.");
     }
     if(jqXHR.status == 401){
       alertify.alert("The key entered is incorrect");
@@ -278,10 +278,10 @@ x = "Cancelado";
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
     if(jqXHR.status == 0){
-      alertify.alert("Data addeds");
+      alertify.alert("Incorrect passwords");
     }
     if(jqXHR.status == 401){
-      alertify.alert("Data added");
+      alertify.alert("Incorrect password");
     }
     if(jqXHR.status == 404){
       alertify.alert("Data not found");
@@ -354,7 +354,7 @@ function solicitudAjax(metodo, url, datos){
   });
     }
     if(jqXHR.status == 401){
-      alertify.alert("Data added");
+      alertify.alert("Incorrect password");
     }
     if(jqXHR.status == 404){
       alertify.alert("Data not found");
@@ -455,10 +455,10 @@ function eliminardato(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
 		if(jqXHR.status == 0){
-      alertify.alert("Data added.");
+      alertify.alert("Incorrect password.");
     }
     if(jqXHR.status == 401){
-      alertify.alert("Data added");
+      alertify.alert("Incorrect password");
     }
     if(jqXHR.status == 404){
       alertify.alert("Data not found");
@@ -507,10 +507,10 @@ function editardato(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
 		if(jqXHR.status == 0){
-      alertify.alert("Data added.");
+      alertify.alert("Incorrect password.");
     }
     if(jqXHR.status == 401){
-      alertify.alert("Data added");
+      alertify.alert("Incorrect password");
     }
     if(jqXHR.status == 404){
       alertify.alert("Data not found");
@@ -596,7 +596,7 @@ function paginacion() {
         error: function(jqXHR,status){
           console
           if(jqXHR.status == 401){
-              alertify.alert("Data added");
+              alertify.alert("Incorrect password");
           }
           if(jqXHR.status == 404){
               alertify.alert("No results found");
@@ -609,7 +609,7 @@ function paginacion() {
 
         }
     });
-    paginacion2(); 
+    paginacion2();
 }
 
 function paginacion2() {
@@ -653,7 +653,7 @@ var busqueda= document.getElementById("busqueda").value;
         error: function(jqXHR,status){
           console
           if(jqXHR.status == 401){
-              alertify.alert("Data added");
+              alertify.alert("Incorrect password");
           }
           if(jqXHR.status == 404){
               alertify.alert("No results found");
@@ -719,7 +719,7 @@ function busqueda(){
         error: function(jqXHR,status){
           console
           if(jqXHR.status == 401){
-              alertify.alert("Data added");
+              alertify.alert("Incorrect password");
           }
           if(jqXHR.status == 404){
               alertify.alert("No results found");
