@@ -42,6 +42,8 @@ function mostrar(apikey){
       var c = $("#country").val();
       var f = $("#from").val();
       var t = $("#to").val();
+      var page=$("#page").val();
+      var items=$("#items").val();
 
     if(y != ""){
       y = "/"+y;
@@ -61,16 +63,20 @@ function mostrar(apikey){
       f = "&from=0";
       t = "&to=" + t ;
     }
-  /*	if(pag != ""){
-      pag = "&limit=" + pag;
+    if (!items){
+						items = 9999;
     }
-    if(pag2 != ""){
-      pag2 = "&offset=" + pag2;
-    }*/
+		if (!page){
+						page = 1;
+    }
+		var offset = items*(page-1);
+    items= "&limit=" + items;
+    offset="&offset="+ offset;
+
     var request = $.ajax(
     {
       type: "GET",
-      url:"/api/v1/population-unemployed-percentage-by-gender"+c+y+"?apikey="+apikey + f + t, //+ pag2 + pag,
+      url:"/api/v1/population-unemployed-percentage-by-gender"+c+y+"?apikey="+apikey + f + t + items + offset,
       data: "{}",
       contentType: "application/json; charset=utf-8",
       dataType: "json",
