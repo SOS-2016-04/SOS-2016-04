@@ -1,8 +1,6 @@
 google.charts.load('current', {'packages':['geochart']});
 
 $(document).ready(function(){
-    console.log("JQuery ready!");
-    JQuery.support.cors = true;
 
     var request=$.ajax({
         type: "GET",
@@ -30,11 +28,7 @@ $(document).ready(function(){
           var data = google.visualization.arrayToDataTable(dataForWidget);
           console.log("Success!");
 
-  var options = {
-    region: 'ES',
-    displayMode:'markers',
-    colorAxis: {colors: ['green', 'blue']}
-  };
+  var options = {};
 
 
   var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
