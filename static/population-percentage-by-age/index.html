@@ -37,13 +37,16 @@ function click_checkbox_year_search()
     
     if(document.getElementById("checkbox_year_search").checked)
 {
-    document.getElementById("year_search").disabled = false;
+    document.getElementById("year_search_from").disabled = false;
+    document.getElementById("year_search_to").disabled = false;
 }
 
 else
 {
-    document.getElementById("year_search").disabled = true;
-    document.getElementById("year_search").value = "";
+    document.getElementById("year_search_from").disabled = true;
+    document.getElementById("year_search_from").value = "";
+    document.getElementById("year_search_to").disabled = true;
+    document.getElementById("year_search_to").value = "";
 }
 
 
@@ -63,12 +66,13 @@ function search_resources(){
         url = url + "/"+document.getElementById("country_search").value;
     }
 
+    url = url + "?apikey=secret&limit=10&offset=0";
+
+
     if(document.getElementById("checkbox_year_search").checked == true)
     {
-        url = url + "/"+document.getElementById("year_search").value;
+        url = url + "&from="+document.getElementById("year_search_from").value+"&to="+document.getElementById("year_search_to");
     }
-
-    url = url + "?apikey=secret&limit=10&offset=0";
 
 
 
@@ -481,7 +485,8 @@ var country = document.getElementById("country").value;
                 document.getElementById("country_search").disabled = true;
                 document.getElementById("year_search").disabled = true;
                 document.getElementById("checkbox_country_search").checked = false;
-                document.getElementById("checkbox_year_search").checked = false;
+                document.getElementById("checkbox_year_search_from").checked = false;
+                document.getElementById("checkbox_year_search_to").checked = false;
 
 
                 $('#win_search').window({
