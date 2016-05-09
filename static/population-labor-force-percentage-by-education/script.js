@@ -657,23 +657,22 @@ function busqueda(){
     var busqueda = document.getElementById("busqueda").value;
     var busqueda2 = document.getElementById("busqueda2").value;
     var busqueda3 = document.getElementById("busqueda3").value;
-    var busqueda4 = document.getElementById("busqueda4").value;
 
 
-    if(busqueda3=='' && busqueda4==''){
+    if(busqueda2=='' && busqueda3==''){
       urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'/'+busqueda2+'?apikey=' + $("#apikey").val();
-    }else if(busqueda3!='' && busqueda4==''){
+    }else if(busqueda2!='' && busqueda3==''){
               urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'/'+busqueda2+'?apikey=' + $("#apikey").val()+'&from='+busqueda3;
-            }else if(busqueda3=='' && busqueda4!=''){
-                    urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'/'+busqueda2+'?apikey=' + $("#apikey").val()+'&to='+busqueda4;
-            }else if(busqueda3!='' && busqueda4!='' && busqueda!=''){
-                    urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() + "&from=" + busqueda3 + "&to=" + busqueda4;
-            }else if(busqueda3!='' && busqueda4!='' && busqueda''){
-                    urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/?apikey=' + $("#apikey").val() + "&from=" + busqueda3 + "&to=" + busqueda4;
-            }else if(busqueda3=='' && busqueda4!='' && busqueda==''){
-                    urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/?apikey=' + $("#apikey").val() +  "&to=" + busqueda4;
+            }else if(busqueda2=='' && busqueda3!=''){
+                    urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'/'+busqueda2+'?apikey=' + $("#apikey").val()+'&to='+busqueda3;
+            }else if(busqueda2!='' && busqueda3!='' && busqueda!=''){
+                    urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() + '&from=' + busqueda2 + '&to=' + busqueda3;
+            }else if(busqueda2!='' && busqueda3!='' && busqueda''){
+                    urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/?apikey=' + $("#apikey").val() + '&from=' + busqueda2 + '&to=' + busqueda3;
+            }else if(busqueda2=='' && busqueda3!='' && busqueda==''){
+                    urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/?apikey=' + $("#apikey").val() +  '&to=' + busqueda3;
             }else{
-                    urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/?apikey=' + $("#apikey").val() + "&from=" + busqueda3;
+                    urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/?apikey=' + $("#apikey").val() + '&from=' + busqueda2;
             }
 
 
