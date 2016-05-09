@@ -659,7 +659,7 @@ function busqueda(){
     var busqueda3 = document.getElementById("busqueda3").value;
     var busqueda4 = document.getElementById("busqueda4").value;
 
-
+/*
     if(busqueda3=='' && busqueda4==''){
       urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'/'+busqueda2+'?apikey=' + $("#apikey").val();
     }else if(busqueda3!='' && busqueda4==''){
@@ -677,7 +677,7 @@ function busqueda(){
             }
 
 
-
+*/
     $.ajax(
     {
         type: "GET",
