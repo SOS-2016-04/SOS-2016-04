@@ -379,7 +379,7 @@ function solicitudAjax(metodo, url, datos){
 
 function cargaInicial(){
 
-  var apikey= $("#apikey").val()
+  var apikey= document.getElementById("apikey").value;
   var urlstring = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/loadInitialData?apikey=' + apikey;
   var method = "GET";
   var request = $.ajax({
