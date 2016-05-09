@@ -557,21 +557,12 @@ function editardato(){
     contentType: "application/json"
   });
 
+  $("#pais").val(country);
+  $("#pais").prop('disabled', false);
+  $("#anno").val(year);
+  $("#anno").prop('disabled', false);
   busqueda();
-  desbloquearCampos();
-
-}
-function desbloquearCampos(){
-  var country = document.getElementById("pai2").value;
-  var year = document.getElementById("ann2").value;
-
-  request.success(function(status,jqXHR,data){
-    $("#pais").val(country);
-    $("#pais").prop('disabled', false);
-    $("#anno").val(year);
-    $("#anno").prop('disabled', false);
-  });
-
+  
 }
 
 function paginacion() {
