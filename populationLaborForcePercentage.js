@@ -71,6 +71,10 @@ else
 
 
 module.exports.getPopulationLaborForcePercentage = function(req,res){
+	from = req.query.from;
+	to = req.query.to;
+	limit = req.query.limit;
+	offset = req.query.offset;
 	apikey = req.query.apikey;
 var data = req.params.data;
 var resultado = [];
@@ -109,6 +113,10 @@ var resultado = [];
 
 
 module.exports.getPopulationLaborForcePercentageCountryYear = function(req,res){
+	from = req.query.from;
+	to = req.query.to;
+	limit = req.query.limit;
+	offset = req.query.offset;
 	apikey = req.query.apikey;
 var country = req.params.country;
 var year = req.params.year;
@@ -143,6 +151,10 @@ var resultado = [];
 
 
 module.exports.postPopulationLaborForcePercentage = function(req,res){
+	from = req.query.from;
+	to = req.query.to;
+	limit = req.query.limit;
+	offset = req.query.offset;
 	apikey = req.query.apikey;
 	if (apikey && apikey=="clave")
 	{
@@ -154,6 +166,10 @@ res.sendStatus(405);
 
 
 module.exports.postPopulationLaborForcePercentages = function(req,res){
+	from = req.query.from;
+	to = req.query.to;
+	limit = req.query.limit;
+	offset = req.query.offset;
 	apikey = req.query.apikey;
 var populationLaborForcePercentages = req.body;
 var country = req.params.country;
@@ -215,6 +231,10 @@ else
 
 
 module.exports.deletePopulationLaborForcePercentage = function(req,res){
+	from = req.query.from;
+	to = req.query.to;
+	limit = req.query.limit;
+	offset = req.query.offset;
 	apikey = req.query.apikey;
     var data = req.params.data;
 	var encontrado = false;
@@ -259,6 +279,10 @@ module.exports.deletePopulationLaborForcePercentage = function(req,res){
 
 
 module.exports.deletePopulationLaborForcePercentages = function(req,res){
+	from = req.query.from;
+	to = req.query.to;
+	limit = req.query.limit;
+	offset = req.query.offset;
 	apikey = req.query.apikey;
 	if (apikey && apikey=="clave")
 	{
@@ -273,6 +297,10 @@ module.exports.deletePopulationLaborForcePercentages = function(req,res){
 
 
 module.exports.deletePopulationLaborForcePercentageCountryYear = function(req,res){
+	from = req.query.from;
+	to = req.query.to;
+	limit = req.query.limit;
+	offset = req.query.offset;
 	apikey = req.query.apikey;
 var country = req.params.country;
 var year = req.params.year;
@@ -305,6 +333,10 @@ var year = req.params.year;
 
 
 module.exports.putPopulationLaborForcePercentage = function(req,res){
+	from = req.query.from;
+	to = req.query.to;
+	limit = req.query.limit;
+	offset = req.query.offset;
 	apikey = req.query.apikey;
 	var populationLaborForcePercentages = req.body;
     var country = req.params.country;
@@ -350,6 +382,10 @@ if (apikey && apikey=="clave")
 
 
 module.exports.putPopulationLaborForcePercentages = function(req,res){
+	from = req.query.from;
+	to = req.query.to;
+	limit = req.query.limit;
+	offset = req.query.offset;
 	apikey = req.query.apikey;
 	if (apikey && apikey=="clave")
 	{
