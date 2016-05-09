@@ -654,12 +654,13 @@ var busqueda= document.getElementById("busqueda").value;
 
 function busqueda(){
     var busqueda = document.getElementById("busqueda").value;
+    var busqueda = document.getElementById("busqueda2").value;
 
 
     $.ajax(
     {
         type: "GET",
-        url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() ,
+        url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'/'+busqueda2+'?apikey=' + $("#apikey").val() ,
         data: "{}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
