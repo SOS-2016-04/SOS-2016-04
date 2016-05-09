@@ -2,6 +2,31 @@ var seleccionado = false;
 var nuevoDato = true;
 
 
+
+function IniciarTablaInicio(data){
+
+  var datos = data;
+
+  var table =  $('#tablaid').DataTable( {
+    "data": datos,
+    "columns": [
+      { "title": "Country" },
+      { "title": "Year" },
+      { "title": "primaryEducation" },
+      { "title": "secondaryEducation"},
+      { "title": "tertiaryEducation"}
+    ],
+        "bPaginate": false,
+        "bFilter": false,
+        "bSort" : false
+
+    } );
+  return table;
+
+
+}
+
+
 function IniciarTabla(data){
 
   var datos = data;
