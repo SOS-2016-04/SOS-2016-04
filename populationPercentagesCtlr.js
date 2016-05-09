@@ -123,7 +123,7 @@ if (apikey && apikey=="secret")
     	for(var i3=0;i3<resultado.length;i3++)
     	{
     		//console.log( isNaN(from) + from <= resultado[i3] + isNaN(to) + to >= resultado[i3]);
-    		res.send(from <= resultado[i3]);
+    		res.send(parseInt(from) <= resultado[i3]);
 
 
     		if (from === undefined || isNaN(from) || from <= resultado[i3] || to === undefined || isNaN(to) || to >= resultado[i3])
