@@ -481,9 +481,11 @@ var country = document.getElementById("country").value;
             function searchResource(){
 
                 document.getElementById("country_search").value = "";
-                document.getElementById("year_search").value = "";
+                document.getElementById("year_search_from").value = "";
                 document.getElementById("country_search").disabled = true;
-                document.getElementById("year_search").disabled = true;
+                document.getElementById("year_search_from").disabled = true;
+                document.getElementById("year_search_to").value = "";
+                document.getElementById("year_search_to").disabled = true;
                 document.getElementById("checkbox_country_search").checked = false;
                 document.getElementById("checkbox_year_search_from").checked = false;
                 document.getElementById("checkbox_year_search_to").checked = false;
