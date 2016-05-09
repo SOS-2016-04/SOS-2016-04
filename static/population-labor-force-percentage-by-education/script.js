@@ -667,7 +667,7 @@ function busqueda(){
                     urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'/'+busqueda2+'?apikey=' + $("#apikey").val()+'&to='+busqueda3;
             }else if(busqueda2!='' && busqueda3!='' && busqueda!=''){
                     urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() + '&from=' + busqueda2 + '&to=' + busqueda3;
-            }else if(busqueda2!='' && busqueda3!='' && busqueda''){
+            }else if(busqueda2!='' && busqueda3!='' && busqueda=''){
                     urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/?apikey=' + $("#apikey").val() + '&from=' + busqueda2 + '&to=' + busqueda3;
             }else if(busqueda2=='' && busqueda3!='' && busqueda==''){
                     urlBusqueda='http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/?apikey=' + $("#apikey").val() +  '&to=' + busqueda3;
