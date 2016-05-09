@@ -4,9 +4,6 @@ var nuevoDato = true;
 
 function IniciarTabla(data){
 
-
-
-
   var datos = data;
 
   var table =  $('#tablaid').DataTable( {
@@ -23,6 +20,7 @@ function IniciarTabla(data){
         "bSort" : false
 
     } );
+  paginacion2();
   return table;
 
 
@@ -112,7 +110,7 @@ if(nuevoDato){
     }else{
       console.log("Metodo PUT");
       var metodo = "PUT";
-      var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education'+$("#pais").val()+'/'+$("#anno").val()+'?apikey='+$("#apikey").val();
+      var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+$("#pais").val()+'/'+$("#anno").val()+'?apikey='+$("#apikey").val();
       solicitudAjax(metodo, url, datos);
     }
     //vaciarCajas();
@@ -149,7 +147,7 @@ function botonAnadirDato(){
 
 function botonEditarDato(){
   nuevoDato = false;
-  console.log("¿Es un nuevo Dato?: "+nuevoDato);
+  console.log("Is a new Data?: "+nuevoDato);
   if(seleccionado){
     $("#tabla").slideUp();
     $("#formulario2").slideDown();
@@ -168,7 +166,7 @@ function botonEditarDato(){
     $("#tertiaryEducation").val(campos[4]);
     $("#apikey").val(campos[5]);
   }else{
-    alertify.alert("No has seleccionado ningún dato");
+    alertify.alert("You have not selected any data");
   }
 }
 
@@ -187,7 +185,7 @@ function botonEliminarDato(){
   request.success(function(status,jqXHR){
   var x;
   if(seleccionado){
-    alertify.confirm("¿Quieres eliminar el dato?", function (e) {
+    alertify.confirm("Do you want to delete the data?", function (e) {
         if (e) {
       var table =  $('#tablaid').DataTable();
       console.log(x);
@@ -202,12 +200,12 @@ function botonEliminarDato(){
       });
       seleccionado = false;
       x = "Aceptado";
-      alertify.alert("Dato borrado.");
+      alertify.alert("Data deleted.");
         }else{
       x = "Cancelado";
         }});
   }else{
-    alertify.alert("Seleccione algún dato.");
+    alertify.alert("Select any data.");
   }
   console.log(x);
   //console.log("Dato borrado");
@@ -217,32 +215,32 @@ function botonEliminarDato(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
     if(jqXHR.status == 0){
-      alertify.alert("Dato añadido.");
+      alertify.alert("Data added.");
     }
     if(jqXHR.status == 401){
-      alertify.alert("La clave introducida no es correcta");
+      alertify.alert("The key entered is incorrect");
     }
     if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado");
+      alertify.alert("Data not found");
     }
     if(jqXHR.status == 400){
-      alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
+      alertify.alert("ERROR: "+jqXHR.status+" It remains to fill some field or any incorrect.");
     }
     if(jqXHR.status == 409){
-      alertify.alert("ERROR: "+jqXHR.status+" Ya existe.");
+      alertify.alert("ERROR: "+jqXHR.status+" It already exists.");
     }
     if(jqXHR.status == 403){
-      alertify.alert("ERROR: "+jqXHR.status+" No exite el parametro para editar.");
+      alertify.alert("ERROR: "+jqXHR.status+" No exite the parameter to edit.");
     }
     if(jqXHR.status == 500){
-      alertify.alert("ERROR: "+jqXHR.status+" Error interno.");
+      alertify.alert("ERROR: "+jqXHR.status+" Internal error.");
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
     }
   });
 }else{
-  alertify.alert("Seleccione algún dato.");
+  alertify.alert("Select any data.");
 }
 }
 
@@ -269,25 +267,25 @@ function botonEliminarTodo(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
     if(jqXHR.status == 0){
-      alertify.alert("Dato añadidos");
+      alertify.alert("Data addeds");
     }
     if(jqXHR.status == 401){
-      alertify.alert("La clave introducida no es correcta");
+      alertify.alert("Data added");
     }
     if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado");
+      alertify.alert("Data not found");
     }
     if(jqXHR.status == 400){
-      alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
+      alertify.alert("ERROR: "+jqXHR.status+" It remains to fill some field or any incorrect.");
     }
     if(jqXHR.status == 409){
-      alertify.alert("ERROR: "+jqXHR.status+" Ya existe.");
+      alertify.alert("ERROR: "+jqXHR.status+" It already exists.");
     }
     if(jqXHR.status == 403){
-      alertify.alert("ERROR: "+jqXHR.status+" No exite el parametro para editar.");
+      alertify.alert("ERROR: "+jqXHR.status+" No exite the parameter to edit.");
     }
     if(jqXHR.status == 500){
-      alertify.alert("ERROR: "+jqXHR.status+" Error interno");
+      alertify.alert("ERROR: "+jqXHR.status+" Internal error");
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
@@ -305,6 +303,7 @@ function actualizarTabla(){
               $("#tertiaryEducation").val()
           ] ).draw();
   table.row('.selected').remove().draw( false );
+  paginacion2();
 }
 
 function solicitudAjax(metodo, url, datos){
@@ -323,7 +322,7 @@ function solicitudAjax(metodo, url, datos){
     console.log("jqXHR status : "+jqXHR.status);
     console.log("texto codigo :"+jqXHR.statusText);
     console.log("status : "+status);
-    alertify.alert("Datos cargados con éxito. Pulsa aceptar para recargar la página.", function () {
+    alertify.alert("Data loaded successfully. Click OK to reload the page.", function () {
       location.reload();
   });
     actualizarTabla();
@@ -339,27 +338,27 @@ function solicitudAjax(metodo, url, datos){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
     if(jqXHR.status == 0){
-      alertify.alert("Datos cargados con éxito. Pulsa aceptar para recargar la página.", function () {
+      alertify.alert("Data loaded successfully. Click OK to reload the page.", function () {
       location.reload();
   });
     }
     if(jqXHR.status == 401){
-      alertify.alert("La clave introducida no es correcta");
+      alertify.alert("Data added");
     }
     if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado");
+      alertify.alert("Data not found");
     }
     if(jqXHR.status == 400){
-      alertify.alert("ERROR: "+jqXHR.status+" Falta algún parámetro para rellenar o el tipo esta mal.");
+      alertify.alert("ERROR: "+jqXHR.status+" To fill some parameter is missing or wrong type.");
     }
     if(jqXHR.status == 409){
-      alertify.alert("ERROR: "+jqXHR.status+" La entrada ya existe.");
+      alertify.alert("ERROR: "+jqXHR.status+" It already exists.");
     }
     if(jqXHR.status == 403){
-      alertify.alert("ERROR: "+jqXHR.status+" NO coincide el parametro para editar.");
+      alertify.alert("ERROR: "+jqXHR.status+" No match the parameter to edit.");
     }
     if(jqXHR.status == 500){
-      alertify.alert("ERROR: "+jqXHR.status+" Error interno del Servidor");
+      alertify.alert("ERROR: "+jqXHR.status+" Internal error del Servidor");
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
@@ -380,10 +379,10 @@ function cargaInicial(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
     if(jqXHR.status == 401){
-      alertify.alert("La clave introducida no es correcta");
+      alertify.alert("Data added");
     }
     if(jqXHR.status == 500){
-      alertify.alert("ERROR: "+jqXHR.status+" Error interno del Servidor");
+      alertify.alert("ERROR: "+jqXHR.status+" Internal Server Error");
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
@@ -391,7 +390,7 @@ function cargaInicial(){
   });
   request.success(function(status,jqXHR) {
     console.log("Datos cargados");
-    alertify.alert("Datos cargados con éxito.", function () {
+    alertify.alert("Data loaded successfully.", function () {
       location.reload();
   });
   });
@@ -414,7 +413,7 @@ function eliminardato(){
   request.success(function(status,jqXHR){
   var x;
 
-    alertify.confirm("¿Quiere eliminar el dato?", function (e) {
+    alertify.confirm("Do you want to delete the data?", function (e) {
         if (e) {
       var table =  $('#tablaid').DataTable();
       console.log(x);
@@ -428,7 +427,7 @@ function eliminardato(){
       });
       seleccionado = false;
       x = "Aceptado";
-      alertify.alert("Dato borrado.", function(){
+      alertify.alert("Data deleted.", function(){
         location.reload();
       });
         }else{
@@ -443,32 +442,32 @@ function eliminardato(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
 		if(jqXHR.status == 0){
-      alertify.alert("Dato añadido.");
+      alertify.alert("Data added.");
     }
     if(jqXHR.status == 401){
-      alertify.alert("La clave introducida no es correcta");
+      alertify.alert("Data added");
     }
     if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado");
+      alertify.alert("Data not found");
     }
     if(jqXHR.status == 400){
-      alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
+      alertify.alert("ERROR: "+jqXHR.status+" It remains to fill some field or any incorrect.");
     }
     if(jqXHR.status == 409){
-      alertify.alert("ERROR: "+jqXHR.status+" Ya existe.");
+      alertify.alert("ERROR: "+jqXHR.status+" It already exists.");
     }
     if(jqXHR.status == 403){
-      alertify.alert("ERROR: "+jqXHR.status+" No exite el parametro para editar.");
+      alertify.alert("ERROR: "+jqXHR.status+" No exite the parameter to edit.");
     }
     if(jqXHR.status == 500){
-      alertify.alert("ERROR: "+jqXHR.status+" Error interno.");
+      alertify.alert("ERROR: "+jqXHR.status+" Internal error.");
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
     }
   });
 }else{
-  alertify.alert("Seleccione algún dato.");
+  alertify.alert("Select any data.");
 }
 
 }
@@ -495,25 +494,25 @@ function editardato(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
 		if(jqXHR.status == 0){
-      alertify.alert("Dato añadido.");
+      alertify.alert("Data added.");
     }
     if(jqXHR.status == 401){
-      alertify.alert("La clave introducida no es correcta");
+      alertify.alert("Data added");
     }
     if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado");
+      alertify.alert("Data not found");
     }
     if(jqXHR.status == 400){
-      alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
+      alertify.alert("ERROR: "+jqXHR.status+" It remains to fill some field or any incorrect.");
     }
     if(jqXHR.status == 409){
-      alertify.alert("ERROR: "+jqXHR.status+" Ya existe.");
+      alertify.alert("ERROR: "+jqXHR.status+" It already exists.");
     }
     if(jqXHR.status == 403){
-      alertify.alert("ERROR: "+jqXHR.status+" No exite el parametro para editar.");
+      alertify.alert("ERROR: "+jqXHR.status+" No exite the parameter to edit.");
     }
     if(jqXHR.status == 500){
-      alertify.alert("ERROR: "+jqXHR.status+" Error interno.");
+      alertify.alert("ERROR: "+jqXHR.status+" Internal error.");
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
@@ -526,7 +525,7 @@ function editardato(){
     $("#tituloFormulario").text("Editar dato:");
     //$("#nav li").removeClass("active");
     //$("#botonEditarDato").addClass("active");
-    $("#pais").val(region);
+    $("#pais").val(country);
     $("#pais").prop('disabled', true);
     $("#anno").val(year);
     $("#anno").prop('disabled', true);
@@ -539,7 +538,7 @@ function editardato(){
   var w= $("#tertiaryEducation").val()
   var datos='{"country":"'+r+'","year":"'+y+'","primaryEducation":"'+a+'","secondaryEducation":"'+m+'","tertiaryEducation":"'+w+'"}';
   var metodo = "PUT";
-  var url = 'http://sos-2016-04.herokuapp.com//api/v1/population-labor-force-percentage-by-education/'+country+'/'+year+'?apikey='+$("#apikey").val();
+  var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+country+'/'+year+'?apikey='+$("#apikey").val();
     var request2 = $.ajax({
     url: url,
     type: metodo,
@@ -547,6 +546,54 @@ function editardato(){
     contentType: "application/json"
   });
 
+}
+
+function paginacion() {
+     var x = document.getElementById("limit").value;
+     var busqueda= document.getElementById("busqueda").value;
+
+
+    $.ajax(
+    {
+        type: "GET",
+        url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() + '&limit='+x+'&offset='+'0',
+        data: "{}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        cache: false,
+
+        success: function (data) {
+          $("#tabla tbody tr").remove();
+
+          var trHTML = '';
+
+      $.each(data, function (i, item) {
+        console.log(data[i]);
+          trHTML +="<tr class='info'><td>" + data[i].country + '</td><td>' + data[i].year + '</td><td>' + data[i].primaryEducation + '</td><td>' + data[i].secondaryEducation + '</td><td>' + data[i].tertiaryEducation + '</td></tr>';
+      });
+
+      $('#tablaid').append(trHTML);
+
+
+
+        },
+
+        error: function(jqXHR,status){
+          console
+          if(jqXHR.status == 401){
+              alertify.alert("Data added");
+          }
+          if(jqXHR.status == 404){
+              alertify.alert("No results found");
+          }
+          if(jqXHR.status == 500){
+            alertify.alert("ERROR: "+jqXHR.status+" Internal Server Error");
+           }
+            console.log("texto codigo always:"+jqXHR.statusText);
+            console.log("status: "+status);
+
+        }
+    });
 }
 
 function paginacion2() {
@@ -590,13 +637,13 @@ var busqueda= document.getElementById("busqueda").value;
         error: function(jqXHR,status){
           console
           if(jqXHR.status == 401){
-              alertify.alert("La clave introducida no es correcta");
+              alertify.alert("Data added");
           }
           if(jqXHR.status == 404){
-              alertify.alert("No se encontraron resultados");
+              alertify.alert("No results found");
           }
           if(jqXHR.status == 500){
-            alertify.alert("ERROR: "+jqXHR.status+" Error interno.");
+            alertify.alert("ERROR: "+jqXHR.status+" Internal error.");
            }
             console.log("texto codigo always:"+jqXHR.statusText);
             console.log("status: "+status);
@@ -608,12 +655,13 @@ var busqueda= document.getElementById("busqueda").value;
 
 function busqueda(){
     var busqueda = document.getElementById("busqueda").value;
+    var busqueda2 = document.getElementById("busqueda2").value;
 
 
     $.ajax(
     {
         type: "GET",
-        url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'?apikey=' + $("#apikey").val() ,
+        url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+busqueda+'/'+busqueda2+'?apikey=' + $("#apikey").val() ,
         data: "{}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -636,13 +684,13 @@ function busqueda(){
         error: function(jqXHR,status){
           console
           if(jqXHR.status == 401){
-              alertify.alert("La clave introducida no es correcta");
+              alertify.alert("Data added");
           }
           if(jqXHR.status == 404){
-              alertify.alert("No se encontraron resultados");
+              alertify.alert("No results found");
           }
           if(jqXHR.status == 500){
-            alertify.alert("ERROR: "+jqXHR.status+" Error internoo.");
+            alertify.alert("ERROR: "+jqXHR.status+" Internal erroro.");
            }
             console.log("texto codigo always:"+jqXHR.statusText);
             console.log("status: "+status);
