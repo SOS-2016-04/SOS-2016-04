@@ -123,7 +123,7 @@ if (apikey && apikey=="secret")
     	for(var i3=0;i3<resultado.length;i3++)
     	{
 
-    		if (from === undefined || isNaN(from) || parseInt(from) <= resultado[i3] || to === undefined || isNaN(to) || parseInt(to) >= resultado[i3])
+    		if (from === undefined || isNaN(from) || parseInt(from) <= resultado[i3].year || to === undefined || isNaN(to) || parseInt(to) >= resultado[i3].year)
     		{resultado_definitivo.push(resultado[i3]);}   
     }
 
