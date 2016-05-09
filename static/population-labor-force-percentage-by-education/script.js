@@ -265,9 +265,6 @@ function botonEliminarTodo(){
     table.rows().remove().draw(false);
     });
     x = "Aceptado";
-    alertify.alert("Data deleted.", function(){
-      location.reload();
-    });
   }else{
 x = "Cancelado";
   }});
