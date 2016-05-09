@@ -499,6 +499,9 @@ function editardato(){
     if(jqXHR.status == 401){
       alertify.alert("La clave introducida no es correcta");
     }
+    if(jqXHR.status == 404){
+      alertify.alert("Dato no encontrado");
+    }
     if(jqXHR.status == 400){
       alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
     }
@@ -533,7 +536,7 @@ function editardato(){
   var a= $("#primaryEducation").val()
   var m= $("#secondaryEducation").val()
   var w= $("#tertiaryEducation").val()
-  var datos='{"country":"'+r+'","year":"'+y+'","primaryEducation":"'+a+'","secondaryEducation":"'+m+'","tertiaryEducation":"'+w+'"}';
+  var datos='{"country":"'+country+'","year":"'+year+'","primaryEducation":"'+a+'","secondaryEducation":"'+m+'","tertiaryEducation":"'+w+'"}';
   var metodo = "PUT";
   var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+country+'/'+year+'?apikey='+$("#apikey").val();
     var request2 = $.ajax({
