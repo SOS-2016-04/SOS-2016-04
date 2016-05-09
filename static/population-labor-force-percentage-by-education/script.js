@@ -147,7 +147,11 @@ function botonAnadirDato(){
 
 function botonEditarDato(){
   nuevoDato = false;
+<<<<<<< HEAD
   console.log("Is a new Data?: "+nuevoDato);
+=======
+  console.log("¿Es un nuevo Dato?: "+nuevoDato);
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
   if(seleccionado){
     $("#tabla").slideUp();
     $("#formulario2").slideDown();
@@ -166,7 +170,11 @@ function botonEditarDato(){
     $("#tertiaryEducation").val(campos[4]);
     $("#apikey").val(campos[5]);
   }else{
+<<<<<<< HEAD
     alertify.alert("You have not selected any data");
+=======
+    alertify.alert("No has seleccionado ningún dato");
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
   }
 }
 
@@ -185,7 +193,11 @@ function botonEliminarDato(){
   request.success(function(status,jqXHR){
   var x;
   if(seleccionado){
+<<<<<<< HEAD
     alertify.confirm("Do you want to delete the data?", function (e) {
+=======
+    alertify.confirm("¿Quieres eliminar el dato?", function (e) {
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
         if (e) {
       var table =  $('#tablaid').DataTable();
       console.log(x);
@@ -200,12 +212,20 @@ function botonEliminarDato(){
       });
       seleccionado = false;
       x = "Aceptado";
+<<<<<<< HEAD
       alertify.alert("Data deleted.");
+=======
+      alertify.alert("Dato borrado.");
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
         }else{
       x = "Cancelado";
         }});
   }else{
+<<<<<<< HEAD
     alertify.alert("Select any data.");
+=======
+    alertify.alert("Seleccione algún dato.");
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
   }
   console.log(x);
   //console.log("Dato borrado");
@@ -215,6 +235,7 @@ function botonEliminarDato(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
     if(jqXHR.status == 0){
+<<<<<<< HEAD
       alertify.alert("Data added.");
     }
     if(jqXHR.status == 401){
@@ -234,13 +255,38 @@ function botonEliminarDato(){
     }
     if(jqXHR.status == 500){
       alertify.alert("ERROR: "+jqXHR.status+" Internal error.");
+=======
+      alertify.alert("Dato añadido.");
+    }
+    if(jqXHR.status == 401){
+      alertify.alert("La clave introducida no es correcta");
+    }
+    if(jqXHR.status == 404){
+      alertify.alert("Dato no encontrado");
+    }
+    if(jqXHR.status == 400){
+      alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
+    }
+    if(jqXHR.status == 409){
+      alertify.alert("ERROR: "+jqXHR.status+" Ya existe.");
+    }
+    if(jqXHR.status == 403){
+      alertify.alert("ERROR: "+jqXHR.status+" No exite el parametro para editar.");
+    }
+    if(jqXHR.status == 500){
+      alertify.alert("ERROR: "+jqXHR.status+" Error interno.");
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
     }
   });
 }else{
+<<<<<<< HEAD
   alertify.alert("Select any data.");
+=======
+  alertify.alert("Seleccione algún dato.");
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
 }
 }
 
@@ -267,6 +313,7 @@ function botonEliminarTodo(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
     if(jqXHR.status == 0){
+<<<<<<< HEAD
       alertify.alert("Data addeds");
     }
     if(jqXHR.status == 401){
@@ -286,6 +333,27 @@ function botonEliminarTodo(){
     }
     if(jqXHR.status == 500){
       alertify.alert("ERROR: "+jqXHR.status+" Internal error");
+=======
+      alertify.alert("Dato añadidos");
+    }
+    if(jqXHR.status == 401){
+      alertify.alert("La clave introducida no es correcta");
+    }
+    if(jqXHR.status == 404){
+      alertify.alert("Dato no encontrado");
+    }
+    if(jqXHR.status == 400){
+      alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
+    }
+    if(jqXHR.status == 409){
+      alertify.alert("ERROR: "+jqXHR.status+" Ya existe.");
+    }
+    if(jqXHR.status == 403){
+      alertify.alert("ERROR: "+jqXHR.status+" No exite el parametro para editar.");
+    }
+    if(jqXHR.status == 500){
+      alertify.alert("ERROR: "+jqXHR.status+" Error interno");
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
@@ -322,7 +390,11 @@ function solicitudAjax(metodo, url, datos){
     console.log("jqXHR status : "+jqXHR.status);
     console.log("texto codigo :"+jqXHR.statusText);
     console.log("status : "+status);
+<<<<<<< HEAD
     alertify.alert("Data loaded successfully. Click OK to reload the page.", function () {
+=======
+    alertify.alert("Datos cargados con éxito. Pulsa aceptar para recargar la página.", function () {
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
       location.reload();
   });
     actualizarTabla();
@@ -338,11 +410,16 @@ function solicitudAjax(metodo, url, datos){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
     if(jqXHR.status == 0){
+<<<<<<< HEAD
       alertify.alert("Data loaded successfully. Click OK to reload the page.", function () {
+=======
+      alertify.alert("Datos cargados con éxito. Pulsa aceptar para recargar la página.", function () {
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
       location.reload();
   });
     }
     if(jqXHR.status == 401){
+<<<<<<< HEAD
       alertify.alert("Data added");
     }
     if(jqXHR.status == 404){
@@ -359,6 +436,24 @@ function solicitudAjax(metodo, url, datos){
     }
     if(jqXHR.status == 500){
       alertify.alert("ERROR: "+jqXHR.status+" Internal error del Servidor");
+=======
+      alertify.alert("La clave introducida no es correcta");
+    }
+    if(jqXHR.status == 404){
+      alertify.alert("Dato no encontrado");
+    }
+    if(jqXHR.status == 400){
+      alertify.alert("ERROR: "+jqXHR.status+" Falta algún parámetro para rellenar o el tipo esta mal.");
+    }
+    if(jqXHR.status == 409){
+      alertify.alert("ERROR: "+jqXHR.status+" La entrada ya existe.");
+    }
+    if(jqXHR.status == 403){
+      alertify.alert("ERROR: "+jqXHR.status+" NO coincide el parametro para editar.");
+    }
+    if(jqXHR.status == 500){
+      alertify.alert("ERROR: "+jqXHR.status+" Error interno del Servidor");
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
@@ -379,10 +474,17 @@ function cargaInicial(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
     if(jqXHR.status == 401){
+<<<<<<< HEAD
       alertify.alert("Data added");
     }
     if(jqXHR.status == 500){
       alertify.alert("ERROR: "+jqXHR.status+" Internal Server Error");
+=======
+      alertify.alert("La clave introducida no es correcta");
+    }
+    if(jqXHR.status == 500){
+      alertify.alert("ERROR: "+jqXHR.status+" Error interno del Servidor");
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
@@ -390,7 +492,11 @@ function cargaInicial(){
   });
   request.success(function(status,jqXHR) {
     console.log("Datos cargados");
+<<<<<<< HEAD
     alertify.alert("Data loaded successfully.", function () {
+=======
+    alertify.alert("Datos cargados con éxito.", function () {
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
       location.reload();
   });
   });
@@ -413,7 +519,11 @@ function eliminardato(){
   request.success(function(status,jqXHR){
   var x;
 
+<<<<<<< HEAD
     alertify.confirm("Do you want to delete the data?", function (e) {
+=======
+    alertify.confirm("¿Quiere eliminar el dato?", function (e) {
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
         if (e) {
       var table =  $('#tablaid').DataTable();
       console.log(x);
@@ -427,7 +537,11 @@ function eliminardato(){
       });
       seleccionado = false;
       x = "Aceptado";
+<<<<<<< HEAD
       alertify.alert("Data deleted.", function(){
+=======
+      alertify.alert("Dato borrado.", function(){
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
         location.reload();
       });
         }else{
@@ -442,6 +556,7 @@ function eliminardato(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
 		if(jqXHR.status == 0){
+<<<<<<< HEAD
       alertify.alert("Data added.");
     }
     if(jqXHR.status == 401){
@@ -461,13 +576,38 @@ function eliminardato(){
     }
     if(jqXHR.status == 500){
       alertify.alert("ERROR: "+jqXHR.status+" Internal error.");
+=======
+      alertify.alert("Dato añadido.");
+    }
+    if(jqXHR.status == 401){
+      alertify.alert("La clave introducida no es correcta");
+    }
+    if(jqXHR.status == 404){
+      alertify.alert("Dato no encontrado");
+    }
+    if(jqXHR.status == 400){
+      alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
+    }
+    if(jqXHR.status == 409){
+      alertify.alert("ERROR: "+jqXHR.status+" Ya existe.");
+    }
+    if(jqXHR.status == 403){
+      alertify.alert("ERROR: "+jqXHR.status+" No exite el parametro para editar.");
+    }
+    if(jqXHR.status == 500){
+      alertify.alert("ERROR: "+jqXHR.status+" Error interno.");
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
     }
   });
 }else{
+<<<<<<< HEAD
   alertify.alert("Select any data.");
+=======
+  alertify.alert("Seleccione algún dato.");
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
 }
 
 }
@@ -494,6 +634,7 @@ function editardato(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
 		if(jqXHR.status == 0){
+<<<<<<< HEAD
       alertify.alert("Data added.");
     }
     if(jqXHR.status == 401){
@@ -513,6 +654,27 @@ function editardato(){
     }
     if(jqXHR.status == 500){
       alertify.alert("ERROR: "+jqXHR.status+" Internal error.");
+=======
+      alertify.alert("Dato añadido.");
+    }
+    if(jqXHR.status == 401){
+      alertify.alert("La clave introducida no es correcta");
+    }
+    if(jqXHR.status == 404){
+      alertify.alert("Dato no encontrado");
+    }
+    if(jqXHR.status == 400){
+      alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
+    }
+    if(jqXHR.status == 409){
+      alertify.alert("ERROR: "+jqXHR.status+" Ya existe.");
+    }
+    if(jqXHR.status == 403){
+      alertify.alert("ERROR: "+jqXHR.status+" No exite el parametro para editar.");
+    }
+    if(jqXHR.status == 500){
+      alertify.alert("ERROR: "+jqXHR.status+" Error interno.");
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
     }
     console.log("texto codigo always:"+jqXHR.statusText);
     console.log("status: "+status);
@@ -552,7 +714,10 @@ function paginacion() {
      var x = document.getElementById("limit").value;
      var busqueda= document.getElementById("busqueda").value;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
     $.ajax(
     {
         type: "GET",
@@ -581,6 +746,7 @@ function paginacion() {
         error: function(jqXHR,status){
           console
           if(jqXHR.status == 401){
+<<<<<<< HEAD
               alertify.alert("Data added");
           }
           if(jqXHR.status == 404){
@@ -588,6 +754,15 @@ function paginacion() {
           }
           if(jqXHR.status == 500){
             alertify.alert("ERROR: "+jqXHR.status+" Internal Server Error");
+=======
+              alertify.alert("La clave introducida no es correcta");
+          }
+          if(jqXHR.status == 404){
+              alertify.alert("No se encontraron resultados");
+          }
+          if(jqXHR.status == 500){
+            alertify.alert("ERROR: "+jqXHR.status+" Error interno del Servidor");
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
            }
             console.log("texto codigo always:"+jqXHR.statusText);
             console.log("status: "+status);
@@ -637,6 +812,7 @@ var busqueda= document.getElementById("busqueda").value;
         error: function(jqXHR,status){
           console
           if(jqXHR.status == 401){
+<<<<<<< HEAD
               alertify.alert("Data added");
           }
           if(jqXHR.status == 404){
@@ -644,6 +820,15 @@ var busqueda= document.getElementById("busqueda").value;
           }
           if(jqXHR.status == 500){
             alertify.alert("ERROR: "+jqXHR.status+" Internal error.");
+=======
+              alertify.alert("La clave introducida no es correcta");
+          }
+          if(jqXHR.status == 404){
+              alertify.alert("No se encontraron resultados");
+          }
+          if(jqXHR.status == 500){
+            alertify.alert("ERROR: "+jqXHR.status+" Error interno.");
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
            }
             console.log("texto codigo always:"+jqXHR.statusText);
             console.log("status: "+status);
@@ -684,6 +869,7 @@ function busqueda(){
         error: function(jqXHR,status){
           console
           if(jqXHR.status == 401){
+<<<<<<< HEAD
               alertify.alert("Data added");
           }
           if(jqXHR.status == 404){
@@ -691,6 +877,15 @@ function busqueda(){
           }
           if(jqXHR.status == 500){
             alertify.alert("ERROR: "+jqXHR.status+" Internal erroro.");
+=======
+              alertify.alert("La clave introducida no es correcta");
+          }
+          if(jqXHR.status == 404){
+              alertify.alert("No se encontraron resultados");
+          }
+          if(jqXHR.status == 500){
+            alertify.alert("ERROR: "+jqXHR.status+" Error internoo.");
+>>>>>>> d3681c1620b51262fc170c11945659295b599fea
            }
             console.log("texto codigo always:"+jqXHR.statusText);
             console.log("status: "+status);
