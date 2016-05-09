@@ -121,6 +121,7 @@ if (apikey && apikey=="secret")
 
     	for(var i3=0;i3<resultado.length;i3++)
     	{
+    		console.log(from === undefined + isNaN(from) + from <= resultado[i3] + to === undefined + isNaN(to) + to >= resultado[i3]);
 
     		if (from === undefined || isNaN(from) || from <= resultado[i3] || to === undefined || isNaN(to) || to >= resultado[i3])
     		{resultado_definitivo.push(resultado[i3]);}   
