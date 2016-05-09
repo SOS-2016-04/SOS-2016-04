@@ -98,7 +98,7 @@ console.log(url);
 
                     if (statusCode == 404)
                     {
-                        alert("No se ha encontrado ningun recurso con los valores proporcionados.");
+                        alert("Resources not found.");
                     }
 
 
@@ -170,12 +170,12 @@ var country = document.getElementById("country_edit").value;
 
                     if(statusCode == 400)
                     {
-                        alert("Los datos introducidos no son validos.");
+                        alert("Invalid data.");
                     }
 
                     if(statusCode == 401)
                     {
-                        alert("Necesita introducir una apikey valida para modificar un recurso.");
+                        alert("Enter apikey.");
                     }
 
 
@@ -296,17 +296,17 @@ var country = document.getElementById("country").value;
 
                     if(statusCode == 400)
                     {
-                        alert("Los datos introducidos no son validos.");
+                        alert("Invalid data.");
                     }
 
                     if(statusCode == 401)
                     {
-                        alert("Necesita introducir una apikey valida para insertar un nuevo recurso.");
+                        alert("Enter apikey.");
                     }
 
                     if(statusCode == 409)
                     {
-                        alert("Ya existe otro recurso con el mismo pais y año.");
+                        alert("Same resource exists.");
                     }
 
             });
@@ -417,7 +417,7 @@ var country = document.getElementById("country").value;
 
     if (statusCode == 401)
     {
-        alert("Necesita introducir una apikey valida para eliminar el recurso.");
+        alert("Enter apikey.");
     }
 
 });
@@ -466,7 +466,7 @@ var country = document.getElementById("country").value;
 
                     if (statusCode == 401)
                     {
-                        alert("Necesita introducir una apikey valida para cargar los datos.");
+                        alert("Enter apikey.");
                     }
 
             });
