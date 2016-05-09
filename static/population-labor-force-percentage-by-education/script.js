@@ -20,7 +20,7 @@ function IniciarTabla(data){
         "bSort" : false
 
     } );
-
+  paginacion2();
   return table;
 
 
