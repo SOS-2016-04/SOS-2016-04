@@ -32,20 +32,17 @@ function mostrar(apikey){
       mostrar(apikey);
     });
 
-/*function myFunction2() {
-  document.getElementById("pag2").value = 0;
-}*/
+
     $("#search").click(function(){
    $("#tabla td").remove();
-   //myFunction2();
+
    var dobles_comillas = String.fromCharCode(34);
     var apikey = $("#apikey").val();
       var y = $("#year").val();
       var c = $("#country").val();
       var f = $("#from").val();
       var t = $("#to").val();
-      //var pag = $("#pag").val();
-    //  var pag2 = $("#pag2").val();
+
     if(y != ""){
       y = "/"+y;
     }
@@ -84,125 +81,7 @@ function mostrar(apikey){
       respuestas(jqXHR,status);
       });
 });
-/*function myFunction(pag3) {
-  document.getElementById("pag2").value = pag3;
-}
-$("#siguiente").click(function(){
-   $("#location td").remove();
-    var apikey = $("#apikey").val();
-      var year = $("#year").val();
-      var country = $("#country").val();
-      var desde = $("#desde").val();
-      var hasta = $("#hasta").val();
-      var pag = $("#pag").val();
-      var pag2 = $("#pag2").val();
-      pag3 = parseInt(pag) + parseInt(pag2);
-    if(year != ""){
-      year = "/"+year;
-    }
-    if(country != ""){
-      country = "/" + country;
-    }
-    if(desde != ""){
-      desde = "&from=" + desde;
-    }
-    if(hasta != ""){
-      hasta = "&to=" + hasta;
-    }
-    if(pag != ""){
-      pag = "&limit=" + pag;
-    }
-    if(pag2 != ""){
-      pag2 = "&offset=" + pag3;
-    }
-        var request = $.ajax(
-    {
-      type: "GET",
-      url:"https://sos-2016-13.herokuapp.com/api/v1/consumed" + country + year + "?apikey="+apikey + desde + hasta + pag2 + pag,
-      data: "{}",
-      contentType: "application/json; charset=utf-8",
-      dataType: "json",
-      cache: false,
-      success: function (data) {
-        var trHTML = '';
-      $.each(data, function (i, item) {
-        if(item != null){
-        trHTML += '<thead><tr><td>' + item.country + '</td><td>' + item.year + '</td><td>' + item.petroleum_cost + '</td><td>' + item.electric_cost + '</td></tr></thead>';
-        anterior.disabled = false;
-      }else{
-        siguiente.disabled = true;
-        }
-      });
-      $('#location').append(trHTML);
-      },
-      error: function (msg) {
-        alert(msg.responseText);
-      }
-       });
-          myFunction(pag3);
-    request.always(function(jqXHR,status){
-      errores(jqXHR,status);
-      });
-});
-$("#anterior").click(function(){
-   $("#location td").remove();
-    var apikey = $("#apikey").val();
-      var year = $("#year").val();
-      var country = $("#country").val();
-      var desde = $("#desde").val();
-      var hasta = $("#hasta").val();
-      var pag = $("#pag").val();
-      var pag2 = $("#pag2").val();
-      pag3 = parseInt(pag2) - parseInt(pag);
-    if(year != ""){
-      year = "/"+year;
-    }
-    if(country != ""){
-      country = "/" + country;
-    }
-    if(desde != ""){
-      desde = "&from=" + desde;
-    }
-    if(hasta != ""){
-      hasta = "&to=" + hasta;
-    }
-    if(pag != ""){
-      pag = "&limit=" + pag;
-    }
-    if(pag2 != ""){
-      pag2 = "&offset=" + pag3;
-    }
-        var request = $.ajax(
-    {
-      type: "GET",
-      url:"https://sos-2016-13.herokuapp.com/api/v1/consumed" + country + year + "?apikey="+apikey + desde + hasta + pag2 + pag,
-      data: "{}",
-      contentType: "application/json; charset=utf-8",
-      dataType: "json",
-      cache: false,
-      success: function (data) {
-        var trHTML = '';
-      $.each(data, function (i, item) {
-        if(item != null){
-        trHTML += '<thead><tr><td>' + item.country + '</td><td>' + item.year + '</td><td>' + item.petroleum_cost + '</td><td>' + item.electric_cost + '</td></tr></thead>';
-        siguiente.disabled = false;
-        }else{
-          anterior.disabled = true;
-        }
-      });
-      $('#location').append(trHTML);
-      },
-      error: function (msg) {
-        alert(msg.responseText);
-      }
-       });
 
-        myFunction(pag3);
-
-    request.always(function(jqXHR,status){
-      errores(jqXHR,status);
-      });
-});*/
 
     $("#add").click(function(){
   $("#tabla td").remove();
