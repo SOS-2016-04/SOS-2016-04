@@ -110,7 +110,7 @@ if(nuevoDato){
     }else{
       console.log("Metodo PUT");
       var metodo = "PUT";
-      var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education'+$("#pais").val()+'/'+$("#anno").val()+'?apikey='+$("#apikey").val();
+      var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+$("#pais").val()+'/'+$("#anno").val()+'?apikey='+$("#apikey").val();
       solicitudAjax(metodo, url, datos);
     }
     //vaciarCajas();
@@ -221,7 +221,7 @@ function botonEliminarDato(){
       alertify.alert("La clave introducida no es correcta");
     }
     if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado 2");
+      alertify.alert("Dato no encontrado");
     }
     if(jqXHR.status == 400){
       alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
@@ -273,7 +273,7 @@ function botonEliminarTodo(){
       alertify.alert("La clave introducida no es correcta");
     }
     if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado 3");
+      alertify.alert("Dato no encontrado");
     }
     if(jqXHR.status == 400){
       alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
@@ -346,7 +346,7 @@ function solicitudAjax(metodo, url, datos){
       alertify.alert("La clave introducida no es correcta");
     }
     if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado 4");
+      alertify.alert("Dato no encontrado");
     }
     if(jqXHR.status == 400){
       alertify.alert("ERROR: "+jqXHR.status+" Falta algún parámetro para rellenar o el tipo esta mal.");
@@ -448,7 +448,7 @@ function eliminardato(){
       alertify.alert("La clave introducida no es correcta");
     }
     if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado 5");
+      alertify.alert("Dato no encontrado");
     }
     if(jqXHR.status == 400){
       alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
@@ -500,7 +500,7 @@ function editardato(){
       alertify.alert("La clave introducida no es correcta");
     }
     if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado 1");
+      alertify.alert("Dato no encontrado");
     }
     if(jqXHR.status == 400){
       alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
