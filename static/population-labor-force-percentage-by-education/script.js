@@ -392,7 +392,7 @@ function cargaInicial(){
     console.log("jqXHR always: "+jqXHR);
     console.log("jqXHR status always: "+jqXHR.status);
     if(jqXHR.status == 401){
-      alertify.alert("Data added");
+      alertify.alert("Incorrect password");
     }
     if(jqXHR.status == 500){
       alertify.alert("ERROR: "+jqXHR.status+" Internal Server Error");
