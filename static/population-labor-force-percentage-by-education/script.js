@@ -481,7 +481,7 @@ function editardato(){
 
 
   var metodo = "GET";
-  var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+"spain"+'/'+"2014"+'?apikey='+$("#apikey").val();
+  var url = 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education/'+country+'/'+year+'?apikey='+$("#apikey").val();
     var request = $.ajax({
     url: url,
     type: metodo,
@@ -498,9 +498,6 @@ function editardato(){
     }
     if(jqXHR.status == 401){
       alertify.alert("La clave introducida no es correcta");
-    }
-    if(jqXHR.status == 404){
-      alertify.alert("Dato no encontrado");
     }
     if(jqXHR.status == 400){
       alertify.alert("ERROR: "+jqXHR.status+" Falta algún campo por rellenar o alguno es incorrecto.");
