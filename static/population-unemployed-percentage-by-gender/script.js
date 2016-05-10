@@ -166,10 +166,22 @@ function mostrar(apikey){
   $("#all").click(function(){
     $("#tabla td").remove();
   var apikey = $("#apikey").val();
+  var page=$("#page").val();
+  var items=$("#items").val();
+  if (!items){
+          items = 9999;
+  }
+  if (!page){
+          page = 1;
+  }
+  var offset = items*(page-1);
+  items= "&limit=" + items;
+  offset="&offset="+ offset;
+
   var request = $.ajax(
   {
     type: "GET",
-    url: '/api/v1/population-unemployed-percentage-by-gender?apikey='+apikey,
+    url: '/api/v1/population-unemployed-percentage-by-gender?apikey='+apikey+ items + offset,
     data: "{}",
     contentType: "application/json; charset=utf-8",
     dataType: "json",
