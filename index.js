@@ -16,7 +16,6 @@ var app = express();
 
 var app = express();
 
->>>>>>> e16de257dab9f385eb97e8057bcd83637aae82fa
 var paths = '/api/v1/mort-sickness';
 var apiServerHost = 'http://sos-2016-03.herokuapp.com';
 
