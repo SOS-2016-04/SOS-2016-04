@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var request = require("request");
-var cors=require('cors');
+//var cors=require('cors');
 var populationPercentagesCtlr = require('./populationPercentagesCtlr');
 var populationLaborForcePercentage = require('./populationLaborForcePercentage');
 var populationUnemployedPercentageByGender = require('./populationUnemployedPercentageByGender');
