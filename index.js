@@ -9,13 +9,11 @@ var populationUnemployedPercentageByGender = require('./populationUnemployedPerc
 
 //var PorcentageUnemployed = require('./PorcentageUnemployed');
 
-<<<<<<< HEAD
 var app = express();
 
 
 //Proxy Jesus
 
-=======
 var app = express();
 
 >>>>>>> e16de257dab9f385eb97e8057bcd83637aae82fa
@@ -33,7 +31,6 @@ app.use(paths, function(req,res){
       res.sendStatus(503);
     }
   })).pipe(res);
-<<<<<<< HEAD
 });
 
 //Proxy Ale
@@ -63,7 +60,7 @@ governify.control(app,{
   datastore:"http://datastore.governify.io/api/v6.1/",namespace: "sos-2016-04-jesgarsan",defaultPath:"/api/prueba"
 });
 
-=======
+
 });
 
 
@@ -85,7 +82,7 @@ governify.control(app,{
   datastore:"http://datastore.governify.io/api/v6.1/",namespace: "sos-2016-04-jesgarsan",defaultPath:"/api/prueba"
 });
 
->>>>>>> e16de257dab9f385eb97e8057bcd83637aae82fa
+
 
 
 var port = (process.env.PORT || 10000);
