@@ -1,6 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-
+var request = require("request");
 var populationPercentagesCtlr = require('./populationPercentagesCtlr');
 var populationLaborForcePercentage = require('./populationLaborForcePercentage');
 var populationUnemployedPercentageByGender = require('./populationUnemployedPercentageByGender');
@@ -8,6 +8,27 @@ var populationUnemployedPercentageByGender = require('./populationUnemployedPerc
 //var PorcentageUnemployed = require('./PorcentageUnemployed');
 
 var app = express();
+
+var paths = '/api/v1/mort-sickness';
+var apiServerHost = 'http://sos-2016-03.herokuapp.com';
+
+app.use(paths, function(req,res){
+  var url = apiServerHost + req.baseUrl + req.url;
+  console.log("Piped: "+ req.baseUrl + req.url);
+  console.log("URL Accesed: "+ url);
+
+  req.pipe(request(url,function (error,response,body){
+    if(error){
+      console.error(error);
+      res.sendStatus(503);
+    }
+  })).pipe(res);
+});
+
+
+
+
+
 
 var port = (process.env.PORT || 10000);
 

@@ -15,7 +15,8 @@
   "dependencies": {
     "body-parser": "^1.15.1",
     "expres": "0.0.5",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "request": "^2.72.0"
   },
   "bugs": {
     "url": "https://github.com/SOS-2016-04/sos-2016-04/issues"
