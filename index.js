@@ -11,6 +11,9 @@ var populationUnemployedPercentageByGender = require('./populationUnemployedPerc
 
 var app = express();
 
+
+//Proxy Jesus
+
 var paths = '/api/v1/mort-sickness';
 var apiServerHost = 'http://sos-2016-03.herokuapp.com';
 
@@ -26,6 +29,27 @@ app.use(paths, function(req,res){
     }
   })).pipe(res);
 });
+
+//Proxy Ale
+
+var paths = '/api/v1/spain-births';
+var apiServerHost = 'http://sos-2016-03.herokuapp.com';
+
+app.use(paths, function(req,res){
+  var url = apiServerHost + req.baseUrl + req.url;
+  console.log("Piped: "+ req.baseUrl + req.url);
+  console.log("URL Accesed: "+ url);
+
+  req.pipe(request(url,function (error,response,body){
+    if(error){
+      console.error(error);
+      res.sendStatus(503);
+    }
+  })).pipe(res);
+});
+
+
+//governify
 
 //multiPlan_C2_sos-2016-04-jesgarsan_ag
 //multiPlan_C4_sos-2016-04-jesgarsan_ag
