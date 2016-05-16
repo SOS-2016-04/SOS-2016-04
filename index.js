@@ -27,24 +27,6 @@ app.use(paths, function(req,res){
   })).pipe(res);
 });
 
-
-
-var paths = '/api/v1/oil';
-var apiServerHost = 'http://sos-2016-01.herokuapp.com';
-var app2 = express();  
-app.use(paths, function(req, res) {
-  var url2 = apiServerHost + req.baseUrl + req.url;
-  console.log('piped: '+req.baseUrl + req.url);
-  console.log("URL: "+url2)
-  req.pipe(request(url)).pipe(res);
-});
-
-app.use(express.static('.'));
-
-app.listen(process.env.PORT || 8080);
-
-
-
 //multiPlan_C2_sos-2016-04-jesgarsan_ag
 //multiPlan_C4_sos-2016-04-jesgarsan_ag
 governify.control(app,{
