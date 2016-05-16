@@ -30,8 +30,8 @@ app.use(paths, function(req,res){
 
 
 
-var paths2 = '/api/v1/oil';
-var apiServerHost2 = 'http://sos-2016-01.herokuapp.com';
+var paths2 = '/api/v1/population';
+var apiServerHost2 = 'http://sos-2016-02.herokuapp.com';
 
 app.use(paths2, function(req,res){
   var url = apiServerHost2 + req.baseUrl + req.url;
