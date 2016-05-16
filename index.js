@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var request = require("request");
 var cors=require('cors');
+var governify=require('governify');
 var populationPercentagesCtlr = require('./populationPercentagesCtlr');
 var populationLaborForcePercentage = require('./populationLaborForcePercentage');
 var populationUnemployedPercentageByGender = require('./populationUnemployedPercentageByGender');
@@ -26,8 +27,11 @@ app.use(paths, function(req,res){
   })).pipe(res);
 });
 
-
-
+//multiPlan_C2_sos-2016-04-jesgarsan_ag
+//multiPlan_C4_sos-2016-04-jesgarsan_ag
+governify.control(app,{
+  datastore:"http://datastore.governify.io/api/v6.1/",namespace: "sos-2016-04-jesgarsan",defaultPath:"/api/prueba"
+});
 
 
 
@@ -35,6 +39,11 @@ var port = (process.env.PORT || 10000);
 
 app.use(bodyParser.json());
 app.use(cors());
+
+app.get("/api/prueba",(req,res)=>{
+  res.send([{name:"prueba1"},{name:"prueba2"}]);
+});
+
 
 
 var books = [];
