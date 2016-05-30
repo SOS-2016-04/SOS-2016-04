@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      $(document).ready(function(){
+
+          var request=$.ajax({
+              type: "GET",
+              url: '/api/v1/population-unemployed-percentage-by-gender/?apikey=multiPlan_C4_sos-2016-04-jgs_ag',
+              data: "{}",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+            });
+            request.done(function(dataFromServer,status){
+              var request=$.ajax({
+                  type: "GET",
+                  url: '/api/v1/mort-sickness?apikey=multiPlan_C4_sos-2016-03-pgs_ag',
+                  data: "{}",
+                  contentType: "application/json; charset=utf-8",
+                  dataType: "json",
+                });
+              request.done(function(dataFromServer2,status){
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                    var dataForWidget=[["Year","male","totalMortality"]];
+
+
+                  for(i=0;i<dataFromServer.length;i++){
+                    item=dataFromServer[i];
+
+                    for(j=0;j<dataFromServer2.length;j++){
+                      item2=dataFromServer2[j];
+
+                      if((item.year == parseInt(item2.year))){
+                        var itemForWidget=[parseInt(item2.year),parseInt(item.male),parseInt(item2.totalMortality)];
+                        dataForWidget.push(itemForWidget);
+                      }
+                    }
+                  }
+          var data = google.visualization.arrayToDataTable(dataForWidget);
+        var options = {
+          title: 'Compare',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    });
+});
+});
+    </script>
+  </head>
+  <body>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+  </body>
+</html>

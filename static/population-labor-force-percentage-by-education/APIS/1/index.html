@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      $(document).ready(()=>{
+        var request=$.ajax({
+          url:"http://gsx2json.com/api?id=1sxhVLyQG7_G_WjeZ6Homwx6hv4ZFgswduauJvz70zIc"
+        });
+        request.done((dataFromServer,status)=>{
+          google.charts.setOnLoadCallback(drawSeriesChart);
+          function drawSeriesChart() {
+
+            var dataForWidget=[['car','percentage','people']];
+            for (i=0;i<dataFromServer.rows.length;i++){
+
+              var item=dataFromServer.rows[i];
+
+              var itemForWidget =[item.car,parseInt(item.percentage),parseInt(item.people)];
+              dataForWidget.push(itemForWidget);
+            }
+
+            var data = google.visualization.arrayToDataTable(dataForWidget);  //transformation from data
+            var options = {
+              title: 'Car.',
+              hAxis: {title: 'percentage'},
+              vAxis: {title: 'people'},
+              bubble: {textStyle: {fontSize: 11}}
+            };
+            var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
+            chart.draw(data, options);
+          }
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <center>
+    <div id="series_chart_div" style="width: 900px; height: 500px;"></div>
+  </center>
+  </body>
+</html>

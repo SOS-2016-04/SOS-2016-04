@@ -34,28 +34,25 @@ else
 
 function click_checkbox_year_search()
 {
-    
+
     if(document.getElementById("checkbox_year_search").checked)
 {
-<<<<<<< HEAD
     document.getElementById("year_search_from").disabled = false;
     document.getElementById("year_search_to").disabled = false;
-=======
     document.getElementById("year_search").disabled = false;
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
 }
 
 else
 {
-<<<<<<< HEAD
+
     document.getElementById("year_search_from").disabled = true;
     document.getElementById("year_search_from").value = "";
     document.getElementById("year_search_to").disabled = true;
     document.getElementById("year_search_to").value = "";
-=======
+
     document.getElementById("year_search").disabled = true;
     document.getElementById("year_search").value = "";
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
+
 }
 
 
@@ -69,31 +66,25 @@ function search_resources(){
     $('#win_search').window('close');
 
     var url = "/api/v1/population-percentage-by-age";
+    var urlBusqueda = "/api/v1/population-percentage-by-age";
 
     if(document.getElementById("checkbox_country_search").checked == true)
     {
         url = url + "/"+document.getElementById("country_search").value;
+        urlBusqueda = urlBusqueda + "/"+document.getElementById("country_search").value;
     }
 
-<<<<<<< HEAD
-    url = url + "?apikey=secret&limit=10&offset=0";
+
+    url = url + "?apikey=multiPlan_C4_sos-2016-04-jmt_ag&limit=10&offset=0";
+
+    urlBusqueda = urlBusqueda + "?apikey=multiPlan_C4_sos-2016-04-jmt_ag";
 
 
     if(document.getElementById("checkbox_year_search").checked == true)
     {
         url = url + "&from="+document.getElementById("year_search_from").value+"&to="+document.getElementById("year_search_to").value;
+        urlBusqueda = urlBusqueda + "&from="+document.getElementById("year_search_from").value+"&to="+document.getElementById("year_search_to").value;
     }
-
-console.log(url);
-=======
-    if(document.getElementById("checkbox_year_search").checked == true)
-    {
-        url = url + "/"+document.getElementById("year_search").value;
-    }
-
-    url = url + "?apikey=secret&limit=10&offset=0";
-
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
 
 
     var request = $.ajax({
@@ -107,6 +98,8 @@ console.log(url);
                     $('#tabladatos').datagrid('loadData',data);
                     $('#tabladatos').datagrid('getData');
 
+                    document.getElementById("urlBusqueda").value = urlBusqueda;
+
 
                 });
 
@@ -117,11 +110,9 @@ console.log(url);
 
                     if (statusCode == 404)
                     {
-<<<<<<< HEAD
+
                         alert("Resources not found.");
-=======
-                        alert("No se ha encontrado ningun recurso con los valores proporcionados.");
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
+
                     }
 
 
@@ -152,7 +143,7 @@ var country = document.getElementById("country_edit").value;
                 var dobles_comillas = String.fromCharCode(34);
 
                 var url = "/api/v1/population-percentage-by-age/"+country+"/"+year;
-                var data = "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+country+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+year+","+dobles_comillas+"population_0_14"+dobles_comillas+":"+population_0_14+","+dobles_comillas+"population_15_64"+dobles_comillas+":"+population_15_64+"}";         
+                var data = "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+country+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+year+","+dobles_comillas+"population_0_14"+dobles_comillas+":"+population_0_14+","+dobles_comillas+"population_15_64"+dobles_comillas+":"+population_15_64+"}";
 
 
                 url = url + "?apikey=" + document.getElementById("apikey_valida").value;
@@ -176,7 +167,7 @@ var country = document.getElementById("country_edit").value;
                     {
 
                         var request = $.ajax({
-                url : "/api/v1/population-percentage-by-age?apikey=secret&limit=10&offset=0",
+                url : "/api/v1/population-percentage-by-age?apikey=multiPlan_C4_sos-2016-04-jmt_ag&limit=10&offset=0",
                 type : "GET",
             });
 
@@ -184,6 +175,8 @@ var country = document.getElementById("country_edit").value;
 
                             $('#tabladatos').datagrid('loadData',data);
                             $('#tabladatos').datagrid('getData');
+
+                            document.getElementById('urlBusqueda').value = "no";
 
                     });
 
@@ -193,20 +186,16 @@ var country = document.getElementById("country_edit").value;
 
                     if(statusCode == 400)
                     {
-<<<<<<< HEAD
+
                         alert("Invalid data.");
-=======
-                        alert("Los datos introducidos no son validos.");
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
+
                     }
 
-                    if(statusCode == 401)
+                    if(statusCode == 401 || statusCode == 402 || statusCode == 429)
                     {
-<<<<<<< HEAD
-                        alert("Enter apikey.");
-=======
-                        alert("Necesita introducir una apikey valida para modificar un recurso.");
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
+
+                        alert("Invalid apikey.");
+
                     }
 
 
@@ -287,7 +276,7 @@ var country = document.getElementById("country").value;
                 var dobles_comillas = String.fromCharCode(34);
 
                 var url = "/api/v1/population-percentage-by-age";
-                var data = "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+country+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+year+","+dobles_comillas+"population_0_14"+dobles_comillas+":"+population_0_14+","+dobles_comillas+"population_15_64"+dobles_comillas+":"+population_15_64+"}";           
+                var data = "{"+dobles_comillas+"country"+dobles_comillas+":"+dobles_comillas+country+dobles_comillas+","+dobles_comillas+"year"+dobles_comillas+":"+year+","+dobles_comillas+"population_0_14"+dobles_comillas+":"+population_0_14+","+dobles_comillas+"population_15_64"+dobles_comillas+":"+population_15_64+"}";
 
                 url = url + "?apikey=" + document.getElementById("apikey_valida").value;
 
@@ -310,7 +299,7 @@ var country = document.getElementById("country").value;
                     {
 
                         var request = $.ajax({
-                url : "/api/v1/population-percentage-by-age?apikey=secret&limit=10&offset=0",
+                url : "/api/v1/population-percentage-by-age?apikey=multiPlan_C4_sos-2016-04-jmt_ag&limit=10&offset=0",
                 type : "GET",
             });
 
@@ -318,7 +307,7 @@ var country = document.getElementById("country").value;
 
                             $('#tabladatos').datagrid('loadData',data);
                             $('#tabladatos').datagrid('getData');
-
+                            document.getElementById('urlBusqueda').value = "no";
                     });
 
 
@@ -327,29 +316,23 @@ var country = document.getElementById("country").value;
 
                     if(statusCode == 400)
                     {
-<<<<<<< HEAD
+
                         alert("Invalid data.");
-=======
-                        alert("Los datos introducidos no son validos.");
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
+
                     }
 
-                    if(statusCode == 401)
+                    if(statusCode == 401 || statusCode == 402 || statusCode == 429)
                     {
-<<<<<<< HEAD
-                        alert("Enter apikey.");
-=======
-                        alert("Necesita introducir una apikey valida para insertar un nuevo recurso.");
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
+
+                        alert("Invalid apikey.");
+
                     }
 
                     if(statusCode == 409)
                     {
-<<<<<<< HEAD
+
                         alert("Same resource exists.");
-=======
-                        alert("Ya existe otro recurso con el mismo pais y año.");
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
+
                     }
 
             });
@@ -377,7 +360,7 @@ var country = document.getElementById("country").value;
                      height:400,
                      modal:true,
                      title:"Enter new resource"
-    }); 
+    });
 
 
 
@@ -410,7 +393,7 @@ var country = document.getElementById("country").value;
                      height:400,
                      modal:true,
                      title:"Edit resource"
-    }); 
+    });
 
 
             }
@@ -438,7 +421,7 @@ var country = document.getElementById("country").value;
 
 
                 var request = $.ajax({
-                url : "/api/v1/population-percentage-by-age?apikey=secret&limit=10&offset=0",
+                url : "/api/v1/population-percentage-by-age?apikey=multiPlan_C4_sos-2016-04-jmt_ag&limit=10&offset=0",
                 type : "GET"
             });
 
@@ -447,6 +430,7 @@ var country = document.getElementById("country").value;
 
                 $('#tabladatos').datagrid('loadData',data);
                 $('#tabladatos').datagrid('getData');
+                document.getElementById('urlBusqueda').value = "no";
 
             });
 
@@ -458,13 +442,11 @@ var country = document.getElementById("country").value;
 
     var statusCode = jqXHR.status;
 
-    if (statusCode == 401)
+    if (statusCode == 401 || statusCode == 402 || statusCode == 429)
     {
-<<<<<<< HEAD
-        alert("Enter apikey.");
-=======
-        alert("Necesita introducir una apikey valida para eliminar el recurso.");
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
+
+        alert("Invalid apikey.");
+
     }
 
 });
@@ -491,7 +473,7 @@ var country = document.getElementById("country").value;
 
 
                 var request = $.ajax({
-                url : "/api/v1/population-percentage-by-age?apikey=secret&limit=10&offset=0",
+                url : "/api/v1/population-percentage-by-age?apikey=multiPlan_C4_sos-2016-04-jmt_ag&limit=10&offset=0",
                 type : "GET"
             });
 
@@ -500,8 +482,9 @@ var country = document.getElementById("country").value;
 
                 $('#tabladatos').datagrid('loadData',data);
                 $('#tabladatos').datagrid('getData');
+                document.getElementById('urlBusqueda').value = "no";
 
-            });               
+            });
 
 
             });
@@ -511,13 +494,11 @@ var country = document.getElementById("country").value;
 
                     var statusCode = jqXHR.status;
 
-                    if (statusCode == 401)
+                    if (statusCode == 401 || statusCode == 402 || statusCode == 429)
                     {
-<<<<<<< HEAD
-                        alert("Enter apikey.");
-=======
-                        alert("Necesita introducir una apikey valida para cargar los datos.");
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
+
+                        alert("Invalid apikey.");
+
                     }
 
             });
@@ -532,18 +513,14 @@ var country = document.getElementById("country").value;
 
             function searchResource(){
 
+
                 document.getElementById("country_search").value = "";
-<<<<<<< HEAD
+
                 document.getElementById("year_search_from").value = "";
                 document.getElementById("country_search").disabled = true;
                 document.getElementById("year_search_from").disabled = true;
                 document.getElementById("year_search_to").value = "";
                 document.getElementById("year_search_to").disabled = true;
-=======
-                document.getElementById("year_search").value = "";
-                document.getElementById("country_search").disabled = true;
-                document.getElementById("year_search").disabled = true;
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
                 document.getElementById("checkbox_country_search").checked = false;
                 document.getElementById("checkbox_year_search").checked = false;
 
@@ -553,10 +530,10 @@ var country = document.getElementById("country").value;
                      height:400,
                      modal:true,
                      title:"Search resource"
-    }); 
-                
+    });
 
-                
+
+
 
             }
 
@@ -577,7 +554,7 @@ var country = document.getElementById("country").value;
                      height:400,
                      modal:true,
                      title:"Enter apikey"
-    }); 
+    });
 
             }
 
@@ -595,14 +572,13 @@ var country = document.getElementById("country").value;
 <script>
         $(document).ready(() => {
 
-<<<<<<< HEAD
-            document.getElementById("apikey_valida").value = "secret";
 
-=======
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
+            document.getElementById("apikey_valida").value = "multiPlan_C4_sos-2016-04-jmt_ag";
+
+
 
             var request = $.ajax({
-                url : "/api/v1/population-percentage-by-age?apikey=secret&limit=10&offset=0"
+                url : "/api/v1/population-percentage-by-age?apikey=multiPlan_C4_sos-2016-04-jmt_ag&limit=10&offset=0"
             });
 
             request.done((data,status) =>{
@@ -657,14 +633,11 @@ var country = document.getElementById("country").value;
    <tr><td>Year:</td><td><input id="year"/></td></tr><tr><td>&nbsp;</td></tr>
    <tr><td>Population_0_14:</td><td><input id="population_0_14"/></td></tr><tr><td>&nbsp;</td></tr>
    <tr><td>Population_15_64:</td><td><input id="population_15_64"/></td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
-<<<<<<< HEAD
+
    <tr><td><input type="button" value="Accept" onclick = "registra_recurso()"/></td>
    <td><input type="button" value="Cancel" onclick = "cancelar_registro_recurso()"/></td></tr></table></center>
-=======
-   <tr><td><input type="button" value="Aceptar" onclick = "registra_recurso()"/></td>
-   <td><input type="button" value="Cancelar" onclick = "cancelar_registro_recurso()"/></td></tr></table></center>
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
-    </form>    
+
+    </form>
 
     </div>
 
@@ -679,12 +652,10 @@ var country = document.getElementById("country").value;
     <td>Apikey:</td><td><input type = "password" id="apikey"/></td></tr><tr><td>&nbsp;</td></tr>
     <tr><td>Show apikey:</td><td><input id="checkbox_apikey" type="checkbox" onClick="seleccion_checkbox_apikey()"/></td></tr>
     <input id="apikey_valida" hidden="hidden"/><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
-<<<<<<< HEAD
+
     <tr><td><input type="button" value="Save" onclick="guardar_apikey()"/></td><td><input type="button" value="Cancel" onclick = "cancelar_apikey()"/></td></tr></table></center>
-=======
-    <tr><td><input type="button" value="Guardar" onclick="guardar_apikey()"/></td><td><input type="button" value="Cancelar" onclick = "cancelar_apikey()"/></td></tr></table></center>
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
-    </form>    
+
+    </form>
 
     </div>
 
@@ -700,14 +671,11 @@ var country = document.getElementById("country").value;
    <tr><td>Year:</td><td><input id="year_edit" disabled="disabled"/></td></tr><tr><td>&nbsp;</td></tr>
    <tr><td>Population_0_14:</td><td><input id="population_0_14_edit"/></td></tr><tr><td>&nbsp;</td></tr>
    <tr><td>Population_15_64:</td><td><input id="population_15_64_edit"/></td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
-<<<<<<< HEAD
+
    <tr><td><input type="button" value="Edit" onclick = "modifica_recurso()"/></td>
    <td><input type="button" value="Cancel" onclick = "cancelar_modificacion_recurso()"/></td></tr></table></center>
-=======
-   <tr><td><input type="button" value="Modificar" onclick = "modifica_recurso()"/></td>
-   <td><input type="button" value="Cancelar" onclick = "cancelar_modificacion_recurso()"/></td></tr></table></center>
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
-    </form>    
+
+    </form>
 
 
     </div>
@@ -722,18 +690,16 @@ var country = document.getElementById("country").value;
         <center><table><tr><td>&nbsp;</td></tr>
             <tr>
     <td>Filter by country:</td><td>Filter by year:</td></tr><tr><td>&nbsp;</td></tr>
-<<<<<<< HEAD
+
     <tr><td><input id="country_search" disabled="disabled"/></td><td>From: <input id="year_search_from" size="4" disabled="disabled"/> &nbsp;&nbsp;&nbsp;To: <input id="year_search_to" size="4" disabled="disabled"/></td></tr><tr><td>&nbsp;</td></tr>
-=======
-    <tr><td><input id="country_search" disabled="disabled"/></td><td><input id="year_search" disabled="disabled"/></td></tr><tr><td>&nbsp;</td></tr>
->>>>>>> d56b9b4f1ba1252d4de3a96b4a8718a096ddeea8
+
     <tr><td><input id="checkbox_country_search" type="checkbox" onclick="click_checkbox_country_search()"/></td><td><input id="checkbox_year_search" type="checkbox" onclick="click_checkbox_year_search()"/></td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
     <tr><td><input type="button" value="Search" onclick="search_resources()"/></td><td><input type="button" value="Cancel" onclick = "cancel_search_resources()"/></td></tr></table></center>
-    </form>    
+    </form>
 
     </div>
 
-
+<input type="text" id="urlBusqueda" hidden="hidden" value="no"/>
 
 <center>
     <div class="easyui-pagination" style="width:710px; border:1px solid #ccc;"
@@ -744,8 +710,21 @@ var country = document.getElementById("country").value;
 
             var off = (pageNumber - 1) * pageSize;
 
+            console.log(document.getElementById('urlBusqueda').value);
+
+            var vUrl = '/api/v1/population-percentage-by-age?limit='+pageSize+'&offset='+off+'&apikey=multiPlan_C4_sos-2016-04-jmt_ag';
+
+
+            if (document.getElementById('urlBusqueda').value != 'no')
+            {
+            vUrl = document.getElementById('urlBusqueda').value + '&limit='+pageSize+'&offset='+off;
+            }
+
+
+            console.log(vUrl);
+
             var request = $.ajax({
-                url : '/api/v1/population-percentage-by-age?limit='+pageSize+'&offset='+off+'&apikey=secret',
+                url : vUrl,
                 type : 'GET',
             });
 

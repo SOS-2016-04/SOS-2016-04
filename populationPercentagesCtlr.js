@@ -3,15 +3,26 @@ var population_percentages = [];
 
 module.exports.loadInitialData = function(req,res){
 
-apikey = req.query.apikey;
 
-if (apikey && apikey=="secret")
-{
-
-population_percentages=[{country: "spain", year: 2012, population_0_14: 15, population_15_64: 67},
-{country: "spain", year: 2013, population_0_14: 14, population_15_64: 68},
-{country: "spain", year: 2014, population_0_14: 15, population_15_64: 67},
-{country: "spain", year: 2015, population_0_14: 14, population_15_64: 68},
+population_percentages=[
+{country: "spain", year: 2006, population_0_14: 17, population_15_64: 70},
+{country: "spain", year: 2007, population_0_14: 12, population_15_64: 70},
+{country: "spain", year: 2008, population_0_14: 11, population_15_64: 65},
+{country: "spain", year: 2009, population_0_14: 18, population_15_64: 68},
+{country: "spain", year: 2010, population_0_14: 13, population_15_64: 67},
+{country: "spain", year: 2011, population_0_14: 14, population_15_64: 70},
+{country: "canada", year: 2006, population_0_14: 15, population_15_64: 60},
+{country: "canada", year: 2007, population_0_14: 9, population_15_64: 68},
+{country: "canada", year: 2008, population_0_14: 20, population_15_64: 65},
+{country: "canada", year: 2009, population_0_14: 14, population_15_64: 70},
+{country: "canada", year: 2010, population_0_14: 15, population_15_64: 67},
+{country: "canada", year: 2011, population_0_14: 14, population_15_64: 64},
+{country: "brazil", year: 2006, population_0_14: 15, population_15_64: 50},
+{country: "brazil", year: 2007, population_0_14: 14, population_15_64: 70},
+{country: "brazil", year: 2008, population_0_14: 15, population_15_64: 65},
+{country: "brazil", year: 2009, population_0_14: 14, population_15_64: 70},
+{country: "brazil", year: 2010, population_0_14: 15, population_15_64: 65},
+{country: "brazil", year: 2011, population_0_14: 14, population_15_64: 68},
 {country: "france", year: 2012, population_0_14: 19, population_15_64: 63},
 {country: "france", year: 2013, population_0_14: 15, population_15_64: 64},
 {country: "france", year: 2014, population_0_14: 19, population_15_64: 63},
@@ -19,20 +30,14 @@ population_percentages=[{country: "spain", year: 2012, population_0_14: 15, popu
 {country: "russia", year: 2012, population_0_14: 15, population_15_64: 67},
 {country: "russia", year: 2013, population_0_14: 14, population_15_64: 68},
 {country: "russia", year: 2014, population_0_14: 15, population_15_64: 67},
-{country: "russia", year: 2015, population_0_14: 14, population_15_64: 68},
-{country: "sweden", year: 2012, population_0_14: 15, population_15_64: 67},
-{country: "sweden", year: 2013, population_0_14: 14, population_15_64: 68},
-{country: "sweden", year: 2014, population_0_14: 15, population_15_64: 67},
+{country: "russia", year: 2015, population_0_14: 11, population_15_64: 68},
+{country: "sweden", year: 2012, population_0_14: 12, population_15_64: 67},
+{country: "sweden", year: 2013, population_0_14: 10, population_15_64: 68},
+{country: "sweden", year: 2014, population_0_14: 20, population_15_64: 67},
 {country: "sweden", year: 2015, population_0_14: 14, population_15_64: 68}];
 
 res.sendStatus(200);
 
-}
-
-else
-{
-	res.sendStatus(401);
-}
 
 }
 
@@ -43,12 +48,8 @@ from = req.query.from;
 to = req.query.to;
 limit = req.query.limit;
 offset = req.query.offset;
-apikey = req.query.apikey;
 var resultado = [];
 
-
-if (apikey && apikey=="secret")
-{
 
 for(var i=0;i<population_percentages.length;i++)
 {
@@ -76,12 +77,7 @@ resultado.splice(limit,resultado.length-limit);
 }
 
 res.send(resultado);
-}
 
-else
-{
-	res.sendStatus(401);
-}
 
 
 };
@@ -92,6 +88,8 @@ module.exports.getPopulationPercentage = function(req,res){
 
 var from = req.query.from;
 var to = req.query.to;
+var limit = req.query.limit;
+var offset = req.query.offset;
 var data = req.params.data;
 var resultado = [];
 var resultado_definitivo = [];
@@ -100,11 +98,8 @@ var cadena="";
 var data = req.params.data;
 var resultado = [];
 
-apikey = req.query.apikey;
 	var encontrado = false;
 
-if (apikey && apikey=="secret")
-{
 
 	for(var i=0;i<population_percentages.length;i++)
 	{
@@ -137,12 +132,21 @@ if (apikey && apikey=="secret")
     			}
     }
 
+
+    if(limit && offset)
+{
+
+resultado_definitivo.splice(0,offset);
+resultado_definitivo.splice(limit,resultado.length-limit);
+
+}
+
    res.send(resultado_definitivo);
 
 
 
 
-    	res.send(resultado);
+    //	res.send(resultado);
 
     }
 
@@ -151,12 +155,6 @@ if (apikey && apikey=="secret")
 	res.sendStatus(404);
     }
 
-}
-
-else
-{
-	res.sendStatus(401);
-}
 
 }
 
@@ -165,12 +163,8 @@ module.exports.getPopulationPercentageCountryYear = function(req,res){
 var country = req.params.country;
 var year = req.params.year;
 var resultado = [];
-apikey = req.query.apikey;
 	var encontrado = false;
 
-
-if (apikey && apikey=="secret")
-{
 
 	for(var i=0;i<population_percentages.length;i++)
 	{
@@ -191,12 +185,6 @@ if (apikey && apikey=="secret")
 	res.sendStatus(404);
     }
 
-    }
-
-else
-{
-	res.sendStatus(401);
-}
 
 }
 
@@ -211,16 +199,12 @@ module.exports.postPopulationPercentages = function(req,res){
 var population_percentage = req.body;
 var country = req.params.country;
 var year = req.params.year;
-apikey = req.query.apikey;
 var population_0_14 = req.params.population_0_14;
 var population_15_64 = req.params.population_15_64;
 var existe = false;
 var peticion_valida = true;
 var cantidad_atributos=JSON.stringify(req.body).split(",").length;
 var cantidad = cantidad_atributos.toString();
-
-if (apikey && apikey=="secret")
-{
 
 
 if(population_percentage.country === undefined || population_percentage.year === undefined || population_percentage.population_0_14 === undefined || population_percentage.population_15_64 === undefined || isNaN(population_percentage.year) || isNaN(population_percentage.population_0_14)
@@ -262,13 +246,6 @@ else
 }
 
 
-}
-
-else
-{
-	res.sendStatus(401);
-}
-
 
 }
 
@@ -278,10 +255,7 @@ else
 module.exports.deletePopulationPercentage = function(req,res){
     var data = req.params.data;
 	var encontrado = false;
-	apikey = req.query.apikey;
 
-	if (apikey && apikey=="secret")
-{
 
 	for(var i=0;i<population_percentages.length;i++)
 	{
@@ -314,34 +288,16 @@ module.exports.deletePopulationPercentage = function(req,res){
     }
 
 
-    }
-
-else
-{
-	res.sendStatus(401);
-}
-
-
 
 }
 
 
 module.exports.deletePopulationPercentages = function(req,res){
 
-apikey = req.query.apikey;
-
-if (apikey && apikey=="secret")
-{
 
  population_percentages = [];
  res.sendStatus(200);
 
-}
-
-else
-{
-	res.sendStatus(401);
-}
 
 }
 
@@ -350,12 +306,9 @@ else
 
 module.exports.deletePopulationPercentageCountryYear = function(req,res){
 var country = req.params.country;
-apikey = req.query.apikey;
+
 var year = req.params.year;
 	var encontrado = false;
-
-if (apikey && apikey=="secret")
-{
 
 
 	for(var i=0;i<population_percentages.length;i++)
@@ -378,12 +331,6 @@ if (apikey && apikey=="secret")
 	res.sendStatus(404);
     }
 
-    }
-
-else
-{
-	res.sendStatus(401);
-}
 
 }
 
@@ -391,16 +338,12 @@ else
 module.exports.putPopulationPercentage = function(req,res){
     var country = req.params.country;
 var year = req.params.year;
-apikey = req.query.apikey;
 var tamanho = population_percentages.length;
 var encontrado = false;
 var mismoIdentificador = true;
 var cantidad_atributos=JSON.stringify(req.body).split(",").length;
 var cantidad = cantidad_atributos.toString();
 
-
-if (apikey && apikey=="secret")
-{
 
 	if (req.body.country === undefined || req.body.year === undefined || req.body.population_0_14 === undefined ||
 		req.body.population_15_64 === undefined || isNaN(req.body.year) || isNaN(req.body.population_0_14) ||
@@ -452,13 +395,6 @@ if (apikey && apikey=="secret")
     res.sendStatus(400);
     }
 
-}
-
-}
-
-else
-{
-	res.sendStatus(401);
 }
 
 }

@@ -3,8 +3,8 @@ var  populationLaborForcePercentage= [];
 module.exports.loadInitialData3 = function(req,res){
 	apikey = req.query.apikey;
 
-	if (apikey && apikey=="clave")
-	{
+	//if (apikey && apikey=="clave")
+	//{
 populationLaborForcePercentage=[{country: "spain", year: 2014, primaryEducation: 39, secondaryEducation: 23, tertiaryEducation: 37},
 {country: "spain", year: 2013, primaryEducation: 25, secondaryEducation: 50, tertiaryEducation: 25},
 {country: "canada", year: 2014, primaryEducation: 10, secondaryEducation: 38, tertiaryEducation: 52},
@@ -13,9 +13,9 @@ populationLaborForcePercentage=[{country: "spain", year: 2014, primaryEducation:
 {country: "sweden", year: 2014, primaryEducation: 16, secondaryEducation: 47, tertiaryEducation: 37}];
 
 res.sendStatus(200);
-}else{
-	res.sendStatus(401);
-}
+//}else{
+//	res.sendStatus(401);
+//}
 }
 
 
@@ -29,8 +29,8 @@ apikey = req.query.apikey;
 var resultado = [];
 
 
-if (apikey && apikey=="clave")
-{
+//if (apikey && apikey=="clave")
+//{
 
 for(var i=0;i<populationLaborForcePercentage.length;i++)
 {
@@ -58,12 +58,12 @@ resultado.splice(limit,resultado.length-limit);
 }
 
 res.send(resultado);
-}
+//}
 
-else
-{
-	res.sendStatus(401);
-}
+//else
+//{
+//	res.sendStatus(401);
+//}
 
 
 };
@@ -79,8 +79,8 @@ module.exports.getPopulationLaborForcePercentage = function(req,res){
 var data = req.params.data;
 var resultado = [];
 	var encontrado = false;
-	if (apikey && apikey=="clave")
-	{
+	//if (apikey && apikey=="clave")
+	//{
 	for(var i=0;i<populationLaborForcePercentage.length;i++)
 	{
 		if(isNaN(data)  && populationLaborForcePercentage[i].country == data)
@@ -124,9 +124,9 @@ var resultado = [];
     {
 	res.sendStatus(404);
     }
-	}else{
-		res.sendStatus(401);
-	}
+	//}else{
+	//	res.sendStatus(401);
+	//}
 }
 
 
@@ -141,8 +141,8 @@ var year = req.params.year;
 var resultado = [];
 	var encontrado = false;
 
-	if (apikey && apikey=="clave")
-	{
+//	if (apikey && apikey=="clave")
+	//{
 	for(var i=0;i<populationLaborForcePercentage.length;i++)
 	{
 		if(populationLaborForcePercentage[i].country == country && populationLaborForcePercentage[i].year == year)
@@ -179,21 +179,21 @@ var resultado = [];
     {
 	res.sendStatus(404);
     }
-}else{
-	res.sendStatus(401);
-}
+//}else{
+//	res.sendStatus(401);
+//}
 }
 
 
 
 module.exports.postPopulationLaborForcePercentage = function(req,res){
 	apikey = req.query.apikey;
-	if (apikey && apikey=="clave")
-	{
+	//if (apikey && apikey=="clave")
+	//{
 res.sendStatus(405);
-}else{
-	res.sendStatus(401);
-}
+//}else{
+//	res.sendStatus(401);
+//}
 }
 
 
@@ -210,8 +210,8 @@ var peticion_valida = true;
 var cantidad_atributos=JSON.stringify(req.body).split(",").length;
 var cantidad = cantidad_atributos.toString();
 
-if (apikey && apikey=="clave")
-{
+//if (apikey && apikey=="clave")
+//{
 
 if(populationLaborForcePercentages.country === undefined || populationLaborForcePercentages.year === undefined || populationLaborForcePercentages.primaryEducation === undefined || populationLaborForcePercentages.secondaryEducation === undefined || populationLaborForcePercentages.tertiaryEducation === undefined || isNaN(populationLaborForcePercentages.year) || isNaN(populationLaborForcePercentages.primaryEducation)  || isNaN(populationLaborForcePercentages.secondaryEducation) || isNaN(populationLaborForcePercentages.tertiaryEducation)|| cantidad !== "5")
 {
@@ -249,9 +249,9 @@ else
 {
 	res.sendStatus(400);
 }
-}else{
-	res.sendStatus(401);
-}
+//}else{
+//	res.sendStatus(401);
+//}
 
 }
 
@@ -263,8 +263,8 @@ module.exports.deletePopulationLaborForcePercentage = function(req,res){
     var data = req.params.data;
 	var encontrado = false;
 
-	if (apikey && apikey=="clave")
-	{
+	//if (apikey && apikey=="clave")
+	//{
 	for(var i=0;i<populationLaborForcePercentage.length;i++)
 	{
 		if(isNaN(data)  &&  populationLaborForcePercentage[i].country == data)
@@ -295,22 +295,22 @@ module.exports.deletePopulationLaborForcePercentage = function(req,res){
 	res.sendStatus(404);
     }
 
-}else{
-	res.sendStatus(401);
-}
+//}else{
+//	res.sendStatus(401);
+//}
 
 }
 
 
 module.exports.deletePopulationLaborForcePercentages = function(req,res){
 	apikey = req.query.apikey;
-	if (apikey && apikey=="clave")
-	{
+	//if (apikey && apikey=="clave")
+	//{
  populationLaborForcePercentage= [];
  res.sendStatus(200);
- }else{
-	 res.sendStatus(401);
- }
+ //}else{
+	// res.sendStatus(401);
+ //}
 }
 
 
@@ -321,8 +321,8 @@ module.exports.deletePopulationLaborForcePercentageCountryYear = function(req,re
 var country = req.params.country;
 var year = req.params.year;
 	var encontrado = false;
-	if (apikey && apikey=="clave")
-	{
+	//if (apikey && apikey=="clave")
+	//{
 	for(var i=0;i<populationLaborForcePercentage.length;i++)
 	{
 		if(populationLaborForcePercentage[i].country == country && populationLaborForcePercentage[i].year == year)
@@ -342,9 +342,9 @@ var year = req.params.year;
     {
 	res.sendStatus(404);
     }
-}else{
-	res.sendStatus(401);
-}
+//}else{
+//	res.sendStatus(401);
+//}
 }
 
 
@@ -357,8 +357,8 @@ var tamanho = populationLaborForcePercentage.length;
 var encontrado = false;
 var cantidad_atributos=JSON.stringify(req.body).split(",").length;
 var cantidad = cantidad_atributos.toString();
-if (apikey && apikey=="clave")
-{
+//if (apikey && apikey=="clave")
+//{
  if(country!=populationLaborForcePercentages.country || year!=populationLaborForcePercentages.year || populationLaborForcePercentages.country === undefined || populationLaborForcePercentages.year === undefined || populationLaborForcePercentages.primaryEducation === undefined || populationLaborForcePercentages.secondaryEducation === undefined || populationLaborForcePercentages.tertiaryEducation === undefined || isNaN(populationLaborForcePercentages.year) || isNaN(populationLaborForcePercentages.primaryEducation)  || isNaN(populationLaborForcePercentages.secondaryEducation) || isNaN(populationLaborForcePercentages.tertiaryEducation) || cantidad !== "5")
  {
 	 res.sendStatus(400);
@@ -387,18 +387,18 @@ if (apikey && apikey=="clave")
 	res.sendStatus(404);
     }
 	}
-}else{
-	res.sendStatus(401);
-}
+//}else{
+//	res.sendStatus(401);
+//}
 }
 
 
 module.exports.putPopulationLaborForcePercentages = function(req,res){
 	apikey = req.query.apikey;
-	if (apikey && apikey=="clave")
-	{
+	//if (apikey && apikey=="clave")
+	//{
  res.sendStatus(405);
- }else{
-	 res.sendStatus(401);
- }
+ //}else{
+	// res.sendStatus(401);
+ //}
 }

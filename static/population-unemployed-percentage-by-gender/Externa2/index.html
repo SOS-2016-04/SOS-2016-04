@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <script type='text/javascript'>
+      google.charts.load('current', {'packages': ['geochart']});
+
+      $(document).ready(()=>{
+        var request=$.ajax({
+          url:"http://gsx2json.com/api?id=1fbv0A21XcdZcUIpX7sWcMFWwevPnddnyR2HYkgUt9WE"
+        });
+        request.done((dataFromServer,status)=>{
+          google.charts.setOnLoadCallback(drawRegionsMap);
+          function drawRegionsMap() {
+
+            var dataForWidget=[['country','team']];
+            for (i=0;i<dataFromServer.rows.length;i++){
+
+              var item=dataFromServer.rows[i];
+
+              var itemForWidget =[item.country,parseInt(item.team)];
+              dataForWidget.push(itemForWidget);
+            }
+
+            var data = google.visualization.arrayToDataTable(dataForWidget);  
+            var options = {
+            };
+            var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+          }
+        });
+      });
+
+
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>

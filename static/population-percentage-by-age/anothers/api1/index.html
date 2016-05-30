@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+
+
+    <script>
+        $(document).ready(() => {
+
+      var cadena = "";
+      var vUrl = "http://servicios.ine.es/wstempus/js/ES/PUBLICACIONES";
+
+
+ var request = $.ajax({
+                url : vUrl,
+                type : "GET"
+            });
+
+
+                request.done((data,status) =>{
+
+                	cadena = "<center><table><tr><td>ID</td><td>Nombre</td><td>FK_Periodicidad</td><td>FK_Division</td></tr>";
+
+                	for (i=0;i<data.length;i++)
+                	{
+                		cadena = cadena + "<tr><td>"+data[i].Id+"</td><td>"+data[i].Nombre+"</td><td>"+data[i].FK_Periodicidad+"</td><td>"+data[i].FK_Division+"</td></tr>";
+                	}
+
+                	cadena = cadena + "</table></center>";
+
+                	$("#tabla").html(cadena);
+
+                });
+
+
+
+
+
+            
+
+    });
+</script>
+
+
+  </head>
+  <body>
+    <div id="tabla"></div>
+  </body>
+</html>

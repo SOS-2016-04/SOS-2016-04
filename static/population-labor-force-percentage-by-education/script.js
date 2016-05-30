@@ -33,7 +33,7 @@ function procesarDatos(){
 
 
   var request = $.ajax({
-    url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education?apikey=clave',
+    url: 'http://sos-2016-04.herokuapp.com/api/v1/population-labor-force-percentage-by-education?apikey=multiPlan_C2_sos-2016-04-arc_ag',
     type: "GET",
     async: false
   });

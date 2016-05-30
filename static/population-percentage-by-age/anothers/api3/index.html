@@ -1,0 +1,130 @@
+<html>
+  <head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+
+
+    <script>
+        $(document).ready(() => {
+
+          google.charts.load('current', {'packages':['corechart']});         
+
+    });
+</script>
+
+
+    <script type="text/javascript">
+
+
+    function muestraMapa(){
+
+      var anho = document.getElementById("anho").value;
+      var vUrl = "http://sos-2016-01.herokuapp.com/api/v1/oil?apikey=multiPlan_C4_sos-2016-01-fjfr_ag&from="+anho+"&to="+anho;
+      var cadena = [];
+      var cadena1 = [['Country', 'Popularity']];
+      var cadena2 = [['country', 'gasoline']];
+
+      if (isNaN(anho) || anho.trim().length == 0)
+      {
+        vUrl = "http://sos-2016-01.herokuapp.com/api/v1/oil?apikey=multiPlan_C4_sos-2016-01-fjfr_ag&from=2013&to=2012";
+      }
+
+
+      var request = $.ajax({
+                url : vUrl,
+                type : "GET"
+            });
+
+
+                request.done((data,status) =>{
+
+
+
+
+      var vUrl2 = "/api/v1/population-percentage-by-age?apikey=multiPlan_C4_sos-2016-04-jmt_ag&from="+anho+"&to="+anho;
+
+
+      if (isNaN(anho) || anho.trim().length == 0)
+      {
+        var vUrl2 = "/api/v1/population-percentage-by-age?apikey=multiPlan_C4_sos-2016-04-jmt_ag&from=2013&to=2012";
+      }
+
+
+
+      var request = $.ajax({
+                url : vUrl2,
+                type : "GET"
+            });
+
+
+                request.done((data2,status) =>{
+
+                  data = JSON.parse(data);
+
+                  for (i=0; i<data.length ; i++)
+                {
+                  var item = data[i];
+                  var itemForWidget1 = [item.country,item.gasoline];
+                  cadena1.push(itemForWidget1);
+                 
+                }
+            
+
+                for (i2=0; i2<data2.length ; i2++)
+                {
+                  var item = data2[i2];
+                  var itemForWidget2 = [item.country,item.population_15_64];
+                  cadena2.push(itemForWidget2);
+                }
+
+
+
+                google.charts.setOnLoadCallback(drawRegionsMap);
+      google.charts.setOnLoadCallback(drawRegionsMap2);
+
+      function drawRegionsMap() {
+
+        var data_gasoline = google.visualization.arrayToDataTable(cadena1);
+
+        var options = {
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('regions_div'));
+
+        chart.draw(data_gasoline, options);
+      }
+
+
+      function drawRegionsMap2() {
+
+        var data_15_64 = google.visualization.arrayToDataTable(cadena2);
+
+        var options = {
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('regions_div2'));
+
+        chart.draw(data_15_64, options);
+      }
+
+           });
+                });
+
+    }
+
+    </script>
+  </head>
+  <body>
+    <center>
+    <strong>Gasoline consumption</strong><br><br><div id="regions_div" style="width: 400px; height: 225px;"></div>
+<br><br><br><br>
+    <strong>Old population percentage</strong><br><br><div id="regions_div2" style="width: 400px; height: 225px;"></div>
+  <br><br>
+  Year: <input type="text" id="anho">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="botonMuestraMapa" value = "Show" onclick="muestraMapa()"/>
+</center>
+  </body>
+</html>

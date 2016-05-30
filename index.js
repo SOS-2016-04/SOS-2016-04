@@ -12,7 +12,17 @@ var populationUnemployedPercentageByGender = require('./populationUnemployedPerc
 var app = express();
 
 
+governify.control(app,{
+  datastore : "http://datastore.governify.io/api/v6.1/",
+  namespace : "sos-2016-04-jmt",
+  defaultPath : "/api/v1/population-percentage-by-age"
+})
+
+
+
+
 //Proxy Jesus
+
 
 var paths = '/api/v1/mort-sickness';
 var apiServerHost = 'http://sos-2016-03.herokuapp.com';
@@ -34,8 +44,8 @@ app.use(paths, function(req,res){
 
 //Proxy Moreno
 
-var paths2 = '/api/v1/population';
-var apiServerHost2 = 'http://sos-2016-02.herokuapp.com';
+var paths2 = '/api/v1/electrical-consume';
+var apiServerHost2 = 'http://sos-2016-01.herokuapp.com';
 
 app.use(paths2, function(req,res){
   var url = apiServerHost2 + req.baseUrl + req.url;
@@ -52,8 +62,8 @@ app.use(paths2, function(req,res){
 
 //Proxy Ale
 
-var paths3 = '/api/v1/spain-births';
-var apiServerHost3 = 'http://sos-2016-03.herokuapp.com';
+var paths3 = '/api/v1/participants-number';
+var apiServerHost3 = 'http://sos-2016-05.herokuapp.com';
 
 app.use(paths3, function(req,res){
   var url = apiServerHost3 + req.baseUrl + req.url;
@@ -68,56 +78,21 @@ app.use(paths3, function(req,res){
   })).pipe(res);
 });
 
+//Governify Ale
+
+governify.control(app,{
+  datastore : "http://datastore.governify.io/api/v6.1/",
+  namespace : "sos-2016-04-arc",
+  defaultPath : "/api/v1/population-labor-force-percentage-by-education"
+});
+
 
 //Governify
 
 //multiPlan_C2_sos-2016-04-jesgarsan_ag
 //multiPlan_C4_sos-2016-04-jesgarsan_ag
 governify.control(app,{
-  datastore:"http://datastore.governify.io/api/v6.1/",namespace: "sos-2016-04-jesgarsan",defaultPath:"/api/prueba"
-});
-
-
-
-var paths = '/api/v1/mort-sickness';
-var apiServerHost = 'http://sos-2016-03.herokuapp.com';
-
-app.use(paths, function(req,res){
-  var url = apiServerHost + req.baseUrl + req.url;
-  console.log("Piped: "+ req.baseUrl + req.url);
-  console.log("URL Accesed: "+ url);
-
-  req.pipe(request(url,function (error,response,body){
-    if(error){
-      console.error(error);
-      res.sendStatus(503);
-    }
-  })).pipe(res);
-});
-
-
-
-
-var paths2 = '/api/v1/population';
-var apiServerHost2 = 'http://sos-2016-02.herokuapp.com';
-
-app.use(paths2, function(req,res){
-  var url = apiServerHost2 + req.baseUrl + req.url;
-  console.log("Piped: "+ req.baseUrl + req.url);
-  console.log("URL Accesed: "+ url);
-
-  req.pipe(request(url,function (error,response,body){
-    if(error){
-      console.error(error);
-      res.sendStatus(503);
-    }
-  })).pipe(res);
-});
-
-//multiPlan_C2_sos-2016-04-jesgarsan_ag
-//multiPlan_C4_sos-2016-04-jesgarsan_ag
-governify.control(app,{
-  datastore:"http://datastore.governify.io/api/v6.1/",namespace: "sos-2016-04-jesgarsan",defaultPath:"/api/prueba"
+  datastore:"http://datastore.governify.io/api/v6.1/",namespace: "sos-2016-04-jgs",defaultPath:"/api/v1/population-unemployed-percentage-by-gender"
 });
 
 
